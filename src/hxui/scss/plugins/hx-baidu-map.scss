@@ -1,0 +1,185 @@
+@import "./../variable.scss";
+
+.BMapLabel {
+  height: 44px;
+  color : rgba(255, 255, 255, .6)!important;
+  background-color: rgba(0, 0, 0, .6)!important;
+  line-height : 12px * 1.3!important;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none!important;
+  padding: 6px 8px 4px!important;
+  transform: translateX(-50%);
+  text-align: center;
+  box-shadow: none;
+  span {
+    color : rgba(255,255,255,.8)!important;
+    font-size: $font-md;
+    line-height : $font-md * 1.4!important;
+  }
+}
+.tangram-suggestion-main {
+  z-index: 100;
+}
+
+$height-half-navbar: $height-navbar / 2;
+$font-S2: 16px;
+
+td[id|=tangram-suggestion] {
+  padding: $pm-sm!important;
+}
+
+
+.hx-modal.choose-address-modal {
+  position: absolute;
+  .pad-address-content {
+    height: 70%;
+    width: 30%;
+    display: block;
+    @include centerInParent;
+  }
+}
+
+.choose-address-modal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 100%;
+  display: block;
+  background-color: transparent;
+  .pad-address-selector {
+    height: $height-navbar;
+    padding: 6px $pm-md;
+    position: relative;
+    background-color: #f6f6f6;
+    input {
+      height: 100%;
+      @include wcalc(calc(100% - 46px));
+      @include borderRadius($border-radius-md);
+      color: $color-heavy;
+      font-size: $font-S2;
+      padding: 0 $pm-md;
+      text-align: center;
+      border: none;
+      display: inline-block;
+      background-color: rgba(0,0,0,.08);
+    }
+    .btn-close-modal {
+      height: 100%;
+      width: $height-navbar - 12px;
+      float: right;
+      @include borderRadius($border-radius-md);
+      @include timesIcon;
+      background-color: $color-main;
+    }
+  }
+  .pad-map {
+    @include hcalc(calc(50% - 25px));
+    background-color: $color-gray-light;
+    position: relative;
+    .map {
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+    .icon-pinpoint {
+      height: $height-navbar;
+      width: $height-navbar;
+      margin-top: -16px;
+      @include centerInParent;
+    }
+    .btn-pinpoint {
+      position: absolute;
+      bottom: $pm-md;
+      height: $height-navbar - $pm-md;
+      width: $height-navbar - $pm-md;
+      border-radius: 4px;
+      box-shadow: 0 5px 10px -3px rgba(0,0,0,.3);
+      background-color: white;
+      border: 1px solid $color-gray-light;
+      padding: 0;
+      right: $pm-md;
+      img {
+        height: 58%;
+        width: 60%;
+        vertical-align: middle;
+      }
+    }
+  }
+  .pad-poi {
+    @include hcalc(calc(50% - 25px));
+    background-color: white;
+    display: block;
+    float: left;
+    width: 100%;
+    overflow-y: auto;
+    padding: 0 $pm-md;
+    position: relative;
+    .emptyset {
+      @include centerInParent;
+      color: #ccc;
+      width: 100%;
+      text-align: center;
+      display: block;
+      font-size: $font-S2;
+    }
+    .item-poi {
+      padding: $pm-md 0 $pm-sm 0;
+      line-height: $height-navbar / 1.8;
+      color: $color-heavy;
+      border-bottom: 1px solid $color-gray-light;
+      font-size: $font-S2;
+      position: relative;
+      small {
+        display: block;
+        color: $color-gray-deep;
+        font-size: $font-md;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .icon-select {
+        height: $height-navbar / 2;
+        width: $height-navbar / 2;
+        position: absolute;
+        right: 0;
+        @include centerVertical;
+        display: none;
+        &.show {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@media screen  and (min-width: 640px) {
+  .hx-modal.choose-address-modal {
+    min-width: 350px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hx-modal.choose-address-modal {
+    height: 100%;
+    top: 100%;
+    .pad-address-content {
+      height: 100%;
+      width: 100%;
+      display: block;
+      padding-top: 0;
+      .btn-close-modal {
+        top: 0!important;
+        right: 0!important;
+      }
+    }
+    &.show {
+      top: 0;
+    }
+    .map {
+      margin-top: 0!important;
+    }
+    .pad-poi {
+      @include hcalc(calc(50% - 17px));
+    }
+  }
+}

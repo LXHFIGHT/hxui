@@ -1,0 +1,101 @@
+/**
+ *  hx详情模块样式
+ *  通过组合 hx-row 构建管理后台具有交互性的表单页面
+ */
+
+@import "./../variable.scss";
+
+.hx-detail-block {
+  border: 1px solid $color-gray;
+  position: relative;
+  margin-bottom: $pm-md;
+  background-color: white;
+  @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+  header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: $font-md;
+    line-height: $height-navbar;
+    height: $height-navbar;
+    padding: 0 $pm-lg;
+    color: $color-heavy;
+    position: absolute;
+    &:before {
+      content: "";
+      height: $height-navbar/2;
+      width: 3px;
+      background-color: $color-main;
+      @include centerVertical;
+      display: block;
+      left: $pm-md;
+    }
+    small {
+      font-size: $font-md;
+      color: $color-gray-deep;
+      margin-left: $pm-sm;
+    }
+    button {
+      min-height: $height-normal - $pm-sm;
+      margin-left: $pm-sm;
+    }
+  }
+}
+// 左板块
+.hx-pad-left {
+  float: left;
+  width: 50%;
+  padding-right: $pm-sm;
+}
+// 右板块
+.hx-pad-right {
+  float: right;
+  width: 50%;
+  padding-left: $pm-sm;
+}
+
+@media screen and (min-width: 640px) {
+  .hx-detail-block {
+    padding: ($height-normal+$pm-md) $pm-md $pm-md;
+    @include compatible(transform, scale(1, 1));
+    @include borderRadius($border-radius-bg);
+    @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+    @include compatible(transition, box-shadow .4s);
+    &:hover {
+      @include boxShadow(0 5px 20px rgba(0,0,0,.1));
+    }
+    &.half {
+      display: inline-block;
+      @include wcalc(calc(50% - 8px));
+    }
+    &.one-third {
+      display: inline-block;
+      @include wcalc(calc(33.33% - 8px));
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-detail-block {
+    padding: $height-navbar $pm-md 0;
+    @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+    header:before {
+      content: "";
+      height: $height-navbar/2;
+      width: 3px;
+      background-color: $color-main;
+      @include centerVertical;
+      display: block;
+      left: $pm-md;
+    }
+    header:first-child {
+      padding-left: $pm-sm + $pm-md;
+    }
+    .hx-row:nth-last-child(1) {
+      border: none;
+    }
+  }
+  .hx-pad-left, .hx-pad-right {
+    padding: 0;
+  }
+}

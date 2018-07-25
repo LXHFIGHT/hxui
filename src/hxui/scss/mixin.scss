@@ -1,0 +1,172 @@
+// 用于编写适用于整个项目的CSS方法
+@mixin compatible($key, $word){
+  #{$key}: $word;
+  -webkit-#{$key}: $word;
+  -moz-#{$key}: $word;
+  -o-#{$key}: $word;
+  -ms-#{$key}: $word;
+}
+
+@mixin transform($content) {
+  @include compatible(transform, $content);
+}
+
+/* 混入CSS3代码 例如要width: 100% - 60px只需要 @include calc(width, "100% - 60px") */
+//@mixin calc($property, $expression) {
+//  #{$property}: -webkit-calc(#{$expression});
+//  #{$property}: -moz-calc(#{$expression});
+//  #{$property}: calc(#{$expression});
+//}
+// 宽度计算 @include wcalc(calc(100% * 2 /3 - 6rem))
+
+@mixin wcalc($exp) {
+  width: -moz-$exp;
+  width: -webkit-$exp;
+  width: $exp;
+}
+
+// 高度度计算 @include hcalc(calc(100% * 2 /3 - 6rem))
+@mixin hcalc($exp) {
+  height: -moz-$exp;
+  height: -webkit-$exp;
+  height: $exp;
+}
+
+@mixin bgColorTransition($time){
+  @include compatible(transition, background $time);
+}
+
+// 全圆角属性
+@mixin borderRadius($value){
+  @include compatible(border-radius, $value);
+}
+
+// 左上角和右上角圆角属性
+@mixin borderRadiusTop($value){
+  @include compatible(border-top-left-radius, $value);
+  @include compatible(border-top-right-radius, $value);
+}
+
+// 左下角和右下角圆角属性
+@mixin borderRadiusBottom($value){
+  @include compatible(border-bottom-left-radius, $value);
+  @include compatible(border-bottom-right-radius, $value);
+}
+
+// 左上角和左下角圆角属性
+@mixin borderRadiusLeft($value){
+  @include compatible(border-top-left-radius, $value);
+  @include compatible(border-bottom-left-radius, $value);
+}
+
+// 右上角和右下角圆角属性
+@mixin borderRadiusRight($value){
+  @include compatible(border-top-right-radius, $value);
+  @include compatible(border-bottom-right-radius, $value);
+}
+
+@mixin boxShadow($value){
+  -webkit-box-shadow: $value  ;
+  -moz-box-shadow: $value ;
+  box-shadow: $value  ;
+}
+
+// 三种居中方式样式
+@mixin centerInParent() {
+  top: 50%;
+  left: 50%;
+  position: absolute!important;
+  @include compatible(transform, translate(-50%, -50%));
+}
+
+@mixin centerVertical() {
+  top: 50%;
+  position: absolute!important;
+  @include compatible(transform, translateY(-50%));
+}
+
+@mixin centerHorizontal() {
+  left: 50%;
+  position: absolute;
+  @include compatible(transform, translateX(-50%));
+}
+
+// 全覆盖样式
+@mixin block() {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin hxButton($bgColor, $color: white, $height:34px) {
+  height: $height;
+  padding: 0 8px;
+  background-color: $bgColor;
+  font: {
+    weight: 300;
+    size: 13px;
+  }
+  color: $color;
+  @include borderRadius(4px);
+  @include compatible(transition, all .4s);
+  &:hover {
+    filter: brightness(95%);
+  }
+  &:active {
+    filter: brightness(84%);
+  }
+}
+
+@mixin hxBlankButton($bgColor, $color: white, $height:34px) {
+  border: 1px solid $bgColor;
+  background-color: $color;
+  color: $bgColor;
+  @include compatible(transition, all .4s);
+  height: $height;
+  padding: 0 8px;
+  font-size: 14px;
+  @include borderRadius(4px);
+  @include compatible(transition, all .4s);
+  &:hover{
+    color: $color;
+    background-color: $bgColor;
+  }
+}
+
+@mixin timesIcon($bgColor: #eee) {
+  position: relative;
+  &:before, &:after {
+    content: "";
+    background-color: $bgColor;
+    height: 60%;
+    margin: 0 auto;
+    display: inline-block;
+    width: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+  &:before {
+    @include compatible(transform, (translate(-50%, -50%) rotate(45deg)));
+  }
+  &:after {
+    @include compatible(transform, (translate(-50%, -50%) rotate(-45deg)));
+  }
+}
+
+// 文本居于一行  超过范围变成 "XXXXX..."
+@mixin nowrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// CSS过滤器集合：
+// 模糊效果， 默认模糊度 10px
+@mixin filter-blur($degree: 10px) {
+  -webkit-filter: blur($degree); /* Chrome, Opera */
+  filter: blur($degree);
+}

@@ -1,0 +1,58 @@
+@import "./../variable.scss";
+
+$time: 1.0s;
+
+.hx-mark-anim {
+  &.blue {
+    @include compatible(animation, markAnimBlue $time ease-in);
+  }
+  &.orange {
+    @include compatible(animation, markAnimOrange $time ease-in);
+  }
+  &.red {
+    @include compatible(animation, markAnimRed $time ease-in);
+  }
+  &.green {
+    @include compatible(animation, markAnimGreen $time ease-in);
+  }
+}
+
+@keyframes markAnimBlue {
+  0% {  background-color: transparent;  }
+  50% {
+    background-color: $color-blue-light;
+    border: 1px solid $color-blue;
+    color: $color-blue;
+  }
+  100% {  background-color: transparent;  }
+}
+
+@keyframes markAnimOrange {
+  0% {  background-color: transparent;  }
+  50% {
+    background-color: $color-orange-light;
+    border: 1px solid $color-orange;
+    color: $color-orange;
+  }
+  100% {  background-color: transparent;  }
+}
+
+@keyframes markAnimGreen {
+  0% {  background-color: transparent;  }
+  50% {
+    background-color: $color-green-light;
+    border: 1px solid $color-green;
+    color: $color-green;
+  }
+  100% {  background-color: transparent;  }
+}
+
+@keyframes markAnimRed {
+  0% {  background-color: transparent;  }
+  50% {
+    background-color: $color-red-light;
+    border: 1px solid $color-red;
+    color: $color-red;
+  }
+  100% {  background-color: transparent;  }
+}

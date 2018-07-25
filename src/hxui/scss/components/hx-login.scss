@@ -1,0 +1,125 @@
+// hx 组件的样式
+@import "./../variable.scss";
+
+// 登录注册模块样式
+.pad-login,
+.pad-register {
+  top: 70%!important;
+  opacity: .0;
+  width: 360px;
+  padding: $pm-bg;
+  visibility: hidden;
+  border: 1px solid $color-gray;
+  background-color: rgba(255,255,255,.75) !important;
+  @include compatible(transition, all .4s);
+  @include borderRadius($border-radius-md);
+  @include boxShadow(0 $pm-sm*2 $pm-md*2  -13px rgba(0,0,0,.3));
+  .row {
+    padding: $pm-sm 0;
+    text-align: center;
+    &.main-tip{
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: $color-heavy;
+    }
+  }
+  .tip {
+    color: $color-heavy;
+    font: {
+      size: $font-sm;
+      weight: 800;
+    }
+  }
+  .logo-company{
+    height: 2 * $height-navbar;
+    width: 2 * $height-navbar;
+    border: 1px solid $color-gray;
+    @include borderRadius(50% 50%);
+  }
+  input {
+    @include borderRadius($border-radius-md);
+    border: 1px solid $color-gray;
+    line-height: $height-navbar - 2 * $pm-sm;
+    height: $height-navbar - 2 * $pm-sm;
+    padding: 0 $pm-sm;
+    width: 100%;
+    background-color: transparent;
+    @include compatible(transition, all .4s);
+    &:focus {
+      border: 1px solid lighten($color-main-light, 10%);
+    }
+  }
+  .btn-main {
+    margin-top: $pm-md;
+    width: 100%;
+    height: $height-navbar - 2 * $pm-sm;
+    background-color: $color-main;
+    color: white;
+    @include borderRadius($border-radius-md);
+  }
+  .btn-sub {
+    margin-top: $pm-md;
+    width: 100%;
+    height: $height-navbar - 2 * $pm-sm;
+    @include borderRadius($border-radius-md);
+    background-color: transparent;
+    color: $color-main;
+    cursor: pointer!important;
+  }
+  &.show {
+    visibility: visible;
+    top: 50%!important;
+    opacity: 1.0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .pad-login, .pad-register {
+    width: 95%;
+    padding: $pm-md;
+    border: none;
+
+    .tip {
+      font-size: 14px;
+      padding-left: $pm-sm;
+      line-height: 28px;
+    }
+    @include boxShadow(none);
+    .btn-sub, .btn-main {
+      margin-top: $pm-sm;
+      height: $height-normal;
+    }
+    .logo-company {
+      height: $height-navbar;
+      width: $height-navbar;
+    }
+    .row {
+      padding: 0;
+      input {
+        background-color: transparent;
+        @include borderRadius(0px);
+        border: none;
+        font-size: 14px;
+        border-bottom: 1px solid $color-gray;
+        height: $height-normal;
+        &:focus {
+          border-bottom: 1px solid $color-main;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .pad-login, .pad-register {
+    width: 360px;
+    padding: $pm-md;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .pad-login, .pad-register {
+    width: 360px;
+    padding: $pm-bg;
+  }
+}

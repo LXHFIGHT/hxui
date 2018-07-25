@@ -1,0 +1,16 @@
+@import "./../variable.scss";
+
+.hx-goback-button {
+  border: 2px solid darken($color-gray, 20%);
+  color: darken($color-gray, 20%);
+  background-color: transparent;
+  font-size: 24px;
+  margin-right: $pm-md;
+  @include borderRadius(50%);
+  height: $height-navbar - 2 * $pm-sm;
+  width: $height-navbar - 2 * $pm-sm;
+  &:hover{
+    border: 2px solid $color-red-light;
+    color: $color-red-light;
+  }
+}

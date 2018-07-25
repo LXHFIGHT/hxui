@@ -1,0 +1,52 @@
+@import "./../variable.scss";
+
+.hx-modal.actionsheet {
+  .hx-actionsheet {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li.item, li.item-quit {
+      display: block;
+      @include nowrap;
+      color: $color-heavy;
+      height: $height-normal;
+      line-height: $height-normal;
+      text-align: center;
+      & + li.item {
+        border-top: 1px solid $color-gray;
+      }
+      &:hover {
+        background-color: $color-gray;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-modal.actionsheet {
+    .content {
+      width: 300px;
+      padding: $pm-sm!important;
+    }
+    .hx-actionsheet + .hx-actionsheet {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-modal.actionsheet {
+    .content {
+      background-color: transparent!important;
+      padding: 0!important;
+    }
+    .hx-actionsheet {
+      background-color: $color-white;
+      @include borderRadius($border-radius-bg);
+      & + .hx-actionsheet {
+        margin-top: $pm-md;
+      }
+    }
+  }
+}
+

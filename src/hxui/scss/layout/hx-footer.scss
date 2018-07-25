@@ -1,0 +1,29 @@
+@import "./../variable.scss";
+
+.hx-footer {
+  height: $height-navbar;
+  width: 100%;
+  padding: $pm-sm $pm-md;
+  background-color: white;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid $color-gray;
+  @include boxShadow(0 0 24px rgba(0,0,0,.1));
+  button {
+    height: $height-navbar - 2 * $pm-sm;
+  }
+  &.no-color{
+    background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-pagination {
+    padding: 0 $pm-sm;
+    .fa-caret-left, .fa-caret-left+span, .fa-caret-right {
+      float: left;
+    }
+  }
+}

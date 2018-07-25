@@ -1,0 +1,35 @@
+@import "./../variable.scss";
+
+.hx-modal.confirm {
+  .content {
+    footer {
+      .hx-button + .hx-button {
+        margin-left: $pm-sm;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-modal.confirm {
+    .content {
+      width: 400px!important;
+      text-align: justify;
+      color: $color-heavy;
+      font-size: $font-bg;
+      footer {
+        text-align: right;
+        padding: 0;
+        margin-top: $pm-md * 2;
+        .hx-button + .hx-button {
+          margin-left: $pm-sm;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /* 自下而上弹出样式已迁移到 hx-modal.scss 中 */
+}
+

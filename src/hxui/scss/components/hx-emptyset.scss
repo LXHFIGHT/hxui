@@ -1,0 +1,21 @@
+@import './../variable.scss';
+
+// 空内容容器模块样式
+.hx-emptyset {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background-color: $color-gray-light;
+  color: $color-gray-deep;
+  font: {
+    size: 30px;
+    weight: 900;
+  }
+}

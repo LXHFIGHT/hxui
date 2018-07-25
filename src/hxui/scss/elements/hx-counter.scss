@@ -1,0 +1,72 @@
+@import './../variable.scss';
+
+/**
+  增加减少选择组件：
+  DOM结构：
+    <div class="hx-counter">
+      <button >-</button>
+      <input type="text" />
+      <button >+</button>
+    </div>
+ */
+
+.hx-counter {
+  width: 50%;
+  min-width: 200px;
+  height: $height-regular;
+  overflow: hidden;
+  display: inline-block;
+  button {
+    height: $height-regular;
+    width: $height-regular;
+    float: left;
+    background-color: white;
+    border: 1px solid $color-gray;
+    color: $color-heavy;
+    font-size: $font-bg;
+    &:hover, &:active {
+      &:hover {
+        background-color: $color-gray-light;
+      }
+      &:active {
+        background-color: $color-gray;
+      }
+    }
+  }
+  input {
+    float: left;
+    height: $height-regular!important;
+    text-align: center;
+    @include borderRadius(0);
+    @include wcalc(calc(100% - 76px));
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-counter {
+    width: 50%;
+    min-width: 160px;
+    height: $height-normal;
+    overflow: hidden;
+    button {
+      height: 26px;
+      width: 26px;
+      line-height: 1.0;
+      background-color: $color-main;
+      padding: 0;
+      color: white;
+      @include borderRadius(50%);
+      position: relative;
+      border: none;
+      top: 50%;
+      @include compatible(transform, translateY(-50%));
+      &:hover, &:active {
+        background-color: darken($color-main, .10)!important;
+      }
+    }
+    input {
+      height: $height-normal;
+      @include wcalc(calc(100% - 52px));
+    }
+  }
+}

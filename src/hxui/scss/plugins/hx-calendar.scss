@@ -1,0 +1,100 @@
+@import "./../variable.scss";
+
+// 日历控件
+.hx-modal.calendar {
+  .calendar-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    display: block;
+    width: 100%;
+    padding: $pm-md;
+    header {
+      text-align: center;
+      overflow: hidden;
+      .to-next-month, .to-last-month {
+        background-color: transparent;
+        color: $color-main;
+        font-size: $font-md;
+        height: $height-normal;
+        width: 60px;
+        text-align: center;
+        padding: 0;
+      }
+      .to-next-month {
+        float: right;
+      }
+      .to-last-month {
+        float: left;
+      }
+      .title {
+        line-height: $height-normal;
+        margin: 0 auto;
+        font-size: $font-md;
+        display: inline-block;
+      }
+    }
+    .table-dates {
+      .header-date, .pad-dates {
+        margin: 0;
+        padding: 0;
+        li {
+          list-style: none;
+          display: inline-block;
+          float: left;
+          font-size: $font-md;
+          width: 14.28%;
+          text-align: center;
+          line-height: $height-normal;
+          &.passed {
+            color: white;
+            button {
+              color: $color-gray-deep;
+            }
+          }
+          &.disabled {
+            button {
+              color: $color-gray-deep;
+              cursor: not-allowed;
+            }
+          }
+          &.today {
+            button {
+              background-color: lighten($color-main, 25%);
+            }
+          }
+          &.selected {
+            button {
+              background-color: $color-main;
+              color: $color-white;
+            }
+          }
+          button {
+            height: $height-normal;
+            width: $height-normal;
+            @include borderRadius(50% 50%);
+            background-color: transparent;
+          }
+        }
+      }
+      .pad-dates {
+        height: 250px;
+        border-bottom: 1px solid $color-gray;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-modal.calendar {
+    .calendar-content {
+      width: 50%;
+      max-width: 400px;
+      height: 380px;
+      @include centerInParent;
+      @include borderRadius($border-radius-bg);
+      @include boxShadow(0 0 15px rgba(0,0,0,.3));
+    }
+  }
+}

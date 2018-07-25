@@ -1,0 +1,17 @@
+@import '../variable';
+
+// 右侧内容栏样式
+.hx-main {
+  height: 100%;
+  display: inline-block;
+  float: left;
+  position: relative;
+  @include wcalc(calc(100% - 180px)); // 180px 对应 $width-sidebar
+}
+
+@media screen and (max-width: 640px) {
+  .hx-main {
+    width: 100%!important;
+    left: 0;
+  }
+}

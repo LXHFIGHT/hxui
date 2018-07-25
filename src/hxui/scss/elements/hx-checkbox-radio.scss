@@ -1,0 +1,92 @@
+@import './../variable.scss';
+$height-checkbox: 20px;
+
+// hx-checkbox 和 hx-radio 分别对应多选框和单选框组件
+
+@mixin checkboxColor($color) {
+  &:before {
+    background-image: url("/hxui/img/icon/icon-check.png");
+    border: 1px solid $color;
+    background-color: $color;
+  }
+}
+@mixin radioColor($color) {
+  &:before {
+    background: linear-gradient(-45deg, $color, darken($color, 6%));
+    background: -webkit-linear-gradient(-45deg, $color, darken($color, 6%));
+    border: 1px solid $color;
+  }
+}
+
+.hx-checkbox, .hx-radio {
+  background-color: transparent;
+  padding: 7px;
+  height: $height-regular;
+  line-height: $height-checkbox;
+  display: inline-block;
+  cursor: default;
+
+  &[disabled] {
+    color: $color-gray-deep;
+    cursor: not-allowed;
+    &:before {
+      background-color: $color-gray;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &:before {
+    content: '';
+    height: $height-checkbox;
+    width: $height-checkbox;
+    float: left;
+    vertical-align: middle;
+    background-color: $color-gray-light;
+    background-position: center;
+    background-size: 90% 90%;
+    display: inline-block;
+    margin-right: 6px;
+    overflow: hidden;
+    border: 1px solid $color-gray;
+  }
+  &:hover {
+    background-color: $color-gray-light;
+    &:before {
+      background-color: $color-gray;
+    }
+  }
+}
+
+.hx-checkbox {
+  &:before {
+    @include borderRadius($border-radius-md);
+  }
+}
+
+.hx-radio {
+  &:before {
+    background-clip: padding-box;
+    padding: 2px;
+    @include borderRadius(50% 50%);
+  }
+}
+
+.hx-checkbox.selected {
+  @include checkboxColor($color-main);
+  &.pink {  @include checkboxColor($color-pink);  }
+  &.green {  @include checkboxColor($color-green);  }
+  &.red {  @include checkboxColor($color-red);  }
+  &.orange {  @include checkboxColor($color-orange);  }
+  &.golden {  @include checkboxColor($color-golden);  }
+}
+
+.hx-radio.selected {
+  @include radioColor($color-main);
+  &.pink {  @include radioColor($color-pink);  }
+  &.green {  @include radioColor($color-green);  }
+  &.red {  @include radioColor($color-red);  }
+  &.orange {  @include radioColor($color-orange);  }
+  &.golden {  @include radioColor($color-golden);  }
+}

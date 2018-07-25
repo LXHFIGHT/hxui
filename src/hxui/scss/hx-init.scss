@@ -1,0 +1,161 @@
+/*
+ *  HXUI 框架定义的默认标签样式
+ */
+@import "./variable";
+
+/*--------------------------------------------------------------------------------------*/
+/* 设置不使用默认的聚焦框
+/*--------------------------------------------------------------------------------------*/
+*, *:after, *:before{
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/*--------------------------------------------------------------------------------------*/
+/*  对整个HTML布局和body进行设置， 使得子组件可以用%比来设置宽度
+/*--------------------------------------------------------------------------------------*/
+html, body{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin:0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+
+div {
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
+}
+
+input::-webkit-input-placeholder,
+input::-moz-input-placeholder,
+input::-ms-input-placeholder {
+    color: $color-gray-deep;
+    font-weight: 300;
+}
+
+/*--------------------------------------------------------------------------------------*/
+/*  a标签样式
+/*--------------------------------------------------------------------------------------*/
+a {
+    color: $color-heavy;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    color: $color-main;
+    text-decoration: none!important;
+}
+a:active {   text-decoration: none;                      }
+a:link   {   text-decoration: none;  color: purple;      }
+
+select{
+    padding: 0 10px;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder { /*WebKit browsers*/
+    color: $color-gray-deep;
+    font-weight: 300;
+}
+textarea::-moz-input-placeholder,
+input::-moz-input-placeholder {  /*Mozilla Firefox*/
+    color: $color-gray-deep;
+    font-weight: 300;
+}
+textarea::-ms-input-placeholder,
+input::-ms-input-placeholder {   /*Internet Explorer*/
+    color: $color-gray-deep;
+    font-weight: 300;
+}
+
+
+// 文本编辑组件、选择组件的默认样式
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea, select {
+    width: 100%;
+    display: inline-block;
+    @include compatible(transition, all .4s);
+    border: 1px solid $color-gray;
+    line-height: $height-regular;
+    padding: 0 $pm-sm;
+    background-color: white;
+    font-size: $font-md;
+    resize: none;
+    &.blank {
+        border: 1px solid transparent;
+        @include compatible(transition, all .4s);
+        &:hover{
+            border: 1px solid transparent;
+            background-color: $color-gray-light!important;
+        }
+        &:focus{
+            border: 1px solid transparent;
+            background-color: $color-gray!important;
+        }
+    }
+    &:hover {
+        border: 1px solid $color-gray-deep;
+    }
+    &.short {
+        width: 45%;
+    }
+    &:focus {
+        border: 1px solid $color-main;
+    }
+
+    // input标签样式表单验证出错的样式
+    &.error {
+        font-weight: 100!important;
+        border: 1px solid $color-red!important;
+        color: $color-red;
+        background-color: lighten($color-red, 32%)!important;
+        @include compatible(transition, all .4s);
+        &:focus {
+            border: 1px solid $color-red-deep!important;
+        }
+    }
+
+    &:disabled, &.disabled {
+        border: 1px solid transparent!important;
+        background-color: $color-gray-light;
+    }
+}
+
+input, select {
+    height: $height-regular;
+}
+textarea {
+    height: 2 * $height-navbar;
+}
+
+/*--------------------------------------------------------------------------------------*/
+/*  button标签样式默认
+/*--------------------------------------------------------------------------------------*/
+button {
+    border: none;
+}
+button, input[type='submit'], input[type='button'], input[type='reset']{
+    font-size: $font-md;
+    font-weight: 400;
+}
+
+
+
+.hx-invisible {
+    visibility: hidden;
+}
+
+.hx-no-wrap {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

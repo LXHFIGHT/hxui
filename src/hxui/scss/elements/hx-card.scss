@@ -1,0 +1,61 @@
+@import '../variable';
+
+/* hxui卡片樣式 */
+.hxui-card {
+  padding: 0;
+  width: 100%;
+  background-color: white;
+  margin-bottom: $pm-sm;
+  border: 1px solid $color-gray;
+  @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+  .row {
+    position: relative;
+    display: block;
+    text-align: left!important;
+    padding: 0 $pm-sm;
+    label, span, a {
+      font-size: $font-md;
+      line-height: $font-md * 2.5;
+      height: $font-md * 2.5;
+      @include nowrap;
+      color: $color-heavy;
+    }
+    a:hover {
+      color: $color-main;
+    }
+    label {
+      color: $color-gray-deep;
+    }
+    &:first-child {
+      line-height: $height-normal;
+      height: $height-normal;
+      span {
+        line-height: $height-normal;
+        display: block;
+        width: 100%;
+      }
+    }
+    &.img {
+      height: 150px;
+      overflow: hidden;
+      background-color: $color-gray-light;
+      img {
+        @include centerInParent;
+        width: 100%;
+        height: auto;
+      }
+      span {
+        position: absolute;
+        right: $pm-sm;
+        bottom: $pm-sm;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0,0,0,.5);
+      }
+    }
+    &.functions {
+      text-align: right!important;
+      padding: $pm-sm;
+      border-top: 1px solid $color-gray;
+    }
+  }
+}

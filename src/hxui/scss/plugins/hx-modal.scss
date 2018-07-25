@@ -1,0 +1,182 @@
+@import "./../variable.scss";
+
+/*
+   模态框样式
+   .hx-modal 为普通模态框
+   .hx-image-modal 为图片预览模态框
+   两者均需要添加 show 伪类进行展示
+  */
+.hx-modal {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  opacity: .0;
+  @include compatible(transition, all .4s);
+  &.show{
+    visibility: visible;
+    opacity: 1.0;
+  }
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: rgba(0,0,0, .65);
+  }
+  // 模态框内容版
+  .content{
+    top: 15%;
+    background-color: white;
+    width: 60%;                                     // 默认样式为屏幕宽度 60%
+    min-width: 300px;
+    padding: $pm-md;
+    @include centerHorizontal;
+    @include borderRadius($border-radius-md);
+    @include boxShadow(0 24px $pm-bg -16px rgba(0,0,0,.4));
+
+    // 模态框头部
+    header {
+      line-height: $height-normal;
+      height: $height-normal;
+      padding-left: $pm-md;
+      margin-bottom: $pm-md;
+      position: relative;
+      &:before {
+        content: '';
+        height: $height-normal/2;
+        width: 3px;
+        position: absolute;
+        top: $height-normal/4;
+        left: 0;
+        display: inline-block;
+        background-color: $color-main;
+      }
+    }
+
+    // 右上角关闭模态框按钮
+    .btn-close-modal {
+      position: absolute;
+      top: $pm-md;
+      right: $pm-md;
+      height: $height-regular;
+      width: $height-regular;
+      font-size: 18px;
+      font-weight: 200;
+      padding: 0;
+      color: $color-gray-deep;
+      background-color: transparent;
+      border: none;
+      @include borderRadius($border-radius-md);
+      &:hover {
+        background-color: $color-red;
+        color: white;
+      }
+    }
+
+    // 模态框底部
+    footer {
+      text-align: center;
+      margin-top: $pm-md;
+      padding: $pm-sm $pm-md;
+      @include borderRadius($border-radius-md);
+      button {
+        min-width: 100px;
+      }
+    }
+
+    // 模态框中部内容面板
+    .map {
+      min-height: 400px;
+      @include borderRadius($border-radius-md);
+    }
+    .main-textarea {
+      padding: $pm-md;
+      font-size: 14px;
+      width: 100%;
+      border: 1px solid $color-gray-light;
+      @include borderRadius($border-radius-md);
+      resize: none;
+    }
+  }
+
+  // 缩略版模态框
+  &.sm {
+    .content {
+      max-width: 500px;
+      min-width: 300px;
+    }
+  }
+
+  &.bg {
+    .content {
+      width: 80%;
+    }
+  }
+}
+
+/* ----------------------------------------------------
+    移动端样式适配
+ ------------------------------------------------------ */
+@media screen and (max-width: 640px) {
+  .hx-modal {
+    z-index: 20;
+    .pad-content, .content {
+      width: 95%;
+      padding: $pm-sm;
+      @include centerInParent;
+      .btn-close-modal {
+        right: $pm-sm;
+        top: $pm-sm;
+      }
+      header {
+        font-size: $font-md;
+        height: $height-regular;
+        line-height: $height-regular;
+        &:before {
+          height: $height-regular/2;
+          top: $height-regular/4;
+        }
+      }
+      .map {
+        margin-top: $pm-sm;
+      }
+    }
+  }
+  .hx-modal.confirm, .hx-modal.actionsheet  {
+    .content {
+      padding: $pm-sm;
+      @include wcalc(calc(100% - 16px));
+      text-align: justify;
+      font-size: $font-md;
+      top: auto;
+      bottom: $pm-md;
+      left: 50%;
+      @include compatible(transition, all .4s);
+      @include compatible(transform, translate(-50%, 50%));
+      position: fixed;
+      header {
+        color: $color-gray-deep;
+      }
+      .hx-content {
+        padding: $pm-md;
+        text-align: center;
+      }
+      footer {
+        margin-top: $pm-md * 2;
+        text-align: center;
+        padding: 0;
+      }
+    }
+    &.show {
+      .content {
+        @include compatible(transform, translate(-50%, 0));
+      }
+    }
+  }
+}

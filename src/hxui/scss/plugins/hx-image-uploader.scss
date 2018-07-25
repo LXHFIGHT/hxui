@@ -1,0 +1,92 @@
+@import "./../variable.scss";
+
+/**
+  上传图片组件：
+    组件中包含图片，功能悬浮框（一般是预览图片功能，重新上传图片功能以及删除图片功能）
+  组件中的排版为：
+    <div class="hx-image-uploader" >
+      <img ng-if="图片是否存在"
+           ng-src="图片位置" />
+      <div class="functions"
+           ng-if="图片是否存在">
+          <button ng-click="图片预览方法，建议使用HXUI.previewImage"
+                  class="fa fa-eye"></button>
+          <button ng-click="上传方法"
+                  class="fa fa-upload"></button>
+          <button ng-click="清空图片方法"
+                  class="fa fa-trash"></button>
+      </div>
+      <button class="btn-upload"
+              ng-click="上传方法"
+              ng-if="图片是否为空">
+          <span class="icon fa fa-picture-o"></span>
+          上传图片
+      </button>
+    </div>
+ */
+.hx-image-uploader {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  background-color: $color-gray;
+  img {
+    width: 100%;
+    height: auto!important;
+    @include borderRadius(0 !important);
+    @include centerInParent;
+  }
+  .functions {
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: -100%;
+    height: $height-normal;
+    transition: bottom .4s;
+    text-align: right;
+    background-color: rgba(0, 0, 0, .6);
+    button {
+      height: $height-normal;
+      width: $height-normal;
+      background-color: transparent;
+      color: $color-gray;
+      font-size: $font-md;
+      &:hover {
+        background-color: rgba(255,255,255,.1);
+      }
+    }
+  }
+  &:hover {
+    .functions {
+      bottom: 0;
+    }
+  }
+  .btn-upload {
+    height: 100%!important;
+    width: 100%!important;
+    border: 2px dotted $color-gray;
+    color: $color-gray-deep;
+    font-size: $font-bg;
+    .icon {
+      font-size: 25px;
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-image-uploader {
+    .functions {
+      bottom: $pm-sm/2;
+      right: $pm-sm/2;
+      width: auto;
+      display: inline-block;
+      @include borderRadius($border-radius-md);
+    }
+    .btn-upload {
+      background-color: white;
+    }
+  }
+}

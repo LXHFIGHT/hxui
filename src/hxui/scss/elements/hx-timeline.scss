@@ -1,0 +1,72 @@
+@import './../variable.scss';
+
+/* 简易时间轴
+   样式效果为：
+   <div class="hx-timeline">
+      <section class="item"
+               ng-repeat="item in order.sf_order.route track by $index">
+          <span class="header" ng-bind="item.operation"></span>
+          <span class="remark">
+              {{ item.time }} {{ item.address ? '- ' + item.address : '' }}
+          </span>
+      </section>
+   </div>
+ */
+.hx-timeline {
+  padding-left: 5px;
+  position: relative;
+  .item {
+    padding: $pm-sm $pm-sm $pm-sm $pm-md;
+    border-left: 1px solid $color-gray;
+    position: relative;
+    &:hover {
+      background-color: $color-gray-light;
+
+    }
+    &:first-child {
+      &:hover {
+        border-left: 1px solid $color-main;
+      }
+      &:before {
+        background-color: $color-main;
+      }
+      .header {
+        color: $color-main;
+        position: relative;
+      }
+    }
+    &:before {
+      content: "";
+      height: 10px;
+      width: 10px;
+      border-radius: 5px;
+      background-color: #e6e6e6;
+      display: inline-block;
+      position: absolute;
+      left: -5px;
+      top: 12px;
+    }
+
+    .header {
+      font-size: $font-md;
+      background-color: transparent;
+      color: $color-heavy;
+      display: block;
+      line-height: 20px;
+    }
+
+    .remark {
+      line-height: 20px;
+      color: $color-gray-deep;
+      font-size: $font-sm;
+      text-align: justify;
+    }
+  }
+  .emptyset {
+    line-height: 53px;
+    height: 53px;
+    text-align: center;
+    font-size: 14px;
+    color: #d2d2d2;
+  }
+}

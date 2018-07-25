@@ -1,0 +1,58 @@
+// 高级搜索栏
+@import "./../variable.scss";
+
+@media screen and (max-width: 640px) {
+  .hx-search {
+    position: absolute;
+    left: 0;
+    top: $height-normal;
+    opacity: .0;
+    visibility: hidden;
+    @include boxShadow(0 5px 15px -5px rgba(0,0,0,.4));
+    &.show {
+      opacity: 1.0;
+      visibility: visible;
+    }
+    .hx-row {
+      border: none;
+      .pad-edit {
+        width: 100%!important;
+        margin-right: 0!important;
+      }
+      label {
+        width: 100px;
+        padding-left: $pm-sm;
+      }
+      .search {
+        margin: 0;
+        width: 100%;
+        .pad-datepicker {
+          width: 100%!important;
+        }
+        input.input-select-date {
+          //width: 100%!important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  // 高级搜索栏
+  .hx-search{
+    padding-bottom: 0;
+    .hx-row {
+      margin-bottom: $pm-sm;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px){
+  // 高级搜索栏
+  .hx-search{
+    padding-bottom: 0;
+    .hx-row {
+      margin-bottom: $pm-sm;
+    }
+  }
+}

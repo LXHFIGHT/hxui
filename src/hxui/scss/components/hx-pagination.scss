@@ -1,0 +1,86 @@
+@import './../variable.scss';
+
+/*  导航栏样式 将ID设置为 hx-pagination
+    2.0版 分页组件,
+    在原有带有分页组件和上一页下一页按钮的基础上：
+    - 去除了页数选择按钮集合，以及首页和末页按钮，
+    + 添加了展示当前页的span元素，跳转页数文本输入框和跳转按钮
+    适用于使用了Common分页插件样式的页面
+    Date: 2016-09-21
+    Update Date: 2019-09-27
+ */
+
+.hx-pagination {
+  text-align:right;
+  height: $height-regular;
+  padding: 0;
+  font-size: 0;
+  position: relative;
+
+  select {
+    padding: 0 10px;
+    float: left;
+    width: 140px;
+    height: $height-regular;
+    font-size: 14px;
+    color: #505050;
+    border: none;
+    @include compatible(user-appearance, none);
+    @include borderRadius(0);
+    background-color: white;
+  }
+  a, span {
+    background: #fff;
+    line-height: $height-regular;
+    height: $height-regular;
+    text-decoration: none!important;
+    text-align: center;
+    font-size: 16px;
+    color: #505050;
+    display: inline-block;
+  }
+  a {
+    margin-right: 0!important;
+    min-width: 30px;
+    padding:0 8px;
+    position: relative;
+    color: darken($color-gray, 30%);
+    &:hover {
+      color: $color-heavy;
+      background-color: darken($color-gray-light, 4%);
+    }
+    &:active {
+      color: $color-white;
+      background-color: $color-main;
+    }
+    &.btn-jump {
+      margin-left: 0;
+    }
+  }
+  span {
+    width: 80px;
+    text-align: center;
+    padding:0 $pm-sm;
+    border: none;
+  }
+  input[type=text] {
+    position: relative;
+    font-size: 14px;
+    min-width: 50px!important;
+    height: $height-regular;
+    width: 60px;
+    padding: 0 10px!important;
+    margin-left: 20px;
+    border: none;
+    vertical-align: top;
+
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-pagination {
+    select {
+      display: none;
+    }
+  }
+}

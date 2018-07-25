@@ -1,0 +1,21 @@
+@import "./../variable.scss";
+
+.hx-copyright {
+  font-size: $font-md;
+  color: $color-gray-deep;
+  position: fixed;
+  bottom: $pm-lg;
+  left: 50%;
+  display: block;
+  max-width: 50%;
+  text-align: center;
+  @include compatible(transform, translateX(-50%));
+}
+
+@media screen and (max-width: 640px) {
+  .hx-copyright {
+    width: 100%;
+    padding: 0 $pm-md;
+    bottom: $pm-md;
+  }
+}

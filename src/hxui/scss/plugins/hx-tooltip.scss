@@ -1,0 +1,118 @@
+@import "./../variable.scss";
+
+/* tooltip（悬浮提示框）用法：
+   第一步：需要添加的组件的类添加 hx-tooltip   bottom底部  top顶部  left左边 right右边
+   第二步：添加 data-title 属性，放入要显示的问题本内容
+   注意： 1. 注意父组件是否设置overflow: hidden
+         2. 适用于支持 :before和 :after CSS3样式的浏览器 （>IE8）
+         3. 如果组件使用了font-icon 会被覆盖  建议在组件内容添加一个span标签承载font-icon
+   Date:   2017-8-2
+   Update: 2018-7-10
+ */
+.hx-tooltip {
+  position: relative;
+  z-index: 10;
+  &:before, &:after {
+    visibility: hidden;
+    opacity: .0;
+    @include compatible(transition, all .4s);
+  }
+  &:hover {
+    z-index: 11;
+    &:before, &:after {
+      visibility: visible;
+      opacity: 1.0;
+    }
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    z-index: 999;
+    @include compatible(transition, all .4s);
+  }
+  &:after {
+    content: attr(data-title);
+    position: absolute;
+    display: block;
+    min-width: 135px;
+    font: {
+      size: $font-sm;
+      weight: 300;
+    }
+    z-index: 9998;
+    max-width: 200px;
+    border: none;
+    color: $color-gray-light;
+    background-color: $color-dark;
+    padding: 6px $pm-sm;
+    @include borderRadius($border-radius-bg);
+    @include boxShadow(0 6px 12px -4px rgba(0,0,0,.4));
+  }
+  // 底部弹出提示框
+  &.bottom {
+    &:before, &:after {
+      top: 100%;
+      left: 50%;
+      @include compatible(transform, translateX(-50%));
+    }
+    &:before {
+      margin-top: 6px;
+      border-bottom: 7px solid $color-dark;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+    &:after {
+      margin-top: 12px;
+    }
+  }
+  // 顶部弹出提示框
+  &.top {
+    &:before, &:after {
+      left: 50%;
+      @include compatible(transform, translateX(-50%));
+    }
+    &:before {
+      top: -12px;
+      border-top: 7px solid $color-dark;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+    &:after {
+      top: calc(-100% - 6px);
+    }
+  }
+  // 右边弹出提示框
+  &.right {
+    &:before, &:after {
+      top: 50%;
+      @include compatible(transform, translateY(-50%));
+    }
+    &:before {
+      left: calc(100% + 6px);
+      border-right: 7px solid $color-dark;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+    }
+    &:after {
+      left: calc(100% + 10px);
+    }
+  }
+  // 右边弹出提示框
+  &.left {
+    &:before, &:after {
+      top: 50%;
+      @include compatible(transform, translateY(-50%));
+    }
+    &:before {
+      left: -12px;
+      border-left: 7px solid $color-dark;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+    }
+    &:after {
+      left: calc(-100% - 24px);
+    }
+  }
+}

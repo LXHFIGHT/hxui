@@ -1,0 +1,206 @@
+@import "../variable";
+
+// 左侧侧边栏样式
+.hx-sidebar {
+  height: 100%;
+  display: inline-block;
+  float: left;
+  position: relative;
+  width: $width-sidebar;
+  overflow-x: hidden;
+  background-color: $color-main-dark;
+  .sidebar {
+    height: 100%;
+    display: block;
+  }
+  .project-info {
+    padding: $pm-bg 0;
+    text-align: center;
+    img.logo {
+      margin-bottom: $pm-sm;
+      height: $height-navbar * 1.5;
+      width: $height-navbar * 1.5;
+      @include borderRadius(50% 50%);
+    }
+    span.text-name {
+      display: block;
+      width: 100%;
+      color: rgba(255,255,255,.8);
+      font-size: $font-md;
+    }
+  }
+  .sidebar-buttons {
+    @include hcalc(calc(100% - 157px));
+    display: block;
+  }
+  .group-btn-sidebar{
+    width: 100%;
+    background-color: rgba(255,255,255, .1);
+    @include compatible(transition, .4s);
+    margin-bottom: 1px;
+    &:hover {
+      background-color: rgba(255,255,255, .2);
+    }
+    button.first-level {
+      &.selected.no-children {
+        background-color: rgba(255,255,255, .3);
+        color: white;
+        &:hover {
+          background-color: $color-main-light;
+        }
+      }
+      &.no-children:after {
+        content: '';
+      }
+      &:after {
+        content: '>';
+        color: rgba(255,255,255,.4);
+        float: right;
+        margin-right: $pm-sm;
+        display: inline-block;
+        @include compatible(transition, all .4s);
+      }
+      &.selected:after {
+        @include compatible(transform, rotate(90deg));
+      }
+    }
+    button {
+      font-size: 13px;
+      width: 100%;
+      text-align: left;
+      padding-left: $pm-md;
+      height: 42px;
+      color: $color-gray-light;
+      background-color: transparent;
+      @include compatible(transition, .4s);
+      &.open:before{
+        @include compatible(transform, rotate(90deg));
+      }
+      &:before {
+        text-align: center;
+        width: $pm-md;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: $pm-md;
+        @include compatible(transition, all .4s);
+        @include compatible(transform-origin, 25% 55%);
+      }
+    }
+    &.selected button{
+      background-color: rgba(255,255,255, .3);
+      color: white;
+      &:hover {
+        background-color: $color-main-light;
+      }
+    }
+    .pad-children {
+      padding: $pm-xs $pm-xs 0 $pm-xs;
+      button {
+        @include borderRadius($border-radius-md);
+        margin-bottom: $pm-xs;
+      }
+      button {
+        &:hover {
+          background-color: rgba(255, 255, 255, .1);
+        }
+        &.selected {
+          background-color: rgba(255, 255, 255, .3);
+          color: white;
+
+        }
+        &.selected:hover {
+          background-color: $color-main-light;
+        }
+      }
+    }
+  }
+  .footer-btn-sidebar {
+    display: block;
+    margin-top: $pm-bg;
+    width: 100%;
+    line-height: $height-navbar;
+    text-align: center;
+    button {
+      height: $height-regular;
+      min-width: $height-regular;
+      font-size: $font-md;
+      overflow: hidden;
+      padding: 0 $pm-sm;
+      background-color: transparent;
+      color: rgba(255,255,255,.5);
+      @include borderRadius($border-radius-md);
+      @include compatible(transition, all .4s);
+      &:hover {
+        background-color: rgba(255,255,255,.2);
+        color: rgba(255,255,255, 1.0);
+        &.fa-sign-out:after {
+          content: " 退出登录"
+        }
+        &.fa-user:after {
+          content: " 账户设置"
+        }
+      }
+
+    }
+  }
+
+  .version {
+    display: block;
+    height: 50px;
+    width: 100%;
+    line-height: $height-navbar;
+    text-align: center;
+    color: rgba(255,255,255,.3);
+    font-size: $font-sm;
+  }
+}
+
+// 侧边栏自定义滚动条样式
+.hxui-sidebar::-webkit-scrollbar {
+  width: $pm-sm;
+  height: $pm-sm;
+}
+.hxui-sidebar::-webkit-scrollbar-track {
+  width: $pm-sm;
+  background-color: $color-main-dark;
+}
+.hxui-sidebar::-webkit-scrollbar-thumb {
+  border-radius: $pm-sm;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.4);
+  background-color: rgba(255, 255, 255, .4);
+}
+
+@media screen and (max-width: 640px) {
+  .hx-sidebar {
+    position: absolute!important;
+    left: -100%;
+    z-index: 1200;
+    overflow-y: hidden;
+    overflow-x: auto;
+    @include compatible(transition, left .4s);
+    &.show {
+      left: 0;
+    }
+    .project-info {
+      padding: $pm-sm + 4px;
+      .logo {
+        height: $height-regular!important;
+        width: $height-regular!important;
+      }
+    }
+    .sidebar-buttons {
+      @include hcalc(calc(100% - 91px));
+      display: block;
+      overflow-y: auto;
+      overflow-x: hidden;
+      .footer-btn-sidebar {
+        height: $height-normal;
+        margin-top: $pm-sm;
+      }
+      .version {
+        height: $height-normal;
+        margin-bottom: $pm-md;
+      }
+    }
+  }
+}

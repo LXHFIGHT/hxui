@@ -1,0 +1,408 @@
+/*
+  hx表单行模块: 标签为label元素 和 编辑区域内容为.pad-edit的 div 元素
+  hx-row 包含自身多种扩展样式 以及 其pad-edit中定义了多种元素的默认样式
+  * 自身样式：
+    .null     无内边距
+    .center   内部组件居中
+   Date: 2017-08-02
+ */
+
+@import "./../variable.scss";
+
+
+.hx-row {
+  width: 100%;
+  padding: $pm-sm $pm-md;
+  line-height: $height-navbar - 2 * $pm-sm;
+  color: $color-dark;
+
+  // 无内边距样式
+  &.null {  padding: 0!important; }
+  // 居中样式
+  &.center { text-align: center; }
+
+  label, .content{
+    min-height: $height-regular;
+    display: inline-block;
+    font-size: $font-md;
+    vertical-align: top;
+  }
+
+  // 左侧表单内容文案
+  label{
+    line-height: $height-regular;
+    width: 120px;
+    color: $color-heavy;
+    &.title {
+      font: {
+        size: $font-md;
+        weight: 800;
+      }
+    }
+    .tip {
+      color: $color-main;
+      font-size: $font-sm;
+      line-height: $height-regular;
+    }
+  }
+
+  // 地图模块
+  .map {
+    display: inline-block;
+    height: 280px;
+    @include wcalc(calc(45% - 58px));
+    background-color: $color-gray-light;
+    @include borderRadius($border-radius-md);
+  }
+
+  // 富文本模块
+  div.rich-content {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 100%;
+    vertical-align: top;
+    @include wcalc(calc(100% - 130px));
+    .rich-editor  {
+      height: 389px;
+      border: 1px solid $color-gray;
+      padding: $pm-md;
+      @include borderRadius($border-radius-md);
+      overflow-x: hidden;
+      overflow-y: auto;
+      p {
+        margin: 0;
+      }
+    }
+
+    .btn-to-edit {
+      position: absolute;
+      top: $pm-sm;
+      right: $pm-sm;
+    }
+  }
+
+  // 右侧区域
+  div.content {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    vertical-align: top;
+
+    // 缩小规格
+    &.short {  width: 200px;  }
+
+    // 不可编辑文本组件样式
+    .text {
+      padding-left: $pm-sm;
+      font-size: $font-md;
+      width: 100%;
+      height: $height-regular;
+      display: block;
+      @include borderRadius($border-radius-md);
+      &.border {
+        border: 1px solid $color-gray;
+      }
+      &.disabled {
+        border: 1px solid $color-gray-light;
+        background-color: $color-gray-light;
+      }
+      &.tip {
+        font: {
+          size: $font-sm;
+          weight: 300;
+        }
+        color: $color-gray-deep;
+        line-height:  $font-sm;
+        height:  $font-sm;
+        margin-top: $pm-sm;
+      }
+    }
+
+    // 提示信息
+    .degree,
+    .tips {
+      position: absolute;
+      right: $pm-md;
+      top: 0;
+      display: inline-block;
+      width: auto;
+    }
+
+    .degree {
+      color: $color-gray-deep;
+    }
+    // 错误提示信息
+    .tips {
+      $height-tips: 26px;
+      color: $color-white;
+      background-color: $color-red;
+      height: $height-tips;
+      font-size: 12px;
+      line-height: $height-tips + 1px;
+      padding: 0 $pm-sm;
+      @include borderRadius($height-navbar/2);
+      top: ($height-regular - $height-tips)/2;
+      visibility: hidden;
+      @include compatible(transition, all .4s);
+      @include transform(scale(.0, .0));
+      &.show {
+        visibility: visible;
+        @include transform(scale(1.0, 1.0));
+      }
+    }
+
+    input [type='file'] {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    textarea {
+      display: block;
+      line-height: 24px;
+      padding: 5px $pm-sm;
+    }
+
+    .pad-dropdown {
+      position: absolute;
+      top: $height-regular + $pm-sm;
+      left: 0;
+      width: 100%;
+      padding: $pm-md;
+      z-index: 123;
+      display: inline-block;
+      background-color: white;
+      opacity: .0;
+      visibility: hidden;
+      @include boxShadow(0 5px 20px -6px rgba(0,0,0,.3));
+      @include compatible(transition, all .4s);
+      &.show {
+        visibility: visible;
+        opacity: 1.0;
+      }
+    }
+
+    // 标签库样式
+    .pad-tags {
+      width: 100%;
+      padding: 0;
+      display: block;
+      min-height: $height-navbar/2;
+      .tag {
+        padding: 0 0 0 $pm-md;
+        height: $height-navbar/2;
+        line-height: $height-navbar/2;
+        background-color: $color-main;
+        display: inline-block;
+        font: {
+          size: $font-sm;
+          weight: 300;
+        }
+        color: white;
+        margin: 0 $pm-sm/2 $pm-sm 0;
+        @include borderRadius($height-navbar/2 $height-navbar/2);
+        span{
+          width: auto;
+          display: inline-block;
+          height: $height-navbar/2;
+          line-height: $height-navbar/2;
+          margin-right: $pm-sm;
+          font-size: $font-sm;
+        }
+        .btn-remove {
+          color: $color-white;
+          width: $height-navbar/2;
+          height: $height-navbar/2;
+          display: inline-block;
+          font-size: $font-bg;
+          font-weight: 100;
+          float: right;
+          background-color: transparent;
+          &:hover {
+            color: $color-red;
+          }
+        }
+      }
+    }
+
+    // 图片缩略图预览组件样式
+    .for-image {
+      height: $height-upload-button;
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+
+      img { margin-right: 0; }
+
+      .dot {
+        position: absolute;
+        right: 8px;
+        top: 4px;
+        cursor: default;
+        display: block;
+        height: $pm-bg;
+        line-height: $pm-bg;
+        padding: 0 $pm-sm/2;
+        font-size: 10px;
+        @include borderRadius($border-radius-md);
+        background-color: $color-gray-deep;
+        color: $color-white;
+        &:hover {
+          background-color: darken($color-gray-deep, 2%);
+        }
+        &.clear {
+          background-color: $color-main;
+          color: white;
+          &:hover {
+            background-color: darken($color-main, 2%);
+          }
+        }
+      }
+
+      // 暂无图片样式
+      .empty-image {
+        height: $height-upload-button;
+        width: $width-upload-button;
+        line-height: $height-upload-button;
+        text-align: center;
+        background-color: $color-gray-light;
+        color: $color-gray-deep;
+        @include borderRadius($border-radius-md);
+        font-size: $font-bg;
+        padding: 0;
+      }
+
+      // 支持预览效果的图片缩略图样式
+      &.preview {
+        &:after {
+          content: '查看大图';
+          color: white;
+          background-color: rgba(0,0,0,.6);
+          visibility: hidden;
+          opacity: .0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          font-weight: 200;
+          line-height: $height-upload-button;
+          text-align: center;
+          @include borderRadius($border-radius-md);
+          @include compatible(transition, all .4s);
+        }
+      }
+      &.preview:hover {
+        &:after {
+          opacity: 1.0;
+          visibility: visible;
+        }
+      }
+    }
+
+    img {
+      height: $height-upload-button;
+      margin: 0 $pm-sm/2 0 0;
+      border: 1px solid $color-gray;
+      @include borderRadius($border-radius-md);
+      @include compatible(transition, all .4s);
+    }
+
+    .btn-upload-image {
+      padding: 0;
+      vertical-align: top;
+      height: $height-upload-button;
+      width: $width-upload-button;
+      border: 2px dashed $color-gray-deep;
+      color: $color-gray-deep;
+      font-size: $font-bg;
+      line-height: $height-upload-button;
+      text-align: center;
+      background-color: transparent;
+      &:hover {
+        color: $color-heavy;
+        border: 2px dashed $color-heavy;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-row {
+    .content {
+      @include wcalc(calc(100% - 130px));
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-row {
+    border-bottom: 1px solid $color-gray;
+    padding: $pm-sm/2 0!important;
+    margin: 0!important;
+    label {
+      width: 100px;
+    }
+    .content {
+      @include wcalc(calc(100% - 110px));
+      padding-left: $pm-sm/2!important;
+      input, select, textarea {
+        border: none!important;
+        &:hover {
+          border: none;
+        }
+      }
+      input, textarea {
+        padding-left: $pm-sm/2!important;
+      }
+      select {
+        padding-left: 0!important;
+      }
+      &.for-switch {
+        width: 150px !important;
+      }
+      &.one-line {
+        width: 100%!important;
+        padding-left: 0!important;
+        padding-right: $pm-sm!important;
+      }
+      .for-image {
+        height: auto!important;
+        display: block!important;
+        .preview {
+          height: auto!important;
+        }
+        img {
+          width: 100%!important;
+          height: auto!important;
+        }
+        &+button {
+          margin-bottom: $pm-sm;
+        }
+      }
+      button.btn-upload-image {
+        height: $height-navbar * 1.5 ;
+        line-height: $height-navbar * 1.5;
+        width: 100%;
+      }
+      // 单位
+      .degree {
+        color: $color-gray-deep;
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: inline-block;
+        width: auto;
+      }
+      .tips {
+        right: 0!important;
+        line-height: 25px;
+      }
+    }
+    #map-preview {
+      margin-left: 0;
+      margin-bottom: $pm-sm;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@import "./../variable.scss";
+
+/*--------------------------------------------------------------------------------------*/
+/*  hx-input 适用于全部文本输入框的自定义组件样式
+/*--------------------------------------------------------------------------------------*/
+input[type='text'].hx-input,
+input[type='email'].hx-input,
+input[type='number'].hx-input,
+input[type='url'].hx-input,
+input[type='password'].hx-input,
+input[type='date'].hx-input,
+select.hx-input,
+textarea.hx-input{
+  position: relative;
+  font-size: 14px;
+  line-height: $height-regular;
+  resize: none;
+  padding: 0 $pm-sm;
+  border: 1px solid $color-gray;
+  color: $color-dark;
+  @include compatible(transition, all .4s);
+  @include borderRadius($border-radius-md);
+}
+select.hx-input{
+  height: $height-regular;
+  background-color: transparent;
+}
+.hx-input.required{
+  border:1px solid #d43039!important;
+}
+.hx-input.required:focus{
+  -webkit-box-shadow:  0 0 4px rgba(212,48,57,.8);
+  -moz-box-shadow:  0 0 4px rgba(212,48,57,.8);
+  box-shadow:  0 0 4px rgba(212,48,57,.8);
+}

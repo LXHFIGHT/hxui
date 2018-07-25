@@ -1,0 +1,49 @@
+@import "./../variable.scss";
+
+/**
+ * hx-block
+ */
+.hx-block {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  .btn-show-sidebar {
+    display: none;
+  }
+  >.right,
+  >.left {
+    display: inline-block;
+    width: 50%;
+  }
+  >.left {
+    float: left;
+  }
+  >.right {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-block {
+    .btn-show-sidebar {
+      display: block;
+      position: absolute;
+      top: $pm-sm;
+      left: $pm-sm;
+      padding: 0;
+      height: $height-regular;
+      width: $height-regular;
+      z-index: 1200;
+      @include borderRadius($border-radius-md);
+      color: $color-white;
+      background-color: transparent;
+    }
+  }
+}

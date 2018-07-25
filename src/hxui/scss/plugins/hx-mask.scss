@@ -1,0 +1,31 @@
+@import "./../variable.scss";
+
+// 为一个组件添加一个光标划入才显示的蒙层，
+// 需要展示的文案写在组件的 aria-label 标签中
+.hx-mask {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    content: attr(aria-label);
+    background-color: rgba(0,0,0,.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-white;
+    font-size: $font-md;
+    opacity: 0.2;
+    @include compatible(transform, scale(0, 0));
+    @include compatible(transition, (opacity .4s, transform .4s));
+  }
+  &:hover {
+    &:after {
+      @include compatible(transform, scale(1.0, 1.0));
+      opacity: 1.0;
+    }
+  }
+}

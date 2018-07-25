@@ -1,0 +1,66 @@
+@import "./../variable.scss";
+
+/**
+    全局按钮样式
+ */
+
+// 实心按钮
+.hx-button {
+  @include hxButton(#eee);
+  color: $color-heavy;
+  &:disabled, &.disabled {
+    background-color: darken($color-gray, 5%)!important;
+    cursor: not-allowed;
+    color: $color-gray-deep;
+    &:hover {
+      filter: brightness(100%);
+      background-color: darken($color-gray, 5%)!important;
+    }
+  }
+  &.main    {  @include hxButton($color-main);  }
+  &.gray    {  @include hxButton(darken($color-gray-deep, 14%));  }
+  &.orange  {  @include hxButton($color-orange);  }
+  &.red     {  @include hxButton($color-red);  }
+  &.blue    {  @include hxButton($color-blue);  }
+  &.green   {  @include hxButton($color-green);  }
+  &.excel   {  @include hxButton($color-green-excel);  }
+  &.pink   {  @include hxButton($color-pink);  }
+  &.yellow   {  @include hxButton($color-golden, $color-heavy);  }
+}
+
+// 空心按钮
+.hx-blank-button{
+  @include hxBlankButton($color-main);
+  &:disabled, &.disabled {
+    background-color: darken($color-gray, 5%)!important;
+    cursor: not-allowed;
+    border: 1px solid darken($color-gray, 5%)!important;
+    color: $color-gray-deep!important;
+    &:hover {
+      background-color: darken($color-gray, 5%)!important;
+    }
+  }
+  &.gray    {  @include hxBlankButton(darken($color-gray-deep, 14%));  }
+  &.orange  {  @include hxBlankButton($color-orange);  }
+  &.red     {  @include hxBlankButton($color-red);  }
+  &.blue    {  @include hxBlankButton($color-blue);  }
+  &.green   {  @include hxBlankButton($color-green);  }
+  &.excel   {  @include hxBlankButton($color-green-excel);  }
+  &.pink    {  @include hxBlankButton($color-pink);  }
+  &.yellow  {  @include hxBlankButton($color-golden);  }
+}
+
+// 按钮尺寸
+.hx-button.sm {
+  height: $height-navbar/2;
+}
+.hx-button.bg {
+  height: $height-normal;
+}
+
+
+@media screen and (max-width: 640px) {
+  .hx-button {
+    margin-bottom: $pm-sm;
+  }
+}

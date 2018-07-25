@@ -1,0 +1,38 @@
+@import './../variable.scss';
+
+@mixin tipsStyle($color, $bgColor) {
+  background-color: $bgColor;
+  color: $color;
+  border-left: 3px solid $color;
+  .btn-right {
+    color: $color;
+  }
+}
+
+.hx-tips {
+  padding: 10px $pm-md;
+  line-height: $height-navbar/2;
+  display: block;
+  margin-bottom: $pm-md;
+  position: relative;
+  @include borderRadius($border-radius-md);
+  @include tipsStyle($color-main, $color-main-light);
+  &.green {  @include tipsStyle($color-green, $color-green-light);  }
+  &.orange {  @include tipsStyle($color-orange, $color-orange-light);  }
+  &.red {  @include tipsStyle($color-red, $color-red-light);  }
+  &.gray {  @include tipsStyle($color-heavy, #eee);  }
+  .btn-right {
+    background-color: transparent;
+    position: absolute;
+    right: $pm-sm;
+    top: 5px;
+    height: $height-regular;
+    font-size: 20px;
+  }
+  .content {
+    color: $color-heavy;
+    text-align: justify;
+    margin: $pm-sm 0;
+    display: block;
+  }
+}
