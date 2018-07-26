@@ -11,9 +11,10 @@
   visibility: hidden;
   border: 1px solid $color-gray;
   background-color: rgba(255,255,255,.75) !important;
+  border-radius: $border-radius-md!important;
   @include compatible(transition, all .4s);
-  @include borderRadius($border-radius-md);
-  @include boxShadow(0 $pm-sm*2 $pm-md*2  -13px rgba(0,0,0,.3));
+  overflow: hidden;
+  box-shadow: 0 $pm-sm*2 $pm-md*2  -13px rgba(0,0,0,.3);
   .row {
     padding: $pm-sm 0;
     text-align: center;
@@ -25,6 +26,9 @@
   }
   .tip {
     color: $color-heavy;
+    display: block;
+    width: 100%;
+    text-align: left;
     font: {
       size: $font-sm;
       weight: 800;
@@ -52,15 +56,17 @@
   .btn-main {
     margin-top: $pm-md;
     width: 100%;
-    height: $height-navbar - 2 * $pm-sm;
+    height: $height-regular;
     background-color: $color-main;
     color: white;
+    font-weight: 400;
     @include borderRadius($border-radius-md);
   }
   .btn-sub {
     margin-top: $pm-md;
     width: 100%;
-    height: $height-navbar - 2 * $pm-sm;
+    font-weight: 400;
+    height: $height-regular;
     @include borderRadius($border-radius-md);
     background-color: transparent;
     color: $color-main;

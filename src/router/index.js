@@ -10,14 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
+      name: 'Root',
+      redirect: '/home',
       component: HelloWorld,
-      children: [{
-        path: 'login',
-        name: 'login',
-        component: resolve => require(['@/container/enter/Login'], resolve),
-        meta: { keepAlive: true }
-      }]
+      meta: {
+        keepAlive: true
+      }
+    }, {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(['@/containers/enter/Login'], resolve),
+      meta: { keepAlive: true }
     }
   ]
 })
