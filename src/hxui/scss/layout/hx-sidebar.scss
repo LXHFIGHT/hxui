@@ -46,7 +46,7 @@
         background-color: rgba(255,255,255, .3);
         color: white;
         &:hover {
-          background-color: $color-main-light;
+          background-color: $color-main;
         }
       }
       &.no-children:after {
@@ -90,7 +90,7 @@
       background-color: rgba(255,255,255, .3);
       color: white;
       &:hover {
-        background-color: $color-main-light;
+        background-color: $color-main;
       }
     }
     .pad-children {
@@ -106,10 +106,9 @@
         &.selected {
           background-color: rgba(255, 255, 255, .3);
           color: white;
-
         }
         &.selected:hover {
-          background-color: $color-main-light;
+          background-color: $color-main;
         }
       }
     }
