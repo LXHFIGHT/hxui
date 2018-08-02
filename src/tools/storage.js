@@ -4,8 +4,10 @@
  * Description:
  *  该工具包含前端缓存相关方法
  */
+export const KEY_USER_TOKEN = 'KEY_USER_TOKEN'
 
-export const SessionStorage = {
+export const session = {
+  KEY_USER_TOKEN,
   save (key, item) {
     if (!window.sessionStorage) {
       console.warn('當前瀏覽器不支持sessionStorage')
@@ -34,7 +36,7 @@ export const SessionStorage = {
   }
 }
 
-export const LocalStorage = {
+export const local = {
   save (key, item) {
     if (!window.localStorage) {
       console.warn('當前瀏覽器不支持localStorage')
