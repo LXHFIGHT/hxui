@@ -7,15 +7,20 @@
 // 实心按钮
 .hx-button {
   @include hxButton(#eee);
+  position: relative;
   color: $color-heavy;
+
   &:disabled, &.disabled {
-    background-color: darken($color-gray, 5%)!important;
+    background-color: darken($color-gray, 10%)!important;
     cursor: not-allowed;
-    color: $color-gray-deep;
+    color: $color-heavy;
     &:hover {
       filter: brightness(100%);
-      background-color: darken($color-gray, 5%)!important;
+      background-color: darken($color-gray, 10%)!important;
     }
+  }
+  &.loading {
+    @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);
   }
   &.main    {  @include hxButton($color-main);  }
   &.gray    {  @include hxButton(darken($color-gray-deep, 14%));  }

@@ -1,7 +1,6 @@
 <template>
   <div class="hx-block" v-bind:style="`background-image: url('${project.login.background}')`">
-    <div class="pad-login center-parent"
-         :class="isLoginMode ? 'show' : ''">
+    <div :class="isLoginMode ? 'pad-login center-parent show' : 'pad-login center-parent'">
       <div class="row">
         <img class="logo-company" :src="project.logo" alt="">
       </div>
@@ -12,15 +11,23 @@
       </div>
       <span class="tip">用户密码</span>
       <div class="row">
-        <input type="password" class="input-username" placeholder="" v-model="userInfo.password" @keyup="keyForLogin($event)">
+        <input type="password" class="input-username" placeholder="" v-model="userInfo.password" @keyup="keyForLogin()">
       </div>
       <div class="row">
-        <button class="hx-button btn-main" type="button" @click="doLogin()" >登录</button>
-        <button class="hx-button btn-sub" type="button" @click="toggleMode(false)" v-text="'我要注册' + project.subject"></button>
+        <button :class="!isLogining ? 'hx-button btn-main' : 'hx-button btn-main loading'"
+                type="button"
+                :disabled="isLogining"
+                @click="doLogin()" >
+          登录
+        </button>
+        <button class="hx-button btn-sub"
+                type="button"
+                @click="toggleMode(false)"
+                v-text="'我要注册' + project.subject">
+        </button>
       </div>
     </div>
-    <div class="pad-register center-parent"
-         :class="isLoginMode ? '' : 'show'">
+    <div :class="isLoginMode ? 'pad-register center-parent' : 'pad-register center-parent show' ">
       <div class="row">
         <img class="logo-company" :src="project.logo" alt="">
       </div>
@@ -70,6 +77,7 @@
 </template>
 
 <script>
+import axios from './../../tools/axios'
 import project from './../../config/project'
 
 export default {
@@ -86,21 +94,30 @@ export default {
       userInfo: {
         username: '',
         password: ''
-      }
+      },
+      isLogining: false
     }
   },
   methods: {
     toggleMode (params) {
-      console.log(params)
+      this.isLoginMode = params
     },
     doLogin () {
-      console.log()
+      this.isLogining = true
+      axios.doPost('user/login', this.userInfo).then((res) => {
+        console.log('LOGIN RESPONSE: ', res)
+        this.isLogining = false
+      }).catch(() => {
+        this.isLogining = false
+      })
     },
     doRegister () {
       console.log('注册')
     },
     keyForLogin () {
-
+      if (event.keyCode === 13) {
+        this.doLogin()
+      }
     },
     keyForRegister () {
       console.log('Yahoo')

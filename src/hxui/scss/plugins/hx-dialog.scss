@@ -35,27 +35,7 @@
   width: $height-navbar * 1.2;
   display: block;
   position: relative;
-  &:before, &:after {
-    content: '';
-    background-color: rgba(255,255,255,.5);
-    height: 100%;
-    width: 100%;
-    display: block;
-    position: absolute;
-    @include borderRadius(50%);
-  }
-  &:before {
-    left: 0;
-    top: 0;
-    @include compatible(transform, scale(0.2, 0.2));
-    @include compatible(animation, smallRound 1.5s infinite ease-out);
-  }
-  &:after {
-    left: 0;
-    top: 0;
-    @include compatible(transform, scale(1.0, 1.0));
-    @include compatible(animation, bigRound 1.5s infinite ease-in);
-  }
+  @include loading;
 }
 
 .hx-icon {

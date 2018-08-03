@@ -7,14 +7,14 @@
 
 const testConfig = {
   client: '',
-  server: '',
-  prefix: '/api'
+  server: '//car-inspection.shengxintech.com/',
+  prefix: ''
 }
 
 const prodConfig = {
   client: '', // 配置前端项目访问域名
-  server: '', // 配置前端项目
-  prefix: '/api'
+  server: '//car-inspection.shengxintech.com/', // 配置前端项目
+  prefix: ''
 }
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : testConfig

@@ -59,7 +59,7 @@
     height: $height-regular;
     background-color: $color-main;
     color: white;
-    font-weight: 400;
+    font-weight: 400!important;
     @include borderRadius($border-radius-md);
   }
   .btn-sub {
@@ -69,6 +69,7 @@
     height: $height-regular;
     @include borderRadius($border-radius-md);
     background-color: transparent;
+    box-shadow: none;
     color: $color-main;
     cursor: pointer!important;
   }

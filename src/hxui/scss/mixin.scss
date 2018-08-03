@@ -110,8 +110,16 @@
     size: 13px;
   }
   color: $color;
+  box-shadow:
+    0 3px 1px -2px rgba(0,0,0,.2),
+    0 2px 2px 0 rgba(0,0,0,.14),
+    0 1px 5px 0 rgba(0,0,0,.12);
   @include borderRadius(4px);
   @include compatible(transition, all .4s);
+  &.sub {
+    box-shadow: none;
+    color: $color;
+  }
   &:hover {
     filter: brightness(95%);
   }
@@ -169,4 +177,28 @@
 @mixin filter-blur($degree: 10px) {
   -webkit-filter: blur($degree); /* Chrome, Opera */
   filter: blur($degree);
+}
+
+@mixin loading($height: 100%, $width: 100%, $top: 0, $left: 0) {
+  &:before, &:after {
+    content: '';
+    background-color: rgba(255,255,255,.5);
+    height: $height;
+    width: $width;
+    display: block;
+    position: absolute;
+    @include borderRadius(50%);
+  }
+  &:before {
+    left: $left;
+    top: $top;
+    @include compatible(transform, scale(0.2, 0.2));
+    @include compatible(animation, smallRound 1.5s infinite ease-out);
+  }
+  &:after {
+    left: $left;
+    top: $top;
+    @include compatible(transform, scale(1.0, 1.0));
+    @include compatible(animation, bigRound 1.5s infinite ease-in);
+  }
 }

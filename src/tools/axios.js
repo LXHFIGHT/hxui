@@ -14,18 +14,17 @@ import config from './../config/server'
  * @param res 响应数据
  */
 const checkResponse = (res) => {
-
+  console.log('Analysing Response Data')
+  return res.data
 }
 
 /**
  * 统一处理错误信息
  * @param err 请求返回的错误信息
  */
-const handleError = (err) => {
+const handleError = (err) => { console.log(err) }
 
-}
-
-const fetch = (method, path, bundle) => {
+const fetch = (method, path, data) => {
   let token = session.get(session.KEY_USER_TOKEN)
   const contentType = 'application/json'
   const headers = {
@@ -33,24 +32,14 @@ const fetch = (method, path, bundle) => {
     'Authorization': `Bearer ${token}`
   }
   const url = `${config.server}${config.prefix}${path}`
-
-  if (method === 'get' || method === 'delete') {
-    return axios[method](url, { params: bundle }, {headers})
-      .then(res => {
-        checkResponse(res)
-      })
-      .catch(err => {
-        handleError(err)
-      })
-  } else {
-    return axios[method](url, bundle, {headers})
-      .then(response => {
-        return checkResponse(response)
-      })
-      .catch(err => {
-        handleError(err)
-      })
-  }
+  const bundle = (method === 'get' || method === 'delete') ? { params: data } : data
+  return axios[method](url, bundle, {headers})
+    .then(res => {
+      return checkResponse(res)
+    })
+    .catch(err => {
+      handleError(err)
+    })
 }
 
 export default {
@@ -64,6 +53,6 @@ export default {
     return fetch('put', path, data)
   },
   doDelete (path) {
-    return fetch('delete', path, { })
+    return fetch('delete', path, {})
   }
 }
