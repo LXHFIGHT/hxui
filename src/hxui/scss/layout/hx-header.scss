@@ -10,7 +10,7 @@
   @include boxShadow(0 0 24px rgba(0,0,0,.1));
   .title{
     display: inline-block;
-    font-size: $font-md;
+    font-size: $font-bg;
     height: $height-content;
     line-height: $height-content;
     color: $color-heavy;
@@ -23,12 +23,16 @@
       }
     }
   }
+  .right {
+    display: inline-block;
+    width: auto;
+    float: right;
+  }
   .btn-back {
     background-color: transparent;
     color: $color-gray-deep;
   }
   .btn-right {
-
   }
 }
 
