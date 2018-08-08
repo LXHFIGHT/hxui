@@ -23,17 +23,19 @@
       }
     }
   }
-  .right {
+  .right, .left {
     display: inline-block;
     width: auto;
-    float: right;
-    .hx-button {
-      height: 30px;
+    .hx-button, button {
+      margin-right: $pm-sm;
     }
   }
+  .left {  float: left;  }
+  .right {  float: right;  }
   .btn-back {
     background-color: transparent;
     color: $color-gray-deep;
+    margin-right: $pm-md;
   }
   .btn-right {
   }
@@ -89,13 +91,6 @@
       button {
         color: $color-header-word;
       }
-    }
-    .hx-goback-button {
-      left: $height-normal;
-      position: relative;
-      padding: 0;
-      top: -1px;
-      border: none;
     }
   }
 }

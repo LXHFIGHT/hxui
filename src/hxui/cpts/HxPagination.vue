@@ -1,8 +1,8 @@
 <template>
   <!-- 组件封装： 分页组件
-      获取参数：
-      totalPage: [Number] 当前列表页总页数
-      doRequest: [Function] 发起请求回调方法
+    获取参数：
+    totalPage: [Number] 当前列表页总页数
+    doRequest: [Function] 发起请求回调方法
   -->
   <div class="hx-pagination">
     <select name="sizePerPage"

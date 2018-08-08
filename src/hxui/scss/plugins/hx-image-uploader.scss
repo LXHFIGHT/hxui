@@ -5,8 +5,8 @@
     组件中包含图片，功能悬浮框（一般是预览图片功能，重新上传图片功能以及删除图片功能）
   组件中的排版为：
     <div class="hx-image-uploader" >
-      <img ng-if="图片是否存在"
-           ng-src="图片位置" />
+      <img v-if="图片是否存在"
+           :src="图片位置" />
       <div class="functions"
            ng-if="图片是否存在">
           <button ng-click="图片预览方法，建议使用HXUI.previewImage"
@@ -32,6 +32,10 @@
   width: 100%;
   padding: 0;
   background-color: $color-gray;
+  input[type='file'] {
+    display: none;
+  }
+
   img {
     width: 100%;
     height: auto!important;

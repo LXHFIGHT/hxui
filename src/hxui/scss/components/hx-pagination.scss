@@ -25,8 +25,9 @@
     font-size: 14px;
     color: #505050;
     border: none;
+    -webkit-appearance: none;
+    appearance: none;
     @include compatible(user-appearance, none);
-    @include borderRadius(0);
     background-color: white;
   }
   a, span {
@@ -54,6 +55,7 @@
       background-color: $color-main;
     }
     &.btn-jump {
+      vertical-align: top;
       margin-left: 0;
     }
   }

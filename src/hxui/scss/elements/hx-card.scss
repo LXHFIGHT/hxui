@@ -1,13 +1,22 @@
 @import '../variable';
 
 /* hxui卡片樣式 */
-.hxui-card {
-  padding: 0;
-  width: 100%;
-  background-color: white;
-  margin-bottom: $pm-sm;
-  border: 1px solid $color-gray;
-  @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+.hx-card {
+  padding: $pm-md;
+  display: inline-block;
+  .content {
+    background-color: white;
+    border: 1px solid $color-gray;
+    width: 100%;
+    cursor: default;
+    max-width: 300px;
+    @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+    @include borderRadius($border-radius-bg);
+    transition: box-shadow .4s;
+    &:hover {
+      @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
+    }
+  }
   .row {
     position: relative;
     display: block;
@@ -26,6 +35,12 @@
     label {
       color: $color-gray-deep;
     }
+    .right {
+      float: right;
+    }
+    .main {
+      color: $color-main;
+    }
     &:first-child {
       line-height: $height-normal;
       height: $height-normal;
@@ -38,7 +53,7 @@
     &.img {
       height: 150px;
       overflow: hidden;
-      background-color: $color-gray-light;
+      border-bottom: 1px solid $color-gray-light;
       img {
         @include centerInParent;
         width: 100%;
@@ -59,3 +74,43 @@
     }
   }
 }
+
+@media screen and (min-width: 1920px) {
+  .hx-card {
+    width: 15%;
+  }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1920px) {
+  .hx-card {
+    width: 20%;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1600px) {
+  .hx-card {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  .hx-card {
+    width: 33.33%;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .hx-card {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-card {
+    width: 100%;
+    .content {
+      max-width: 100%;
+    }
+  }
+}
+

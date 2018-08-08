@@ -6,7 +6,7 @@
 
 // 实心按钮
 .hx-button {
-  @include hxButton(#eee);
+  @include hxButton(#f2f2f2);
   position: relative;
   color: $color-heavy;
   &:disabled, &.disabled {
@@ -18,6 +18,12 @@
       background-color: darken($color-gray, 10%)!important;
     }
   }
+  &.material {
+    box-shadow:
+      0 3px 1px -2px rgba(0,0,0,.2),
+      0 2px 2px 0 rgba(0,0,0,.14),
+      0 1px 5px 0 rgba(0,0,0,.12);
+  }
   &.loading {
     @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);
   }
@@ -28,8 +34,8 @@
   &.blue    {  @include hxButton($color-blue);  }
   &.green   {  @include hxButton($color-green);  }
   &.excel   {  @include hxButton($color-green-excel);  }
-  &.pink   {  @include hxButton($color-pink);  }
-  &.yellow   {  @include hxButton($color-golden, $color-heavy);  }
+  &.pink    {  @include hxButton($color-pink);  }
+  &.yellow  {  @include hxButton($color-golden, $color-heavy);  }
 }
 
 // 空心按钮

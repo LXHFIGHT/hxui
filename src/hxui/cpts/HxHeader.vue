@@ -1,5 +1,8 @@
 <template>
   <div class="hx-header">
+    <div class="left">
+      <slot name="left"></slot>
+    </div>
     <span class="title" v-text="title"></span>
     <div class="right">
       <slot name="right"></slot>
@@ -15,7 +18,7 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     subTitle: {
       type: String
