@@ -42,6 +42,23 @@ const fetch = (method, path, data) => {
     })
 }
 
+const upload = (path, data) => {
+  let token = session.get(session.KEY_USER_TOKEN)
+  const contentType = 'multipart/form-data'
+  const url = `${config.server}${config.prefix}${path}`
+  const headers = {
+    'Content-Type': contentType,
+    'Authorization': `Bearer ${token}`
+  }
+  return axios['post'](url, data, {headers})
+    .then(res => {
+      return checkResponse(res)
+    })
+    .catch(err => {
+      handleError(err)
+    })
+}
+
 export default {
   doPost (path, data) {
     return fetch('post', path, data)
@@ -54,5 +71,8 @@ export default {
   },
   doDelete (path) {
     return fetch('delete', path, {})
+  },
+  doUpload (path, formData) {
+    return upload(path, formData)
   }
 }

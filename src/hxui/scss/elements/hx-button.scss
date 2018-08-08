@@ -9,7 +9,6 @@
   @include hxButton(#eee);
   position: relative;
   color: $color-heavy;
-
   &:disabled, &.disabled {
     background-color: darken($color-gray, 10%)!important;
     cursor: not-allowed;

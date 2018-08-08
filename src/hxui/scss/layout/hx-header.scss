@@ -27,6 +27,9 @@
     display: inline-block;
     width: auto;
     float: right;
+    .hx-button {
+      height: 30px;
+    }
   }
   .btn-back {
     background-color: transparent;

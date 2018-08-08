@@ -1,6 +1,6 @@
 <template>
   <div class="hx-block">
-    <div :class="showSidebar ? 'hxui-sidebar show' : 'hx-sidebar'">
+    <div :class="showSidebar ? 'hx-sidebar show' : 'hx-sidebar'">
       <div class="sidebar">
         <div class="project-info">
           <img class="logo"
@@ -36,7 +36,7 @@
       </div>
     </div>
     <!-- 移动版切换侧边栏按钮 -->
-    <button :class="'btn-show-sidebar fa fa-list' + (showSidebar ? 'show' : '')"
+    <button :class="['btn-show-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
             @click="toggleSidebar()">
     </button>
     <!-- 主要内容区 -->

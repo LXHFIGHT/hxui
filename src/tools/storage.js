@@ -33,6 +33,13 @@ export const session = {
       return null
     }
     window.sessionStorage.removeItem(key)
+  },
+  clear () {
+    if (!window.sessionStorage) {
+      console.warn('當前瀏覽器不支持sessionStorage')
+      return null
+    }
+    window.sessionStorage.clear()
   }
 }
 
