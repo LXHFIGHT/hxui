@@ -42,6 +42,14 @@ $color-golden-light: rgba(255, 205, 60,  .2);
 $color-orange-light: rgba($color-orange, .1);
 $color-blue-light: lighten($color-blue, 34%);
 
+.color-main { color: $color-main!important; }
+.color-red { color: $color-red!important; }
+.color-green { color: $color-green!important; }
+.color-orange { color: $color-orange!important; }
+.color-pink { color: $color-pink!important; }
+.color-gray { color: $color-gray-deep!important; }
+.color-blue { color: $color-blue!important; }
+
 // 三种居中
 .center-horizontal,
 .center-parent,
@@ -93,6 +101,10 @@ $pm-lg: 32px;
 $shadow-md: 0 3px 6px rgba(0,0,0, .1);
 $shadow-md-dark: 0 3px 6px rgba(0,0,0, .3);
 $shadow-right-md: 3px 3px 6px rgba(0,0,0, .1);
+$box-shadow-material:
+0 3px 1px -2px rgba(0,0,0,.2),
+0 2px 2px 0 rgba(0,0,0,.14),
+0 1px 5px 0 rgba(0,0,0,.12);
 
 // 参照bootstrap和amazeUI的栅格系统
 [class^='col-sm-'], [class^='col-md-'], [class^='col-bg-']

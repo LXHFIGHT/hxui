@@ -110,6 +110,7 @@
     size: 13px;
   }
   color: $color;
+  border: 1px solid $bgColor;
   @include borderRadius(4px);
   @include compatible(transition, all .4s);
   &.sub {
@@ -121,6 +122,14 @@
   }
   &:active {
     filter: brightness(84%);
+  }
+}
+
+@mixin boxShadowNormal() {
+  transition: box-shadow .4s;
+  @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+  &:hover {
+    @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
   }
 }
 

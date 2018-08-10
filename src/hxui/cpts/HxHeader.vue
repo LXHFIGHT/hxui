@@ -4,6 +4,10 @@
       <slot name="left"></slot>
     </div>
     <span class="title" v-text="title"></span>
+    &nbsp;
+    &nbsp;
+    <small class="title color-main"
+           v-text="subTitle"></small>
     <div class="right">
       <slot name="right"></slot>
     </div>

@@ -41,7 +41,7 @@
     @include boxShadow(0 24px $pm-bg -16px rgba(0,0,0,.4));
 
     // 模态框头部
-    header {
+    .header {
       line-height: $height-normal;
       height: $height-normal;
       padding-left: $pm-md;
@@ -80,7 +80,7 @@
     }
 
     // 模态框底部
-    footer {
+    .footer {
       text-align: center;
       margin-top: $pm-md;
       padding: $pm-sm $pm-md;
@@ -134,7 +134,7 @@
         right: $pm-sm;
         top: $pm-sm;
       }
-      header {
+      .header {
         font-size: $font-md;
         height: $height-regular;
         line-height: $height-regular;
@@ -160,14 +160,14 @@
       @include compatible(transition, all .4s);
       @include compatible(transform, translate(-50%, 50%));
       position: fixed;
-      header {
+      .header {
         color: $color-gray-deep;
       }
       .hx-content {
         padding: $pm-md;
         text-align: center;
       }
-      footer {
+      .footer {
         margin-top: $pm-md * 2;
         text-align: center;
         padding: 0;

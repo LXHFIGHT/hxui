@@ -74,7 +74,8 @@ td[id|=tangram-suggestion] {
     }
   }
   .pad-map {
-    @include hcalc(calc(50% - 25px));
+    height: 40%;
+    width: 100%;
     background-color: $color-gray-light;
     position: relative;
     .map {

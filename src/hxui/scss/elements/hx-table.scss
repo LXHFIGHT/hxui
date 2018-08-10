@@ -1,9 +1,13 @@
 @import './../variable.scss';
 
-table.hx-table {
+.hx-table {
   width: 100%;
   font-size: 13px;
   border-collapse:collapse;
+  background-color: white;
+  padding: $pm-sm;
+  border-radius: $border-radius-md;
+  @include boxShadowNormal();
   td {
     min-height: $height-navbar;
     text-align: center;

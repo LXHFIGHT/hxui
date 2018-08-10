@@ -6,9 +6,16 @@
 
 // 实心按钮
 .hx-button {
-  @include hxButton(#f2f2f2);
+  @include hxButton(white);
   position: relative;
   color: $color-heavy;
+  border: 1px solid $color-gray;
+  &:hover {
+    background-color: #fafafa;
+  }
+  &:active {
+    background-color: #f6f6f6;
+  }
   &:disabled, &.disabled {
     background-color: darken($color-gray, 10%)!important;
     cursor: not-allowed;
@@ -19,10 +26,7 @@
     }
   }
   &.material {
-    box-shadow:
-      0 3px 1px -2px rgba(0,0,0,.2),
-      0 2px 2px 0 rgba(0,0,0,.14),
-      0 1px 5px 0 rgba(0,0,0,.12);
+    box-shadow: $box-shadow-material;
   }
   &.loading {
     @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);

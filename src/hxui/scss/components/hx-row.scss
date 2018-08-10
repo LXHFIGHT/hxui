@@ -129,6 +129,11 @@
       width: auto;
     }
 
+    .error + .degree {
+      color: $color-red;
+    }
+
+
     .degree {
       color: $color-gray-deep;
     }

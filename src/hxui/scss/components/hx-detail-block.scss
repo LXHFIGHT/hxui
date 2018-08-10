@@ -38,6 +38,10 @@
     button {
       min-height: $height-normal - $pm-sm;
       margin-left: $pm-sm;
+      &.right {
+        float: right;
+        margin-top: ($height-navbar - $height-regular)/2;
+      }
     }
   }
 }
