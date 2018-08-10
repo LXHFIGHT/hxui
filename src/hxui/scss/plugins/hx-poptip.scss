@@ -1,7 +1,7 @@
 @import './../variable.scss';
 
 // 顶部信息弹出框样式
-.pad-poptip {
+.hx-poptip {
   margin: 0 auto;
   min-width: 30%;
   max-width: 60%;
@@ -24,7 +24,7 @@
 }
 
 @media screen and (min-width: 640px) {
-  .pad-poptip {
+  .hx-poptip {
     text-align: center;
     font-size: 16px;
     line-height: $height-navbar;
@@ -40,7 +40,7 @@
 }
 
 @media screen and (max-width: 640px){
-  .pad-poptip {
+  .hx-poptip {
     width: 100%;
     bottom: 0;
     text-align: center;

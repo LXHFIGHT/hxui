@@ -4,3 +4,7 @@
  * Description:
  *   弹出消息
  */
+
+import PopTip from './src/main.js'
+
+export default PopTip

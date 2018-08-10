@@ -7,8 +7,9 @@
 
 export default {
   level: {
-    LEVEL_INFO: 'info',
-    LEVEL_WARNING: 'warning',
-    LEVEL_ERROR: 'error'
+    LEVEL_INFO: 'default',
+    LEVEL_WARNING: 'warn',
+    LEVEL_ERROR: 'error',
+    LEVEL_SUCCESS: 'success'
   }
 }
