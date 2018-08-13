@@ -99,6 +99,7 @@
       width: 100%;
       height: $height-regular;
       display: block;
+      background-color: #fafafa;
       @include borderRadius($border-radius-md);
       &.border {
         border: 1px solid $color-gray;

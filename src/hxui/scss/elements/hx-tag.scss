@@ -1,0 +1,73 @@
+@import "./../variable.scss";
+
+/**
+    全局按钮样式
+ */
+
+// 实心按钮
+.hx-tag {
+  @include hxTag(white);
+  position: relative;
+  color: $color-heavy;
+  background-color: $color-gray-light;
+  height: $height-regular - 10px;
+  line-height: $height-regular - 10px;
+  border: 1px solid $color-gray;
+  display: inline-block;
+  cursor: default;
+  &.material {
+    box-shadow: $box-shadow-material;
+  }
+  &.main    {  @include hxTag($color-main);  }
+  &.gray    {  @include hxTag(darken($color-gray-deep, 14%));  }
+  &.orange  {  @include hxTag($color-orange);  }
+  &.red     {  @include hxTag($color-red);  }
+  &.blue    {  @include hxTag($color-blue);  }
+  &.green   {  @include hxTag($color-green);  }
+  &.excel   {  @include hxTag($color-green-excel);  }
+  &.pink    {  @include hxTag($color-pink);  }
+  &.yellow  {  @include hxTag($color-golden, $color-heavy);  }
+
+  & + & {
+    margin: 0 0 0 $pm-sm/2;
+  }
+}
+
+// 空心按钮
+.hx-tag.blank {
+  @include hxBlankTag($color-main);
+  &:disabled, &.disabled {
+    background-color: darken($color-gray, 5%)!important;
+    cursor: not-allowed;
+    border: 1px solid darken($color-gray, 5%)!important;
+    color: $color-gray-deep!important;
+    &:hover {
+      background-color: darken($color-gray, 5%)!important;
+    }
+  }
+  &.gray    {  @include hxBlankTag(darken($color-gray-deep, 14%));  }
+  &.orange  {  @include hxBlankTag($color-orange);  }
+  &.red     {  @include hxBlankTag($color-red);  }
+  &.blue    {  @include hxBlankTag($color-blue);  }
+  &.green   {  @include hxBlankTag($color-green);  }
+  &.excel   {  @include hxBlankTag($color-green-excel);  }
+  &.pink    {  @include hxBlankTag($color-pink);  }
+  &.yellow  {  @include hxBlankTag($color-golden);  }
+}
+
+// 按钮尺寸
+.hx-tag.sm {
+  height: $height-normal/2;
+  line-height: $height-normal/2;
+}
+.hx-tag.bg {
+  height: $height-regular;
+  line-height: $height-regular;
+}
+
+
+@media screen and (max-width: 640px) {
+  .hx-button {
+    margin-bottom: $pm-sm;
+  }
+}

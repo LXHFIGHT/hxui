@@ -125,6 +125,23 @@
   }
 }
 
+@mixin hxTag($bgColor, $color: white, $height:34px) {
+  height: $height;
+  padding: 0 8px;
+  background-color: $bgColor;
+  font: {
+    weight: 400;
+    size: 13px;
+  }
+  color: $color;
+  border: 1px solid $bgColor;
+  @include compatible(transition, all .4s);
+  &.sub {
+    box-shadow: none;
+    color: $color;
+  }
+}
+
 @mixin boxShadowNormal() {
   transition: box-shadow .4s;
   @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
@@ -142,11 +159,19 @@
   padding: 0 8px;
   font-size: 14px;
   @include borderRadius(4px);
-  @include compatible(transition, all .4s);
   &:hover{
     color: $color;
     background-color: $bgColor;
   }
+}
+
+@mixin hxBlankTag($bgColor, $color: white, $height:34px) {
+  border: 1px solid $bgColor;
+  background-color: $color;
+  color: $bgColor;
+  height: $height;
+  padding: 0 8px;
+  font-size: 14px;
 }
 
 @mixin timesIcon($bgColor: #eee) {

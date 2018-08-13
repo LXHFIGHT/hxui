@@ -73,9 +73,16 @@
     border: 2px dotted $color-gray;
     color: $color-gray-deep;
     font-size: $font-bg;
+    transition: background-color .4s;
     .icon {
       font-size: 25px;
       padding-left: 0;
+    }
+    &:hover {
+      background-color: $color-gray-light;
+    }
+    &:active {
+      background-color: $color-gray;
     }
   }
 }

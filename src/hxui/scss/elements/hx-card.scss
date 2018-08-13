@@ -4,6 +4,7 @@
 .hx-card {
   padding: $pm-md;
   display: inline-block;
+  position: relative;
   .content {
     background-color: white;
     overflow: hidden;
@@ -35,9 +36,18 @@
     }
     label {
       color: $color-gray-deep;
+      width: 60px;
+      display: inline-block;
+    }
+    .text {
+      @include wcalc(calc(100% - 65px));
+      @include nowrap;
+      display: inline-block;
     }
     .right {
-      float: right;
+      right: $pm-sm;
+      top: 0;
+      position: absolute;
     }
     .main {
       color: $color-main;
@@ -73,6 +83,16 @@
       padding: $pm-sm;
       border-top: 1px solid $color-gray;
     }
+  }
+  .top-left {
+    position: absolute;
+    top: $pm-sm + $pm-md;
+    left: $pm-sm + $pm-md;
+  }
+  .top-right {
+    position: absolute;
+    top: $pm-sm + $pm-md;
+    right: $pm-sm + $pm-md;
   }
 }
 
