@@ -21,6 +21,7 @@ export default {
       this.isShow = false
       const destroyTimer = setTimeout(() => {
         this.$destroy(true)
+        this.$el.parentNode &&
         this.$el.parentNode.removeChild(this.$el)
         clearTimeout(destroyTimer)
         clearTimeout(this.fadeInTimer)

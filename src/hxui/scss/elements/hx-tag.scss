@@ -10,7 +10,7 @@
   position: relative;
   color: $color-heavy;
   background-color: $color-gray-light;
-  height: $height-regular - 10px;
+  height: $height-regular - 10px!important;
   line-height: $height-regular - 10px;
   border: 1px solid $color-gray;
   display: inline-block;
@@ -57,11 +57,11 @@
 
 // 按钮尺寸
 .hx-tag.sm {
-  height: $height-normal/2;
+  height: $height-normal/2!important;
   line-height: $height-normal/2;
 }
 .hx-tag.bg {
-  height: $height-regular;
+  height: $height-regular!important;
   line-height: $height-regular;
 }
 

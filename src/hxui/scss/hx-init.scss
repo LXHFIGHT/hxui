@@ -37,6 +37,20 @@ input::-ms-input-placeholder {
     font-weight: 300;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  width: 8px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+  background-color: rgba(0, 0, 0, .1);
+}
+
 /*--------------------------------------------------------------------------------------*/
 /*  a标签样式
 /*--------------------------------------------------------------------------------------*/

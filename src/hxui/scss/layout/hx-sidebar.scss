@@ -1,5 +1,19 @@
 @import "../variable";
 
+.hx-sidebar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.hx-sidebar::-webkit-scrollbar-track {
+  width: 8px;
+  background-color: $color-main-dark;
+}
+.hx-sidebar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgba(255, 255, 255, .4);
+}
+
 // 左侧侧边栏样式
 .hx-sidebar {
   height: 100%;

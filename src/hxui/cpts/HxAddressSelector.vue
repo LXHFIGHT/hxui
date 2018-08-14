@@ -1,6 +1,6 @@
 <template>
   <div :class="['hx-modal choose-address-modal', (show ? 'show' : '')]">
-    <div class="mask"></div>
+    <div class="mask" @click="doClose"></div>
     <div class="pad-address-content">
       <div class="pad-address-selector">
         <input type="text"
