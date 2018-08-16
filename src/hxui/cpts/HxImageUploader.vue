@@ -1,28 +1,28 @@
 <template>
   <div class="pad-image-uploader">
-    <div class="hx-image-uploader"  >
-      <input class="uploader-images"
-             :id="id"
-             :accept="accept"
-             @change="doUploadImage"
-             type="file" name="file" multiple="multiple" >
+    <input class="uploader-images"
+           :id="id"
+           :accept="accept"
+           @change="doUploadImage"
+           type="file" name="file" multiple="multiple" >
+    <div class="hx-image-uploader" v-if="image">
       <img v-if="image"
            :src="image" />
-      <div class="functions" v-if="image">
+      <div class="functions" >
         <button @click="triggerUploadImage(id)"
                 :diabled="isUploading"
                 :class="isUploading ? 'fa fa-circle-o-notch fa-spin fa-3x fa-fw' : 'fa fa-upload'">
         </button>
         <button v-if="typeof doClearImage === 'function'" @click="clearImage(id)" class="fa fa-trash"></button>
       </div>
-      <button class="btn-upload"
-              @click="triggerUploadImage(id)"
-              :diabled="isUploading"
-              v-if="!image">
-        <span class="icon fa fa-picture-o" style="top: 1px; position: relative"></span>
-        {{ isUploading ? '上传中...' : text }}
-      </button>
     </div>
+    <button class="btn-upload"
+            @click="triggerUploadImage(id)"
+            :diabled="isUploading"
+            v-if="!image">
+      <span class="icon fa fa-picture-o" style="top: 1px; position: relative"></span>
+      {{ isUploading ? '上传中...' : text }}
+      </button>
   </div>
 </template>
 
@@ -75,12 +75,7 @@ export default {
     }
   },
   updated () {
-    console.log('Uploading Component: ', this.image)
     this.isUploading = false
   }
 }
 </script>
-
-<style>
-
-</style>
