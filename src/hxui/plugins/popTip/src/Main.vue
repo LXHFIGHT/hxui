@@ -19,12 +19,9 @@ export default {
     destroyElement () {
       this.isShow = false
       const destroyTimer = setTimeout(() => {
-        console.log('删除弹出框')
         this.$destroy(true)
         this.$el.parentNode.removeChild(this.$el)
         clearTimeout(destroyTimer)
-        clearTimeout(this.fadeInTimer)
-        clearTimeout(this.fadeOutTimer)
       }, 400)
     },
     startTimer () {
@@ -41,6 +38,10 @@ export default {
   },
   mounted () {
     this.startTimer()
+  },
+  beforeDestroy () {
+    clearTimeout(this.fadeInTimer)
+    clearTimeout(this.fadeOutTimer)
   }
 }
 </script>

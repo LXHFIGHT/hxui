@@ -15,6 +15,7 @@
   border: 1px solid $color-gray;
   display: inline-block;
   cursor: default;
+  @include borderRadius(2px);
   &.material {
     box-shadow: $box-shadow-material;
   }

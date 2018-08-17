@@ -12,6 +12,7 @@ $height-card-row: 28px;
     border: 1px solid $color-gray;
     width: 100%;
     cursor: default;
+    position: relative;
     max-width: 300px;
     @include borderRadius($border-radius-bg);
     transition: box-shadow .4s;
@@ -19,17 +20,17 @@ $height-card-row: 28px;
     &:hover {
       @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
     }
-    .top-left {
-      position: absolute;
-      top: $pm-sm + $pm-md;
-      left: $pm-sm + $pm-md;
-      z-index: 50;
-    }
+    .top-left,
     .top-right {
       position: absolute;
-      top: $pm-sm + $pm-md;
-      right: $pm-sm + $pm-md;
+      top: $pm-sm;
       z-index: 50;
+    }
+    .top-left {
+      left: $pm-sm;
+    }
+    .top-right {
+      right: $pm-sm;
     }
   }
   .row {

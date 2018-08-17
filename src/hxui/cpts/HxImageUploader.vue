@@ -9,6 +9,9 @@
       <img v-if="image"
            :src="image" />
       <div class="functions" >
+        <button @click="doPreviewImage(image)"
+                class="fa fa-eye">
+        </button>
         <button @click="triggerUploadImage(id)"
                 :diabled="isUploading"
                 :class="isUploading ? 'fa fa-circle-o-notch fa-spin fa-3x fa-fw' : 'fa fa-upload'">
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import previewImage from './../plugins/imagePreviewer'
 /**
  * 组件： 上传图片组件
  * @prop Function 当上传图片到浏览器后，需要执行的操作，接受两个参数，前者是包含上传的文件对象 FormData，后者是这个上传组件的ID
@@ -72,6 +76,9 @@ export default {
     },
     triggerUploadImage () {
       document.getElementById(this.id).click()
+    },
+    doPreviewImage (image) {
+      previewImage(image)
     }
   },
   updated () {

@@ -30,6 +30,7 @@
   }
   &.loading {
     @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);
+    border: 1px solid $color-gray!important;
   }
   &.main    {  @include hxButton($color-main);  }
   &.gray    {  @include hxButton(darken($color-gray-deep, 14%));  }

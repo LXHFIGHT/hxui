@@ -6,8 +6,10 @@
  */
 import popTip from './popTip'
 import popLoading from './popLoading'
+import previewImage from './imagePreviewer'
 
 export default {
   ...popLoading,
-  popTip
+  popTip,
+  previewImage
 }
