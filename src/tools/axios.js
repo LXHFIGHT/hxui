@@ -64,7 +64,7 @@ export default {
     return fetch('post', path, data)
   },
   doGet (path, data) {
-    return fetch('post', path, data)
+    return fetch('get', path, data)
   },
   doPut (path, data) {
     return fetch('put', path, data)
