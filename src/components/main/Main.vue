@@ -13,8 +13,10 @@
                v-for="menu in menus"
                v-bind:key="menu.state">
             <button :class="`first-level ${menu.selected ? 'selected' : ''} ${ !menu.children ? 'no-children' : ''}`"
-                    @click="doSelect(menu)"
-                    v-text="menu.name"></button>
+                    @click="doSelect(menu)">
+              <span v-text="menu.name"></span>
+              <img v-if="menu.children" class="icon" src="./../../hxui/img/icon/icon-caret-right.png" alt="">
+            </button>
             <div class="pad-children"
                  v-if="menu.selected && menu.children">
               <button :class="`fa fa-${child.icon} ${child.selected && 'selected'}`"

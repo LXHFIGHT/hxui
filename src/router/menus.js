@@ -8,7 +8,6 @@
 const menus = [
   {
     name: '信息页面',
-    state: 'enter.list',
     icon: 'list',
     selected: true,
     children: [

@@ -65,17 +65,15 @@
       &.no-children:after {
         content: '';
       }
-      &:after {
-        content: '';
-        opacity: .5;
+      .icon {
+        opacity: .3;
         float: right;
         margin-right: $pm-sm;
         height: $height-regular/2;
         width: $height-regular/2;
-        background-image: url("/src/hxui/img/icon/icon-caret-right.png");
         @include compatible(transition, all .4s);
       }
-      &.selected:after {
+      &.selected .icon {
         @include compatible(transform, rotate(90deg));
       }
     }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import { initMenus } from './menus'
 import Main from '@/components/main/Main'
 
 Vue.use(Router)
@@ -46,6 +46,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  // 根据当前页前端路由判断打开侧边栏按钮
+  initMenus(to.path)
   // 页面跳转统一处理方法
   next()
 })
