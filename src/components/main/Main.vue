@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import menus from '../../router/menus'
+import menus, { restoreMenu } from '../../router/menus'
 import project from '../../config/project'
 export default {
   data () {
@@ -63,17 +63,12 @@ export default {
       this.showSidebar = !this.showSidebar
     },
     doSelect (menu) {
-      if (menu.children) {
+      if (menu.state) {
+        restoreMenu()
+        menu.selected = true
+        this.$router.push(menu.state)
+      } else {
         menu.selected = !menu.selected
-        return
-      }
-      if (!menu.selected) {
-        if (this.selectedMenu && !this.selectedMenu.children) {
-          this.selectedMenu.selected = false
-        }
-        menu.selected = !menu.selected
-        this.selectedMenu = menu
-        menu.state && this.$router.push(menu.state)
       }
     },
     toUserInfo () {},

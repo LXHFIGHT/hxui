@@ -34,3 +34,34 @@ const menus = [
 ]
 
 export default menus
+export const initMenus = (path) => {
+  for (let menu of menus) {
+    if (menu.state === path) {
+      menu.selected = true
+      break
+    }
+    if (menu.children) {
+      for (let child of menu.children) {
+        if (child.state === path) {
+          menu.selected = true
+          child.selected = true
+          break
+        }
+      }
+    }
+  }
+}
+
+export const restoreMenu = () => {
+  for (let menu of menus) {
+    if (menu.state) {
+      menu.selected = false
+      continue
+    }
+    if (menu.children) {
+      for (let child of menu.children) {
+        child.selected = false
+      }
+    }
+  }
+}
