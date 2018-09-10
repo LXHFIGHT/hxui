@@ -29,7 +29,7 @@ $color-dark:    #474747;
 $color-green:   rgb(135, 208, 104);
 $color-green-excel: #1C7243;
 $color-yellow: rgba(255, 235, 90,  1);
-$color-golden: rgba(255, 205, 60,  1);
+$color-golden: #febf04;
 $color-orange:  #ff8d0a;
 $color-red: #ff5a50;
 $color-red-deep: #dd4b30;
@@ -46,8 +46,9 @@ $color-blue-light: lighten($color-blue, 34%);
 .color-red { color: $color-red!important; }
 .color-green { color: $color-green!important; }
 .color-orange { color: $color-orange!important; }
+.color-golden { color: $color-golden!important; }
 .color-pink { color: $color-pink!important; }
-.color-gray { color: $color-gray-deep!important; }
+.color-gray { color: #999!important; }
 .color-blue { color: $color-blue!important; }
 
 // 三种居中

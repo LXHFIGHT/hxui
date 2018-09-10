@@ -1,0 +1,131 @@
+@import './../variable.scss';
+
+@media screen and (min-width: 640px) {
+  .hx-advance-search {
+    @include borderRadius($border-radius-bg);
+    background-color: white;
+    margin-bottom: $pm-md;
+    padding: $pm-md;
+    @include boxShadowNormal(false);
+    position: relative;
+    &:before {
+      content: 'Search Panel';
+      font-weight: 600;
+      color: $color-gray-light;
+      position: absolute;
+      right: 0;
+      top: -$pm-md;
+      font-size: 55px;
+    }
+    &.hx {
+      padding: $pm-sm;
+      height: auto;
+    }
+    .search-item {
+      display: inline-block;
+      padding: 0;
+      width: 216px;
+      vertical-align: top;
+      margin-right: $pm-md;
+      @include compatible(transition, background-color .3s);
+      &.long {
+        width: 432px;
+      }
+      label {
+        width: 100%;
+        display: block;
+        line-height: $font-sm * 2;
+        padding-left: $pm-sm;
+        font: {
+          weight: 600;
+          size: $font-sm;
+        }
+      }
+      .content {
+        width: 100%;
+        input {
+          height: $height-regular;
+          @include borderRadius(0);
+          font-size: $font-md;
+        }
+        select {
+          @include borderRadius(0);
+          font-size: $font-md;
+        }
+      }
+      .search {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-advance-search {
+    position: absolute;
+    left: 0;
+    opacity: .0;
+    top: 0;
+    visibility: hidden;
+    max-height: 60%;
+    overflow: auto;
+    @include boxShadow(0 5px 15px -5px rgba(0,0,0,.4));
+    @include compatible(transition, .3s);
+    &.show {
+      opacity: 1.0;
+      top: $height-normal;
+      visibility: visible;
+    }
+    .hx-row {
+      border: none;
+      .pad-edit {
+        width: 100%!important;
+        margin-right: 0!important;
+      }
+      label {
+        width: 100px;
+        padding-left: $pm-sm;
+      }
+      .search {
+        margin: 0;
+        width: 100%;
+        .pad-datepicker {
+          width: 100%!important;
+        }
+        input.input-select-date {
+          //width: 100%!important;
+        }
+      }
+    }
+    .search-item {
+      margin-bottom: $pm-sm;
+      padding: 0 $pm-sm;
+      width: 100%;
+      display: block;
+      label {
+        line-height: $height-regular;
+        font-size: $font-sm;
+        color: $color-heavy;
+        display: block;
+        padding-left: $pm-sm;
+      }
+      .search {
+        margin: 0;
+        width: 100%;
+        float: none;
+        .pad-edit {
+          width: 100%;
+        }
+      }
+      .content {
+        margin: 0;
+        width: 100%;
+        select, input {
+          @include borderRadius(0);
+          border: none;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 <template>
   <div :class="['hx-image-modal hx-modal ', (show ? 'show' : ''), screen]">
+    <div class="mask" @click="doQuitPreview"></div>
     <header class="navbar">
       <span class="title" v-text="`${index + 1} / ${urls.length}`"></span>
       <button class="btn-quit-preview" @click="doQuitPreview"></button>

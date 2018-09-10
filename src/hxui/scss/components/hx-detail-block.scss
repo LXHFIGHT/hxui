@@ -44,6 +44,14 @@
       }
     }
   }
+  .hx-divider {
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin: $pm-sm 0 0;
+    padding: 0;
+    background-color: $color-gray-light;
+  }
 }
 // 左板块
 .hx-pad-left {

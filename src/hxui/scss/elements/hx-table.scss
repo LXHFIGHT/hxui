@@ -1,7 +1,7 @@
 @import './../variable.scss';
 
 .hx-table {
-  padding: $pm-bg;
+  padding: $pm-md;
   @include boxShadowNormal();
   background-color: white;
   border-radius: $border-radius-md;
@@ -16,14 +16,23 @@
       font-size: 13px;
       word-break: break-all;
       border: 1px solid $color-gray;
-      img.avatarUrl {
-        height: $height-navbar - 2 * $pm-sm;
-        width: $height-navbar - 2 * $pm-sm;
+      &.flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      img.avatar {
+        height: $height-navbar - $pm-sm;
+        width: $height-navbar - $pm-sm;
         @include borderRadius(50% 50%);
         background-color: $color-gray;
+        & + span {
+          margin-left: $pm-sm;
+        }
       }
       .link {
-        color: darken($color-main, 5%);
+        color: $color-heavy;
+        cursor: pointer;
         &:hover{
           color: $color-red;
         }
@@ -58,6 +67,7 @@
         padding: 0 $pm-sm;
         height: $height-regular - $pm-sm / 2;
         min-height: $height-regular - $pm-sm / 2;
+        margin: $pm-sm/2;
         &.standard {
           min-width: 90px;
           margin-bottom: $pm-sm/2;

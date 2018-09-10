@@ -30,7 +30,7 @@
     background-color: rgba(0,0,0, .65);
   }
   // 模态框内容版
-  .content{
+  &>.content{
     top: 15%;
     background-color: white;
     width: 60%;                                     // 默认样式为屏幕宽度 60%
@@ -107,7 +107,7 @@
 
   // 缩略版模态框
   &.sm {
-    .content {
+    >.content {
       max-width: 500px;
       min-width: 300px;
     }

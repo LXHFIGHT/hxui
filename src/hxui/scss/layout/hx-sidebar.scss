@@ -10,14 +10,13 @@
 }
 .hx-sidebar::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: rgba(255, 255, 255, .4);
 }
 
 // 左侧侧边栏样式
 .hx-sidebar {
   height: 100%;
-  display: inline-block;
   float: left;
   position: relative;
   width: $width-sidebar;
@@ -67,11 +66,13 @@
         content: '';
       }
       &:after {
-        content: '>';
-        color: rgba(255,255,255,.4);
+        content: '';
+        opacity: .5;
         float: right;
         margin-right: $pm-sm;
-        display: inline-block;
+        height: $height-regular/2;
+        width: $height-regular/2;
+        background-image: url("/src/hxui/img/icon/icon-caret-right.png");
         @include compatible(transition, all .4s);
       }
       &.selected:after {

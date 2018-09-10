@@ -142,11 +142,13 @@
   }
 }
 
-@mixin boxShadowNormal() {
+@mixin boxShadowNormal($isHover: true) {
   transition: box-shadow .4s;
   @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
-  &:hover {
-    @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
+  @if ($isHover) {
+    &:hover {
+      @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
+    }
   }
 }
 

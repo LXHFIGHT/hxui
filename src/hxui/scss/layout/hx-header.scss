@@ -25,14 +25,16 @@
     }
   }
   .right, .left {
-    display: inline-block;
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
     width: auto;
     .hx-button, button {
       margin-right: $pm-sm;
     }
   }
   .left {  float: left;  }
-  .right {  float: right;  }
+  .right {  float: right; }
   .btn-back {
     background-color: transparent;
     color: $color-gray-deep;
