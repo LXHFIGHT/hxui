@@ -1,5 +1,5 @@
 <template>
-  <div class="pad-image-uploader">
+  <div class="pad-image-uploader" :style="`height: ${height}`">
     <input class="uploader-images"
            :id="id"
            :accept="accept"
@@ -16,7 +16,7 @@
                 :diabled="isUploading"
                 :class="isUploading ? 'fa fa-circle-o-notch fa-spin fa-3x fa-fw' : 'fa fa-upload'">
         </button>
-        <button v-if="typeof doClearImage === 'function'" @click="clearImage(id)" class="fa fa-trash"></button>
+        <button v-if="typeof doClearImage === 'function'" @click="doClearImage" class="fa fa-trash"></button>
       </div>
     </div>
     <button class="btn-upload"
@@ -36,7 +36,7 @@ import previewImage from './../plugins/imagePreviewer'
  * @prop Function 当上传图片到浏览器后，需要执行的操作，接受两个参数，前者是包含上传的文件对象 FormData，后者是这个上传组件的ID
  */
 export default {
-  name: 'HxImageUploader',
+  name: 'hx-image-uploader',
   data () {
     return {
       isUploading: false
@@ -57,6 +57,10 @@ export default {
     accept: {
       type: String,
       default: 'image/*'
+    },
+    height: {
+      type: String,
+      default: '150px'
     },
     doUpload: {
       type: Function,
@@ -83,6 +87,9 @@ export default {
   },
   updated () {
     this.isUploading = false
+  },
+  mounted () {
+    console.log('IMAGE: ', this.image)
   }
 }
 </script>

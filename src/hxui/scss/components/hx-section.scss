@@ -5,7 +5,7 @@
 
 @import "./../variable.scss";
 
-.hx-detail-block {
+.hx-section {
   border: 1px solid $color-gray;
   position: relative;
   margin-bottom: $pm-md;
@@ -44,6 +44,9 @@
       }
     }
   }
+  img {
+    max-width: 100%;
+  }
   .hx-divider {
     height: 1px;
     width: 100%;
@@ -53,27 +56,9 @@
     background-color: $color-gray-light;
   }
 }
-// 左板块
-.hx-pad-left {
-  float: left;
-  width: 50%;
-  padding-right: $pm-sm;
-}
-// 右板块
-.hx-pad-right {
-  float: right;
-  width: 50%;
-  padding-left: $pm-sm;
-}
-
-.hx-pad-center {
-  margin: 0 auto;
-  width: 50%;
-}
-
 
 @media screen and (min-width: 640px) {
-  .hx-detail-block {
+  .hx-section {
     padding: ($height-normal+$pm-md) $pm-md $pm-md;
     @include compatible(transform, scale(1, 1));
     @include borderRadius($border-radius-bg);
@@ -94,7 +79,7 @@
 }
 
 @media screen and (max-width: 640px) {
-  .hx-detail-block {
+  .hx-section {
     padding: $height-navbar $pm-md 0;
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
     header:before {
@@ -112,8 +97,5 @@
     .hx-row:nth-last-child(1) {
       border: none;
     }
-  }
-  .hx-pad-left, .hx-pad-right {
-    padding: 0;
   }
 }
