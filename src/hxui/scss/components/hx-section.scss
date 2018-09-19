@@ -11,6 +11,15 @@
   margin-bottom: $pm-md;
   background-color: white;
   @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+  overflow: hidden;
+  &.fold {
+    height: $height-navbar!important;
+    padding-top: $height-navbar;
+    padding-bottom: 0;
+    header:after {
+      transform: rotate(180deg);
+    }
+  }
   header {
     top: 0;
     left: 0;
@@ -18,7 +27,7 @@
     font-size: $font-md;
     line-height: $height-navbar;
     height: $height-navbar;
-    padding: 0 $pm-lg;
+    padding: 0 $pm-md 0 $pm-lg;
     color: $color-heavy;
     position: absolute;
     &:before {
@@ -29,6 +38,19 @@
       @include centerVertical;
       display: block;
       left: $pm-md;
+    }
+    &.foldable:after {
+      content: "";
+      height: 6px;
+      width: 12px;
+      opacity: .7;
+      background: url('~@/hxui/img/icon/icon-caret-down.png') no-repeat;
+      background-size: 100% 100%;
+      @include centerVertical;
+      transform-origin: 50% 2px;
+      transition: transform .4s;
+      right: $pm-bg;
+      display: block;
     }
     small {
       font-size: $font-md;
@@ -60,10 +82,9 @@
 @media screen and (min-width: 640px) {
   .hx-section {
     padding: ($height-normal+$pm-md) $pm-md $pm-md;
-    @include compatible(transform, scale(1, 1));
     @include borderRadius($border-radius-bg);
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
-    @include compatible(transition, box-shadow .4s);
+    transition: box-shadow .4s, height .4s;
     &:hover {
       @include boxShadow(0 5px 20px rgba(0,0,0,.1));
     }
@@ -81,7 +102,11 @@
 @media screen and (max-width: 640px) {
   .hx-section {
     padding: $height-navbar $pm-md 0;
+    transition: height .4s;
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+    header {
+      padding: 0 $pm-md;
+    }
     header:before {
       content: "";
       height: $height-navbar/2;
@@ -92,10 +117,14 @@
       left: $pm-md;
     }
     header:first-child {
-      padding-left: $pm-sm + $pm-md;
+      padding-left: 2 * $pm-md;
     }
     .hx-row:nth-last-child(1) {
       border: none;
+    }
+    .hx-divider {
+      margin-top: $pm-md;
+      background-color: transparent
     }
   }
 }

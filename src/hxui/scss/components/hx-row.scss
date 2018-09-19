@@ -63,7 +63,7 @@
     padding: 0;
     width: 100%;
     vertical-align: top;
-    @include wcalc(calc(100% - 130px));
+    @include wcalc(calc(100% - 125px));
     .rich-editor  {
       height: 389px;
       border: 1px solid $color-gray;
@@ -125,19 +125,18 @@
     .degree,
     .tips {
       position: absolute;
-      right: $pm-md;
+      right: 0;
+      text-align: center;
       top: 0;
       display: inline-block;
       width: auto;
     }
-
     .error + .degree {
       color: $color-red;
     }
-
-
     .degree {
       color: $color-gray-deep;
+      width: $height-regular;
     }
     // 错误提示信息
     .tips {
@@ -351,7 +350,7 @@
       width: 100px;
     }
     .content {
-      @include wcalc(calc(100% - 110px));
+      @include wcalc(calc(100% - 105px));
       padding-left: $pm-sm/2!important;
       input, select, textarea {
         border: none!important;
@@ -361,6 +360,10 @@
       }
       input, textarea {
         padding-left: $pm-sm/2!important;
+      }
+      input:disabled, textarea:disabled {
+        background-color: transparent;
+        color: $color-gray-deep;
       }
       select {
         padding-left: 0!important;
