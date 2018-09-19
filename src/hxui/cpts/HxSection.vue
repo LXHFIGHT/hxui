@@ -1,16 +1,21 @@
 <template>
   <div ref="section"
-    :class="['hx-section', expand && 'fold']"
-    @click="doToggleFold">
-    <header class="foldable">
+    :class="['hx-section foldable', expand && 'fold']">
+    <header @click="doToggleFold">
       <span class="title" v-text="title"></span>
-      <slot name="right" class="right"></slot>
     </header>
+    <div class="right">
+      <slot name="right"></slot>
+    </div>
     <slot class="content" name="content"></slot>
   </div>
 </template>
 
 <script>
+/**
+ * 使用用法：
+ *   slot:right  可以放置header中居右的按钮组
+ */
 import iconCaretDown from './../img/icon/icon-caret-down.png'
 export default {
   name: 'hx-section',
@@ -30,7 +35,6 @@ export default {
   },
   mounted () {
     const dom = this.$refs.section
-    console.log(dom, dom.offsetHeight, dom.style)
     dom.style.height = dom.offsetHeight + 'px'
   }
 }

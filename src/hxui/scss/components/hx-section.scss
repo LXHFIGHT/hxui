@@ -12,14 +12,6 @@
   background-color: white;
   @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
   overflow: hidden;
-  &.fold {
-    height: $height-navbar!important;
-    padding-top: $height-navbar;
-    padding-bottom: 0;
-    header:after {
-      transform: rotate(180deg);
-    }
-  }
   header {
     top: 0;
     left: 0;
@@ -39,19 +31,6 @@
       display: block;
       left: $pm-md;
     }
-    &.foldable:after {
-      content: "";
-      height: 6px;
-      width: 12px;
-      opacity: .7;
-      background: url('~@/hxui/img/icon/icon-caret-down.png') no-repeat;
-      background-size: 100% 100%;
-      @include centerVertical;
-      transform-origin: 50% 2px;
-      transition: transform .4s;
-      right: $pm-bg;
-      display: block;
-    }
     small {
       font-size: $font-md;
       color: $color-gray-deep;
@@ -69,6 +48,14 @@
   img {
     max-width: 100%;
   }
+  .right {
+    position: absolute;
+    right: $pm-md;
+    top: $pm-sm;
+    button {
+      margin-left: 5px;
+    }
+  }
   .hx-divider {
     height: 1px;
     width: 100%;
@@ -76,6 +63,32 @@
     margin: $pm-sm 0 0;
     padding: 0;
     background-color: $color-gray-light;
+  }
+  &.foldable {
+    header:after {
+      content: "";
+      height: 6px;
+      width: 12px;
+      opacity: .7;
+      background: url('~@/hxui/img/icon/icon-caret-down.png') no-repeat;
+      background-size: 100% 100%;
+      @include centerVertical;
+      transform-origin: 50% 2px;
+      transition: transform .4s;
+      right: $pm-bg;
+      display: block;
+    }
+    &.fold {
+      height: $height-navbar!important;
+      padding-top: $height-navbar;
+      padding-bottom: 0;
+      header:after {
+        transform: rotate(180deg);
+      }
+    }
+    .right {
+      right: $pm-bg * 2;
+    }
   }
 }
 
