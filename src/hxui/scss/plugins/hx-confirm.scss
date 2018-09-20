@@ -17,10 +17,16 @@
       text-align: justify;
       color: $color-heavy;
       font-size: $font-bg;
+      header {
+        font-weight: 600;
+      }
+      .confirm-content {
+        padding: $pm-lg $pm-md;
+        text-align: center;
+      }
       footer {
         text-align: right;
         padding: 0;
-        margin-top: $pm-md * 2;
         .hx-button + .hx-button {
           margin-left: $pm-sm;
         }
@@ -31,5 +37,41 @@
 
 @media screen and (max-width: 640px) {
   /* 自下而上弹出样式已迁移到 hx-modal.scss 中 */
+  .hx-modal.confirm {
+    .content {
+      color: $color-heavy;
+      font-size: $font-bg;
+      height: auto;
+      padding: 0;
+      header {
+        font-weight: 600;
+        font-size: 16px;
+        text-align: center;
+        line-height: $height-regular;
+        height: $height-normal;
+        display: block;
+        border-bottom: 1px solid $color-gray;
+      }
+      .confirm-content {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px; 
+        padding: $pm-bg*2 $pm-md;
+      }
+      footer {
+        font-size: 12px;
+        button {
+          height: $height-normal;
+          @include wcalc(calc(50% - 10px));
+          margin: 0;
+          &.full {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 

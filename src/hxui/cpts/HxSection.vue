@@ -1,6 +1,6 @@
 <template>
   <div ref="section"
-    :class="['hx-section foldable', expand && 'fold']">
+    :class="['hx-section ', foldable && 'foldable', expand && 'fold']">
     <header @click="doToggleFold">
       <span class="title" v-text="title"></span>
     </header>
@@ -26,16 +26,25 @@ export default {
     }
   },
   props: {
-    title: String
+    title: String,
+    foldable: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     doToggleFold () {
       this.expand = !this.expand
+    },
+    $_initHeight () {
+      if (this.foldable) {
+        const dom = this.$refs.section
+        dom.style.height = `${dom.offsetHeight}px`
+      }
     }
   },
   mounted () {
-    const dom = this.$refs.section
-    dom.style.height = dom.offsetHeight + 'px'
+    this.$_initHeight()
   }
 }
 </script>

@@ -57,6 +57,9 @@
         display: inline-block;
         background-color: $color-main;
       }
+      .pad-content {
+        padding: $pm-md;
+      }
     }
 
     // 右上角关闭模态框按钮

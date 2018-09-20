@@ -336,7 +336,7 @@
 @media screen and (min-width: 640px) {
   .hx-row {
     .content {
-      @include wcalc(calc(100% - 130px));
+      @include wcalc(calc(100% - 125px));
     }
   }
 }
