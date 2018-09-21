@@ -78,6 +78,9 @@
         }
       }
     }
+    small.title {
+      display: none;
+    }
     .btn-left,
     .btn-back,
     .btn-right {
@@ -94,6 +97,9 @@
       button {
         color: $color-header-word;
       }
+    }
+    .right button {
+      margin: 0 0 0 $pm-sm/2!important;
     }
   }
 }

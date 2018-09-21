@@ -114,7 +114,7 @@
 
 @media screen and (max-width: 640px) {
   .hx-section {
-    padding: $height-navbar $pm-md 0;
+    padding: $height-navbar $pm-md $pm-md;
     transition: height .4s;
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
     header {

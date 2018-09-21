@@ -1,14 +1,14 @@
 @import "../variable";
 
-.hx-sidebar::-webkit-scrollbar {
+.sidebar-buttons::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-.hx-sidebar::-webkit-scrollbar-track {
+.sidebar-buttons::-webkit-scrollbar-track {
   width: 8px;
   background-color: $color-main-dark;
 }
-.hx-sidebar::-webkit-scrollbar-thumb {
+.sidebar-buttons::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: rgba(255, 255, 255, .4);
@@ -20,7 +20,7 @@
   float: left;
   position: relative;
   width: $width-sidebar;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: $color-main-dark;
   .sidebar {
     height: 100%;
@@ -49,18 +49,21 @@
     }
   }
   .sidebar-buttons {
-    @include hcalc(calc(100% - 157px));
+    @include hcalc(calc(100% - 260px));
     display: block;
+    overflow-y: auto;
   }
   .group-btn-sidebar{
     width: 100%;
     background-color: rgba(255,255,255, .1);
+    display: block;
     @include compatible(transition, .4s);
     margin-bottom: 1px;
     &:hover {
       background-color: rgba(255,255,255, .2);
     }
     button.first-level {
+      display: block;
       &.selected.no-children {
         background-color: rgba(255,255,255, .3);
         color: white;
@@ -135,10 +138,10 @@
   }
   .footer-btn-sidebar {
     display: block;
-    margin-top: $pm-bg;
     width: 100%;
     line-height: $height-navbar;
     text-align: center;
+    margin-top: 15px;
     button {
       height: $height-regular;
       min-width: $height-regular;
@@ -165,9 +168,9 @@
 
   .version {
     display: block;
-    height: 50px;
+    height: 30px;
     width: 100%;
-    line-height: $height-navbar;
+    line-height: 30px;
     text-align: center;
     color: rgba(255,255,255,.3);
     font-size: $font-sm;
@@ -207,18 +210,18 @@
       }
     }
     .sidebar-buttons {
-      @include hcalc(calc(100% - 91px));
+      @include hcalc(calc(100% - 209px));
       display: block;
       overflow-y: auto;
       overflow-x: hidden;
-      .footer-btn-sidebar {
-        height: $height-normal;
-        margin-top: $pm-sm;
-      }
-      .version {
-        height: $height-normal;
-        margin-bottom: $pm-md;
-      }
+    }
+    .footer-btn-sidebar {
+      height: $height-normal;
+      margin-top: $pm-sm;
+    }
+    .version {
+      height: $height-normal;
+      margin-bottom: $pm-md;
     }
   }
 }

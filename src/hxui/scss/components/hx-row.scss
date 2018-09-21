@@ -348,6 +348,15 @@
     margin: 0!important;
     label {
       width: 100px;
+      position: relative;
+      .tip {
+        position: absolute;
+        left: -10px;
+        top: 0;
+      }
+      &.one-line {
+        line-height: $height-regular!important;
+      }
     }
     .content {
       @include wcalc(calc(100% - 105px));

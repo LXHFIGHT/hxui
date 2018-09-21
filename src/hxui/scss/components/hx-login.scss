@@ -10,7 +10,7 @@
   padding: $pm-bg;
   visibility: hidden;
   border: 1px solid $color-gray;
-  background-color: rgba(255,255,255,.75) !important;
+  background-color: rgba(255,255,255,.75);
   border-radius: $border-radius-md!important;
   @include compatible(transition, all .4s);
   overflow: hidden;
@@ -85,7 +85,7 @@
     width: 95%;
     padding: $pm-md;
     border: none;
-
+    background-color: white;
     .tip {
       font-size: 14px;
       padding-left: $pm-sm;
@@ -94,7 +94,8 @@
     @include boxShadow(none);
     .btn-sub, .btn-main {
       margin-top: $pm-sm;
-      height: $height-normal;
+      margin-bottom: 0;
+      height: $height-normal!important;
     }
     .logo-company {
       height: $height-navbar;

@@ -26,20 +26,18 @@
                       v-text="child.name"></button>
             </div>
           </div>
-
-          <div class="footer-btn-sidebar">
-            <button class="fa fa-user"
-                    @click="toUserInfo()"></button>
-            <button class="fa fa-sign-out" @click="doLogout()"></button>
-          </div>
-
-          <div class="version" v-text="project.version"></div>
         </div>
+        <div class="footer-btn-sidebar">
+          <button class="fa fa-user"
+            @click="toUserInfo()"></button>
+          <button class="fa fa-sign-out" @click="doLogout()"></button>
+        </div>
+        <div class="version" v-text="project.version"></div>
       </div>
     </div>
     <!-- 移动版切换侧边栏按钮 -->
     <button :class="['btn-show-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
-            @click="toggleSidebar()">
+      @click="toggleSidebar()">
     </button>
     <!-- 主要内容区 -->
     <div class="hx-main">
