@@ -48,27 +48,24 @@ td[id|=tangram-suggestion] {
   display: block;
   background-color: transparent;
   .pad-address-selector {
-    height: $height-navbar;
-    padding: 6px $pm-md;
+    height: $height-normal;
     position: relative;
     background-color: #f6f6f6;
     input {
       height: 100%;
-      @include wcalc(calc(100% - 46px));
-      @include borderRadius($border-radius-md);
+      @include wcalc(calc(100% - 42px));
       color: $color-heavy;
       font-size: $font-S2;
       padding: 0 $pm-md;
       text-align: center;
       border: none;
       display: inline-block;
-      background-color: rgba(0,0,0,.08);
+      background-color: rgba(0,0,0,.05);
     }
     .btn-close-modal {
       height: 100%;
-      width: $height-navbar - 12px;
+      width: $height-navbar - 8px;
       float: right;
-      @include borderRadius($border-radius-md);
       @include timesIcon;
       background-color: $color-main;
     }
@@ -108,6 +105,7 @@ td[id|=tangram-suggestion] {
     }
   }
   .pad-poi {
+    @include hcalc(calc(60% - 42px));
     background-color: white;
     display: block;
     float: left;
@@ -124,17 +122,26 @@ td[id|=tangram-suggestion] {
       font-size: $font-S2;
     }
     .item-poi {
-      padding: $pm-md 0 $pm-sm 0;
+      padding: $pm-md 0;
       line-height: $height-navbar / 1.8;
       color: $color-heavy;
       border-bottom: 1px solid $color-gray-light;
       font-size: $font-S2;
       position: relative;
+      &:hover .btn-select-poi {
+        display: block;
+      }
+      .btn-select-poi {
+        display: none;
+        @include centerVertical;
+        right: 0;
+      }
       small {
         display: block;
         color: $color-gray-deep;
         font-size: $font-md;
         overflow: hidden;
+        line-height: $height-normal/2;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
@@ -151,16 +158,16 @@ td[id|=tangram-suggestion] {
       }
     }
   }
+  .footer {
+    
+  }
 }
 
-@media screen  and (min-width: 640px) {
+@media screen and (min-width: 640px) {
   .hx-modal.choose-address-modal {
     min-width: 350px;
     .pad-address-content {
       border: 4px solid white;
-    }
-    .pad-poi {
-      @include hcalc(calc(60% - 50px));
     }
   }
 }
@@ -185,7 +192,18 @@ td[id|=tangram-suggestion] {
       margin-top: 0!important;
     }
     .pad-poi {
-      @include hcalc(calc(60% - 50px));
+      .item-poi {
+        padding: $pm-sm 0;
+        line-height: $height-normal/2;
+        font-size: 16px;
+        
+        small {
+          font-size: 12px;
+        }
+      }
+      .item-poi.special {
+        padding: $pm-md 0;
+      }
     }
   }
 }

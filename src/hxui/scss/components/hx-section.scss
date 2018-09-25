@@ -45,9 +45,6 @@
       }
     }
   }
-  img {
-    max-width: 100%;
-  }
   .right {
     position: absolute;
     right: $pm-md;
@@ -119,6 +116,9 @@
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
     header {
       padding: 0 $pm-md;
+      button.right {
+        margin-top: 0;
+      }
     }
     header:before {
       content: "";

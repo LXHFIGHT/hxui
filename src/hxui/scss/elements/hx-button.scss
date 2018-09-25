@@ -66,6 +66,27 @@
   &.yellow  {  @include hxBlankButton($color-golden);  }
 }
 
+.hx-text-button{
+  @include hxTextButton($color-main);
+  &:disabled, &.disabled {
+    background-color: darken($color-gray, 5%)!important;
+    cursor: not-allowed;
+    border: 1px solid darken($color-gray, 5%)!important;
+    color: $color-gray-deep!important;
+    &:hover {
+      background-color: darken($color-gray, 5%)!important;
+    }
+  }
+  &.gray    {  @include hxTextButton(darken($color-gray-deep, 14%));  }
+  &.orange  {  @include hxTextButton($color-orange);  }
+  &.red     {  @include hxTextButton($color-red);  }
+  &.blue    {  @include hxTextButton($color-blue);  }
+  &.green   {  @include hxTextButton($color-green);  }
+  &.excel   {  @include hxTextButton($color-green-excel);  }
+  &.pink    {  @include hxTextButton($color-pink);  }
+  &.yellow  {  @include hxTextButton($color-golden);  }
+}
+
 // 按钮尺寸
 .hx-button.sm {
   height: $height-navbar/2;

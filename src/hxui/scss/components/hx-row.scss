@@ -347,19 +347,21 @@
     padding: $pm-sm/2 0!important;
     margin: 0!important;
     label {
-      width: 100px;
+      width: 110px;
       position: relative;
       .tip {
         position: absolute;
         left: -10px;
         top: 0;
       }
-      &.one-line {
-        line-height: $height-regular!important;
+      &.full {
+        width: 100%;
+        line-height: $pm-bg;
+        margin-bottom: $pm-sm;
       }
     }
     .content {
-      @include wcalc(calc(100% - 105px));
+      @include wcalc(calc(100% - 115px));
       padding-left: $pm-sm/2!important;
       input, select, textarea {
         border: none!important;

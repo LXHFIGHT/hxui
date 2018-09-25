@@ -18,10 +18,12 @@
         </button>
       </div>
       <div class="pad-poi">
-        <span class="emptyset"
-              v-if="!state.poi.length">
-          附近没有热门地点
-        </span>
+        <div class="item-poi special" @click="doChoosePinPoint">
+          选择坐标图标所指位置
+          <button class="hx-text-button sm green btn-select-poi">
+            选择
+          </button>
+        </div>
         <div v-for="item in state.poi"
              v-if="state.poi.length"
              v-bind:key="item.title"
@@ -29,6 +31,9 @@
              @click="doChooseItem(item)">
           {{item.title}}
           <small v-text="item.address"></small>
+          <button class="hx-text-button sm green btn-select-poi">
+            选择
+          </button>
         </div>
       </div>
     </div>
@@ -139,6 +144,12 @@ export default {
       const { lng, lat } = point
       this.doClose()
       this.doSelect({ address, city, lng, lat, title })
+    },
+    doChoosePinPoint () {
+      const pinpoint = this.map.getCenter()
+      const { lng, lat } = pinpoint
+      this.doClose()
+      this.doSelect({ address: '', lng, lat })
     }
   },
   mounted () {

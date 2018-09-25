@@ -167,6 +167,18 @@
   }
 }
 
+@mixin hxTextButton($color: white, $height:34px) {
+  border: none;
+  color: $color;
+  @include compatible(transition, all .4s);
+  height: $height;
+  padding: 0 8px;
+  font-size: 14px;
+  &:hover{
+    color: darken($color, 5%);
+  }
+}
+
 @mixin hxBlankTag($bgColor, $color: white, $height:34px) {
   border: 1px solid $bgColor;
   background-color: $color;
