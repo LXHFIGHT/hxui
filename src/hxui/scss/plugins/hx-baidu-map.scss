@@ -36,7 +36,6 @@ td[id|=tangram-suggestion] {
     height: 70%;
     width: 30%;
     display: block;
-    @include centerInParent;
   }
 }
 
@@ -158,9 +157,6 @@ td[id|=tangram-suggestion] {
       }
     }
   }
-  .footer {
-    
-  }
 }
 
 @media screen and (min-width: 640px) {
@@ -168,9 +164,17 @@ td[id|=tangram-suggestion] {
     min-width: 350px;
     .pad-address-content {
       border: 4px solid white;
+      right: $pm-bg;
+      bottom: -100%;
+      position: absolute;
+      transition: bottom .4s;
+    }
+    &.show .pad-address-content {
+      bottom: $pm-bg;
     }
   }
 }
+
 @media screen and (max-width: 640px) {
   .hx-modal.choose-address-modal {
     height: 100%;
