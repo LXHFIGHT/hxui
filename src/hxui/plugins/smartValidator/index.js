@@ -22,7 +22,7 @@ const smartValidate = (query) => {
     if (!$view.value) {
       result = RESULT_REQUIRED_ISSUE
       console.log('LINUX ', $view.classList)
-      $view.classList ? $view.classList = ['error'] : $view.classList.push('error')
+      $view.classList ? $view.classList.add('error') : $view.classList = ['error']
     }
     components[i].removeEventListener('focus', focusFunc)
     components[i].addEventListener('focus', focusFunc)

@@ -173,3 +173,11 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
     overflow: hidden;
     white-space: nowrap;
 }
+
+@media screen and (max-width: 640px) {
+    input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea, select {
+        &.error {
+            border: none!important;
+        }
+    }
+}

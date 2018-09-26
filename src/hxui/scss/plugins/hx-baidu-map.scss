@@ -50,6 +50,8 @@ td[id|=tangram-suggestion] {
     height: $height-normal;
     position: relative;
     background-color: #f6f6f6;
+    box-shadow: $shadow-md;
+    z-index: 1;
     input {
       height: 100%;
       @include wcalc(calc(100% - 42px));
@@ -188,6 +190,15 @@ td[id|=tangram-suggestion] {
         top: 0!important;
         right: 0!important;
       }
+      .pad-address-selector {
+        height: $height-navbar;
+        input {
+          @include wcalc(calc(100% - 50px));
+        }
+        .btn-close-modal {
+          width: $height-navbar;
+        }
+      }
     }
     &.show {
       top: 0;
@@ -200,7 +211,6 @@ td[id|=tangram-suggestion] {
         padding: $pm-sm 0;
         line-height: $height-normal/2;
         font-size: 16px;
-        
         small {
           font-size: 12px;
         }
