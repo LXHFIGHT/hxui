@@ -15,7 +15,7 @@
         :value="value"
         @input="doInput">
       <span class="degree" v-if="unit" v-text="unit"></span>
-      <span class="degree" v-if="!unit && showLength" v-text="`${value.length}字`"></span>
+      <span class="degree" v-if="!unit && showLength" v-text="value ? `${value.length}字` : ''"></span>
       <button class="btn-clear" v-if="showClearBtn" @click="doClear">
         <img class="icon" :src="iconClear" alt="">
       </button>

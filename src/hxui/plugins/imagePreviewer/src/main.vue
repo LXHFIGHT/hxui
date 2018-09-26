@@ -149,3 +149,141 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import './../../../scss/variable.scss';
+// 图片预览组件模态框
+.hx-image-modal {
+  text-align: center;
+  .navbar {
+    width: 100%;
+    height: $height-navbar;
+    background-color: rgba(255,255,255,.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    text-align: left;
+    padding-left: $pm-md;
+    z-index: 100;
+    @include compatible(transition, background .4s);
+    .title {
+      color: $color-white;
+      line-height: $height-navbar;
+    }
+    .btn-quit-preview {
+      float: right;
+      color: $color-white!important;
+      font-size: 44px;
+      background-color: transparent;
+      height: 100%;
+      width: $height-navbar;
+      @include compatible(transition, all .2s);
+      position: relative;
+      padding: $pm-sm;
+      &:hover {
+        background-color: $color-main;
+      }
+      &:before, &:after {
+        content: "";
+        background-color: $color-gray;
+        height: 60%;
+        margin: 0 auto;
+        display: inline-block;
+        width: 1px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+      &:before {
+        @include compatible(transform, (translate(-50%, -50%) rotate(45deg)));
+      }
+      &:after {
+        @include compatible(transform, (translate(-50%, -50%) rotate(-45deg)));
+      }
+    }
+    &:hover {
+      background-color: rgba(255,255,255,.4);
+    }
+  }
+  img {
+    max-height: 80%;
+    max-width: 80%;
+    z-index: 80;
+    @include centerInParent;
+    @include compatible(transition, transform .4s);
+    &.movable {
+      //cursor: move;
+      cursor: grab;
+      cursor: -webkit-grab;
+    }
+  }
+  .pad-functions {
+    font-size: 25px;
+    @include centerHorizontal;
+    bottom: 3%;
+    z-index: 100;
+    width: 350px;
+    position: absolute;
+    padding: $pm-md;
+    display: inline-block;
+    background-color: rgba(255,255,255,.4);
+    @include borderRadius($border-radius-bg);
+    @include boxShadow(0 3px 8px rgba(0,0,0, .3));
+    button, a {
+      background-color: transparent;
+      color: $color-white;
+      text-shadow: 0 3px 8px rgba(0,0,0, .3);
+      padding: $pm-md;
+      display: inline-block;
+      @include borderRadius($border-radius-bg);
+      @include compatible(transition, background-color .4s);
+      &:hover {
+        background-color: rgba(255,255,255,.2);
+      }
+    }
+  }
+  .btn-to-last, .btn-to-next {
+    @include centerVertical;
+    color: $color-white;
+    font-size: 44px;
+    height: 140px;
+    padding: 0 $pm-md;
+    z-index: 100;
+    background-color: transparent;
+    @include compatible(transition, all .4s);
+    text-shadow: 0 3px 8px rgba(0,0,0, .3);
+    &:hover {
+      background-color: rgba(255,255,255,.3);
+    }
+  }
+  .btn-to-last {
+    left: 0;
+    @include borderRadiusRight($border-radius-bg);
+  }
+  .btn-to-next {
+    right: 0;
+    @include borderRadiusLeft($border-radius-bg);
+  }
+}
+
+@media screen and (max-width: 640px){
+  .hx-image-modal {
+    width: 100%!important;
+    .pad-functions {
+      bottom: 0;
+      width: 100%;
+      padding: $pm-sm $pm-md;
+      @include borderRadius(0);
+      button, a {
+        padding: $pm-sm;
+        @include borderRadius(0);
+        font-size: $font-lg;
+      }
+    }
+    .btn-to-last, .btn-to-next {
+      height: 100%;
+    }
+  }
+}
+</style>

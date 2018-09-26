@@ -45,3 +45,89 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import './../../../scss/variable.scss';
+// 顶部信息弹出框样式
+.hx-poptip {
+  margin: 0 auto;
+  min-width: 30%;
+  max-width: 60%;
+  z-index: 10000;
+  color: rgba(255, 255, 255, .9);
+  @include centerHorizontal();
+  @include compatible(transition, transform .2s);
+  &.success {
+    background-color: $color-green;
+  }
+  &.warn {
+    background-color: $color-orange;
+  }
+  &.error {
+    background-color: $color-red;
+  }
+  &.default {
+    background-color:#aaa;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-poptip {
+    text-align: center;
+    font-size: 16px;
+    line-height: $height-navbar;
+    height: $height-navbar;
+    padding: 0 $pm-md;
+    top: 0;
+    @include compatible(transform, translate(-50%, -100%));
+    @include borderRadius($border-radius-md);
+    &.show {
+      @include compatible(transform, translate(-50%, 0));
+    }
+  }
+}
+
+@media screen and (max-width: 640px){
+  .hx-poptip {
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    background-color: rgba(0,0,0,.75)!important;
+    color: rgba(255, 255, 255, .9);
+    position: fixed;
+    font-size: $font-sm;
+    padding: $pm-md $pm-md $pm-bg;
+    max-width: 100%;
+    line-height: $font-sm * 2;
+    @include compatible(transform, translate(-50%, 100%));
+    &.show {
+      @include compatible(transform, translate(-50%, 0));
+    }
+    &.success:before,
+    &.warn:before,
+    &.error:before,
+    &.default:before {
+      content: '';
+      width: 30%;
+      position: absolute;
+      bottom: $pm-sm;
+      height: 4px;
+      display: block;
+      @include centerHorizontal;
+      @include borderRadius(4px 4px);
+    }
+    &.success:before {
+      background-color: $color-green;
+    }
+    &.warn:before {
+      background-color: $color-orange;
+    }
+    &.error:before {
+      background-color: $color-red;
+    }
+    &.default:before {
+      background-color: #aaa;
+    }
+  }
+}
+</style>
