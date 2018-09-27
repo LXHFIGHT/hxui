@@ -142,14 +142,15 @@
     }
     .degree {
       color: $color-gray-deep;
-      width: $height-regular;
+      width: $height-normal;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       & + .btn-clear {
-        right: $pm-lg + $pm-sm;
+        right: $pm-lg + $pm-md;
       }
     }
+
     // 错误提示信息
     .tips {
       $height-tips: 26px;
@@ -179,6 +180,19 @@
       display: block;
       line-height: 24px;
       padding: 5px $pm-sm;
+      height: auto;
+    }
+
+    textarea + .degree {
+      top: auto;
+      bottom: 0;
+      height: $height-regular;
+      line-height: $height-regular;
+    }
+
+    textarea ~ .btn-clear {
+      top: auto;
+      bottom: 0;
     }
 
     .pad-dropdown {

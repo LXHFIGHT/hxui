@@ -7,15 +7,27 @@
     </label>
     <div class="content">
       <input
+        v-if="rows === 1"
         :required="required"
         :placeholder="placeholder"
-        type="text"
+        :type="type"
         @blur="doBlur"
         @focus="doFocus"
         :value="value"
         @input="doInput">
+      <textarea
+        v-if="rows !== 1"
+        :required="required"
+        :placeholder="placeholder"
+        :type="type"
+        @blur="doBlur"
+        @focus="doFocus"
+        :value="value"
+        :rows="rows"
+        @input="doInput">
+      </textarea>
       <span class="degree" v-if="unit" v-text="unit"></span>
-      <span class="degree" v-if="!unit && showLength" v-text="value ? `${value.length}字` : ''"></span>
+      <span class="degree" v-if="!unit && showLength" v-text="`${value.length}字`"></span>
       <button class="btn-clear" v-if="showClearBtn" @click="doClear">
         <img class="icon" :src="iconClear" alt="">
       </button>
@@ -25,6 +37,17 @@
 
 <script>
 import iconClear from './../img/icon/icon-close.png'
+/**
+ * HxInput组件所接受参数：
+ * @prop {String} label 文本框标签
+ * @prop {String} placeholder 文本框内容
+ * @prop {String, Boolean} required 是否非空 可以传”required“、”“，true或false
+ * @prop {Boolean} showClearBtn 是否显示清空内容按钮， 默认不显示
+ * @prop {Boolean} showLength 是否显示内容长度
+ * @prop {String} type 文本框格式，默认为 ”text“
+ * @prop {String} unit 是否显示具体单位
+ * @prop {String} value 文本框中的值
+ */
 export default {
   name: 'hx-input',
   data () {
@@ -53,6 +76,14 @@ export default {
     showLength: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: 'text'
+    },
+    rows: {
+      type: Number,
+      default: 1
     }
   },
   methods: {
