@@ -19,7 +19,7 @@
         v-if="rows !== 1"
         :required="required"
         :placeholder="placeholder"
-        :type="type"
+        type="text"
         @blur="doBlur"
         @focus="doFocus"
         :value="value"

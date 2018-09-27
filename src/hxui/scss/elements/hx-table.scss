@@ -5,6 +5,20 @@
   @include boxShadowNormal();
   background-color: white;
   border-radius: $border-radius-md;
+  &.hover {
+    table {
+      tr:hover{ 
+        background-color: $color-gray-light;
+      }
+      tr:nth-child(odd) {
+        &:hover {
+          td {
+            background-color: $color-gray;
+          }
+        }
+      }
+    }
+  }
   table {
     width: 100%;
     font-size: 13px;
@@ -15,12 +29,7 @@
       padding: $pm-sm $pm-sm;
       font-size: 13px;
       word-break: break-all;
-      border: 1px solid $color-gray;
-      &.flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+      border-bottom: 1px solid $color-gray-light;
       img.avatar {
         height: $height-navbar - $pm-sm;
         width: $height-navbar - $pm-sm;
@@ -30,6 +39,11 @@
           margin-left: $pm-sm;
         }
       }
+      img.cover {
+        height: $height-upload-button;
+        width: $width-upload-button;
+        @include borderRadius($border-radius-md);
+      }
       .link {
         color: $color-heavy;
         cursor: pointer;
@@ -37,31 +51,14 @@
           color: $color-red;
         }
       }
-      &.empty {
-        height: $height-navbar * 4;
-        line-height: $height-navbar * 4;
-        font-size: $font-bg;
-        background-color: $color-gray-light;
-        color: $color-heavy;
-      }
-      &.td-img-cover {
-        font-size: 0;
-        img {
-          height: $height-upload-button;
-          width: $width-upload-button;
-          @include borderRadius($border-radius-md);
-        }
-      }
-      &.td-img-avatar {
-        font-size: 0;
-        img {
-          height: $height-normal;
-          width: $height-normal;
-          @include borderRadius(50% 50%);
-        }
-      }
-      &.td-justify {
+      &.justify {
         text-align: justify;
+      }
+      &.left {
+        text-align: left;
+      }
+      &.right {
+        text-align: right;
       }
       .hx-button {
         padding: 0 $pm-sm;
@@ -87,23 +84,19 @@
       }
     }
     thead {
-      color: lighten($color-heavy, 5%);
-      background-color: #fafafa;
-      border-bottom: 2px solid $color-gray;
-      td{
-        height: $height-normal;
-      }
-    }
-    tbody {
-      color: lighten($color-heavy, 10%);
-      tr {
+      color: $color-dark;
+      font-weight: 500;
+      border-bottom: 4px solid $color-gray-light;
+      td {
         height: $height-navbar;
       }
-      tr:nth-child(even) {
+    }
+    tr {
+      height: $height-navbar;
+    }
+    tr:nth-child(odd) {
+      td {
         background-color: $color-gray-light;
-      }
-      &.hovering{
-        tr:hover{ background-color: $color-gray-light;  }
       }
     }
   }
@@ -111,13 +104,19 @@
 
 @media screen and (max-width: 640px) {
   .hx-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     table {
       table-layout: auto;
+      width: auto;
+      background-color: white;
       td {
+        min-width: 120px;
         button {
           min-width: 85px!important;
         }
-        &.td-img-cover img{
+        img.cover{
           height: 80px;
           width: auto;
         }
