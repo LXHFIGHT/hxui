@@ -41,6 +41,7 @@ export default {
     }
   },
   props: {
+    // 父组件传入方法可以带上一个对象作为参数，对象中包含 per_page和pageSize参数
     doRequest: {
       type: Function,
       required: true
