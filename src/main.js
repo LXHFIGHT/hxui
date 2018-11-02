@@ -5,8 +5,10 @@ import App from './App'
 import { sync } from 'vuex-router-sync'
 import router from './router'
 import store from './store'
+import HXUI from './hxui/plugins/index'
 
 Vue.config.productionTip = false
+Vue.prototype.$hxui = HXUI
 
 sync(store, router)
 

@@ -1,5 +1,6 @@
 <template>
   <div class="hx-block">
+    <!-- HXUI对于管理后台的应用 -->
     <div :class="showSidebar ? 'hx-sidebar show' : 'hx-sidebar'">
       <div class="sidebar">
         <div class="project-info">

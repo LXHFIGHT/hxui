@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { initMenus } from './menus'
-import Main from '@/components/main/Main'
+// import Main from '@/components/admin/Admin'
+import Info from '@/components/info/Info'
 
 Vue.use(Router)
 
@@ -11,7 +12,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Root',
-      component: Main,
+      component: Info,
       meta: { keepAlive: true },
       children: [
         {

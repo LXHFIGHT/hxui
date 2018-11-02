@@ -1,0 +1,164 @@
+// hx-navbar 导航栏组件的样式
+@import "./../variable.scss";
+
+$height-navbar: 60px;
+
+.hx-nav {
+  height: $height-navbar;
+  background-color: white;
+  width: 100%;
+  display: block;
+  padding: 0 $pm-bg;
+  z-index: 10;
+  position: relative;
+  .nav-logo {
+    display: inline-block;
+    height: $height-navbar;
+    position: relative;
+    .logo {
+      @include centerVertical;
+      height: $height-navbar / 2;
+    }
+  }
+  .nav-buttons {
+    float: right;
+    height: $height-navbar;
+    .hx-dropdown {
+      margin: 0 $pm-sm;
+      position: relative;
+      .button {
+        font-size: 16px;
+      }
+      &:after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: $color-main;
+        border-radius: 10px;
+        bottom: 0;
+        transform: scale(.0, 1.0);
+        @include compatible(transition, transform .4s);
+      }
+    }
+    .hx-dropdown:hover {
+      &:after {
+        transform: scale(.5, 1.0);
+      }
+    }
+  }
+  & + .hx-main {
+    @include hcalc(calc(100% - 60px));
+    background-color: $color-gray;
+    display: block;
+    width: 100%;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .hx-nav {
+    .nav-buttons {
+      position: fixed;
+      left: 0;
+      visibility: hidden;
+      width: 100%;
+      display: block;
+      top: $height-navbar;
+      @include hcalc(calc(100% - 60px));
+      .mask {
+        height: 100%;
+        width: 100%;
+        display: block;
+        opacity: .0;
+        left: 0;
+        top: 0;
+        position: absolute;
+        background-color: rgba(0,0,0,.5);
+        transition: opacity .4s;
+      }
+      &.show {
+        visibility: visible;
+        .mask {
+          opacity: 1.0;
+        }
+        .hx-dropdown {
+          opacity: 1.0;
+        }
+      }
+      .hx-dropdown {
+        width: 100%;
+        margin: 0;
+        height: auto;
+        opacity: .0;
+        background-color: $color-gray-light;
+        transition: all .4s;
+        .button {
+          background-color: white;
+          height: $height-normal;
+        }
+        &:hover {
+          .list {
+            top: 0;
+          }
+        }
+        .list {
+          display: block;
+          position: relative;
+          top: 0;
+          padding: 0 $pm-sm;
+          opacity: 1.0;
+          box-shadow: none;
+          border-radius: 0;
+          background-color: transparent;
+          &::before {
+            display: none;
+          }
+          .item {
+            @include compatible(transform, .4s);
+            left: 0;
+            margin-bottom: $pm-sm/2;
+            height: $height-normal;
+            line-height: $height-normal;
+            background-color: $color-gray-light;
+          }  
+        }
+      }
+    }
+    .btn-toggle {
+      height: $height-regular;
+      width: $height-regular;
+      @include centerVertical;
+      right: $pm-md;
+      position: relative;
+      background-color: white;
+      &::before, &::after {
+        content: "";
+        position: absolute;
+        width: 60%;
+        height: 2px;
+        background-color: $color-gray-deep;
+        left: 20%;
+        @include compatible(transition, all .4s);
+        @include compatible(transform, rotate(0deg));
+      }
+      &::before {
+        top: 35%;
+      }
+      &::after {
+        bottom: 35%;
+      }
+    }
+    .btn-toggle.on {
+      &::before {
+        top: 50%;
+        @include compatible(transform, rotate(45deg));
+      }
+      &::after {
+        top: 50%;
+        @include compatible(transform, rotate(-45deg));
+      }
+    }
+  }
+}

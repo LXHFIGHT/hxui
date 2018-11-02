@@ -7,7 +7,7 @@
 
 const menus = [
   {
-    name: '信息页面',
+    name: 'Style',
     icon: 'list',
     selected: true,
     children: [
@@ -26,9 +26,36 @@ const menus = [
     ]
   },
   {
-    name: '表单组件',
+    name: 'Components',
     state: '/form',
-    selected: false
+    selected: false,
+    children: [
+      {
+        name: '反馈组件',
+        state: '/components',
+        icon: 'th',
+        selected: false
+      }
+    ]
+  },
+  {
+    name: 'Plugins',
+    state: '/form',
+    selected: false,
+    children: [
+      {
+        name: 'HXUI全局对象',
+        state: '/components',
+        icon: 'th',
+        selected: false
+      },
+      {
+        name: '插件集合',
+        state: '/list',
+        icon: 'list',
+        selected: false
+      }
+    ]
   }
 ]
 
