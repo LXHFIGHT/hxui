@@ -3,6 +3,7 @@
     <!-- HXUI对于文档页面的应用 -->
     <hx-navbar :menus="menus"
       :logo="logo"
+      title="HXUI"
       :onSelect="doSelect"></hx-navbar>
     <div class="hx-main">
       <router-view></router-view>

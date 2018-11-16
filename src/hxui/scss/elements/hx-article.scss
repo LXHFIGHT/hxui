@@ -1,6 +1,7 @@
 @import "./../variable.scss";
 
 .hx-article {
+  padding: $pm-bg 0;
   h1 {
     line-height: $height-navbar;
     border-bottom: 1px solid $color-gray;

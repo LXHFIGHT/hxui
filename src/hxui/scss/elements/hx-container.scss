@@ -7,8 +7,8 @@
 .hx-container {
   display: block;
   padding: 0;
-  @include centerHorizontal;
   position: relative;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 640px) {
@@ -16,14 +16,18 @@
     width: 100%;
   }
 }
-@media screen and (min-width: 640px) and (max-width: 1024px) {
+@media screen and (min-width: 640px) and (max-width: 1280px) {
   .hx-container {
     width: 80%;
   }
 }
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1280px) and (max-width: 1600px) {
   .hx-container {
     max-width: 1024px;
   }
 }
-
+@media screen and (min-width: 1600px)  {
+  .hx-container {
+    max-width: 1440px;
+  }
+}

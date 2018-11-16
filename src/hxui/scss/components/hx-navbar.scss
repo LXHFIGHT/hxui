@@ -8,16 +8,24 @@ $height-navbar: 60px;
   background-color: white;
   width: 100%;
   display: block;
-  padding: 0 $pm-bg;
   z-index: 10;
   position: relative;
+  @include boxShadow($shadow-md);
   .nav-logo {
     display: inline-block;
     height: $height-navbar;
     position: relative;
+    padding: $height-navbar / 4;
     .logo {
-      @include centerVertical;
       height: $height-navbar / 2;
+    }
+    .title {
+      height: $height-navbar / 2;
+      display: inline-block;
+      vertical-align: top;
+      line-height: $height-navbar / 2;
+      margin-left: $pm-sm;
+      font-weight: 800;
     }
   }
   .nav-buttons {
@@ -50,7 +58,7 @@ $height-navbar: 60px;
   }
   & + .hx-main {
     @include hcalc(calc(100% - 60px));
-    background-color: $color-gray;
+    background-color: white;
     display: block;
     width: 100%;
     overflow-y: auto;
