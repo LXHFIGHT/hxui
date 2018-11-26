@@ -2,12 +2,12 @@
   <aside class="hx-catalog">
     <section class="section-first" v-for="(menu, index) in menus" :key="index">
       <button class="btn-main" v-text="menu.key" @click="doSelectMenu(menu)"></button>
-      <section class="section-section"
+      <section class="section-second"
         v-if="menu.children && menu.children.length"
         v-for="(child, childIndex) in menu.children"
         :key="childIndex">
         <button class="btn-main" v-text="child.key" @click="doSelectMenu(menu)"></button>
-        <section class="section-section"
+        <section class="section-third"
           v-if="child.children && child.children.length"
           v-for="(item, itemIndex) in child.children"
           :key="itemIndex">

@@ -36,6 +36,7 @@ $height-navbar: 60px;
       position: relative;
       .button {
         font-size: 16px;
+        background-color: transparent;
       }
       &:after {
         position: absolute;

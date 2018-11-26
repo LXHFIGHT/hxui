@@ -1,0 +1,57 @@
+@import "./../variable.scss";
+
+.hx-catalog {
+    display: inline-block;
+    width: 200px;
+    padding: $pm-lg $pm-md;
+   
+    & + .hx-main {
+        @include wcalc(calc(100% - 205px));
+        float: right;
+        height: 100%;
+    }
+    .section-first {
+        width: 100%;
+        display: block;
+        margin-bottom: $pm-md;
+        .btn-main {
+            width: 100%;
+            background-color: transparent;
+            text-align: left;
+            position: relative;
+            &::before {
+                content: '';
+                height: 50%;
+                width: 3px;
+                background-color: transparent;
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 25%;
+                transition: background-color .4s;
+            }
+            &:hover {
+                &::before {
+                    background-color: $color-gray;
+                }
+            }
+        }
+    }
+    .section-first > .btn-main {
+        padding-left: $pm-md;
+        color: $color-dark;
+        font-weight: 800;
+        font-size: 16px;
+        height: $height-navbar;
+    }
+    .section-second > .btn-main {
+        padding-left: $pm-md * 1.5;
+        font-size: 14px;
+        height: $height-normal;
+    }
+    .section-third > .btn-main {
+        padding-left: $pm-md * 2;
+        font-size: 12px;
+        height: $height-normal;
+    }
+}

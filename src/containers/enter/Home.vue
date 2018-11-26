@@ -1,6 +1,6 @@
 <template>
-  <div class="hx-block">
-    <div class="hx-container">
+  <div class="hx-block bg-gray">
+    <div class="hx-container bg-white">
       <hx-catalog :menus="menus"></hx-catalog>
       <div class="hx-main">
         <vue-markdown class="hx-article">{{ HxButtonFile }}</vue-markdown>
@@ -49,3 +49,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .bg-gray {
+    background-color: #f6f7f7;
+  }
+  .bg-white {
+    background-color: white;
+    height: 100%;
+  }
+</style>
