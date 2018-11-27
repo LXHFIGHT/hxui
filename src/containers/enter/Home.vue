@@ -1,7 +1,7 @@
 <template>
   <div class="hx-block bg-gray">
     <div class="hx-container bg-white">
-      <hx-catalog :menus="menus"></hx-catalog>
+      <hx-catalog :menus="menus" :onSelect="doSelectCatalog"></hx-catalog>
       <div class="hx-main">
         <vue-markdown class="hx-article">{{ HxButtonFile }}</vue-markdown>
       </div>
@@ -42,6 +42,9 @@ export default {
   methods: {
     popAlert () {
       this.$hxui.popTip('Yahoo')
+    },
+    doSelectCatalog (value) {
+      console.log('Select Data: ', value)
     }
   },
   mounted () {
