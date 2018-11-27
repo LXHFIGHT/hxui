@@ -14,59 +14,7 @@
         width: 100%;
         display: block;
         margin-bottom: $pm-md;
-        .btn-main {
-            width: 100%;
-            background-color: transparent;
-            text-align: left;
-            position: relative;
-            .btn-toggle {
-                @include centerVertical;
-                height: $height-navbar/2;
-                width: $height-navbar/2;
-                padding: $pm-sm/2;
-                position: absolute;
-                right: $pm-sm;
-                background-color: transparent;
-                border-radius: 50%;
-                img {
-                    opacity: .0;
-                    height: 100%;
-                    width: 100%;
-                }
-                &.go {
-                    img {
-                        transform: rotate(-90deg);
-                    }
-                }
-                &:hover {
-                    background-color: #f6f6f6;
-                }
-                &:active {
-                    background-color: #f2f2f2;
-                }
-            }
-            &::before {
-                content: '';
-                height: 50%;
-                width: 3px;
-                background-color: transparent;
-                display: inline-block;
-                position: absolute;
-                left: 0;
-                top: 25%;
-                transition: background-color .4s;
-            }
-            &:hover {
-                &::before {
-                    background-color: $color-gray;
-                }
-                .btn-toggle {
-                    img {
-                        opacity: 1.0;
-                    }
-                }
-            }
-        }
+        
         & > .btn-main{
             padding-left: $pm-md;
             color: $color-dark;
@@ -103,6 +51,81 @@
             padding-left: $pm-md * 2;
             font-size: 12px;
             height: $height-normal;
+        }
+    }
+    .section {
+        .btn-main {
+            width: 100%;
+            background-color: transparent;
+            text-align: left;
+            position: relative;
+            transition: background-color .4s;
+            &.option {
+                cursor: pointer;
+            }
+            &.selected {
+                background-color: $color-gray-light;
+                .btn-toggle {
+                    img {
+                        opacity: 1.0;
+                    }
+                }
+            }
+            &::before {
+                content: '';
+                height: 50%;
+                width: 3px;
+                background-color: transparent;
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 25%;
+                transition: background-color .4s;
+            }
+            &:hover {
+                &::before {
+                    background-color: $color-gray;
+                }
+                &.option::before {
+                    background-color: $color-main;
+                }
+                .btn-toggle {
+                    img {
+                        opacity: 1.0;
+                    }
+                }
+            }
+        }
+        &.opened>.btn-main img {
+            transform: rotate(0);
+        }
+        .btn-toggle {
+            @include centerVertical;
+            height: $height-navbar/2;
+            width: $height-navbar/2;
+            padding: $pm-sm/2;
+            position: absolute;
+            right: $pm-sm;
+            background-color: transparent;
+            border-radius: 50%;
+            img {
+                opacity: .0;
+                height: 100%;
+                width: 100%;
+                transform: rotate(-180deg);
+                transition: transform .4s;
+            }
+            &.go {
+                img {
+                    transform: rotate(-90deg)!important;
+                }
+            }
+            &:hover {
+                background-color: #f6f6f6;
+            }
+            &:active {
+                background-color: #f2f2f2;
+            }
         }
     }
 }

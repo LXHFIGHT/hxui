@@ -9,9 +9,11 @@
         <div class="mask hide-md hide-bg" @click="doToggle"></div>
         <div class="hx-dropdown bg" v-for="(menu, index) in menus" v-bind:key="index">
           <button class="button" v-text="menu.name" @click="onSelect"></button>
-          <ul class="list" v-if="menu.children">
-            <li class="item" v-for="(child, cIndex) in menu.children" v-bind:key="cIndex" v-text="child.name"></li>
-          </ul>
+          <div class="pad-options">
+            <ul class="list" v-if="menu.children">
+              <li class="item" v-for="(child, cIndex) in menu.children" v-bind:key="cIndex" v-text="child.name"></li>
+            </ul>
+          </div>
         </div>
       </div>
       <button :class="['btn-toggle hide-md hide-bg', (showNavbuttons && 'on')]" @click="doToggle"></button>

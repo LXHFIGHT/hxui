@@ -14,34 +14,38 @@ $height-bg: 60px;
     width: 100%;
   }
   &:hover {
-    .list {
+    .pad-options {
       display: block;
       opacity: 1.0;
       top: $height-md + $pm-md;
     }
   }
+  .pad-options {
+    position: absolute;
+    padding-top: $pm-md;
+    top: $height-md;
+    @include centerHorizontal;
+    background-color: transparent;
+    transition: top .5s, opacity .5s;
+    opacity: .0;
+  }
   .list {
     z-index: 100;
     display: block;
-    opacity: .0;
-    position: absolute;
-    top: $height-md;
     list-style: none;
     border: 1px solid $color-gray;
     padding: $pm-sm;
     margin: 0;
     border-radius: 4px;
-    @include centerHorizontal;
     background-color: white;
     box-shadow: 0 0 30px rgba(0,0,0,.15);
-    transition: top .5s, opacity .5s;
     &::before {
       height: 0;
       width: 0;
       content: "";
       position: absolute;
       margin-top: 0;
-      top: -5px;
+      top: $pm-md - 5px;
       border-bottom: 7px solid white;
       border-top: none;
       border-left: 7px solid transparent;
