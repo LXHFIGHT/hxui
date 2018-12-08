@@ -18,7 +18,15 @@ const router = new Router({
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['@/containers/enter/Home'], resolve)
+          component: resolve => require(['@/containers/enter/Home'], resolve),
+          meta: { keepAlive: true },
+          children: [
+            {
+              path: '/',
+              name: 'welcome',
+              component: resolve => require(['@/containers/docs/Welcome'], resolve)
+            }
+          ]
         },
         {
           path: '/list',

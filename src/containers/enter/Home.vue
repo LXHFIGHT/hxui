@@ -5,7 +5,7 @@
         <hx-catalog :menus="menus" :onSelect="doSelectCatalog"></hx-catalog>
       </aside>
       <div class="hx-main">
-        <vue-markdown class="hx-article">{{ HxButtonFile }}</vue-markdown>
+        <router-view></router-view>
       </div>
     </div>
   </div>
