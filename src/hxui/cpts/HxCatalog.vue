@@ -3,36 +3,46 @@
     <section :class="['section section-first', menu.opened ? 'opened' : '']" v-for="(menu, index) in catalogMenus" :key="index">
       <button :class="['btn-main',
         menu.children ? '' : 'option',
-        menu.selected ? 'selected' : ''
-      ]" @click="doSelectMenu(menu)">
+        menu.selected ? 'selected' : '']"
+        v-if="_isObject(menu)"
+        @click="doSelectMenu(menu)">
         <span v-text="menu.key"></span>
         <button :class="['btn-toggle', !menu.children ? 'go' : '']">
           <img :src="iconPointDown" alt="">
         </button>
       </button>
+      <span class="text-title" v-if="_isString(menu) && menu !== '|'" v-text="menu"></span>
+      <span class="divider" v-if="_isString(menu) && menu === '|'" v-text="menu"></span>
       <section :class="['section section-second', child.opened ? 'opened' : '']"
-        v-if="menu.children && menu.children.length"
         v-for="(child, childIndex) in menu.children"
+        v-if="menu.children && menu.children.length"
         :key="childIndex">
         <button :class="['btn-main',
           child.children ? '' : 'option',
           child.selected ? 'selected' : '']"
+          v-if="_isObject(child)"
           @click="doSelectMenu(child)">
           <span v-text="child.key"></span>
           <button :class="['btn-toggle', !child.children ? 'go' : '']">
             <img :src="iconPointDown" alt="">
           </button>
         </button>
+        <span class="text-title" v-if="_isString(child) && child !== '|'" v-text="child"></span>
+        <span class="divider" v-if="_isString(child) && child === '|'"></span>
         <section class="section section-third"
-          v-if="child.children && child.children.length"
           v-for="(item, itemIndex) in child.children"
+          v-if="child.children && child.children.length"
           :key="itemIndex">
-          <button :class="['btn-main option', item.selected ? 'selected' : '']" @click="doSelectMenu(item)">
+          <button :class="['btn-main option', item.selected ? 'selected' : '']"
+            v-if="_isObject(item)"
+            @click="doSelectMenu(item)">
             <span v-text="item.key"></span>
             <button class="btn-toggle go">
               <img :src="iconPointDown" alt="">
             </button>
           </button>
+          <span class="text-title" v-if="_isString(item) && item !== '|'" v-text="item"></span>
+          <span class="divider" v-if="_isString(item) && item === '|'"></span>
         </section>
       </section>
     </section>
@@ -69,6 +79,12 @@ export default {
     }
   },
   methods: {
+    _isObject (obj) {
+      return typeof obj === 'object'
+    },
+    _isString (obj) {
+      return typeof obj === 'string'
+    },
     initCatalogMenu () {
       this.catalogMenus = [].concat(this.menus)
       console.log(this.catalogMenus)
