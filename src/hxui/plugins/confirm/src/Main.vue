@@ -67,3 +67,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import './../../../scss/variable.scss';
+@import './../../../scss/plugins/hx-confirm.scss';
+</style>
