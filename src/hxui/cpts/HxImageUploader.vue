@@ -93,3 +93,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @import "./../../hxui/scss/plugins/hx-image-uploader.scss";
+</style>

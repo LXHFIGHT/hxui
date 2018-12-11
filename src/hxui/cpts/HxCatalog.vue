@@ -87,9 +87,7 @@ export default {
     },
     initCatalogMenu () {
       this.catalogMenus = [].concat(this.menus)
-      console.log(this.catalogMenus)
       for (let i = 0; i < this.catalogMenus.length; i++) {
-        console.log(this.catalogMenus[i])
         if (this.catalogMenus[i].children) {
           this.catalogMenus[i].opened = true
           break
@@ -115,3 +113,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @import "./../../hxui/scss/components/hx-catalog.scss";
+</style>

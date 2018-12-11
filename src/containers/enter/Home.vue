@@ -12,17 +12,13 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
-import HxButtonFile from './../../docs/components/hx-button.md'
 import HxCatalog from './../../hxui/cpts/HxCatalog'
 export default {
   components: {
-    'vue-markdown': VueMarkdown,
     HxCatalog
   },
   data () {
     return {
-      HxButtonFile,
       menus: [
         {
           key: '组件',
@@ -60,9 +56,6 @@ export default {
     doSelectCatalog (value) {
       console.log('Select Data: ', value)
     }
-  },
-  mounted () {
-    console.log(HxButtonFile)
   }
 }
 </script>
