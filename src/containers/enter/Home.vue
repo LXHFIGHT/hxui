@@ -4,7 +4,7 @@
       <aside class="aside-catalog">
         <hx-catalog :menus="menus" :onSelect="doSelectCatalog"></hx-catalog>
       </aside>
-      <div class="hx-main">
+      <div class="hx-main pad-home-main">
         <router-view></router-view>
       </div>
     </div>
@@ -55,6 +55,7 @@ export default {
     },
     doSelectCatalog (value) {
       console.log('Select Data: ', value)
+      this.$router.push(`/${value}`)
     }
   }
 }
@@ -70,9 +71,15 @@ export default {
     height: 100%;
   }
   .aside-catalog {
-    width: 200px;
+    width: 230px;
     display: inline-block;
-    float: left;
     padding: $pm-md;
+  }
+  .pad-home-main {
+    width: calc(100% - 235px);
+    float: right;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>

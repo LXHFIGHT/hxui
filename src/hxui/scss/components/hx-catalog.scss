@@ -3,11 +3,6 @@
 .hx-catalog {
     display: inline-block;
     width: 100%;
-    & + .hx-main {
-        @include wcalc(calc(100% - 205px));
-        float: right;
-        height: 100%;
-    }
     .section-first  {
         width: 100%;
         display: block;

@@ -25,6 +25,11 @@ const router = new Router({
               path: '/',
               name: 'welcome',
               component: resolve => require(['@/containers/docs/Welcome'], resolve)
+            },
+            {
+              path: '/hx-image',
+              name: 'hx-image',
+              component: resolve => require(['@/containers/docs/Image'], resolve)
             }
           ]
         },

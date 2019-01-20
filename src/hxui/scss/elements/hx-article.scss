@@ -1,61 +1,25 @@
 @import "./../variable.scss";
-
+/**
+  .hx-article HX文档组件包含一下5中常规样式：
+    .main-title 主标题
+    .sub-title 副标题
+    .section 文章主体部分，展示区域（也是后续hx-article拓展的地方）
+      .header 展示区域的标题
+      .content 展示区域内容区
+    .table
+  */
 .hx-article {
-  padding: $pm-bg 0;
-  h1 {
-    line-height: $height-navbar;
-    border-bottom: 1px solid $color-gray;
-    margin: 0 0 $pm-md 0;
-  }
-  h2, h3, h4, h5, h6 {
-    margin: 0 0 $pm-md 0;
-  }
-  h2 {
-    line-height: $height-navbar;
-  }
-  h3, h4 {
-    font-weight: 400;
-    line-height: $height-regular*2;
-  }
-  h6, h5 {
-    line-height: $height-navbar / 2;
-    color: $color-heavy;
-    margin-bottom: $pm-md;
-  }
-  strong {
-    padding: 2px $pm-sm;
-    font-weight: 600;
-    color: $color-main;
-    background-color: $color-gray;
-    @include borderRadius($border-radius-md);
-  }
-  section {
-    margin-bottom: $pm-md;
-    padding: $pm-md;
-    background-color: white;
-    @include boxShadow(0 10px 20px -10px rgba(0,0,0,.1));
-  }
-  header {
-    line-height: $height-normal;
-    color: $color-heavy;
-  }
-  label {
+  padding: $pm-bg;
+  .main-title {
+    padding: $pm-md 0;
     color: $color-dark;
-    font: {
-      weight: 600;
+    font: { 
+      size: 28px;
+      weight: 400;
     }
   }
-  pre {
-    display: block;
-    background-color: $color-gray-light;
+  .sub-title {
     padding: $pm-sm 0;
-    @include borderRadius($border-radius-md);
-    line-height: $height-normal / 2;
-    .annotation {
-       color: $color-gray-deep!important;
-    }
-  }
-  div.detail {
-    margin-bottom: $pm-bg;
+    color: $color-heavy;
   }
 }
