@@ -2,10 +2,8 @@
 
 .hx-modal.confirm {
   .content {
-    footer {
-      .hx-button + .hx-button {
-        margin-left: $pm-sm;
-      }
+    .header, .footer { 
+      margin: 0;
     }
   }
 }
@@ -13,20 +11,22 @@
 @media screen and (min-width: 640px) {
   .hx-modal.confirm {
     .content {
+      padding-top: $pm-sm;
       width: 400px!important;
       text-align: justify;
       color: $color-heavy;
       font-size: $font-bg;
-      header {
-        font-weight: 600;
-      }
       .confirm-content {
-        padding: $pm-lg $pm-md;
+        padding: $pm-bg $pm-md $pm-bg*1.5;
         text-align: center;
+        font-size: $font-lg;
       }
       footer {
         text-align: right;
         padding: 0;
+        .hx-button {
+          min-width: $height-navbar * 1.5;
+        }
         .hx-button + .hx-button {
           margin-left: $pm-sm;
         }
@@ -39,6 +39,7 @@
   /* 自下而上弹出样式已迁移到 hx-modal.scss 中 */
   .hx-modal.confirm {
     .content {
+      overflow: hidden;
       color: $color-heavy;
       font-size: $font-bg;
       height: auto;
@@ -47,8 +48,8 @@
         font-weight: 600;
         font-size: 16px;
         text-align: center;
-        line-height: $height-regular;
-        height: $height-normal;
+        line-height: $height-navbar;
+        height: $height-navbar;
         display: block;
         border-bottom: 1px solid $color-gray;
       }
@@ -56,19 +57,22 @@
         display: block;
         position: relative;
         text-align: center;
-        font-size: 16px;
+        font-size: 5vw;
         line-height: 24px; 
-        padding: $pm-bg*2 $pm-md;
+        padding: $pm-bg*1.5 $pm-md;
       }
       footer {
         font-size: 12px;
-        button {
+        display: flex;
+        .btn-confirm, .btn-cancel {
+          border: none;
+          @include borderRadius(0);
           height: $height-normal;
-          @include wcalc(calc(50% - 10px));
-          margin: 0;
-          &.full {
-            width: 100%;
-          }
+          flex: 1;
+          margin: 0!important;
+        }
+        .btn-cancel {
+          background-color: $color-gray-light;
         }
       }
     }

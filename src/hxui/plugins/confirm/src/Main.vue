@@ -1,16 +1,14 @@
 <template>
-  <div :class="['hx-modal confirm', show && 'show']">
+  <div :class="['hx-modal confirm', show && 'show', level]">
     <div class="mask" @click="destroyElement"></div>
     <div class="content">
-      <header v-text="title">
-      </header>
+      <header class="header" v-text="title"></header>
       <div class="confirm-content" v-text="content"></div>
-      <footer>
-        <button class="hx-button"
+      <footer class="footer">
+        <button class="hx-button btn-cancel"
           v-text="cancelText"
-          v-if="showCancel"
           @click="destroyElement"></button>
-        <button :class="['hx-button main', !showCancel && 'full']"
+        <button class="hx-button main btn-confirm"
           v-text="confirmText"
           @click="doConfirm"></button>
       </footer>
@@ -19,16 +17,17 @@
 </template>
 
 <script>
+import config from './../../config'
 export default {
   data () {
     return {
-      title: '提示',
+      title: '',
       content: '',
       onConfirm: () => {},
       onCancel: () => {},
       confirmText: '确定',
       cancelText: '取消',
-      showCancel: true,
+      level: '',
       show: false,
       fadeInTimer: null,
       fadeOutTimer: null
@@ -57,8 +56,10 @@ export default {
       this.destroyElement()
     }
   },
+  created () {
+    this.title || (this.title = config.levelFilter(this.title))
+  },
   mounted () {
-    console.log(this.content)
     this.startTimer()
   },
   beforeDestroy () {
@@ -70,5 +71,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './../../../scss/variable.scss';
+@import './../../../scss/plugins/hx-modal.scss';
 @import './../../../scss/plugins/hx-confirm.scss';
 </style>

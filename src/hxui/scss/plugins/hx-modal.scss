@@ -1,5 +1,18 @@
 @import "./../variable.scss";
-
+@mixin levelStyle($value) {
+  &>.content{
+    .header {
+      color: $value;
+      &::before {
+        background-color: $value;
+      }
+    }
+    .footer>.hx-button.main {
+      background-color: $value;
+      border-color: $value;
+    }
+  }
+}
 /*
    模态框样式
    .hx-modal 为普通模态框
@@ -29,6 +42,10 @@
     display: block;
     background-color: rgba(0,0,0, .65);
   }
+  &.success { @include levelStyle($color-green); }
+  &.error { @include levelStyle($color-red); }
+  &.warn { @include levelStyle($color-orange); }
+  &.fatal { @include levelStyle($color-dark); }
   // 模态框内容版
   &>.content{
     top: 15%;
@@ -39,7 +56,6 @@
     @include centerHorizontal;
     @include borderRadius($border-radius-md);
     @include boxShadow(0 24px $pm-bg -16px rgba(0,0,0,.4));
-
     // 模态框头部
     .header {
       line-height: $height-normal;
@@ -61,7 +77,6 @@
         padding: $pm-md;
       }
     }
-
     // 右上角关闭模态框按钮
     .btn-close-modal {
       position: absolute;
@@ -81,7 +96,6 @@
         color: white;
       }
     }
-
     // 模态框底部
     .footer {
       text-align: center;
@@ -92,7 +106,6 @@
         min-width: 100px;
       }
     }
-
     // 模态框中部内容面板
     .map {
       min-height: 400px;
@@ -107,7 +120,6 @@
       resize: none;
     }
   }
-
   // 缩略版模态框
   &.sm {
     >.content {
@@ -115,7 +127,6 @@
       min-width: 300px;
     }
   }
-
   &.bg {
     .content {
       width: 80%;
@@ -141,9 +152,14 @@
         font-size: $font-md;
         height: $height-regular;
         line-height: $height-regular;
+        padding-left: 0;
         &:before {
           height: $height-regular/2;
-          top: $height-regular/4;
+          top: -2px;
+          width: 28%;
+          height: 6px;
+          @include centerHorizontal;
+          @include borderRadius(4px);
         }
       }
       .map {
@@ -158,14 +174,11 @@
       text-align: justify;
       font-size: $font-md;
       top: auto;
-      bottom: $pm-md;
+      bottom: $pm-bg;
       left: 50%;
       @include compatible(transition, all .4s);
       @include compatible(transform, translate(-50%, 50%));
       position: fixed;
-      .header {
-        color: $color-gray-deep;
-      }
       .hx-content {
         padding: $pm-md;
         text-align: center;

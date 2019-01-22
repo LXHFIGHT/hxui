@@ -11,7 +11,7 @@ export default {
       fadeOutTimer: {},
       fadeInTimer: {},
       title: '',
-      level: config.level.LEVEL_INFO,
+      level: config.level.INFO,
       during: 1500
     }
   },

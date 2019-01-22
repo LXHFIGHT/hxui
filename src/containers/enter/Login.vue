@@ -104,6 +104,12 @@ export default {
     },
     doLogin () {
       this.isLogining = true
+      this.$hxui.confirm({
+        content: '登录按钮失效',
+        confirmText: '确认警告信息',
+        onConfirm () {
+        }
+      })
       axios.doPost('user/login', this.userInfo).then((res) => {
         console.log('LOGIN RESPONSE: ', res)
         this.isLogining = false

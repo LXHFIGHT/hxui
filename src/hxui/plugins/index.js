@@ -7,11 +7,11 @@
 import popTip from './popTip'
 import popLoading from './popLoading'
 import previewImage from './imagePreviewer'
-import confirm from './confirm'
+import Confirm from './confirm'
 
 export default {
   ...popLoading,
   popTip,
   previewImage,
-  confirm
+  confirm: Confirm
 }
