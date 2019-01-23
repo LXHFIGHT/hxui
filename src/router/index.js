@@ -30,6 +30,11 @@ const router = new Router({
               path: '/hx-image',
               name: 'hx-image',
               component: resolve => require(['@/containers/docs/Image'], resolve)
+            },
+            {
+              path: '/hx-button',
+              name: 'hx-button',
+              component: resolve => require(['@/containers/docs/Button'], resolve)
             }
           ]
         },

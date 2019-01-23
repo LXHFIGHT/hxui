@@ -30,8 +30,7 @@
         <span class="text-title" v-if="_isString(child) && child !== '|'" v-text="child"></span>
         <span class="divider" v-if="_isString(child) && child === '|'"></span>
         <section class="section section-third"
-          v-for="(item, itemIndex) in child.children"
-          v-if="child.children && child.children.length"
+          v-for="(item, itemIndex) in child.children" v-if="child.children && child.children.length"
           :key="itemIndex">
           <button :class="['btn-main option', item.selected ? 'selected' : '']"
             v-if="_isObject(item)"

@@ -35,12 +35,13 @@
   }
   &.main    {  @include hxButton($color-main);  }
   &.gray    {  @include hxButton(darken($color-gray-deep, 14%));  }
-  &.orange  {  @include hxButton($color-orange);  }
-  &.red     {  @include hxButton($color-red);  }
-  &.blue    {  @include hxButton($color-blue);  }
-  &.green   {  @include hxButton($color-green);  }
+  &.orange, &.warn {  @include hxButton($color-orange);  }
+  &.red, &.error {  @include hxButton($color-red);  }
+  &.blue, &.info {  @include hxButton($color-blue);  }
+  &.green, &.success {  @include hxButton($color-green);  }
   &.excel   {  @include hxButton($color-green-excel);  }
   &.pink    {  @include hxButton($color-pink);  }
+  &.black, &.fatal    {  @include hxButton($color-black);  }
   &.yellow  {  @include hxButton($color-golden, $color-heavy);  }
 }
 
@@ -57,13 +58,14 @@
     }
   }
   &.gray    {  @include hxBlankButton(darken($color-gray-deep, 14%));  }
-  &.orange  {  @include hxBlankButton($color-orange);  }
-  &.red     {  @include hxBlankButton($color-red);  }
-  &.blue    {  @include hxBlankButton($color-blue);  }
-  &.green   {  @include hxBlankButton($color-green);  }
+  &.orange, &.warn  {  @include hxBlankButton($color-orange);  }
+  &.red, &.error     {  @include hxBlankButton($color-red);  }
+  &.blue, &.info    {  @include hxBlankButton($color-blue);  }
+  &.green, &.success   {  @include hxBlankButton($color-green);  }
   &.excel   {  @include hxBlankButton($color-green-excel);  }
   &.pink    {  @include hxBlankButton($color-pink);  }
   &.yellow  {  @include hxBlankButton($color-golden);  }
+  &.black, &.fatal  {  @include hxBlankButton($color-black);  }
 }
 
 .hx-text-button{

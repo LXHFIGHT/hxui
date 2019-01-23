@@ -11,15 +11,21 @@
 .hx-article {
   padding: $pm-bg;
   .main-title {
-    padding: $pm-md 0;
-    color: $color-dark;
+    padding: 0 0 $pm-md;
+    color: $color-black;
     font: { 
       size: 28px;
       weight: 400;
     }
   }
   .sub-title {
-    padding: $pm-sm 0;
+    padding: 0 0 $pm-md;
     color: $color-heavy;
+    display: block;
+  }
+  .section {
+    padding: $pm-md;
+    @include borderRadius($pm-sm/2);
+    background-color: $color-gray-light;
   }
 }

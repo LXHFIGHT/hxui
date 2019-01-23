@@ -9,10 +9,9 @@
   border: 1px solid $color-gray;
   position: relative;
   margin-bottom: $pm-md;
-  background-color: white;
-  @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
   overflow: hidden;
-  header {
+  background-color: white;
+  .header {
     top: 0;
     left: 0;
     width: 100%;
@@ -62,7 +61,7 @@
     background-color: $color-gray-light;
   }
   &.foldable {
-    header:after {
+    .header:after {
       content: "";
       height: 6px;
       width: 12px;
@@ -79,12 +78,28 @@
       height: $height-navbar!important;
       padding-top: $height-navbar;
       padding-bottom: 0;
-      header:after {
+      .header:after {
         transform: rotate(180deg);
+      }
+      .side-tag {
+        display: none;
       }
     }
     .right {
       right: $pm-bg * 2;
+    }
+  }
+  .side-tag {
+    position: absolute;
+    right: $pm-md;
+    bottom: 0;
+    color: $color-gray;
+    height: $height-navbar;
+    line-height: $height-navbar;
+    display: inline-block;
+    font: {
+      size: $font-md;
+      weight: 800;
     }
   }
 }
@@ -92,11 +107,13 @@
 @media screen and (min-width: 640px) {
   .hx-section {
     padding: ($height-normal+$pm-md) $pm-md $pm-md;
-    @include borderRadius($border-radius-bg);
-    @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+    @include borderRadius($border-radius-md);
     transition: box-shadow .4s, height .4s;
-    &:hover {
-      @include boxShadow(0 5px 20px rgba(0,0,0,.1));
+    &.shadow {
+      @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+      &:hover {
+        @include boxShadow(0 5px 20px rgba(0,0,0,.1));
+      }
     }
     &.half {
       display: inline-block;
@@ -114,13 +131,13 @@
     padding: $height-navbar $pm-md $pm-md;
     transition: height .4s;
     @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
-    header {
+    .header {
       padding: 0 $pm-md;
       button.right {
         margin-top: 0;
       }
     }
-    header:before {
+    .header:before {
       content: "";
       height: $height-navbar/2;
       width: 3px;
@@ -129,7 +146,7 @@
       display: block;
       left: $pm-md;
     }
-    header:first-child {
+    .header:first-child {
       padding-left: 2 * $pm-md;
     }
     .hx-row:nth-last-child(1) {

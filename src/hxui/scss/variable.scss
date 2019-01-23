@@ -24,8 +24,8 @@ $color-gray-light: #f8f8f8;
 $color-gray: #eee;
 $color-gray-deep: #bbb;
 $color-heavy:   #747474;
-$color-dark:    #474747;
-
+$color-dark:  #474747;
+$color-black: #000;
 $color-green:   rgb(135, 208, 104);
 $color-green-excel: #1C7243;
 $color-yellow: rgba(255, 235, 90,  1);
@@ -35,7 +35,6 @@ $color-red: #ff5a50;
 $color-red-deep: #dd4b30;
 $color-pink: #f688B4;
 $color-blue: cornflowerblue;
-$color-green-light:   lighten($color-green, 38%);
 $color-red-light: rgba(#dd4b30, .1);
 $color-green-light:   rgba(#8ecc45, .1);
 $color-golden-light: rgba(255, 205, 60,  .2);

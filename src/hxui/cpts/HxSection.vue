@@ -1,13 +1,19 @@
 <template>
   <div ref="section"
-    :class="['hx-section ', foldable && 'foldable', expand && 'fold']">
-    <header @click="doToggleFold">
+    :class="['hx-section ',
+      shadow && 'shadow',
+      foldable && 'foldable',
+      expand && 'fold']">
+    <header class="header" @click="doToggleFold">
       <span class="title" v-text="title"></span>
     </header>
     <div class="right">
       <slot name="right"></slot>
     </div>
     <slot class="content" name="content"></slot>
+    <span class="side-tag"
+      v-text="tag">
+    </span>
   </div>
 </template>
 
@@ -27,24 +33,22 @@ export default {
   },
   props: {
     title: String,
+    shadow: {
+      type: Boolean,
+      default: false
+    },
     foldable: {
       type: Boolean,
       default: false
+    },
+    tag: {
+      type: String
     }
   },
   methods: {
     doToggleFold () {
       this.expand = !this.expand
-    },
-    $_initHeight () {
-      if (this.foldable) {
-        const dom = this.$refs.section
-        dom.style.height = `${dom.offsetHeight}px`
-      }
     }
-  },
-  mounted () {
-    this.$_initHeight()
   }
 }
 </script>
