@@ -1,21 +1,45 @@
 @import './../variable.scss';
 
 @media screen and (min-width: 640px) {
+  .hx-content {
+    .hx-advance-search {
+      margin: (-$pm-md) 0 $pm-md (-$pm-md);
+      @include borderRadius(0);
+      @include wcalc(calc(100% + 32px));
+    }
+  }
   .hx-advance-search {
-    @include borderRadius($border-radius-bg);
     background-color: white;
-    margin-bottom: $pm-md;
     padding: $pm-md;
+    width: 100%;
+    @include borderRadius($pm-sm/2);
     @include boxShadowNormal(false);
     position: relative;
-    &:before {
-      content: 'Search Panel';
-      font-weight: 600;
-      color: $color-gray-light;
+    .btn-folder {
+      @include centerHorizontal;
+      background-color: white;
+      color: $color-gray-deep;
+      display: block;
+      padding: 0 $pm-bg;
+      height: $height-normal/2;
+      border: none;
+      @include borderRadius($height-normal/2);
       position: absolute;
-      right: 0;
-      top: -$pm-md;
-      font-size: 55px;
+      bottom: -$height-normal/4;
+      font-size: 12px;
+      @include boxShadowNormal(false);
+      &:hover {
+        background-color: $color-main;
+        color: white;
+      }
+    }
+    &.folded {
+      height: $pm-md;
+      padding-top: 0;
+      padding-bottom: 0;
+      .pad-search {
+        @include compatible(transform, scaleY(.0));
+      }
     }
     &.hx {
       padding: $pm-sm;
@@ -26,7 +50,8 @@
       padding: 0;
       width: 216px;
       vertical-align: top;
-      margin-right: $pm-md;
+      margin-right: $pm-sm;
+      margin-bottom: $pm-sm;
       @include compatible(transition, background-color .3s);
       &.long {
         width: 432px;
