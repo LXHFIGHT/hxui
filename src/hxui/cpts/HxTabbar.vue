@@ -1,0 +1,61 @@
+<template>
+  <div class="hx-tabbar">
+    <div :class="['item', (value === item.value) && 'selected']"
+      :key="index"
+      v-for="(item, index) in tabbarOptions"
+      v-text="item.text"
+      @click="doSelectItem(item)">
+    </div>
+  </div>
+</template>
+<script>
+/**
+ * tabbar组件, 支持v-model， 以下是参数详解：
+ * color: {string} 颜色主题，主要包含 main(default), orange(warn), green(success), error(error)
+ * onSelect: 选中选项触发事件，接收整个数组单项作为唯一一个参数
+ * options: {Array} 必填项，表示各种选项的数据
+ *  如果数组单项是对象:
+ *   optionItem.value: 选项对应的值
+ *   optionItem.text: 选中选项
+ *  如果数组单项是字符串或者数值等基本类型，那么text和value都一样是这个值
+ */
+export default {
+  data () {
+    return {
+      tabbarOptions: []
+    }
+  },
+  props: {
+    value: {},
+    color: {
+      type: String,
+      default: 'main'
+    },
+    options: {
+      type: Array,
+      required: true
+    },
+    onSelect: {
+      type: Function
+    }
+  },
+  created () {
+    this.tabbarOptions = this.options.map((v, i) => {
+      let item = {}
+      if (typeof v === 'object') {
+        item = v
+      } else {
+        item.text = v
+        item.value = v
+      }
+      return item
+    })
+  },
+  methods: {
+    doSelectItem (item) {
+      this.$emit('input', item.value)
+      this.onSelect instanceof Function && this.onSelect(item)
+    }
+  }
+}
+</script>
