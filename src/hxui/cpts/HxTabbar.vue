@@ -59,3 +59,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  @import "./../../hxui/scss/elements/hx-tabbar.scss";
+</style>
