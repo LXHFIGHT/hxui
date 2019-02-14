@@ -23,6 +23,9 @@ module.exports = {
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
+    // 团队项目原因将小驼峰和末尾不能有空格这两项要求去除
+    'camelcase': 'off',
+    'no-trailing-spaces': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
