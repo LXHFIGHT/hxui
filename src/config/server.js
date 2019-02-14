@@ -2,21 +2,23 @@
  * Created by lxhfight on 2018/8/2.
  * Email: lxhfight1@gmail.com
  * Description:
- *  服务端相关配置
+ *  服务端相关配置:
+ *    ossPrefix: 阿里云或者其他云计算提供商的图片存储桶关联的url或者其CDN关联的URL
+ *    serverPrefix: 提供数据服务端的URL
  */
+const ossPrefix = ''
 
 const testConfig = {
-  client: '',
-  server: '//car-inspection.shengxintech.com/',
-  prefix: ''
+  serverPrefix: '//car-inspection.shengxintech.com/',
+  ossPrefix
 }
 
 const prodConfig = {
-  client: '', // 配置前端项目访问域名
-  server: '//car-inspection.shengxintech.com/', // 配置前端项目
-  prefix: ''
+  serverPrefix: '//car-inspection.shengxintech.com/',
+  ossPrefix
 }
 
-const config = process.env.NODE_ENV === 'production' ? prodConfig : testConfig
+const _isDev = process.env.NODE_ENV === 'production'
+const config = _isDev ? prodConfig : testConfig
 
 export default config
