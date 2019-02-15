@@ -18,17 +18,23 @@
     <div class="pad-weeks">
       <div v-for="(item, index) in weeks"
         class="item"
-        v-text="item"
         :key="index"
         :style="`width: ${calendarWidth/7}px;`">
+        <span class="hide-sm">周</span>{{ item }}
       </div>
     </div>
     <div class="pad-dates">
       <div v-for="(item, index) in dates"
-        :class="['item', (item.isDisabled && 'disabled'), ($_isToday(item.date) && 'today')]"
+        :class="['item', (item.isDisabled ? 'disabled' : 'normal'), ($_isToday(item.date) && 'today')]"
         :key="index"
         :style="`width: ${calendarWidth/7}px; height: ${calendarHeight/6}px;`">
         <span class="date" v-text="item.day"></span>
+        <div class="pad-tags" v-if="item.tags && item.tags.length">
+          <span v-for="(tag, index) in item.tags"
+            :key="index"
+            v-text="tag.key">
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -36,13 +42,23 @@
 <script>
 const TIMESTAMP_PER_DATE = 24 * 60 * 60 * 1000
 const TIMER_FOR_RESIZE_ADJUSTMENT = 1000
-const TOTAL_DATES_IN_CALENDAR = 42 // 一个日历中显示42个格子 （6*7）
+const TOTAL_DATES_IN_CALENDAR = 42 // 一个日历中显示42个格子 （6*7)
 export default {
   data () {
     return {
-      weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+      weeks: ['日', '一', '二', '三', '四', '五', '六'],
       calendarHeight: '',
       calendarWidth: '',
+      /**
+       * dates用于存储当前日历中所有日期格子，
+       * 每一下包含的字段有：
+       *  day: Number类型，表示当前月份中第几天
+       *  isDisabled: Boolean类型，是否不可选
+       *  date: String类型，‘YYYY/MM/DD’格式的日期字符串
+       *  tags: Array类型，表示日期空格中的标签
+       *    当tag为字符串text时，则会转换为 { key: text, value: text, level: 'info' }
+       *    tag可以被点击，触发父组件传入的onSelect 方法，参数是 { date, value } 
+       */
       dates: [],
       dom: null,
       timer: null, // 用于时刻监听窗口变化的计时器
@@ -63,6 +79,12 @@ export default {
   props: {
     currentDate: {
       type: String
+    },
+    additions: {
+      type: Array,
+      default: function () {
+        return []
+      }
     }
   },
   methods: {
@@ -75,7 +97,7 @@ export default {
       this.$_initDates(year, month)
     },
     initFramework () {
-      const calendarHeight = this.dom.clientHeight - 42 - 50 // 减去顶部的距离 
+      const calendarHeight = this.dom.clientHeight - 87 // 减去顶部的距离 
       const calendarWidth = this.dom.clientWidth
       if (this.calendarHeight !== calendarHeight || this.calendarWidth !== calendarWidth) {
         this.calendarHeight = calendarHeight
@@ -93,6 +115,20 @@ export default {
       const month = new Date(date).getMonth()
       this.$_initDates(year, month + 1)
     },
+    // 用于将不同日期的标签项插入到日历中
+    $_syncAdditions () {
+      if (!this.additions.length) {
+        return
+      }
+      this.dates.forEach((v) => {
+        for (const item of this.additions) {
+          if (v.date === item.date) {
+            v.tags = item.tags
+            break
+          }
+        }
+      })
+    },
     $_initDates (year, month) {
       const date = `${year}/${month}/1`
       const week = new Date(date).getDay()
@@ -109,9 +145,13 @@ export default {
         this.dates = []
       }
       const _initLastMonth = () => {
-        const day = new Date(new Date(date).getTime() - TIMESTAMP_PER_DATE).getDate()
         for (let i = 0; i < week; i++) {
-          const dateItem = { isDisabled: true, day: (day - i) }
+          const lastDate = new Date(new Date(date).getTime() - TIMESTAMP_PER_DATE * (i + 1))
+          const dateItem = {
+            isDisabled: true,
+            day: lastDate.getDate(),
+            date: lastDate.toLocaleDateString()
+          }
           this.dates.unshift(dateItem)
         }
       }
@@ -129,6 +169,7 @@ export default {
       _setYearAndMonth()
       _initLastMonth()
       _initCurrentMonth()
+      this.$_syncAdditions()
     }
   },
   mounted () {

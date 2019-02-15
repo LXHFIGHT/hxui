@@ -46,13 +46,21 @@
   }
   .pad-dates {
     .item {
-      display: inline-block;
       border: 1px solid $color-gray;
       border-right: none;
       padding: $pm-sm;
       margin-top: -1px;
-      &:hover {
-        background-color: $color-gray-light;
+      position: relative;
+      z-index: 1;
+      float: left;
+      background-color: white;
+      transition: transform .4s, box-shadow .4s;
+      box-shadow: 0 0 0 rgba(0,0,0,.0);
+      &.normal:hover {
+        z-index: 10;
+        transform: scale(1.1, 1.1);
+        border: 1px solid $color-gray;
+        box-shadow: $shadow-bg;
         .date {
           color: white;
           background-color: $color-main;
@@ -65,12 +73,9 @@
         }
       }
       &.disabled {
-        &:hover {
-          background-color: white;
-        }
+        background-color: $color-gray-light;
         .date {
           color: $color-gray-deep;
-          background-color: $color-gray-light;
         }
       }
       &:last-child {
@@ -79,8 +84,8 @@
       .date {
         padding: 0 $pm-sm;
         border-radius: 4px;
-        background-color: $color-gray-light;
         font-size: $font-md;
+        font-weight: 800;
         line-height: $height-navbar/2;
         height: $height-navbar/2;
         width: auto;
