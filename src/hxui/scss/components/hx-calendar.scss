@@ -1,0 +1,91 @@
+@import "./../variable.scss";
+.hx-calendar {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-color: white;
+  .header, .pad-weeks {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+  .header {
+    height: $height-navbar;
+    padding: 0;
+    position: relative;
+    .btn-last-month,
+    .btn-next-month  {
+      background-color: white;
+      height: $height-navbar;
+      display: inline-block;
+      &:hover {
+        background-color: $color-gray-light;
+      }
+    }
+    .text-current-month {
+      @include centerInParent;
+    }
+    .btn-next-month  {
+      float: right;
+    }
+  }
+  .pad-weeks {
+    height: $height-normal;
+    .item {
+      height: $height-normal;
+      line-height: $height-normal;
+      text-align: center;
+      display: inline-block;
+      color: $color-heavy;
+      border: 1px solid $color-gray;
+      border-right: none;
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+  .pad-dates {
+    .item {
+      display: inline-block;
+      border: 1px solid $color-gray;
+      border-right: none;
+      padding: $pm-sm;
+      margin-top: -1px;
+      &:hover {
+        background-color: $color-gray-light;
+        .date {
+          color: white;
+          background-color: $color-main;
+        }
+      }
+      &.today {
+        .date {
+          background-color: $color-yellow;
+          color: $color-heavy;
+        }
+      }
+      &.disabled {
+        &:hover {
+          background-color: white;
+        }
+        .date {
+          color: $color-gray-deep;
+          background-color: $color-gray-light;
+        }
+      }
+      &:last-child {
+        border-right: 1px solid $color-gray;
+      }
+      .date {
+        padding: 0 $pm-sm;
+        border-radius: 4px;
+        background-color: $color-gray-light;
+        font-size: $font-md;
+        line-height: $height-navbar/2;
+        height: $height-navbar/2;
+        width: auto;
+        display: inline-block;
+      }
+    }
+  }
+}
