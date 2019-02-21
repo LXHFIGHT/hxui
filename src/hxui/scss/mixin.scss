@@ -101,6 +101,17 @@
   left: 0;
 }
 
+@mixin hxColor($bgColor, $color: white) {
+  background-color: $bgColor;
+  color: $color;
+  &:hover {
+    filter: brightness(95%);
+  }
+  &:active {
+    filter: brightness(84%);
+  }
+}
+
 @mixin hxButton($bgColor, $color: white, $height:34px) {
   height: $height;
   padding: 0 8px;

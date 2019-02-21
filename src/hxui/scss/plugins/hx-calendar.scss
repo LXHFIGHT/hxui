@@ -1,100 +1,153 @@
 @import "./../variable.scss";
-
-// 日历控件
-.hx-modal.calendar {
-  .calendar-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: white;
+.hx-calendar {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-color: white;
+  .header, .pad-weeks {
     display: block;
     width: 100%;
-    padding: $pm-md;
-    header {
-      text-align: center;
-      overflow: hidden;
-      .to-next-month, .to-last-month {
-        background-color: transparent;
-        color: $color-main;
-        font-size: $font-md;
-        height: $height-normal;
-        width: 60px;
-        text-align: center;
-        padding: 0;
-      }
-      .to-next-month {
-        float: right;
-      }
-      .to-last-month {
-        float: left;
-      }
-      .title {
-        line-height: $height-normal;
-        margin: 0 auto;
-        font-size: $font-md;
-        display: inline-block;
+    overflow: hidden;
+  }
+  .header {
+    height: $height-navbar;
+    padding: 0;
+    position: relative;
+    .btn-last-month,
+    .btn-next-month  {
+      background-color: white;
+      height: $height-navbar;
+      display: inline-block;
+      &:hover {
+        background-color: $color-gray-light;
       }
     }
-    .table-dates {
-      .header-date, .pad-dates {
-        margin: 0;
-        padding: 0;
-        li {
-          list-style: none;
-          display: inline-block;
-          float: left;
-          font-size: $font-md;
-          width: 14.28%;
-          text-align: center;
-          line-height: $height-normal;
-          &.passed {
-            color: white;
-            button {
-              color: $color-gray-deep;
-            }
-          }
-          &.disabled {
-            button {
-              color: $color-gray-deep;
-              cursor: not-allowed;
-            }
-          }
-          &.today {
-            button {
-              background-color: lighten($color-main, 25%);
-            }
-          }
-          &.selected {
-            button {
-              background-color: $color-main;
-              color: $color-white;
-            }
-          }
-          button {
-            height: $height-normal;
-            width: $height-normal;
-            @include borderRadius(50% 50%);
-            background-color: transparent;
-          }
+    .text-current-month {
+      @include centerInParent;
+    }
+    .btn-next-month  {
+      float: right;
+    }
+  }
+  .pad-weeks {
+    height: $height-normal;
+    .item {
+      height: $height-normal;
+      line-height: $height-normal;
+      text-align: center;
+      display: inline-block;
+      color: $color-heavy;
+      border: 1px solid $color-gray;
+      border-right: none;
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+  .pad-dates {
+    .item {
+      border: 1px solid $color-gray;
+      border-right: none;
+      padding: $pm-sm;
+      margin-top: -1px;
+      position: relative;
+      z-index: 1;
+      float: left;
+      background-color: white;
+      transition: transform .4s, box-shadow .4s, height .4s;
+      box-shadow: 0 0 0 rgba(0,0,0,.0);
+      overflow: hidden;
+      &.today {
+        .date {
+          background-color: $color-yellow;
+          color: $color-heavy;
         }
       }
-      .pad-dates {
-        height: 250px;
-        border-bottom: 1px solid $color-gray;
+      &.disabled {
+        background-color: $color-gray-light;
+        .date {
+          color: $color-gray-deep;
+        }
+      }
+      &:last-child {
+        border-right: 1px solid $color-gray;
+      }
+      .date {
+        padding: 0 $pm-sm;
+        border-radius: 4px;
+        font-size: $font-md;
+        font-weight: 800;
+        line-height: $height-navbar/2;
+        height: $height-navbar/2;
+        width: auto;
+        display: inline-block;
+      }
+      .pad-tags {
+        @include hcalc(calc(100% - 24px));
+        overflow: auto;
+        .tag {
+          background-color: $color-main;
+          color: white;
+          display: block;
+          width: 100%;
+          height: $height-navbar/2;
+          line-height: $height-navbar/2;
+          border-radius: $border-radius-md;
+          padding: 0 $pm-sm/2;
+          font-size: 12px;
+          margin-bottom: 3px;
+          @include nowrap;
+          @include hxColor($color-main);
+          &.error {
+            @include hxColor($color-red);
+          }
+          &.success {
+            @include hxColor($color-green);
+          }
+          &.info {
+            @include hxColor($color-gray, $color-heavy);
+          }
+          &.warn {
+            @include hxColor($color-orange);
+          }
+        }
       }
     }
   }
 }
 
 @media screen and (min-width: 640px) {
-  .hx-modal.calendar {
-    .calendar-content {
-      width: 50%;
-      max-width: 400px;
-      height: 380px;
-      @include centerInParent;
-      @include borderRadius($border-radius-bg);
-      @include boxShadow(0 0 15px rgba(0,0,0,.3));
+  .hx-calendar {
+    .pad-dates {
+      .item {
+        &.normal:hover {
+          z-index: 10;
+          transform: scale(1.1, 1.1);
+          border: 1px solid $color-gray;
+          box-shadow: $shadow-bg;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .hx-calendar {
+    .pad-dates {
+      .item {
+        padding: $pm-sm/2;
+        &.normal:hover {
+          transform: scale(1, 1);
+          box-shadow: none;
+        }
+        .pad-tags {
+          @include hcalc(calc(100% - 24px));
+          overflow: auto;
+          .tag {
+            height: $height-normal/2;
+            line-height: $height-normal/2;
+          }
+        }
+      }
     }
   }
 }

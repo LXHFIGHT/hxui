@@ -2,7 +2,7 @@
   <div class="hx-calendar" ref="hxCalendar">
     <div class="header">
       <button class="btn-last-month"
-        @click="toLastMonth"
+        @click="jumpToLastMonth"
         :style="`width: ${calendarWidth/7}px`">
         &lt; {{ last.month }}月
       </button>
@@ -10,7 +10,7 @@
         {{ current.year }}年 {{ current.month }}月
       </span>
       <button class="btn-next-month"
-        @click="toNextMonth"
+        @click="jumpToNextMonth"
         :style="`width: ${calendarWidth/7}px`">
         {{ next.month }}月 &gt;
       </button>
@@ -32,6 +32,8 @@
         <div class="pad-tags" v-if="item.tags && item.tags.length">
           <span v-for="(tag, index) in item.tags"
             :key="index"
+            @click="doSelectTag(tag.value)"
+            :class="['tag', (tag.level || '')]"
             v-text="tag.key">
           </span>
         </div>
@@ -85,16 +87,39 @@ export default {
       default: function () {
         return []
       }
+    },
+    // 当用户点击上一个月的时候所触发的事件
+    toLastMonth: {
+      type: Function,
+      default: function () {
+        return () => {}
+      }
+    },
+    // 当用户点击下一个月的时候所触发的事件
+    toNextMonth: {
+      type: Function,
+      default: function () {
+        return () => {}
+      }
+    },
+    // 当用户选择日历中任何一个标签的触发点击事件
+    doSelectTag: {
+      type: Function,
+      default: function () {
+        return () => {}
+      }
     }
   },
   methods: {
-    toLastMonth () {
+    jumpToLastMonth () {
       const { year, month } = this.last
       this.$_initDates(year, month)
+      this.toLastMonth({ year, month })
     },
-    toNextMonth () {
+    jumpToNextMonth () {
       const { year, month } = this.next
       this.$_initDates(year, month)
+      this.toNextMonth({ year, month })
     },
     initFramework () {
       const calendarHeight = this.dom.clientHeight - 87 // 减去顶部的距离 
@@ -120,8 +145,15 @@ export default {
       if (!this.additions.length) {
         return
       }
+      const tags = this.additions.map(v => {
+        const { tags } = v
+        v.tags = typeof tags === 'string' 
+          ? { key: tags, value: tags, level: 'info' }
+          : tags
+        return v
+      })
       this.dates.forEach((v) => {
-        for (const item of this.additions) {
+        for (const item of tags) {
           if (v.date === item.date) {
             v.tags = item.tags
             break
