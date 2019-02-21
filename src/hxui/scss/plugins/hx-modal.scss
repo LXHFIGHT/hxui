@@ -48,9 +48,12 @@
   &.fatal { @include levelStyle($color-dark); }
   // 模态框内容版
   &>.content{
-    top: 15%;
     background-color: white;
-    width: 60%;                                     // 默认样式为屏幕宽度 60%
+    width: 60%;      
+    top: 50%;
+    max-width: 80%;
+    max-height: 90%;
+    overflow-y: auto;                                // 默认样式为屏幕宽度 60%
     min-width: 300px;
     padding: $pm-md;
     @include centerHorizontal;

@@ -2,7 +2,7 @@
   "name": "hxui-vue",
   "version": "1.0.0",
   "description": "a simple and efficient component library for Vue",
-  "author": "lxhfight <lxhfight51@outlook.com>",
+  "author": "lxhfight <lxhfight1@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -11,7 +11,10 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "package:dev": "webpack --config build/webpack.dev.conf.js",
+    "package:prod": "webpack --config build/build.js",
+    "package": "npm run package:prod && npm publish && npm run build"
   },
   "dependencies": {
     "text-loader": "0.0.1",
