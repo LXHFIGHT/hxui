@@ -14,6 +14,10 @@
   background-color: rgba(255, 255, 255, .4);
 }
 
+$opacity-low: .55;
+$opacity-height: 1.0;
+$height-second-level: $height-regular + 4px;
+
 // 左侧侧边栏样式
 .hx-sidebar {
   height: 100%;
@@ -55,27 +59,32 @@
   }
   .group-btn-sidebar{
     width: 100%;
-    background-color: rgba(255,255,255, .1);
     display: block;
     @include compatible(transition, .4s);
     margin-bottom: 1px;
     &:hover {
-      background-color: rgba(255,255,255, .2);
+      background-color: rgba(253, 69, 69, 0.1);
     }
+    // 一级菜单按钮
     button.first-level {
       display: block;
+      height: $height-navbar;
       &.selected.no-children {
-        background-color: rgba(255,255,255, .3);
+        background-color: rgba(255,255,255, .1);
         color: white;
+        opacity: $opacity-height;
         &:hover {
           background-color: $color-main;
         }
+      }
+      &.no-children:hover {
+        opacity: $opacity-height;
       }
       &.no-children:after {
         content: '';
       }
       .icon {
-        opacity: .3;
+        opacity: $opacity-low;
         float: right;
         margin-right: $pm-sm;
         margin-top: $pm-sm/2;
@@ -87,15 +96,20 @@
         @include compatible(transform, rotate(90deg));
       }
     }
+    // 二级普通菜单按钮
     button {
       font-size: 13px;
       width: 100%;
       text-align: left;
       padding-left: $pm-md;
-      height: 42px;
+      height: $height-second-level;
       color: $color-gray-light;
       background-color: transparent;
-      @include compatible(transition, .4s);
+      opacity: $opacity-low;
+      transition: all .3s;
+      &:hover {
+        opacity: $opacity-height;
+      }
       &.open:before{
         @include compatible(transform, rotate(90deg));
       }
@@ -110,16 +124,16 @@
       }
     }
     &.selected button{
-      background-color: rgba(255,255,255, .3);
+      background-color: rgba(255,255,255, .15);
       color: white;
       &:hover {
         background-color: $color-main;
       }
     }
     .pad-children {
-      padding: $pm-xs $pm-xs 0 $pm-xs;
+      padding: $pm-xs $pm-xs 0 0;
       button {
-        @include borderRadius($border-radius-md);
+        @include borderRadiusRight($height-second-level/2);
         margin-bottom: $pm-xs;
       }
       button {
@@ -127,11 +141,12 @@
           background-color: rgba(255, 255, 255, .1);
         }
         &.selected {
-          background-color: rgba(255, 255, 255, .3);
+          opacity: $opacity-height;
+          background-color: rgba(255, 255, 255, .15);
           color: white;
         }
         &.selected:hover {
-          background-color: $color-main;
+          background-color: rgba(255, 255, 255, .25);
         }
       }
     }
