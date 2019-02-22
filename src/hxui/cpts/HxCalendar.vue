@@ -145,21 +145,28 @@ export default {
       if (!this.additions.length) {
         return
       }
+      const _isDateMatch = (dateAStr, dateBStr) => {
+        const dateA = new Date(dateAStr.replace(/-/g, '/'))
+        const dateB = new Date(dateBStr.replace(/-/g, '/'))
+        return dateA.getTime() === dateB.getTime()
+      }
       const tags = this.additions.map(v => {
         const { tags } = v
-        v.tags = typeof tags === 'string' 
+        v.tags = typeof tags === 'string'
           ? { key: tags, value: tags, level: 'info' }
           : tags
         return v
       })
       this.dates.forEach((v) => {
-        for (const item of tags) {
-          if (v.date === item.date) {
-            v.tags = item.tags
+        delete v.tags
+        for (let i = 0; i < tags.length; i++) {
+          if (_isDateMatch(v.date, tags[i].date)) {
+            v.tags = tags[i].tags
             break
           }
         }
       })
+      this.$forceUpdate()
     },
     $_initDates (year, month) {
       const date = `${year}/${month}/1`
@@ -214,6 +221,22 @@ export default {
   },
   beforeDestroy () {
     clearInterval(this.timer)
+  },
+  watch: {
+    additions: { 
+      handler (newValue, oldValue) {
+        let isDifferent = false
+        for (let i = 0; i < newValue.length; i++) {
+          if (oldValue[i] !== newValue[i]) {
+            isDifferent = true
+          }
+        }
+        if (isDifferent) {
+          this.$_syncAdditions()
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>

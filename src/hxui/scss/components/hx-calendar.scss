@@ -54,18 +54,9 @@
       z-index: 1;
       float: left;
       background-color: white;
-      transition: transform .4s, box-shadow .4s;
+      transition: transform .4s, box-shadow .4s, height .4s;
       box-shadow: 0 0 0 rgba(0,0,0,.0);
-      &.normal:hover {
-        z-index: 10;
-        transform: scale(1.1, 1.1);
-        border: 1px solid $color-gray;
-        box-shadow: $shadow-bg;
-        .date {
-          color: white;
-          background-color: $color-main;
-        }
-      }
+      overflow: hidden;
       &.today {
         .date {
           background-color: $color-yellow;
@@ -90,6 +81,72 @@
         height: $height-navbar/2;
         width: auto;
         display: inline-block;
+      }
+      .pad-tags {
+        margin-top: $pm-sm/2;
+        @include hcalc(calc(100% - 28px));
+        overflow: auto;
+        .tag {
+          background-color: $color-main;
+          color: white;
+          display: block;
+          width: 100%;
+          min-height: $height-navbar/2;
+          line-height: $height-navbar/2 - $pm-sm;
+          border-radius: $border-radius-md;
+          padding: $pm-sm/2;
+          font-size: 12px;
+          margin-bottom: 3px;
+          @include hxColor($color-main);
+          &.error {
+            @include hxColor($color-red);
+          }
+          &.success {
+            @include hxColor($color-green);
+          }
+          &.info {
+            @include hxColor($color-gray, $color-heavy);
+          }
+          &.warn {
+            @include hxColor($color-orange);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-calendar {
+    .pad-dates {
+      .item {
+        &.normal:hover {
+          z-index: 10;
+          transform: scale(1.1, 1.1);
+          border: 1px solid $color-gray;
+          box-shadow: $shadow-bg;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 640px) {
+  .hx-calendar {
+    .pad-dates {
+      .item {
+        padding: $pm-sm/2;
+        &.normal:hover {
+          transform: scale(1, 1);
+          box-shadow: none;
+        }
+        .pad-tags {
+          @include hcalc(calc(100% - 24px));
+          overflow: auto;
+          .tag {
+            height: $height-normal/2;
+            line-height: $height-normal/2;
+          }
+        }
       }
     }
   }
