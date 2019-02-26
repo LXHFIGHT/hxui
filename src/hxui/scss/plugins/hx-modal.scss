@@ -50,13 +50,12 @@
   &>.content{
     background-color: white;
     width: 60%;      
-    top: 50%;
     max-width: 80%;
     max-height: 90%;
     overflow-y: auto;                                // 默认样式为屏幕宽度 60%
     min-width: 300px;
     padding: $pm-md;
-    @include centerHorizontal;
+    @include centerInParent;
     @include borderRadius($border-radius-md);
     @include boxShadow(0 24px $pm-bg -16px rgba(0,0,0,.4));
     // 模态框头部

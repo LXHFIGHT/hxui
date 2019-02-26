@@ -14,7 +14,7 @@
         <input type="password" class="input-username" placeholder="" v-model="userInfo.password" @keyup="keyForLogin()">
       </div>
       <div class="row">
-        <button :class="!isLogining ? 'hx-button btn-main' : 'hx-button btn-main loading'"
+        <button :class="!isLogining ? 'hx-button main btn-main' : 'hx-button btn-main loading'"
                 type="button"
                 :disabled="isLogining"
                 @click="doLogin()" >
