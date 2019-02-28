@@ -56,6 +56,13 @@ const router = new Router({
       ]
     },
     {
+      path: '/admin',
+      name: 'AdminRoot',
+      component: resolve => require(['@/containers/admin/Index']),
+      meta: { keepAlive: true },
+      children: []
+    },
+    {
       path: '/login',
       name: 'login',
       component: resolve => require(['@/containers/enter/Login'], resolve),
