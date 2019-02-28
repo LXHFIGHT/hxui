@@ -17,7 +17,7 @@
   cursor: default;
   @include borderRadius(2px);
   &.material {
-    box-shadow: $box-shadow-material;
+    box-shadow: $shadow-material;
   }
   &.main    {  @include hxTag($color-main);  }
   &.gray    {  @include hxTag(darken($color-gray-deep, 14%));  }

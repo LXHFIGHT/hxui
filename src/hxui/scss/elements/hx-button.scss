@@ -27,7 +27,7 @@
     }
   }
   &.material {
-    box-shadow: $box-shadow-material;
+    box-shadow: $shadow-material;
   }
   &.loading {
     @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);
