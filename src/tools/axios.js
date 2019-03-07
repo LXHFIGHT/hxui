@@ -8,7 +8,7 @@
 import axios from 'axios'
 import { session } from './storage'
 import { queryString } from './object'
-import config from './../config/server'
+import { serverPrefix } from './../config'
 
 /**
  * 检查返回数据是否有问题
@@ -32,7 +32,7 @@ const fetch = (method, path, data) => {
     'Content-Type': contentType,
     'Authorization': `Bearer ${token}`
   }
-  const url = `${config.serverPrefix}${path}`
+  const url = `${serverPrefix}${path}`
   const bundle = (method === 'get' || method === 'delete') ? { params: data } : data
   return axios[method](url, bundle, {headers})
     .then(res => {
@@ -46,7 +46,7 @@ const fetch = (method, path, data) => {
 const upload = (path, data) => {
   let token = session.get(session.KEY_USER_TOKEN)
   const contentType = 'multipart/form-data'
-  const url = `${config.serverPrefix}${path}`
+  const url = `${serverPrefix}${path}`
   const headers = {
     'Content-Type': contentType,
     'Authorization': `Bearer ${token}`
@@ -62,7 +62,7 @@ const upload = (path, data) => {
 
 export default {
   doOpen (path, data, mode = '_self') {
-    const url = `${config.serverPrefix}${path}${queryString(data)}`
+    const url = `${serverPrefix}${path}${queryString(data)}`
     window.open(url, mode)
   },
   doPost (path, data) {

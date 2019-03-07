@@ -78,7 +78,7 @@
 
 <script>
 import axios from './../../tools/axios'
-import project from './../../config/project'
+import { project } from './../../config'
 
 export default {
   data () {

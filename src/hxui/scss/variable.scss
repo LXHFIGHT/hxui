@@ -143,3 +143,11 @@ $shadow-material:
   .col-bg-12 { width: 100%;     }
   .hide-bg { display: none!important; }
 }
+
+// 定义提供全局使用的动画样式
+// 呼吸动画
+@keyframes breathe {
+  0% { transform: scale(1.0, 1.0); }
+  50% { transform: scale(1.2, 1.2); }
+  100% { transform: scale(1.0, 1.0); }
+}

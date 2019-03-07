@@ -49,7 +49,7 @@
 
 <script>
 import menus, { restoreMenu } from '../../router/menus'
-import project from '../../config/project'
+import { project } from '../../config'
 export default {
   data () {
     return {

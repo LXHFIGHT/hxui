@@ -18,54 +18,54 @@ const router = new Router({
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['@/containers/enter/Home'], resolve),
+          component: resolve => require(['@/views/enter/Home'], resolve),
           meta: { keepAlive: true },
           children: [
             {
               path: '/',
               name: 'welcome',
-              component: resolve => require(['@/containers/docs/Welcome'], resolve)
+              component: resolve => require(['@/views/docs/Welcome'], resolve)
             },
             {
               path: '/hx-image',
               name: 'hx-image',
-              component: resolve => require(['@/containers/docs/Image'], resolve)
+              component: resolve => require(['@/views/docs/Image'], resolve)
             },
             {
               path: '/hx-button',
               name: 'hx-button',
-              component: resolve => require(['@/containers/docs/Button'], resolve)
+              component: resolve => require(['@/views/docs/Button'], resolve)
             }
           ]
         },
         {
           path: '/list',
           name: 'list',
-          component: resolve => require(['@/containers/layout/List'], resolve)
+          component: resolve => require(['@/views/layout/List'], resolve)
         },
         {
           path: '/components',
           name: 'components',
-          component: resolve => require(['@/containers/layout/Components'], resolve)
+          component: resolve => require(['@/views/layout/Components'], resolve)
         },
         {
           path: '/form',
           name: 'form',
-          component: resolve => require(['@/containers/form/Form'], resolve)
+          component: resolve => require(['@/views/form/Form'], resolve)
         }
       ]
     },
     {
       path: '/admin',
       name: 'AdminRoot',
-      component: resolve => require(['@/containers/admin/Index']),
+      component: resolve => require(['@/views/admin/Index']),
       meta: { keepAlive: true },
       children: []
     },
     {
       path: '/login',
       name: 'login',
-      component: resolve => require(['@/containers/enter/Login'], resolve),
+      component: resolve => require(['@/views/enter/Login'], resolve),
       meta: { keepAlive: true }
     }
   ]
