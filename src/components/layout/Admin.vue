@@ -48,9 +48,10 @@
 </template>
 
 <script>
-import menus, { restoreMenu } from '../../router/menus'
+import menus, { restoreMenu } from '../../config/menus'
 import { project } from '../../config'
 export default {
+  name: 'admin',
   data () {
     return {
       menus,

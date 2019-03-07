@@ -13,9 +13,10 @@
 
 <script>
 import HxNavbar from './../../hxui/cpts/HxNavbar.vue'
-import menus from './../../router/menus'
+import menus from './../../config/menus'
 import logo from './../../assets/img/logo.png'
 export default {
+  name: 'front-page',
   components: {
     HxNavbar
   },

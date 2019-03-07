@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { initMenus } from './menus'
-// import Main from '@/components/admin/Admin'
-import Info from '@/components/info/Info'
+import { initMenus } from './config/menus'
 
 Vue.use(Router)
 
@@ -12,7 +10,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Root',
-      component: Info,
+      component: resolve => require(['@/views/Index'], resolve),
       meta: { keepAlive: true },
       children: [
         {
@@ -47,20 +45,8 @@ const router = new Router({
           path: '/components',
           name: 'components',
           component: resolve => require(['@/views/layout/Components'], resolve)
-        },
-        {
-          path: '/form',
-          name: 'form',
-          component: resolve => require(['@/views/form/Form'], resolve)
         }
       ]
-    },
-    {
-      path: '/admin',
-      name: 'AdminRoot',
-      component: resolve => require(['@/views/admin/Index']),
-      meta: { keepAlive: true },
-      children: []
     },
     {
       path: '/login',

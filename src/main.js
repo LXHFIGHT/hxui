@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import { sync } from 'vuex-router-sync'
-import router from './router'
+import router from './router.js'
 import store from './store'
 import HXUI from './hxui/plugins/index'
 

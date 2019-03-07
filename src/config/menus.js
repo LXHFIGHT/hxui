@@ -8,52 +8,41 @@
 const menus = [
   {
     name: 'Style',
-    icon: 'list',
-    selected: true,
     children: [
       {
         name: '展示组件',
         state: '/components',
-        icon: 'th',
-        selected: false
+        icon: 'th'
       },
       {
         name: '列表页面',
         state: '/list',
-        icon: 'list',
-        selected: false
+        icon: 'list'
       }
     ]
   },
   {
     name: 'Components',
-    state: '/form',
-    selected: false,
     children: [
       {
         name: '反馈组件',
-        state: '/components',
-        icon: 'th',
-        selected: false
+        state: '/response',
+        icon: 'th'
       }
     ]
   },
   {
     name: 'Plugins',
-    state: '/form',
-    selected: false,
     children: [
       {
         name: 'HXUI全局对象',
-        state: '/components',
-        icon: 'th',
-        selected: false
+        state: '/global',
+        icon: 'th'
       },
       {
         name: '插件集合',
         state: '/list',
-        icon: 'list',
-        selected: false
+        icon: 'list'
       }
     ]
   }

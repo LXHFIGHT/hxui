@@ -17,6 +17,7 @@ export const project = {
   name: 'HXUI For Vue', // 项目名
   logo, // 项目logo图片URL
   subject: '账号', // 项目围绕主体名
+  isAdmin: 1, // 前端项目的模式是否为管理后台： true 管理后台界面风格布局  false 官网首页界面风格布局 
   login: {
     title: '登录管理后台', // 登录界面标题
     background: bgLogin
