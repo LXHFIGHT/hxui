@@ -7,16 +7,21 @@
 
 const menus = [
   {
+    name: 'home',
+    state: '/',
+    icon: 'home'
+  },
+  {
     name: 'Style',
     children: [
       {
         name: '展示组件',
-        state: '/components',
+        state: '/style/display',
         icon: 'th'
       },
       {
         name: '列表页面',
-        state: '/list',
+        state: '/style/list',
         icon: 'list'
       }
     ]
@@ -26,7 +31,7 @@ const menus = [
     children: [
       {
         name: '反馈组件',
-        state: '/response',
+        state: '/components/response',
         icon: 'th'
       }
     ]
@@ -36,12 +41,12 @@ const menus = [
     children: [
       {
         name: 'HXUI全局对象',
-        state: '/global',
+        state: '/plugins/global',
         icon: 'th'
       },
       {
         name: '插件集合',
-        state: '/list',
+        state: '/plugins/list',
         icon: 'list'
       }
     ]

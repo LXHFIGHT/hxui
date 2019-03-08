@@ -10,13 +10,13 @@ const router = new Router({
     {
       path: '/',
       name: 'Root',
-      component: resolve => require(['@/views/Index'], resolve),
+      component: resolve => require(['@/views/index'], resolve),
       meta: { keepAlive: true },
       children: [
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['@/views/enter/Home'], resolve),
+          component: resolve => require(['@/views/home'], resolve),
           meta: { keepAlive: true },
           children: [
             {
@@ -37,21 +37,36 @@ const router = new Router({
           ]
         },
         {
-          path: '/list',
-          name: 'list',
-          component: resolve => require(['@/views/layout/List'], resolve)
+          path: '/style/list',
+          name: 'styleList',
+          component: resolve => require(['@/views/style/list'], resolve)
         },
         {
-          path: '/components',
-          name: 'components',
-          component: resolve => require(['@/views/layout/Components'], resolve)
+          path: '/style/display',
+          name: 'styleDisplay',
+          component: resolve => require(['@/views/style/display'], resolve)
+        }, 
+        {
+          path: '/components/response',
+          name: 'componentsResponse',
+          component: resolve => require(['@/views/components/response'], resolve)
+        },
+        {
+          path: '/plugins/list',
+          name: 'pluginsList',
+          component: resolve => require(['@/views/plugins/list'], resolve)
+        },
+        {
+          path: '/plugins/global',
+          name: 'pluginsGlobal',
+          component: resolve => require(['@/views/plugins/global'], resolve)
         }
       ]
     },
     {
       path: '/login',
       name: 'login',
-      component: resolve => require(['@/views/enter/Login'], resolve),
+      component: resolve => require(['@/views/login'], resolve),
       meta: { keepAlive: true }
     }
   ]

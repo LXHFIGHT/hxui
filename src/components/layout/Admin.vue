@@ -13,7 +13,7 @@
           <div class="group-btn-sidebar"
                v-for="menu in menus"
                v-bind:key="menu.state">
-            <button :class="`first-level ${menu.selected ? 'selected' : ''} ${ !menu.children ? 'no-children' : ''}`"
+            <button :class="['first-level', menu.selected && 'selected', !menu.children && 'no-children']"
                     @click="doSelect(menu)">
               <span v-text="menu.name"></span>
               <img v-if="menu.children" class="icon" src="./../../hxui/img/icon/icon-caret-right.png" alt="">
@@ -71,10 +71,15 @@ export default {
         this.$router.push(menu.state)
       } else {
         menu.selected = !menu.selected
+        console.log('UPDATE: ', menu.selected)
+        this.$forceUpdate()
       }
     },
     toUserInfo () {},
     doLogout () {}
+  },
+  created () {
+    console.log('选中的菜单：', menus)
   }
 }
 </script>

@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import axios from './../../tools/axios'
-import { project } from './../../config'
+import axios from '@/tools/axios'
+import { project } from '@/config'
 
 export default {
   data () {
@@ -133,5 +133,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "./../../hxui/scss/index.scss";
+  @import "./../hxui/scss/index.scss";
 </style>

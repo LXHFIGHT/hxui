@@ -1,5 +1,5 @@
 <template>
   <div>
-    Form表单组件库
+    样式列表
   </div>
 </template>

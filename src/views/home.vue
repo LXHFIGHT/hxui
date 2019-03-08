@@ -10,9 +10,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import HxCatalog from './../../hxui/cpts/HxCatalog'
+import HxCatalog from '@/hxui/cpts/HxCatalog'
 export default {
   components: {
     HxCatalog
@@ -62,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "./../../hxui/scss/variable.scss";
+  @import "./global.scss";
   .bg-gray {
     background-color: #f6f7f7;
   }

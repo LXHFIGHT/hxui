@@ -1,5 +1,5 @@
 <template>
   <div>
-    通用列表组件
+    HXUI全局对象
   </div>
 </template>
