@@ -6,7 +6,7 @@
   display: inline-block;
   float: left;
   position: relative;
-  @include wcalc(calc(100% - 200px)); // 180px 对应 $width-sidebar
+  width: calc(100% - #{$width-sidebar}); // 180px 对应 
 }
 
 @media screen and (max-width: 640px) {

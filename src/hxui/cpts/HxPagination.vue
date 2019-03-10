@@ -1,7 +1,7 @@
 <template>
   <!-- 组件封装： 分页组件
     获取参数：
-    totalPage: [Number] 当前列表页总页数
+    total: [Number] 当前列表页总页数
     doRequest: [Function] 发起请求回调方法
   -->
   <div class="hx-pagination">
@@ -16,8 +16,8 @@
     </select>
     <a :class="['fa fa-caret-left', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
        @click="requestListByPage(searchInfo.page - 1)"></a>
-    <span >{{searchInfo.page}} / {{totalPage}}</span>
-    <a :class="['fa fa-caret-right', (searchInfo.page === totalPage || !totalPage) ? 'hx-invisible' : '']"
+    <span >{{searchInfo.page}} / {{total}}</span>
+    <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
        @click="requestListByPage(searchInfo.page + 1)"></a>
     <input type="text"
            v-model="toPage">
@@ -47,7 +47,7 @@ export default {
       required: true
     },
     // 总页数
-    totalPage: {
+    total: {
       type: Number,
       required: true
     },
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     requestListByPage (page = 1) {
-      if (page > this.totalPage || page < 1 || isNaN(page)) {
+      if (page > this.total || page < 1 || isNaN(page)) {
         alert('所选页面超过范围')
         return
       }

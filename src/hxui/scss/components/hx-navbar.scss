@@ -11,7 +11,7 @@ $height-navbar: 60px;
   z-index: 10;
   position: relative;
   @include boxShadow($shadow-md);
-  .nav-logo {
+  .nav-left, .nav-right {
     display: inline-block;
     height: $height-navbar;
     position: relative;
@@ -27,6 +27,10 @@ $height-navbar: 60px;
       margin-left: $pm-sm;
       font-weight: 800;
     }
+  }
+  .nav-right {
+    float: right;
+    line-height: $height-regular;
   }
   .nav-buttons {
     float: right;
@@ -63,6 +67,18 @@ $height-navbar: 60px;
     display: block;
     width: 100%;
     overflow-y: auto;
+  }
+  &.admin {
+    box-shadow: none;
+    border-bottom: 1px solid $color-gray;
+    .nav-left {
+      padding-left: $height-navbar/4 + $height-normal;
+      display: inline-block;
+      .logo {
+        border-radius: 50% 50%;
+        margin-right: $pm-sm/2;
+      }
+    }
   }
 }
 

@@ -17,6 +17,7 @@
 $opacity-low: .55;
 $opacity-height: 1.0;
 $height-second-level: $height-regular + 4px;
+$color-light-font: $color-heavy;
 
 // 左侧侧边栏样式
 .hx-sidebar {
@@ -180,7 +181,6 @@ $height-second-level: $height-regular + 4px;
 
     }
   }
-
   .version {
     display: block;
     height: 30px;
@@ -189,6 +189,43 @@ $height-second-level: $height-regular + 4px;
     text-align: center;
     color: rgba(255,255,255,.3);
     font-size: $font-sm;
+  }
+  &.light {
+    background-color: white;
+    .group-btn-sidebar {
+      color: $color-heavy;
+      &:hover {
+        background-color: $color-gray-light;
+      }
+      .first-level {
+        color: $color-dark;
+        font-size: $font-md;
+        &.selected.no-children {
+          color: $color-main;
+          font-weight: 600;
+          background-color: $color-main-light;
+          &:hover {
+            color: $color-main;
+            background-color: $color-main-light;
+          }
+        }
+      }
+      .pad-children {
+        button {
+          color: $color-dark;
+          &.selected {
+            background-color: $color-main-light;
+            color: $color-main;
+            &:hover {
+              background-color: $color-main-light;
+            }
+          }
+          &:hover {
+            background-color: $color-gray;
+          }
+        }
+      }
+    }
   }
 }
 

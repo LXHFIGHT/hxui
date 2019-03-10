@@ -1,68 +1,91 @@
 <template>
   <div class="hx-block">
-    <!-- HXUI对于管理后台的应用 -->
-    <div :class="showSidebar ? 'hx-sidebar show' : 'hx-sidebar'">
-      <div class="sidebar">
-        <div class="project-info">
-          <img class="logo"
-               :src="project.logo">
-          <span class="text-name"
-                v-text="project.name"></span>
-        </div>
-        <div class="sidebar-buttons">
-          <div class="group-btn-sidebar"
-               v-for="menu in menus"
-               v-bind:key="menu.state">
-            <button :class="['first-level', menu.selected && 'selected', !menu.children && 'no-children']"
-                    @click="doSelect(menu)">
-              <span v-text="menu.name"></span>
-              <img v-if="menu.children" class="icon" src="./../../hxui/img/icon/icon-caret-right.png" alt="">
-            </button>
-            <div class="pad-children"
-                 v-if="menu.selected && menu.children">
-              <button :class="`fa fa-${child.icon} ${child.selected && 'selected'}`"
-                      v-for="child in menu.children"
-                      v-bind:key="child.state"
-                      @click="doSelect(child)"
-                      v-text="child.name"></button>
+    <hx-navbar
+      :isAdmin="true"
+      :logo="project.logo"
+      :title="project.name">
+      <div slot="right">快乐豪</div>
+    </hx-navbar>
+    <div class="hx-main">
+      <!-- HXUI对于管理后台的应用 -->
+      <div :class="['hx-sidebar',
+        (project.theme === Themes.LIGHT && 'light'),
+        showSidebar && 'show']">
+        <div class="sidebar ">
+          <div class="sidebar-buttons">
+            <div class="group-btn-sidebar"
+                v-for="menu in menus"
+                v-bind:key="menu.state">
+              <button :class="['first-level', menu.selected && 'selected', !menu.children && 'no-children']"
+                      @click="doSelect(menu)">
+                <span v-text="menu.name"></span>
+                <img v-if="menu.children"
+                  class="icon" 
+                  :src="iconCaretRight" alt="">
+              </button>
+              <div class="pad-children"
+                  v-if="menu.selected && menu.children">
+                <button :class="`fa fa-${child.icon} ${child.selected && 'selected'}`"
+                        v-for="child in menu.children"
+                        v-bind:key="child.state"
+                        @click="doSelect(child)"
+                        v-text="child.name"></button>
+              </div>
             </div>
           </div>
+          <div class="footer-btn-sidebar">
+            <button class="fa fa-user"
+              @click="toUserInfo()"></button>
+            <button class="fa fa-sign-out" @click="doLogout()"></button>
+          </div>
+          <div class="version" v-text="project.version"></div>
         </div>
-        <div class="footer-btn-sidebar">
-          <button class="fa fa-user"
-            @click="toUserInfo()"></button>
-          <button class="fa fa-sign-out" @click="doLogout()"></button>
-        </div>
-        <div class="version" v-text="project.version"></div>
       </div>
+    <!-- 主要内容区 -->
+    <div class="hx-main" @click="doHideSidebar">
+        <router-view></router-view>
     </div>
+    </div>
+    
     <!-- 移动版切换侧边栏按钮 -->
     <button :class="['btn-show-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
       @click="toggleSidebar()">
     </button>
-    <!-- 主要内容区 -->
-    <div class="hx-main">
-        <router-view></router-view>
-    </div>
+    <!-- PC版切换侧边栏宽窄模式的按钮 -->
+    <button :class="['btn-toggle-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
+      @click="toggleSidebar()">
+    </button>
   </div>
 </template>
 
 <script>
 import menus, { restoreMenu } from '../../config/menus'
 import { project } from '../../config'
+import { Themes } from './../../config/const'
+import HxNavbar from './../../hxui/cpts/HxNavbar'
+import iconRight from './../../hxui/img/icon/icon-caret-right.png'
+import iconRightForLight from './../../hxui/img/icon/icon-caret-right-gray.png'
 export default {
   name: 'admin',
+  components: {
+    HxNavbar
+  },
   data () {
     return {
       menus,
       project,
+      logo: project.logo,
       showSidebar: false,
-      selectedMenu: null
+      Themes,
+      iconCaretRight: ''
     }
   },
   methods: {
     toggleSidebar () {
       this.showSidebar = !this.showSidebar
+    },
+    doHideSidebar () {
+      this.showSidebar = false
     },
     doSelect (menu) {
       if (menu.state) {
@@ -79,10 +102,9 @@ export default {
     doLogout () {}
   },
   created () {
-    console.log('选中的菜单：', menus)
+    this.iconCaretRight = (project.theme === Themes.LIGHT 
+      ? iconRightForLight
+      : iconRight)
   }
 }
 </script>
-
-<style>
-</style>

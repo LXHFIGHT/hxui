@@ -1,7 +1,7 @@
 <template>
-  <nav class="hx-nav">
-    <div class="hx-container">
-      <div class="nav-logo">
+  <nav :class="['hx-nav', isAdmin && 'admin']">
+    <div :class="isAdmin ? '' : 'hx-container'">
+      <div class="nav-left">
         <img class="logo" :src="logo" alt="">
         <span class="title" v-if="title" v-text="title"></span>
       </div>
@@ -16,7 +16,11 @@
           </div>
         </div>
       </div>
-      <button :class="['btn-toggle hide-md hide-bg', (showNavbuttons && 'on')]" @click="doToggle"></button>
+      <div class="nav-right">
+        <slot name="right"></slot>
+      </div>
+      <button v-if="menus" :class="['btn-toggle hide-md hide-bg', (showNavbuttons && 'on')]"
+        @click="doToggle"></button>
     </div>
   </nav>
 </template>
@@ -31,14 +35,16 @@ export default {
   },
   props: {
     menus: {
-      type: Array,
-      required: true
+      type: Array
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false
     },
     title: String,
     logo: String,
     onSelect: {
-      type: Function,
-      required: true
+      type: Function
     }
   },
   methods: {
