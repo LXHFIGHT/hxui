@@ -1,5 +1,5 @@
 <template>
-  <button :class="['hx-button', type]">
+  <button :class="['hx-button', type]" @click="doClick">
     <slot></slot>
   </button>
 </template>
@@ -12,6 +12,11 @@ export default {
   props: {
     type: {
       type: String
+    }
+  },
+  methods: {
+    doClick () {
+      this.$emit('click')
     }
   }
 }
