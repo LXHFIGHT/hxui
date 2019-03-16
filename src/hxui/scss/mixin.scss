@@ -114,11 +114,11 @@
 
 @mixin hxButton($bgColor, $color: white, $height:34px) {
   height: $height;
-  padding: 0 8px;
+  padding: 0 10px;
   background-color: $bgColor;
   font: {
     weight: 400;
-    size: 13px;
+    size: 14px;
   }
   color: $color;
   border: 1px solid $bgColor;
@@ -136,7 +136,7 @@
   }
 }
 
-@mixin hxTag($bgColor, $color: white, $height:34px) {
+@mixin hxTag($bgColor, $color: white, $height: 34px) {
   height: $height;
   padding: 0 8px;
   background-color: $bgColor;

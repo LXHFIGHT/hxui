@@ -20,29 +20,14 @@ export default {
     return {
       menus: [
         {
-          key: '组件',
+          key: '组件介绍',
+          disabled: true,
           children: [
             '基本',
             { key: 'Button 按钮', value: 'hx-button' },
             { key: 'Image 图片', value: 'hx-image' },
             '表单',
             { key: 'Input 输入框', value: 'hx-input' },
-            '插件',
-            { key: 'ImagePreviewer 图片预览', value: 'hx-image-previewer' }
-          ]
-        },
-        {
-          key: '一级标题2',
-          children: [
-            { key: '二级标题1', value: 'hx-button' },
-            { key: '二级标题2',
-              value: 'hx-input',
-              children: [
-                'Third level',
-                '|',
-                { key: '三级标题' }
-              ]
-            }
           ]
         }
       ]

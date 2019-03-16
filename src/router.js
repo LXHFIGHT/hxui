@@ -22,17 +22,22 @@ const router = new Router({
             {
               path: '/',
               name: 'welcome',
-              component: resolve => require(['@/views/docs/Welcome'], resolve)
+              component: resolve => require(['@/views/docs/welcome'], resolve)
             },
             {
               path: '/hx-image',
               name: 'hx-image',
-              component: resolve => require(['@/views/docs/Image'], resolve)
+              component: resolve => require(['@/views/docs/image'], resolve)
             },
             {
               path: '/hx-button',
               name: 'hx-button',
-              component: resolve => require(['@/views/docs/Button'], resolve)
+              component: resolve => require(['@/views/docs/button'], resolve)
+            },
+            {
+              path: '/hx-input',
+              name: 'hx-input',
+              component: resolve => require(['@/views/docs/input'], resolve)
             }
           ]
         },
