@@ -13,7 +13,7 @@ const PopTip = function (options) {
   let bundle = {}
   if (typeof options === 'string') {
     bundle = {
-      title: options,
+      text: options,
       level: 'success',
       during: 1500
     }

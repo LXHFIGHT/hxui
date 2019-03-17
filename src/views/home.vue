@@ -27,7 +27,7 @@ export default {
             { key: 'Button 按钮', value: 'hx-button' },
             { key: 'Image 图片', value: 'hx-image' },
             '表单',
-            { key: 'Input 输入框', value: 'hx-input' },
+            { key: 'Input 输入框', value: 'hx-input' }
           ]
         }
       ]

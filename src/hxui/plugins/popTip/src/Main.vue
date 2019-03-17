@@ -1,5 +1,8 @@
 <template>
-  <div :class="['hx-poptip', level, (isShow ? 'show' : '')]" v-text="title"></div>
+  <div :class="['hx-poptip',
+    position,
+    level,
+    (isShow ? 'show' : '')]" v-text="text"></div>
 </template>
 
 <script>
@@ -10,8 +13,9 @@ export default {
       isShow: false,
       fadeOutTimer: {},
       fadeInTimer: {},
-      title: '',
-      level: config.level.INFO,
+      text: '',
+      position: '',
+      level: config.level.DEFAULT,
       during: 1500
     }
   },
@@ -36,6 +40,9 @@ export default {
       }
     }
   },
+  created () {
+    this.position || (this.position = config.position.TOP)
+  },
   mounted () {
     this.startTimer()
   },
@@ -55,8 +62,7 @@ export default {
   max-width: 60%;
   z-index: 10000;
   color: rgba(255, 255, 255, .9);
-  @include centerHorizontal();
-  @include compatible(transition, transform .2s);
+  @include compatible(transition, all .2s);
   &.success {
     background-color: $color-green;
   }
@@ -78,11 +84,64 @@ export default {
     line-height: $height-navbar;
     height: $height-navbar;
     padding: 0 $pm-md;
-    top: 0;
-    @include compatible(transform, translate(-50%, -100%));
-    @include borderRadius($border-radius-md);
-    &.show {
-      @include compatible(transform, translate(-50%, 0));
+    border-radius: $border-radius-md;
+    &.top {
+      top: 0;
+      @include centerHorizontal();
+      @include compatible(transform, translate(-50%, -100%));
+      &.show {
+        @include compatible(transform, translate(-50%, 10%));
+      }
+    }
+    &.topLeft,
+    &.topRight {
+      top: 0;
+      position: absolute;
+      @include compatible(transform, translateY(-100%));
+      &.show {
+        @include compatible(transform, translateY(10%));
+      }
+    }
+    &.topRight {
+      right: $pm-sm;
+    }
+    &.topLeft {
+      left: $pm-sm;
+    }
+    &.bottom {
+      bottom: 0;
+      @include centerHorizontal();
+      @include compatible(transform, translate(-50%, 100%));
+      @include borderRadiusTop($border-radius-md);
+      &.show {
+        @include compatible(transform, translate(-50%, -10%));
+      }
+    }
+    &.bottomLeft,
+    &.bottomRight {
+      bottom: 0;
+      position: absolute;
+      @include compatible(transform, translateY(100%));
+      &.show {
+        @include compatible(transform, translateY(-10%));
+      }
+    }
+    &.bottomRight {
+      right: $pm-sm;
+    }
+    &.bottomLeft {
+      left: $pm-sm;
+    }
+    &.center {
+      opacity: .0;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.3, 1.3);
+      &.show {
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+        opacity: 1.0;
+      }
     }
   }
 }

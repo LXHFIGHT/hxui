@@ -32,10 +32,6 @@
   height: $exp;
 }
 
-@mixin bgColorTransition($time){
-  @include compatible(transition, background $time);
-}
-
 // 全圆角属性
 @mixin borderRadius($value){
   @include compatible(border-radius, $value);
@@ -71,6 +67,7 @@
   box-shadow: $value  ;
 }
 
+// 1. 布局方式
 // 三种居中方式样式
 @mixin centerInParent() {
   top: 50%;
@@ -91,7 +88,7 @@
   @include compatible(transform, translateX(-50%));
 }
 
-// 全覆盖样式
+// 全覆盖样式: 请勿将absolute修改为relative
 @mixin block() {
   height: 100%;
   width: 100%;
@@ -199,6 +196,22 @@
   font-size: 14px;
 }
 
+// 【常用】文本居于一行  超过范围变成 "XXXXX..."
+@mixin nowrap {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// CSS过滤器集合：
+// 模糊效果， 默认模糊度 10px
+@mixin filter-blur($degree: 10px) {
+  -webkit-filter: blur($degree); /* Chrome, Opera */
+  filter: blur($degree);
+}
+
+// 3. 图片类型
+// 乘号
 @mixin timesIcon($bgColor: #eee) {
   position: relative;
   &:before, &:after {
@@ -219,21 +232,7 @@
     @include compatible(transform, (translate(-50%, -50%) rotate(-45deg)));
   }
 }
-
-// 文本居于一行  超过范围变成 "XXXXX..."
-@mixin nowrap {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-// CSS过滤器集合：
-// 模糊效果， 默认模糊度 10px
-@mixin filter-blur($degree: 10px) {
-  -webkit-filter: blur($degree); /* Chrome, Opera */
-  filter: blur($degree);
-}
-
+// 加载图片
 @mixin loading($height: 100%, $width: 100%, $top: 0, $left: 0) {
   &:before, &:after {
     content: '';

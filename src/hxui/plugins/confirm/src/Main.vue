@@ -3,7 +3,7 @@
     <div class="mask" @click="destroyElement"></div>
     <div class="content">
       <header class="header" v-text="title"></header>
-      <div class="confirm-content" v-text="content"></div>
+      <div class="confirm-content" v-text="text"></div>
       <footer class="footer">
         <button class="hx-button btn-cancel"
           v-text="cancelText"
@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       title: '',
-      content: '',
+      text: '',
       onConfirm: () => {},
       onCancel: () => {},
       confirmText: '确定',
