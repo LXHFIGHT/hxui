@@ -6,6 +6,9 @@
       expand && 'fold']">
     <header class="header" @click="doToggleFold">
       <span class="title" v-text="title"></span>
+      <span class="title">
+        <slot name="subTitle"></slot>
+      </span>
     </header>
     <div class="right">
       <slot name="right"></slot>
