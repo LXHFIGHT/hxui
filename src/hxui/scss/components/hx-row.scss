@@ -396,7 +396,7 @@
     padding: $pm-sm/2 0!important;
     margin: 0!important;
     label {
-      width: 110px;
+      width: 100%;
       position: relative;
       .tip {
         position: absolute;
@@ -410,8 +410,8 @@
       }
     }
     .content {
-      @include wcalc(calc(100% - 115px));
-      padding-left: $pm-sm/2!important;
+      width: 100%;
+      padding-left: 0;
       input, select, textarea {
         border: none!important;
         &:hover {

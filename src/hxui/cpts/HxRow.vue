@@ -1,6 +1,6 @@
 <template>
   <div class="hx-row">
-    <label >
+    <label v-if="label">
       {{ label }}
       <span v-if="required" class="tip">*</span>
     </label>
