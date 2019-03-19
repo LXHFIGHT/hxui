@@ -1,6 +1,8 @@
 <template>
   <div @click="doToggleSwitch()"
-       :class="['hx-switch center-vertical', (value ? 'on' : '')]">
+    :class="['hx-switch center-vertical',
+      disabled && 'disabled',
+      (value ? 'on' : '')]">
   </div>
 </template>
 
@@ -17,10 +19,16 @@ export default {
       default: function () {
         return () => {}
       }
+    },
+    disabled: {
+      type: [String, Number, Boolean]
     }
   },
   methods: {
     doToggleSwitch () {
+      if (this.disabled) {
+        return
+      }
       const { value } = this
       let oppositValue = !value
       // 这里对原值进行智能判断，可以判断原值是0或1模式，或者true和false模式 
