@@ -15,16 +15,21 @@
                 class="fa fa-eye">
         </button>
         <button @click="triggerUploadImage(id)"
-                :diabled="isUploading"
-                v-if="!noUpload"
-                :class="isUploading ? 'fa fa-circle-o-notch fa-spin fa-3x fa-fw' : 'fa fa-upload'">
+          :diabled="isUploading"
+          v-if="!disabled"
+          :class="isUploading 
+            ? 'fa fa-circle-o-notch fa-spin fa-3x fa-fw'
+            : 'fa fa-upload'">
         </button>
-        <button @click="doClearImage" class="fa fa-trash"></button>
+        <button @click="doClearImage"
+          v-if="!disabled" 
+          class="fa fa-trash">
+        </button>
       </div>
     </div>
     <button class="btn-upload"
             @click="triggerUploadImage(id)"
-            :diabled="isUploading"
+            :diabled="isUploading || disabled"
             v-if="!value">
       <span class="icon fa fa-picture-o" style="top: 1px; position: relative"></span>
       {{ isUploading ? '上传中...' : text }}
@@ -75,13 +80,13 @@ export default {
       type: Function,
       required: true
     },
-    noUpload: {
-      type: Boolean,
-      default: false
-    },
     maxsize: { // 当超过多少KB时执行压缩图片任务
       type: Number,
       default: 200
+    },
+    disabled: {
+      type: [String, Number, Boolean],
+      default: ''
     },
     // 文件（仅限图片类型）上传之前的压缩比例, 不传的情况下则不会对图片进行压缩
     compress: { 
