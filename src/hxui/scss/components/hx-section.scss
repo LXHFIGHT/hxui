@@ -21,6 +21,13 @@
     padding: 0 $pm-md 0 $pm-lg;
     color: $color-heavy;
     position: absolute;
+    display: flex;
+    align-items: center;
+    .title {
+      margin-right: $pm-md;
+      display: inline-flex;
+      align-items: center;
+    }
     &:before {
       content: "";
       height: $height-navbar/2;
@@ -48,6 +55,16 @@
     position: absolute;
     right: $pm-md;
     top: $pm-sm;
+    .btn-toggle {
+      border: none;
+      .icon-toggle {
+        margin-top: -2px;
+        opacity: .6;
+        transform: rotate(0);
+        transform-origin: 50% 2px;
+        transition: transform .4s;
+      }
+    }
     button {
       margin-left: 5px;
     }
@@ -61,32 +78,17 @@
     background-color: $color-gray-light;
   }
   &.foldable {
-    .header:after {
-      content: "";
-      height: 6px;
-      width: 12px;
-      opacity: .7;
-      background: url('~@/hxui/img/icon/icon-caret-down.png') no-repeat;
-      background-size: 100% 100%;
-      @include centerVertical;
-      transform-origin: 50% 2px;
-      transition: transform .4s;
-      right: $pm-bg;
-      display: block;
-    }
     &.fold {
       height: $height-navbar!important;
       padding-top: $height-navbar;
       padding-bottom: 0;
-      .header:after {
+      .icon-toggle {
+        opacity: 1.0;
         transform: rotate(180deg);
       }
       .side-tag {
         display: none;
       }
-    }
-    .right {
-      right: $pm-bg * 2;
     }
   }
   .side-tag {

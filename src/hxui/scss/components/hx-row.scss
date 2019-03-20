@@ -98,6 +98,10 @@
         display: inline-flex;
       }
     }
+    
+    .hx-switch {
+      @include centerVertical;
+    }
 
     // 不可编辑文本组件样式
     .text {

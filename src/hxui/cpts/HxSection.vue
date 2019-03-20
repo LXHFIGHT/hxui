@@ -4,13 +4,16 @@
       shadow && 'shadow',
       foldable && 'foldable',
       expand && 'fold']">
-    <header class="header" @click="doToggleFold">
+    <header class="header">
       <span class="title" v-text="title"></span>
       <span class="title">
-        <slot name="subTitle"></slot>
+        <slot name="left"></slot>
       </span>
     </header>
     <div class="right">
+      <button class="hx-button btn-toggle"  @click="doToggleFold">
+        <img class="icon-toggle" src="./../img/icon/icon-caret-down.png" alt="">
+      </button>
       <slot name="right"></slot>
     </div>
     <slot class="content" name="content"></slot>

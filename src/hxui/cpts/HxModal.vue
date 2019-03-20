@@ -42,4 +42,3 @@ export default {
 <style lang="scss" scoped>
   @import "./../../hxui/scss/plugins/hx-modal.scss";
 </style>
-
