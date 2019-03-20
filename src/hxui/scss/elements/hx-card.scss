@@ -39,6 +39,9 @@ $height-card-row: 28px;
     text-align: left!important;
     padding: 0 $pm-sm;
     height: $height-card-row;
+    &.center {
+      text-align: center;
+    }
     label, span, a {
       font-size: $font-md;
       line-height: $font-md * 2.5;
@@ -106,6 +109,9 @@ $height-card-row: 28px;
       padding: $pm-sm;
       height: auto;
       border-top: 1px solid $color-gray;
+      &.center {
+        text-align: center!important;
+      }
     }
   }
 }

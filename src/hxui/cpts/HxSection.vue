@@ -11,7 +11,7 @@
       </span>
     </header>
     <div class="right">
-      <button class="hx-button btn-toggle"  @click="doToggleFold">
+      <button class="hx-button btn-toggle" @click="doToggleFold" v-if="foldable">
         <img class="icon-toggle" src="./../img/icon/icon-caret-down.png" alt="">
       </button>
       <slot name="right"></slot>

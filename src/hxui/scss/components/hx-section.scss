@@ -42,21 +42,14 @@
       color: $color-gray-deep;
       margin-left: $pm-sm;
     }
-    button {
-      min-height: $height-normal - $pm-sm;
-      margin-left: $pm-sm;
-      &.right {
-        float: right;
-        margin-top: ($height-navbar - $height-regular)/2;
-      }
-    }
   }
-  .right {
+  & > .right {
     position: absolute;
     right: $pm-md;
     top: $pm-sm;
     .btn-toggle {
       border: none;
+      float: right;
       .icon-toggle {
         margin-top: -2px;
         opacity: .6;
@@ -67,6 +60,7 @@
     }
     button {
       margin-left: 5px;
+      width: auto;
     }
   }
   .hx-divider {
