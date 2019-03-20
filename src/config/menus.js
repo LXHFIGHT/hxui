@@ -5,51 +5,24 @@
  *  用于存储侧边栏菜单栏的对象
  */
 
-const menus = [
+let menus = [
   {
     name: 'home',
     state: '/',
-    icon: 'home'
-  },
-  {
-    name: 'Style',
-    children: [
-      {
-        name: '展示组件',
-        state: '/style/display',
-        icon: 'th'
-      },
-      {
-        name: '列表页面',
-        state: '/style/list',
-        icon: 'list'
-      }
-    ]
+    icon: 'home',
+    selected: true
   },
   {
     name: 'Components',
-    children: [
-      {
-        name: '反馈组件',
-        state: '/components/response',
-        icon: 'th'
-      }
-    ]
+    state: '/components'
   },
   {
     name: 'Plugins',
-    children: [
-      {
-        name: 'HXUI全局对象',
-        state: '/plugins/global',
-        icon: 'th'
-      },
-      {
-        name: '插件集合',
-        state: '/plugins/list',
-        icon: 'list'
-      }
-    ]
+    state: '/plugins'
+  },
+  {
+    name: 'Style',
+    state: '/style' 
   }
 ]
 

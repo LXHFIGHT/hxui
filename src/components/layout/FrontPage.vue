@@ -4,7 +4,8 @@
     <hx-navbar :menus="menus"
       :logo="logo"
       title="HXUI"
-      :onSelect="doSelect"></hx-navbar>
+      :onSelect="doSelect">
+    </hx-navbar>
     <div class="hx-main">
       <router-view></router-view>
     </div>
@@ -27,8 +28,8 @@ export default {
     }
   },
   methods: {
-    doSelect () {
-
+    doSelect (state) {
+      this.$router.push(state)
     }
   }
 }

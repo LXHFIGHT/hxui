@@ -52,11 +52,17 @@ $height-navbar: 60px;
         border-radius: 10px;
         bottom: 0;
         transform: scale(.0, 1.0);
-        @include compatible(transition, transform .4s);
+        @include compatible(transition, all .4s);
       }
     }
-    .hx-dropdown:hover {
+    .hx-dropdown:hover, .hx-dropdown.selected {
       &:after {
+        transform: scale(.5, 1.0);
+      }
+    }
+    .hx-dropdown.selected {
+      &:after {
+        background-color: $color-green;
         transform: scale(.5, 1.0);
       }
     }

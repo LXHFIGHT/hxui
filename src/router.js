@@ -16,30 +16,7 @@ const router = new Router({
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['@/views/home'], resolve),
-          meta: { keepAlive: true },
-          children: [
-            {
-              path: '/',
-              name: 'welcome',
-              component: resolve => require(['@/views/docs/welcome'], resolve)
-            },
-            {
-              path: '/hx-image',
-              name: 'hx-image',
-              component: resolve => require(['@/views/docs/image'], resolve)
-            },
-            {
-              path: '/hx-button',
-              name: 'hx-button',
-              component: resolve => require(['@/views/docs/button'], resolve)
-            },
-            {
-              path: '/hx-input',
-              name: 'hx-input',
-              component: resolve => require(['@/views/docs/input'], resolve)
-            }
-          ]
+          component: resolve => require(['@/views/home'], resolve)
         },
         {
           path: '/style/list',
@@ -52,9 +29,27 @@ const router = new Router({
           component: resolve => require(['@/views/style/display'], resolve)
         }, 
         {
-          path: '/components/response',
-          name: 'componentsResponse',
-          component: resolve => require(['@/views/components/response'], resolve)
+          path: '/components',
+          name: 'components',
+          component: resolve => require(['@/views/components/index'], resolve),
+          meta: { keepAlive: true },
+          children: [
+            {
+              path: '/components/hx-image',
+              name: 'hx-image',
+              component: resolve => require(['@/views/docs/image'], resolve)
+            },
+            {
+              path: '/components/hx-button',
+              name: 'hx-button',
+              component: resolve => require(['@/views/docs/button'], resolve)
+            },
+            {
+              path: '/components/hx-input',
+              name: 'hx-input',
+              component: resolve => require(['@/views/docs/input'], resolve)
+            }
+          ]
         },
         {
           path: '/plugins/list',

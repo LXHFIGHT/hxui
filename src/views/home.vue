@@ -1,69 +1,43 @@
 <template>
-  <div class="hx-block bg-gray">
-    <div class="hx-container bg-white">
-      <aside class="aside-catalog">
-        <hx-catalog :menus="menus" :onSelect="doSelectCatalog"></hx-catalog>
-      </aside>
-      <div class="hx-main pad-home-main">
-        <router-view></router-view>
-      </div>
+  <div class="hx-block bg-gray  pad-center">
+    <div class="hx-container">
+      <h1 style="font-size: 40px">Thanks for experiencing HXUI</h1>
+      <span class="color-gray">We are willing to take any kind of suggestions</span><br />
     </div>
+    <footer class="footer">
+      <a href="mailto: lxhfight1@gmail.com" class="color-gray">lxhfight1@gmail.com</a>
+    </footer>
   </div>
 </template>
 <script>
-import HxCatalog from '@/hxui/cpts/HxCatalog'
 export default {
-  components: {
-    HxCatalog
-  },
   data () {
     return {
-      menus: [
-        {
-          key: '组件介绍',
-          disabled: true,
-          children: [
-            '基本',
-            { key: 'Button 按钮', value: 'hx-button' },
-            { key: 'Image 图片', value: 'hx-image' },
-            '表单',
-            { key: 'Input 输入框', value: 'hx-input' }
-          ]
-        }
-      ]
     }
   },
   methods: {
-    popAlert () {
-      this.$hxui.popTip('Yahoo')
-    },
-    doSelectCatalog (value) {
-      console.log('Select Data: ', value)
-      this.$router.push(`/${value}`)
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "./global.scss";
-  .bg-gray {
-    background-color: #f6f7f7;
-  }
-  .bg-white {
-    background-color: white;
-    height: 100%;
-  }
-  .aside-catalog {
-    width: 230px;
-    display: inline-block;
-    padding: $pm-md;
-  }
-  .pad-home-main {
-    width: calc(100% - 235px);
-    float: right;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+  .pad-center {
+    height: calc(100% - #{$height-navbar});
+    @include block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    position: relative;
+    .hx-container {
+      padding: $pm-md;
+    }
+    .footer {
+      position: absolute;
+      @include centerHorizontal;
+      bottom: $pm-bg;
+    }
   }
 </style>
