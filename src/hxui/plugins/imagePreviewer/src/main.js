@@ -18,6 +18,7 @@ let PreviewerInstance = null
  * @param options.current 当前图片URL
  * @param options.urls 图片列表页面
  * @param options.max 最大放大比例
+ * @param options.position 预览框的位置： 默认全屏， left 左半屏， right 右半屏 
  */
 const imagePreviewer = function (options) {
   PreviewerInstance && PreviewerInstance.vm.destroyElement()
@@ -29,6 +30,9 @@ const imagePreviewer = function (options) {
     }
   } else {
     bundle = Object.assign({}, options)
+    if (options.current && !options.urls) {
+      bundle.urls = [options.current]
+    }
   }
   PreviewerInstance = new PreviewerConstructor({
     data: bundle

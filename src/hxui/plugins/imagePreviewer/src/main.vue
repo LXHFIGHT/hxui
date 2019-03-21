@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-image-modal hx-modal ', (show ? 'show' : ''), screen]">
+  <div :class="['hx-image-modal hx-modal', (show ? 'show' : ''), position]">
     <div class="mask" @click="doQuitPreview"></div>
     <header class="navbar">
       <span class="title" v-text="`${index + 1} / ${urls.length}`"></span>
@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import popTip from './../../popTip'
 import config from './../../config'
@@ -42,7 +41,7 @@ export default {
       current: '',
       urls: [],
       show: false,
-      screen: '',
+      position: '', // 图片预览模块框显示位置，可选 left（左半屏）， right（右半屏）
       index: 0,
       scale: 1.0,
       maxScale: 2.5,
@@ -153,8 +152,16 @@ export default {
 <style lang="scss" scoped>
 @import './../../../scss/variable.scss';
 // 图片预览组件模态框
-.hx-image-modal {
+.hx-image-modal.hx-modal {
   text-align: center;
+  overflow: hidden;
+  &.left, &.right {
+    width: 50%;
+  }
+  &.right {
+    right: 0;
+    left: unset;
+  }
   .navbar {
     width: 100%;
     height: $height-navbar;

@@ -16,7 +16,6 @@
 /*
    模态框样式
    .hx-modal 为普通模态框
-   .hx-image-modal 为图片预览模态框
    两者均需要添加 show 伪类进行展示
   */
 .hx-modal {
@@ -24,6 +23,7 @@
   visibility: hidden;
   opacity: .0;
   @include block;
+  position: fixed;
   @include compatible(transition, all .4s);
   &.show{
     visibility: visible;
@@ -33,12 +33,7 @@
     }
   }
   .mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: block;
+    @include block;
     background-color: rgba(0,0,0, .65);
   }
   &.success { @include levelStyle($color-green); }
@@ -46,7 +41,7 @@
   &.warn { @include levelStyle($color-orange); }
   &.fatal { @include levelStyle($color-dark); }
   // 模态框内容版
-  &>.content{
+  &>.content {
     background-color: white;
     width: 60%;      
     max-width: 80%;
