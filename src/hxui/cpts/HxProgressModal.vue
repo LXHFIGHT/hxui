@@ -56,7 +56,7 @@ export default {
     $_quit () {
       this.hideTimer = setTimeout(() => {
         this.doHide()
-      }, 1500)
+      }, 800)
     },
     $_initInterval () {
       const that = this

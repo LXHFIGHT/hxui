@@ -4,3 +4,65 @@
  */
 @import "./../hxui/scss/variable.scss";
 
+.pad-article {
+  padding: $pm-md $pm-bg $pm-md $pm-md;
+  > .title {
+    font-size: $font-bg * 2;
+    line-height: 1;
+    margin: $pm-bg 0 $pm-sm;
+  }
+  .desc {
+    color: $color-heavy;
+    font-size: $font-md;
+  }
+  code {
+
+  }
+  em {
+
+  }
+  .section {
+    margin: $pm-bg*2 0;
+    > .title {
+      font-size: $font-lg;
+      display: block;
+      width: 100%;
+      margin-bottom: $pm-sm;
+    }
+    // 内容预览区
+    .pad-preview {
+      border: 1px solid $color-gray;
+      border-radius: $pm-sm;
+      margin-top: $pm-md;
+      // demo区
+      .demo {
+        background-color: white;
+        padding: $pm-bg;
+      }
+      // 代码区
+      .code {
+        background-color: $color-gray-light;
+        padding: $pm-md;
+        .tips {
+          background-color: white;
+          display: block;
+          width: 100%;
+          padding: $pm-sm*1.5 $pm-md;
+          color: $color-heavy;
+          font-size: $font-md;
+          border-radius: $pm-sm/2;
+        }
+        .detail {
+          margin: 0;
+          display: flex;
+          code {
+            display: inline-block!important;
+            width: 100%;
+            padding: $pm-sm $pm-md 0;
+          }
+        }
+      }
+    }
+    // 属性或表格区
+  }
+}
