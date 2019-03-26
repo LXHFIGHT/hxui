@@ -1,5 +1,5 @@
 <template>
   <div>
-    HXUI全局对象
+    插件页面
   </div>
 </template>

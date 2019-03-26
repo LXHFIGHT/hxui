@@ -9,12 +9,25 @@ let menus = [
   {
     name: 'home',
     state: '/',
-    icon: 'home',
-    selected: true
+    icon: 'home'
   },
   {
     name: 'Components',
-    state: '/components'
+    state: '/components',
+    children: [
+      {
+        name: 'button',
+        state: '/components/hx-button'
+      },
+      {
+        name: 'image',
+        state: '/components/hx-image'
+      },
+      {
+        name: 'input',
+        state: '/components/hx-input'
+      }
+    ]
   },
   {
     name: 'Plugins',
@@ -28,6 +41,7 @@ let menus = [
 
 export default menus
 export const initMenus = (path) => {
+  console.log('To: ', path)
   for (let menu of menus) {
     if (menu.state === path) {
       menu.selected = true

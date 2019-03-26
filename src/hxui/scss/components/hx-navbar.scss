@@ -42,6 +42,12 @@ $height-navbar: 60px;
         font-size: 16px;
         background-color: transparent;
       }
+      .pad-options {
+        .item.selected {
+          background-color: $color-main;
+          color: white;
+        }
+      }
       &:after {
         position: absolute;
         content: "";
@@ -153,6 +159,10 @@ $height-navbar: 60px;
             height: $height-normal;
             line-height: $height-normal;
             background-color: $color-gray-light;
+            &.selected {
+              background-color: $color-main;
+              color: white;
+            }
           }  
         }
         &::after {

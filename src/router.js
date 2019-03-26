@@ -52,14 +52,11 @@ const router = new Router({
           ]
         },
         {
-          path: '/plugins/list',
-          name: 'pluginsList',
-          component: resolve => require(['@/views/plugins/list'], resolve)
-        },
-        {
-          path: '/plugins/global',
-          name: 'pluginsGlobal',
-          component: resolve => require(['@/views/plugins/global'], resolve)
+          path: '/plugins',
+          name: 'plugins',
+          component: resolve => require(['@/views/plugins/index'], resolve),
+          meta: { keepAlive: true },
+          children: []
         }
       ]
     },

@@ -12,9 +12,10 @@
           <button class="button" v-text="option.name" @click="doSelectOption(option)"></button>
           <div class="pad-options">
             <ul class="list" v-if="option.children">
-              <li class="item" 
+              <li :class="['item', child.selected && 'selected']" 
                 v-for="(child, cIndex) in option.children" 
-                v-bind:key="cIndex" 
+                v-bind:key="cIndex"
+                @click="doSelectOption(child)"
                 v-text="child.name">
               </li>
             </ul>
