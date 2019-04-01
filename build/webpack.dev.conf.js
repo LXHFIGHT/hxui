@@ -9,8 +9,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const getIPAdress = function () {  
+  const interfaces = require('os').networkInterfaces();  
+  for (let devName in interfaces) {  
+    const iface = interfaces[devName];  
+    for (var i = 0; i < iface.length; i++) {  
+      var alias = iface[i] 
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {  
+        return alias.address; 
+      }  
+    }  
+  }  
+}
 
-const HOST = process.env.HOST
+const HOST = getIPAdress()
 const PORT = process.env.PORT && Number(process.env.PORT)
 
 const devWebpackConfig = merge(baseWebpackConfig, {
