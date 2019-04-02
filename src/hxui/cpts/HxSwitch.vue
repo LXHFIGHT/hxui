@@ -27,11 +27,9 @@ export default {
   },
   methods: {
     doToggleSwitch () {
-      console.log('Switch')
       if (this.disabled) {
         return
       }
-      console.log('Switch II')
       const { value } = this
       let oppositValue = !value
       // 这里对原值进行智能判断，可以判断原值是0或1模式，或者true和false模式 

@@ -9,7 +9,7 @@
          ref="imageElem"
          ondragstart="return false;"
          :src="current"
-         alt="image" />
+         alt="image"/>
     <button v-if="urls.length > 1 && index"
             @click="toLastImage"
             class="btn-to-last hide-sm fa fa-angle-left"></button>
@@ -86,13 +86,13 @@ export default {
         if (this.scale < maxScale) {
           scale += 0.5
         } else {
-          popTip({title: '不能再放大了', level: config.level.LEVEL_WARNING})
+          popTip({text: '不能再放大了', level: config.level.LEVEL_WARNING})
         }
       } else {
         if (scale > 1.0) {
           scale -= 0.5
         } else {
-          popTip({title: '不能再缩小了', level: config.level.LEVEL_WARNING})
+          popTip({text: '不能再缩小了', level: config.level.LEVEL_WARNING})
         }
       }
       this.scale = scale

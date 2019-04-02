@@ -1,0 +1,36 @@
+@import './../variable.scss';
+.hx-dashboard {
+    .item {
+      padding: 0 $pm-md $pm-md;
+      background-color: white;
+      margin-bottom: $pm-md;
+      display: inline-block;
+      min-width: $height-navbar * 5;
+      height: $height-normal * 3;   
+      border: 1px solid $color-gray;
+      .header {
+        line-height: $height-normal;
+        height: $height-normal;
+        font-size: $font-sm;
+        color: $color-gray-deep;
+      }
+      .content {
+        font: {
+          weight: 500;
+          size: $font-bg * 2;
+        }
+        // text-align: center;
+        margin-left: 20px;
+        line-height: $height-normal * 1.5;
+        height: $height-normal * 1.5;
+      }
+      .btn-hover {
+        display: none;
+      }
+      &:hover {
+        .btn-hover {
+          display: inline-block;
+        }
+      }
+    }
+  }

@@ -8,8 +8,8 @@
       type="file" 
       name="file" 
       multiple="multiple" >
-    <div class="hx-image-uploader" v-if="value">
-      <img v-if="value && typeof value === 'string'" :src="value" />
+    <div class="hx-image-uploader" v-if="value && !isImageError">
+      <img v-if="value && typeof value === 'string' && !isImageError" :src="value" />
       <div class="functions" >
         <button @click="doPreviewImage(value)"
                 class="fa fa-eye">
@@ -30,10 +30,11 @@
     <button class="btn-upload"
             @click="triggerUploadImage(id)"
             :diabled="isUploading || disabled"
-            v-if="!value">
-      <span class="icon fa fa-picture-o" style="top: 1px; position: relative"></span>
-      {{ isUploading ? '上传中...' : text }}
-      </button>
+            v-if="!value || isImageError">
+      <span class="icon fa fa-picture-o" style="top: 3px; position: relative"></span>&nbsp;
+      <span v-if="!value">{{ isUploading ? '上传中...' : text }}</span>
+      <span v-if="isImageError">{{ isUploading ? '上传中...' : '图片请重新上传' }}</span>
+    </button>
   </div>
 </template>
 
@@ -51,7 +52,8 @@ export default {
   data () {
     return {
       isUploading: false,
-      isCompressing: false
+      isCompressing: false,
+      isImageError: false
     }
   },
   props: {
@@ -201,6 +203,23 @@ export default {
       }
       return blob
     },
+    $_analyseImage (image) {
+      let img = new Image()
+      if (!image) {
+        return
+      }
+      img.src = image
+      img.onload = () => {
+        console.log('IMAGE LOADED')
+        this.isImageError = false
+        this.isUploading = false
+      }
+      img.onerror = (err) => {
+        this.isImageError = true
+        console.log('IMAGE ERROR:', err)
+        this.isUploading = false
+      }
+    },
     doUploadImage () {
       // TODO 异步处理
       this.$_gatheringImagesData(event.target.files, (fileDatas) => {
@@ -219,16 +238,26 @@ export default {
     },
     doClearImage () {
       this.$emit('input', '')
+    },
+    doAnalyseImage () {
+      if (typeof this.value === 'string') {
+        this.$_analyseImage(this.value)
+      } else if (Array.isArray(this.value)) {
+        for (let i = 0; i < this.value.length; i++) {
+          this.$_analyseImage(this.value[i])
+        }
+      }
     }
   },
   mounted () {
-    // console.log('IMAGE: ', this.image)
+    this.doAnalyseImage()
   },
   watch: {
     value: {
       handler (val, oldVal) {
         this.$refs.uploader.value = ''
-        this.isUploading = false
+        console.log('image is:', val)
+        this.$_analyseImage(val)
       },
       deep: true
     }
