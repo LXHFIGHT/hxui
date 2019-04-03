@@ -1,4 +1,11 @@
 @import "./../variable.scss";
+
+@keyframes breathe {
+  0% { opacity: .1; } 
+  50% { opacity: 1.0; } 
+  100% { opacity: .1; } 
+}
+
 .hx-calendar {
   height: 100%;
   width: 100%;
@@ -8,26 +15,6 @@
     display: block;
     width: 100%;
     overflow: hidden;
-  }
-  .header {
-    height: $height-navbar;
-    padding: 0;
-    position: relative;
-    .btn-last-month,
-    .btn-next-month  {
-      background-color: white;
-      height: $height-navbar;
-      display: inline-block;
-      &:hover {
-        background-color: $color-gray-light;
-      }
-    }
-    .text-current-month {
-      @include centerInParent;
-    }
-    .btn-next-month  {
-      float: right;
-    }
   }
   .pad-weeks {
     height: $height-normal;
@@ -44,8 +31,33 @@
       }
     }
   }
+  .text-loading {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    font-size: $font-bg;
+    color: $color-heavy;
+    animation: breathe 1.2s infinite;
+  }
   .pad-dates {
+    transition: filter .4s;
+    &.loading {
+      filter: blur(4px);
+    }
     .item {
+      position: relative;
+      .mask {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
       border: 1px solid $color-gray;
       border-right: none;
       padding: $pm-sm;
@@ -57,6 +69,18 @@
       transition: transform .4s, box-shadow .4s, height .4s;
       box-shadow: 0 0 0 rgba(0,0,0,.0);
       overflow: hidden;
+      &.current, &.today.current {
+        background-color: $color-main;
+        color: white;
+        border-radius: $pm-sm/2;
+        .date {
+          background-color: transparent;
+          color: white;
+        }
+        .text {
+          color: white;
+        }
+      }
       &.today {
         .date {
           background-color: $color-yellow;
@@ -83,20 +107,20 @@
         display: inline-block;
       }
       .pad-tags {
-        @include hcalc(calc(100% - 24px));
+        margin-top: $pm-sm/2;
+        @include hcalc(calc(100% - 28px));
         overflow: auto;
         .tag {
           background-color: $color-main;
           color: white;
           display: block;
           width: 100%;
-          height: $height-navbar/2;
-          line-height: $height-navbar/2;
+          min-height: $height-navbar/2;
+          line-height: $height-navbar/2 - $pm-sm;
           border-radius: $border-radius-md;
-          padding: 0 $pm-sm/2;
+          padding: $pm-sm/2;
           font-size: 12px;
           margin-bottom: 3px;
-          @include nowrap;
           @include hxColor($color-main);
           &.error {
             @include hxColor($color-red);
@@ -118,6 +142,26 @@
 
 @media screen and (min-width: 640px) {
   .hx-calendar {
+    .header {
+      height: $height-navbar;
+      padding: 0;
+      position: relative;
+      .btn-last-month,
+      .btn-next-month  {
+        background-color: white;
+        height: $height-navbar;
+        display: inline-block;
+        &:hover {
+          background-color: $color-gray-light;
+        }
+      }
+      .text-current-month {
+        @include centerInParent;
+      }
+      .btn-next-month  {
+        float: right;
+      }
+    }
     .pad-dates {
       .item {
         &.normal:hover {
@@ -130,22 +174,71 @@
     }
   }
 }
+
 @media screen and (max-width: 640px) {
   .hx-calendar {
+    .header {
+      height: 60px;
+      padding: 0;
+      position: relative;
+      .btn-last-month,
+      .btn-next-month  {
+        background-color: white;
+        height: 60px;
+        display: inline-block;
+      }
+      .text-current-month {
+        @include centerInParent;
+      }
+      .btn-next-month  {
+        float: right;
+      }
+    }
+    .pad-weeks {
+      height:$height-regular;
+      background-color: $color-gray-light;
+      .item {
+        height:$height-regular;
+        line-height:$height-regular;
+        font-size: 12px;
+        border: none;
+        color: $color-gray-deep;
+      }
+    }
     .pad-dates {
       .item {
+        border: none;
         padding: $pm-sm/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         &.normal:hover {
           transform: scale(1, 1);
           box-shadow: none;
         }
+        .date {
+          font-size: 17px;
+          color: $color-heavy;
+          font-weight: 400;
+        }
         .pad-tags {
+          display: none;
           @include hcalc(calc(100% - 24px));
           overflow: auto;
           .tag {
             height: $height-normal/2;
             line-height: $height-normal/2;
           }
+        }
+        .text {
+          bottom: $pm-sm/2;
+          font-size: $font-sm;
+          color: $color-gray-deep;
+          margin-top: $pm-sm/2;
+          height: $font-sm;
+          line-height: $font-sm;
+          display: block;
         }
       }
     }

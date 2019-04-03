@@ -23,12 +23,20 @@
         <span class="hide-sm">周</span>{{ item }}
       </div>
     </div>
-    <div class="pad-dates">
+    <div v-if="isLoading" class="text-loading">
+      加载中...
+    </div>
+    <div :class="['pad-dates', isLoading && 'loading']">
       <div v-for="(item, index) in dates"
-        :class="['item', (item.isDisabled ? 'disabled' : 'normal'), ($_isToday(item.date) && 'today')]"
+        :class="['item', 
+          item.isDisabled ? 'disabled' : 'normal',
+          $_isSameDate(currentDate, item.date) && 'current',
+          ($_isToday(item.date) && 'today')]"
         :key="index"
         :style="`width: ${calendarWidth/7}px; height: ${calendarHeight/6}px;`">
+        <div v-if="doSelectDate" class="mask" @click="doSelectDate(item)"></div>
         <span class="date" v-text="item.day"></span>
+        <span class="text" v-text="item.text"></span>
         <div class="pad-tags" v-if="item.tags && item.tags.length">
           <span v-for="(tag, index) in item.tags"
             :key="index"
@@ -79,6 +87,14 @@ export default {
     }
   },
   props: {
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
+    // 用于设置日历中的日期按钮是否禁用的验证方法，要求返回Boolean
+    disabledDateValidator: {
+      type: Function
+    },
     currentDate: {
       type: String
     },
@@ -108,9 +124,19 @@ export default {
       default: function () {
         return () => {}
       }
+    },
+    onSelectDate: {
+      type: Function
     }
   },
   methods: {
+    // 判断两个日期是否在同一天
+    $_isSameDate (dateA, dateB) {
+      if (!dateA || !dateB) {
+        return false
+      }
+      return new Date(dateA).getTime() === new Date(dateB).getTime()
+    },
     jumpToLastMonth () {
       const { year, month } = this.last
       this.$_initDates(year, month)
@@ -150,7 +176,7 @@ export default {
         const dateB = new Date(dateBStr.replace(/-/g, '/'))
         return dateA.getTime() === dateB.getTime()
       }
-      const tags = this.additions.map(v => {
+      const items = this.additions.map(v => {
         const { tags } = v
         v.tags = typeof tags === 'string'
           ? { key: tags, value: tags, level: 'info' }
@@ -159,9 +185,11 @@ export default {
       })
       this.dates.forEach((v) => {
         delete v.tags
-        for (let i = 0; i < tags.length; i++) {
-          if (_isDateMatch(v.date, tags[i].date)) {
-            v.tags = tags[i].tags
+        for (let i = 0; i < items.length; i++) {
+          if (_isDateMatch(v.date, items[i].date)) {
+            items[i].text && (v.text = items[i].text)
+            items[i].tags && (v.tags = items[i].tags)
+            v.isDisabled = items[i].disabled
             break
           }
         }
@@ -202,6 +230,9 @@ export default {
             isDisabled: nextDate.getMonth() !== this.current.month - 1,
             day: nextDate.getDate()
           }
+          if (this.disabledDateValidator instanceof Function) {
+            bundle.isDisabled = this.disabledDateValidator(bundle.date)
+          }
           this.dates.push(bundle)
         }
       }
@@ -209,6 +240,14 @@ export default {
       _initLastMonth()
       _initCurrentMonth()
       this.$_syncAdditions()
+    },
+    doSelectDate (date) {
+      if (date.isDisabled) {
+        return
+      }
+      if (this.onSelectDate instanceof Function) {
+        this.onSelectDate(date.date)
+      }
     }
   },
   mounted () {
