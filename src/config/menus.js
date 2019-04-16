@@ -13,29 +13,13 @@ let menus = [
   },
   {
     name: 'Components',
-    state: '/components',
-    children: [
-      {
-        name: 'button',
-        state: '/components/hx-button'
-      },
-      {
-        name: 'image',
-        state: '/components/hx-image'
-      },
-      {
-        name: 'input',
-        state: '/components/hx-input'
-      }
-    ]
+    state: '/components/hx-button',
+    icon: 'puzzle-piece'
   },
   {
     name: 'Plugins',
-    state: '/plugins'
-  },
-  {
-    name: 'Style',
-    state: '/style' 
+    state: '/plugins',
+    icon: 'plug'
   }
 ]
 
@@ -71,4 +55,5 @@ export const restoreMenu = () => {
       }
     }
   }
+  console.log('UPDATE: ', menus)
 }

@@ -26,7 +26,8 @@ $color-light-font: $color-heavy;
   position: relative;
   width: $width-sidebar;
   overflow: hidden;
-  background-color: $color-main-dark;
+  box-shadow: 0 0 $pm-sm rgba(0,0,0,.05);
+  border-right: 1px solid $color-gray-light;
   z-index: 10;
   .sidebar {
     height: 100%;

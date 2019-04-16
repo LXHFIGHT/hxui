@@ -1,6 +1,6 @@
 <template>
   <div class="hx-block bg-gray">
-    <div class="hx-container bg-white">
+    <div :class="['bg-white', project.isAdmin ? 'hx-block' : 'hx-container']">
       <aside class="aside-catalog">
         <hx-catalog :menus="menus" :onSelect="doSelectCatalog"></hx-catalog>
       </aside>
@@ -12,12 +12,14 @@
 </template>
 <script>
 import HxCatalog from '@/hxui/cpts/HxCatalog'
+import { project } from '@/config'
 export default {
   components: {
     HxCatalog
   },
   data () {
     return {
+      project,
       menus: [
         {
           key: '组件介绍',

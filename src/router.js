@@ -37,17 +37,17 @@ const router = new Router({
             {
               path: '/components/hx-image',
               name: 'hx-image',
-              component: resolve => require(['@/views/docs/image'], resolve)
+              component: resolve => require(['@/views/components/image'], resolve)
             },
             {
               path: '/components/hx-button',
               name: 'hx-button',
-              component: resolve => require(['@/views/docs/button'], resolve)
+              component: resolve => require(['@/views/components/button'], resolve)
             },
             {
               path: '/components/hx-input',
               name: 'hx-input',
-              component: resolve => require(['@/views/docs/input'], resolve)
+              component: resolve => require(['@/views/components/input'], resolve)
             }
           ]
         },
@@ -56,7 +56,23 @@ const router = new Router({
           name: 'plugins',
           component: resolve => require(['@/views/plugins/index'], resolve),
           meta: { keepAlive: true },
-          children: []
+          children: [
+            {
+              path: '/plugins/confirm',
+              name: 'confirm',
+              component: resolve => require(['@/views/plugins/confirm'], resolve)
+            },
+            {
+              path: '/plugins/toast',
+              name: 'toast',
+              component: resolve => require(['@/views/plugins/toast'], resolve)
+            },
+            {
+              path: '/plugins/validate',
+              name: 'validate',
+              component: resolve => require(['@/views/plugins/validate'], resolve)
+            }
+          ]
         }
       ]
     },
