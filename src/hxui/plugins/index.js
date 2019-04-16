@@ -8,6 +8,7 @@ import popTip from './popTip'
 import popLoading from './popLoading'
 import previewImage from './imagePreviewer'
 import Confirm from './confirm'
+import validate from './smartValidator'
 
 export default {
   ...popLoading,
@@ -23,5 +24,6 @@ export default {
       cancelText: '取消', 取消按钮文案
       level: '', 提示等级  参考hxui/config.js
    */
-  confirm: Confirm
+  confirm: Confirm,
+  validate
 }

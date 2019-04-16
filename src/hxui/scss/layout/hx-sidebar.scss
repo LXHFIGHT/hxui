@@ -27,6 +27,7 @@ $color-light-font: $color-heavy;
   width: $width-sidebar;
   overflow: hidden;
   background-color: $color-main-dark;
+  z-index: 10;
   .sidebar {
     height: 100%;
     display: block;
@@ -226,6 +227,47 @@ $color-light-font: $color-heavy;
         }
       }
     }
+    .version {
+      color: $color-gray-deep;
+      position: absolute;
+      bottom: $height-navbar + $pm-sm;
+    }
+    .footer-btn-sidebar {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $height-navbar;
+      left: 0;
+      background-color: transparent;
+      border-top: 1px solid $color-gray;
+      text-align: center;
+      button {
+        height: $height-regular;
+        min-width: $height-regular;
+        font-size: $font-md;
+        overflow: hidden;
+        padding: 0 $pm-sm;
+        color: $color-gray-deep;
+        background-color: transparent;
+        @include borderRadius($border-radius-md);
+        @include compatible(transition, all .4s);
+        &:hover {
+          background-color: rgba(0,0,0,.05);
+          &.fa-sign-out:after {
+            content: " 退出登录"
+          }
+          &.fa-user:after {
+            content: " 账户设置"
+          }
+        }
+      }
+    }
+  }
+  & + .hx-main {
+    background-color: $color-gray-light;
+    z-index: 1;
+    position: relative;
   }
 }
 

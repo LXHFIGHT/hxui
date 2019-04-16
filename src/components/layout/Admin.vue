@@ -4,7 +4,7 @@
       :isAdmin="true"
       :logo="project.logo"
       :title="project.name">
-      <div slot="right">快乐豪</div>
+      <div slot="right">Admin</div>
     </hx-navbar>
     <div class="hx-main">
       <!-- HXUI对于管理后台的应用 -->
@@ -16,10 +16,13 @@
             <div class="group-btn-sidebar"
                 v-for="menu in menus"
                 v-bind:key="menu.state">
-              <button :class="['first-level', menu.selected && 'selected', !menu.children && 'no-children']"
+              <button :class="['first-level', 
+                menu.selected && 'selected',
+                menu.icon && `fa fa-${menu.icon}`,
+                !menu.children && 'no-children']"
                       @click="doSelect(menu)">
                 <span v-text="menu.name"></span>
-                <img v-if="menu.children"
+                <img v-if="menu.children" 
                   class="icon" 
                   :src="iconCaretRight" alt="">
               </button>
@@ -33,20 +36,18 @@
               </div>
             </div>
           </div>
+          <div class="version" v-text="project.version"></div>
           <div class="footer-btn-sidebar">
-            <button class="fa fa-user"
-              @click="toUserInfo()"></button>
+            <button class="fa fa-user" @click="toUserInfo()"></button>
             <button class="fa fa-sign-out" @click="doLogout()"></button>
           </div>
-          <div class="version" v-text="project.version"></div>
         </div>
       </div>
-    <!-- 主要内容区 -->
-    <div class="hx-main" @click="doHideSidebar">
-        <router-view></router-view>
+      <!-- 主要内容区 -->
+      <div class="hx-main" @click="doHideSidebar">
+          <router-view></router-view>
+      </div>
     </div>
-    </div>
-    
     <!-- 移动版切换侧边栏按钮 -->
     <button :class="['btn-show-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
       @click="toggleSidebar()">
@@ -94,7 +95,6 @@ export default {
         this.$router.push(menu.state)
       } else {
         menu.selected = !menu.selected
-        console.log('UPDATE: ', menu.selected)
         this.$forceUpdate()
       }
     },

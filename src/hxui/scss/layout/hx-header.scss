@@ -7,6 +7,7 @@
   border-bottom: 1px solid $color-gray;
   padding: $pm-sm $pm-md;
   $height-content: $height-navbar - $pm-md;
+  background-color: white;
   @include boxShadow(0 0 24px rgba(0,0,0,.1));
   .title{
     display: inline-block;
