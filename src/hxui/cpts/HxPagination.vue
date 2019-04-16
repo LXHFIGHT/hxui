@@ -6,7 +6,7 @@
   -->
   <div class="hx-pagination">
     <select name="sizePerPage"
-            v-model="searchInfo.per_page"
+            v-model="searchInfo.pagesize"
             @change="doRequest(searchInfo)">
       <option v-for="pageSize in pageSizes"
               v-bind:key="pageSize"
@@ -29,12 +29,13 @@
 </template>
 
 <script>
+import popTip from './../plugins/popTip'
 export default {
   name: 'HxPagination',
   data () {
     return {
       searchInfo: {
-        per_page: this.pageSizes[0],
+        pagesize: this.pageSizes[0],
         page: 1
       },
       toPage: ''
@@ -61,7 +62,7 @@ export default {
   methods: {
     requestListByPage (page = 1) {
       if (page > this.total || page < 1 || isNaN(page)) {
-        alert('所选页面超过范围')
+        popTip({ text: '所选页面超过范围', level: 'warn' })
         return
       }
       this.searchInfo.page = page

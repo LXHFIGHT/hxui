@@ -12,7 +12,7 @@ import validate from './smartValidator'
 
 export default {
   ...popLoading,
-  popTip,
+  toast: popTip,
   previewImage,
   /**
    *  传入对象
