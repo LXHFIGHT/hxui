@@ -15,11 +15,12 @@
     color: $color-heavy;
     font-size: $font-md;
   }
-  code {
-
-  }
   em {
-
+    background-color: white;
+    border: 1px solid $color-gray;
+    padding: 0 $pm-sm/2;
+    line-height: 1.6;
+    border-radius: $pm-sm/2;
   }
   .section {
     margin: $pm-bg*2 0;

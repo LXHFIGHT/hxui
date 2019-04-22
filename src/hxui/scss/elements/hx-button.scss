@@ -46,7 +46,7 @@
 }
 
 // 空心按钮
-.hx-blank-button{
+.hx-button.blank {
   @include hxBlankButton($color-main);
   &:disabled, &.disabled {
     background-color: darken($color-gray, 5%)!important;
@@ -68,7 +68,7 @@
   &.black, &.fatal  {  @include hxBlankButton($color-black);  }
 }
 
-.hx-text-button{
+.hx-button.text {
   @include hxTextButton($color-main);
   &:disabled, &.disabled {
     background-color: darken($color-gray, 5%)!important;
@@ -76,14 +76,14 @@
     border: 1px solid darken($color-gray, 5%)!important;
     color: $color-gray-deep!important;
     &:hover {
-      background-color: darken($color-gray, 5%)!important;
+      background-color: $color-gray-light!important;
     }
   }
   &.gray    {  @include hxTextButton(darken($color-gray-deep, 14%));  }
-  &.orange  {  @include hxTextButton($color-orange);  }
-  &.red     {  @include hxTextButton($color-red);  }
-  &.blue    {  @include hxTextButton($color-blue);  }
-  &.green   {  @include hxTextButton($color-green);  }
+  &.orange, &.warn {  @include hxTextButton($color-orange);  }
+  &.red, &.error {  @include hxTextButton($color-red);  }
+  &.blue, &.info {  @include hxTextButton($color-blue);  }
+  &.green, &.success {  @include hxTextButton($color-green);  }
   &.excel   {  @include hxTextButton($color-green-excel);  }
   &.pink    {  @include hxTextButton($color-pink);  }
   &.yellow  {  @include hxTextButton($color-golden);  }
@@ -92,9 +92,11 @@
 // 按钮尺寸
 .hx-button.sm {
   height: $height-navbar/2;
+  font-size: $font-sm;
 }
 .hx-button.bg {
   height: $height-normal;
+  font-size: $font-bg;
 }
 
 

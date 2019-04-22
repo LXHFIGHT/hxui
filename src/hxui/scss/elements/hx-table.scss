@@ -7,13 +7,13 @@
   border-radius: $border-radius-md;
   table {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     border-collapse:collapse;
     td {
       min-height: $height-navbar;
       text-align: center;
       padding: $pm-sm $pm-sm;
-      font-size: 13px;
+      font-size: 15px;
       word-break: break-all;
       &.flex {
         display: flex;

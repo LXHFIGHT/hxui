@@ -182,8 +182,11 @@
   height: $height;
   padding: 0 8px;
   font-size: 14px;
+  background-color: transparent;
   &:hover{
     color: darken($color, 5%);
+    background-color: $color-gray-light!important;
+    filter: brightness(100%);
   }
 }
 

@@ -1,5 +1,11 @@
 <template>
-  <button :class="['hx-button', type]" @click="doClick">
+  <button :class="[
+    'hx-button', 
+    type, 
+    size, 
+    (blank && 'blank'), 
+    (text && 'text')]" 
+    @click="doClick">
     <slot></slot>
   </button>
 </template>
@@ -10,8 +16,20 @@ export default {
     return {}
   },
   props: {
+    blank: {
+      type: [Boolean, String],
+      default: false
+    },
+    text: {
+      type: [Boolean, String],
+      default: false
+    },
     type: {
       type: String
+    },
+    size: {
+      type: String,
+      default: 'md'
     }
   },
   methods: {

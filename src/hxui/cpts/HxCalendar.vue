@@ -34,7 +34,7 @@
           ($_isToday(item.date) && 'today')]"
         :key="index"
         :style="`width: ${calendarWidth/7}px; height: ${calendarHeight/6}px;`">
-        <div v-if="doSelectDate" class="mask" @click="doSelectDate(item)"></div>
+        <div v-if="doSelectDate" :class="['mask', item.selected && 'selected']" @click="doSelectDate(item)"></div>
         <span class="date" v-text="item.day"></span>
         <span class="text" v-text="item.text"></span>
         <div class="pad-tags" v-if="item.tags && item.tags.length">
@@ -56,6 +56,7 @@ const TOTAL_DATES_IN_CALENDAR = 42 // 一个日历中显示42个格子 （6*7)
 export default {
   data () {
     return {
+      isMobile: '',
       weeks: ['日', '一', '二', '三', '四', '五', '六'],
       calendarHeight: '',
       calendarWidth: '',
@@ -148,7 +149,7 @@ export default {
       this.toNextMonth({ year, month })
     },
     initFramework () {
-      const calendarHeight = this.dom.clientHeight - 87 // 减去顶部的距离 
+      const calendarHeight = this.dom.clientHeight - (this.isMobile ? 70 : 87) // 减去顶部的距离 
       const calendarWidth = this.dom.clientWidth
       if (this.calendarHeight !== calendarHeight || this.calendarWidth !== calendarWidth) {
         this.calendarHeight = calendarHeight
@@ -246,11 +247,18 @@ export default {
         return
       }
       if (this.onSelectDate instanceof Function) {
+        this.dates.forEach(v => {
+          v.selected = false
+          return v
+        })
+        date.selected = true
+        this.$forceUpdate()
         this.onSelectDate(date.date)
       }
     }
   },
   mounted () {
+    this.isMobile = window.screen.width < 640
     this.dom = this.$refs.hxCalendar
     this.initFramework()
     this.$_initCurrentDate()
