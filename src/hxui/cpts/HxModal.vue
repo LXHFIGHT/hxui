@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-modal', show && 'show', size]">
+  <div :class="['hx-modal', value && 'show', size]">
     <div class="mask" @click="onHide"></div>
     <div class="content">
       <header class="header">
@@ -23,18 +23,18 @@ export default {
     return {}
   },
   props: {
-    show: {
-      type: Boolean,
-      default: false
+    value: {
+      type: [Number, String, Boolean]
     },
     size: String,
     title: {
       type: String,
       default: '提示'
-    },
-    onHide: {
-      type: Function,
-      required: true
+    }
+  },
+  methods: {
+    onHide () {
+      this.$emit('input', false)
     }
   }
 }

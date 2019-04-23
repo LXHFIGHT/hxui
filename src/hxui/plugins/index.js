@@ -4,7 +4,7 @@
  * Description:
  *  HXUI 插件方法集合
  */
-import popTip from './popTip'
+import toast from './toast'
 import popLoading from './popLoading'
 import previewImage from './imagePreviewer'
 import Confirm from './confirm'
@@ -12,7 +12,7 @@ import validate from './smartValidator'
 
 export default {
   ...popLoading,
-  toast: popTip,
+  toast,
   previewImage,
   /**
    *  传入对象

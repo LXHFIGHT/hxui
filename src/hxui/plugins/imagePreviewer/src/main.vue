@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import popTip from './../../popTip'
+import popTip from './../../toast'
 import config from './../../config'
 export default {
   data () {

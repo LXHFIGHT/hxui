@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import popTip from './../plugins/popTip'
+import toast from './../plugins/toast'
 export default {
   name: 'HxPagination',
   data () {
@@ -62,7 +62,7 @@ export default {
   methods: {
     requestListByPage (page = 1) {
       if (page > this.total || page < 1 || isNaN(page)) {
-        popTip({ text: '所选页面超过范围', level: 'warn' })
+        toast({ text: '所选页面超过范围', level: 'warn' })
         return
       }
       this.searchInfo.page = page
