@@ -2,6 +2,7 @@
 @import "./../variable.scss";
 
 $height-navbar: 60px;
+$height-admin-navbar: 50px;
 
 .hx-nav {
   height: $height-navbar;
@@ -74,7 +75,7 @@ $height-navbar: 60px;
     }
   }
   & + .hx-main {
-    @include hcalc(calc(100% - 60px));
+    height: calc(100% - #{$height-admin-navbar});
     background-color: white;
     display: block;
     width: 100%;
@@ -83,13 +84,20 @@ $height-navbar: 60px;
   &.admin {
     box-shadow: none;
     border-bottom: 1px solid $color-gray;
+    height: $height-admin-navbar;
+    display: block;
     .nav-left {
-      padding-left: $height-navbar/4 + $height-normal;
+      padding: 10px ($height-navbar/4 + $height-normal);
       display: inline-block;
+      height: $height-admin-navbar;
       .logo {
         border-radius: 50% 50%;
         margin-right: $pm-sm/2;
       }
+    }
+    .nav-right {
+      height: $height-admin-navbar;
+      padding: 10px;
     }
   }
 }

@@ -74,9 +74,9 @@ export default {
   .hx-poptip {
     text-align: center;
     font-size: 16px;
-    line-height: $height-navbar;
-    height: $height-navbar;
-    padding: 0 $pm-md;
+    line-height: 1.5;
+    height: auto;
+    padding: ($pm-md - 3px) $pm-md;
     border-radius: $border-radius-md;
     &.top {
       top: 0;
@@ -143,6 +143,7 @@ export default {
   .hx-poptip {
     width: 100%;
     bottom: 0;
+    left: 0;
     text-align: center;
     background-color: rgba(0,0,0,.75)!important;
     color: rgba(255, 255, 255, .9);
@@ -151,9 +152,9 @@ export default {
     padding: $pm-md $pm-md $pm-bg;
     max-width: 100%;
     line-height: $font-sm * 2;
-    @include compatible(transform, translate(-50%, 100%));
+    @include compatible(transform, translateY(100%));
     &.show {
-      @include compatible(transform, translate(-50%, 0));
+      @include compatible(transform, translateY(0));
     }
     &.success:before,
     &.warn:before,

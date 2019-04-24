@@ -17,13 +17,18 @@
     <div class="right">
       <slot name="right"></slot>
     </div>
+    <div class="pad-search" ref="padSearch">
+      <slot name="search"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data () {
-    return {}
+    return {
+      hasSearchElem: false
+    }
   },
   props: {
     title: {
@@ -32,6 +37,15 @@ export default {
     subTitle: {
       type: String
     }
+  },
+  methods: {
+    $_init () {
+      const $padSearch = this.$refs.padSearch
+      this.hasSearchElem = !!$padSearch.childElementCount
+    }
+  },
+  mounted () {
+    this.$_init()
   }
 }
 </script>

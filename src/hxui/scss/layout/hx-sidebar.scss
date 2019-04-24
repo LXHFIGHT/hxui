@@ -29,6 +29,21 @@ $color-light-font: $color-heavy;
   box-shadow: 0 0 $pm-sm rgba(0,0,0,.05);
   border-right: 1px solid $color-gray-light;
   z-index: 10;
+  transition: width .4s;
+  // 侧边栏隐藏的效果
+  &.folded {
+    width: 49px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:hover {
+      width: $width-sidebar;
+    }
+    & + .hx-main {
+      width: calc(100% - #{$height-navbar});
+      float: right;
+    }
+  }
   .sidebar {
     height: 100%;
     display: block;
@@ -59,9 +74,10 @@ $color-light-font: $color-heavy;
     @include hcalc(calc(100% - 260px));
     display: block;
     overflow-y: auto;
+    overflow-x: hidden;
   }
   .group-btn-sidebar{
-    width: 100%;
+    width: $width-sidebar;
     display: block;
     @include compatible(transition, .4s);
     margin-bottom: 1px;
@@ -269,6 +285,7 @@ $color-light-font: $color-heavy;
     background-color: $color-gray-light;
     z-index: 1;
     position: relative;
+    transition: width .4s;
   }
 }
 

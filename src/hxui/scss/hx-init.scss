@@ -104,7 +104,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     background-color: white;
     font-size: $font-md;
     resize: none;
-    height: 40px;
+    height: $height-regular;
     &.blank {
         border: 1px solid transparent;
         @include compatible(transition, all .4s);

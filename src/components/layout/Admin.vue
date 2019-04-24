@@ -10,6 +10,7 @@
       <!-- HXUI对于管理后台的应用 -->
       <div :class="['hx-sidebar',
         (project.theme === Themes.LIGHT && 'light'),
+        foldSidebar && 'folded',
         showSidebar && 'show']">
         <div class="sidebar ">
           <div class="sidebar-buttons">
@@ -50,12 +51,12 @@
     </div>
     <!-- 移动版切换侧边栏按钮 -->
     <button :class="['btn-show-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
-      @click="toggleSidebar()">
+      @click="doSwitchSidebar()">
     </button>
     <!-- PC版切换侧边栏宽窄模式的按钮 -->
-    <button :class="['btn-toggle-sidebar fa fa-list',  (showSidebar ? ' show' : '')]"
-      @click="toggleSidebar()">
-    </button>
+    <button :class="['btn-toggle-sidebar fa fa-list', foldSidebar && 'folded']"
+      @click="doToggleSidebar()">
+    </button>  
   </div>
 </template>
 
@@ -77,12 +78,16 @@ export default {
       project,
       logo: project.logo,
       showSidebar: false,
+      foldSidebar: false,
       Themes,
       iconCaretRight: ''
     }
   },
   methods: {
-    toggleSidebar () {
+    doToggleSidebar () {
+      this.foldSidebar = !this.foldSidebar
+    },
+    doSwitchSidebar () {
       this.showSidebar = !this.showSidebar
     },
     doHideSidebar () {
