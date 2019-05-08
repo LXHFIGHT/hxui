@@ -5,6 +5,7 @@
  *
  */
 import { $ } from './../tools'
+import toast from './../toast'
 
 const smartValidate = (query) => {
   const RESULT_REQUIRED_ISSUE = 1 // 必填项需要填写
@@ -29,7 +30,7 @@ const smartValidate = (query) => {
   }
 
   switch (result) {
-    case RESULT_REQUIRED_ISSUE: alert('请完善所有信息'); break
+    case RESULT_REQUIRED_ISSUE: toast.warn('请完善所有信息'); break
     default: break
   }
 

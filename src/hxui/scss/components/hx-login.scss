@@ -10,7 +10,7 @@
   padding: $pm-bg;
   visibility: hidden;
   border: 1px solid $color-gray;
-  background-color: rgba(255,255,255,.75);
+  background-color: white;
   border-radius: $border-radius-md!important;
   @include compatible(transition, all .4s);
   overflow: hidden;

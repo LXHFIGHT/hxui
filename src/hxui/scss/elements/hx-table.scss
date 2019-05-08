@@ -7,13 +7,13 @@
   border-radius: $border-radius-md;
   table {
     width: 100%;
-    font-size: 15px;
+    font-size: 14px;
     border-collapse:collapse;
     td {
       min-height: $height-navbar;
       text-align: center;
       padding: $pm-sm $pm-sm;
-      font-size: 15px;
+      font-size: 13px;
       word-break: break-all;
       &.flex {
         display: flex;
@@ -68,9 +68,9 @@
         padding: 0 $pm-sm;
         height: $height-regular - $pm-sm / 2;
         min-height: $height-regular - $pm-sm / 2;
-        margin: $pm-sm/2;
+        margin: 0 $pm-sm/2 $pm-sm/2 0;
+        min-width: 60px;
         &.standard {
-          min-width: 90px;
           margin-bottom: $pm-sm/2;
         }
         &.smart {
@@ -124,9 +124,6 @@
       td {
         min-height: $height-normal;
         padding: $pm-sm/2 0;
-        button {
-          min-width: 85px!important;
-        }
         &.td-img-cover img{
           height: 80px;
           width: auto;
@@ -161,10 +158,7 @@
       table-layout: fixed;
       td {
         min-height: $height-normal;
-        padding: $pm-sm/2 0;
-        button {
-          min-width: 85px!important;
-        }
+        padding: $pm-sm;
         &.td-img-cover img{
           height: 80px;
           width: auto;

@@ -6,7 +6,7 @@
   -->
   <div class="hx-pagination">
     <select name="sizePerPage"
-            v-model="searchInfo.pagesize"
+            v-model="searchInfo.perPage"
             @change="doRequest(searchInfo)">
       <option v-for="pageSize in pageSizes"
               v-bind:key="pageSize"
@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       searchInfo: {
-        pagesize: this.pageSizes[0],
+        perPage: this.pageSizes[0],
         page: 1
       },
       toPage: ''
