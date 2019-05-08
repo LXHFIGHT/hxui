@@ -16,7 +16,7 @@
       </button>
       <slot name="right"></slot>
     </div>
-    <slot class="content" name="content"></slot>
+    <slot class="content"></slot>
     <span class="side-tag"
       v-text="tag">
     </span>

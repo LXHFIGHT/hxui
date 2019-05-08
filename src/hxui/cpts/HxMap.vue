@@ -1,10 +1,11 @@
 <template>
-    <div class="hx-map"
-         :id="id">
-      <div class="hx-emptyset md" v-if="!lat || !lng">
-        暂无准确坐标
-      </div>
+  <div class="hx-map"
+    :style="`height: ${height}`"
+    :id="id">
+    <div class="hx-emptyset md" v-if="!lat || !lng">
+      暂无准确坐标
     </div>
+  </div>
 </template>
 
 <script>
@@ -21,6 +22,10 @@ export default {
     id: {
       type: String,
       default: 'hx-map'
+    },
+    height: {
+      type: String,
+      default: '200px'
     },
     lng: {
       type: Number

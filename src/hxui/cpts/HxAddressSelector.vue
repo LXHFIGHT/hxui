@@ -1,13 +1,13 @@
 <template>
   <div :class="['hx-modal choose-address-modal', (show ? 'show' : '')]">
-    <div class="mask" @click="doClose"></div>
+    <div class="mask" @click="onHide"></div>
     <div class="pad-address-content">
       <div class="pad-address-selector">
         <input type="text"
                ref="address"
                id="suggestion"
                placeholder="搜索地点"/>
-        <button class="btn-close-modal" @click="doClose"></button>
+        <button class="btn-close-modal" @click="onHide"></button>
       </div>
       <div class="pad-map">
         <div class="map" id="baidu-map" />
@@ -57,11 +57,11 @@ export default {
     }
   },
   props: {
-    doSelect: {
+    onSelect: {
       type: Function,
       required: true
     },
-    doClose: {
+    onHide: {
       type: Function,
       required: true
     },
@@ -97,7 +97,7 @@ export default {
       })
     },
     $_closeModal () {
-      this.doClose()
+      this.onHide()
     },
     $_initMap () {
       const that = this
@@ -142,14 +142,14 @@ export default {
     doChooseItem (item) {
       const { address, city, point, title } = item
       const { lng, lat } = point
-      this.doClose()
-      this.doSelect({ address, city, lng, lat, title })
+      this.onHide()
+      this.onSelect({ address, city, lng, lat, title })
     },
     doChoosePinPoint () {
       const pinpoint = this.map.getCenter()
       const { lng, lat } = pinpoint
-      this.doClose()
-      this.doSelect({ address: '', lng, lat })
+      this.onHide()
+      this.onSelect({ address: '', lng, lat })
     }
   },
   mounted () {

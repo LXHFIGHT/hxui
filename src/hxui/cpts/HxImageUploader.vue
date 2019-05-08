@@ -1,7 +1,7 @@
 <template>
   <div class="pad-image-uploader" :style="`height: ${height}`">
     <input class="uploader-images"
-      :id="id"
+      :id="id || key"
       ref="uploader"
       :accept="accept"
       @change="doUploadImage"
@@ -32,13 +32,14 @@
             :diabled="isUploading || disabled"
             v-if="!value || isImageError">
       <span class="icon fa fa-picture-o" style="top: 3px; position: relative"></span>&nbsp;
-      <span v-if="!value">{{ isUploading ? '上传中...' : text }}</span>
-      <span v-if="isImageError">{{ isUploading ? '上传中...' : '图片请重新上传' }}</span>
+      <span v-if="!value">{{ text }}</span>
+      <span v-if="isImageError">图片请重新上传</span>
     </button>
   </div>
 </template>
 
 <script>
+import { randomString } from './../plugins/tools'
 import previewImage from './../plugins/imagePreviewer'
 const SIZE_KB = 1024 // 1KB大小
 const SIZE_MAX_FOR_CANVAS = 2000 * 2000 // canvas最大像素限制
@@ -51,6 +52,7 @@ export default {
   name: 'hx-image-uploader',
   data () {
     return {
+      key: ``,
       isUploading: false,
       isCompressing: false,
       isImageError: false
@@ -60,7 +62,7 @@ export default {
     // 通过 v-model 绑定上传图片数据
     id: {
       type: String,
-      default: 'image-uploader'
+      default: ``
     },
     text: {
       type: String,
@@ -78,7 +80,7 @@ export default {
       type: String,
       default: '150px'
     },
-    doUpload: {
+    onUpload: {
       type: Function,
       required: true
     },
@@ -109,7 +111,11 @@ export default {
         // 遇到非图片的文件时，直接放入files
         if (!/\/(?:jpeg|png|gif)/i.test(files[i].type)) {
           fileDatas.push(files[i])
-          continue
+          if (fileDatas.length === total) {
+            callback instanceof Function && callback(fileDatas)
+          } else {
+            continue
+          }
         }
         const reader = new FileReader()
         reader.onload = function () {
@@ -226,12 +232,14 @@ export default {
         const files = fileDatas
         const data = new FormData()
         data.append(this.name, files[0])
+        console.log('upload')
         this.isUploading = true
-        this.doUpload(data, this.id)
+        this.onUpload(data, (this.id || this.key))
       })
     },
     triggerUploadImage () {
-      document.getElementById(this.id).click()
+      const id = this.id || this.key
+      document.getElementById(id).click()
     },
     doPreviewImage (image) {
       previewImage(image)
@@ -251,15 +259,13 @@ export default {
   },
   mounted () {
     this.doAnalyseImage()
+    this.key = `image-uploader-${randomString(6)}`
   },
   watch: {
-    value: {
-      handler (val, oldVal) {
-        this.$refs.uploader.value = ''
-        console.log('image is:', val)
-        this.$_analyseImage(val)
-      },
-      deep: true
+    value (val, oldVal) {
+      this.$refs.uploader.value = ''
+      this.isUploading = false
+      this.$_analyseImage(val)
     }
   }
 }

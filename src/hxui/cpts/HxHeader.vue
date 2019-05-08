@@ -1,8 +1,5 @@
 <template>
   <div class="hx-header">
-    <div class="left">
-      <slot name="left"></slot>
-    </div>
     <span class="title" >
       <span v-text="title"></span>
       <slot name="title"></slot>
@@ -11,6 +8,7 @@
     &nbsp;
     <small class="title color-main"
            v-text="subTitle"></small>
+    <slot name="left"></slot>
     <div class="center">
       <slot name="center"></slot>
     </div>

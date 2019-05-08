@@ -14,9 +14,10 @@
     display: inline-block;
     height: 100%;
     width: auto;
+    min-width: 3*$height-normal + 10px;
     padding: 0;
     background-color: $color-gray;
-
+    text-align: center;
     img {
       width: auto!important;
       height: 100%!important;

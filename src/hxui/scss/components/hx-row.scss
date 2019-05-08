@@ -9,10 +9,12 @@
 
 @import "./../variable.scss";
 
+$width-label: 110px;
 
 .hx-row {
   width: 100%;
-  padding: $pm-sm $pm-md;
+  padding: 0;
+  margin-bottom: $pm-sm * 1.5;
   line-height: $height-navbar - 2 * $pm-sm;
   color: $color-dark;
 
@@ -31,7 +33,7 @@
   // 左侧表单内容文案
   label{
     line-height: $height-regular;
-    width: 120px;
+    width: $width-label;
     color: $color-heavy;
     font-weight: 500;
     &.title {
@@ -147,7 +149,7 @@
     }
     .degree {
       color: $color-gray-deep;
-      width: $height-normal;
+      min-width: $height-normal;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -389,7 +391,7 @@
 @media screen and (min-width: 640px) {
   .hx-row {
     .content {
-      @include wcalc(calc(100% - 125px));
+      width: calc(100% - #{$width-label + 5px});
     }
   }
 }
