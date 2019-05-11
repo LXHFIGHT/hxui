@@ -2,7 +2,7 @@
 
 .hx-copyright {
   font-size: $font-md;
-  color: $color-gray-deep;
+  color: white;
   position: fixed;
   bottom: $pm-lg;
   left: 50%;
@@ -10,6 +10,15 @@
   max-width: 50%;
   text-align: center;
   @include compatible(transform, translateX(-50%));
+  a {
+    color: white;
+    &:link {
+      color: white;
+    }
+    &:hover {
+      color: $color-main;
+    }
+  }
 }
 
 @media screen and (max-width: 640px) {

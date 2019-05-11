@@ -13,7 +13,8 @@
   text-align: center;
   position: relative;
   background-color: $color-gray-light;
-  color: $color-gray-deep;
+  color: #eee;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.3);
   font: {
     size: 30px;
     weight: 900;

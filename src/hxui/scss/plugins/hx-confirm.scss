@@ -5,6 +5,9 @@
     .header, .footer { 
       margin: 0;
     }
+    .footer {
+      padding-top: $pm-md;
+    }
   }
 }
 

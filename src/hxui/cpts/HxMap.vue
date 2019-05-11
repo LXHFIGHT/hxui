@@ -28,14 +28,17 @@ export default {
       default: '200px'
     },
     lng: {
-      type: Number
+      type: [Number, String],
+      default: ''
     },
     lat: {
-      type: Number
+      type: [Number, String],
+      default: ''
     }
   },
   methods: {
-    $_reloadMap ({lat, lng}) {
+    $_reloadMap () {
+      const { lat, lng } = this
       if (!this.map) {
         this.map = new BMap.Map(this.id) // 创建Map实例
         this.map.enableScrollWheelZoom()
@@ -49,8 +52,10 @@ export default {
     }
   },
   updated () {
-    const { lat, lng } = this
-    this.$_reloadMap({ lat, lng })
+    this.$_reloadMap()
+  },
+  mounted () {
+    this.$_reloadMap()
   }
 }
 </script>

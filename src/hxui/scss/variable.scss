@@ -68,6 +68,9 @@ $color-blue-light: lighten($color-blue, 34%);
   @include compatible(transform, translateY(-50%));
 }
 
+.align-right { text-align: right; }
+.center { text-align: center; }
+
 // 响应式布局参数
 $width-bg-min: 1280px;
 $width-md: 1024px;

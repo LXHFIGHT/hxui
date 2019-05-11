@@ -1,7 +1,7 @@
 @import './../variable.scss';
 
 .hx-table {
-  padding: $pm-md;
+  padding: 0;
   @include boxShadowNormal();
   background-color: white;
   border-radius: $border-radius-md;

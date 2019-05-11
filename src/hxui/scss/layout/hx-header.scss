@@ -34,7 +34,6 @@
       margin-right: $pm-sm;
     }
   }
-  .left {  float: left;  }
   .right {  float: right; }
   .center {
     @include centerInParent;

@@ -106,7 +106,7 @@ $color-light-font: $color-heavy;
         opacity: $opacity-low;
         float: right;
         margin-right: $pm-sm;
-        margin-top: $pm-sm/2;
+        margin-top: 0;
         height: 14px;
         width: 14px;
         @include compatible(transition, all .4s);

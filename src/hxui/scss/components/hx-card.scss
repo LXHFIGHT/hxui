@@ -1,6 +1,6 @@
 @import '../variable';
 
-$height-card-row: 28px;
+$height-card-row: auto;
 
 /* hxui卡片樣式 */
 .hx-card {
@@ -36,7 +36,7 @@ $height-card-row: 28px;
   }
   .row {
     position: relative;
-    display: block;
+    display: flex;
     text-align: left!important;
     padding: 0 $pm-sm;
     height: $height-card-row;
@@ -55,13 +55,14 @@ $height-card-row: 28px;
     }
     label {
       color: $color-gray-deep;
-      width: 60px;
+      width: auto;
+      min-width: 66px;
       display: inline-block;
       line-height: $height-card-row;
       height: $height-card-row;
     }
     .text {
-      @include wcalc(calc(100% - 65px));
+      flex: 1;
       @include nowrap;
       display: inline-block;
       line-height: $height-card-row;
@@ -76,15 +77,6 @@ $height-card-row: 28px;
     }
     .main {
       color: $color-main;
-    }
-    &:first-child {
-      line-height: $height-normal;
-      height: $height-normal;
-      span {
-        line-height: $height-normal;
-        display: block;
-        width: 100%;
-      }
     }
     &.img {
       height: 150px;
@@ -109,6 +101,7 @@ $height-card-row: 28px;
       text-align: right!important;
       padding: $pm-sm;
       height: auto;
+      display: block;
       border-top: 1px solid $color-gray;
       &.center {
         text-align: center!important;

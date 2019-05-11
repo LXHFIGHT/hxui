@@ -6,8 +6,9 @@
         {{ title }}
         <slot name="header"></slot>
       </header>
-      <div class="hx-row">
+      <div >
         <slot name="content"></slot>
+        <slot></slot>
       </div>
       <div class="footer">
         <slot name="footer"></slot>

@@ -1,14 +1,19 @@
 <template>
   <div class="hx-header">
+    <div class="left">
+      <slot name="left"></slot>
+    </div>
     <span class="title" >
       <span v-text="title"></span>
       <slot name="title"></slot>
     </span>
-    &nbsp;
-    &nbsp;
     <small class="title color-main"
-           v-text="subTitle"></small>
-    <slot name="left"></slot>
+      v-if="subTitle"
+      v-text="subTitle">
+    </small>
+    <span class="title">
+      <slot name="subTitle"></slot>
+    </span>
     <div class="center">
       <slot name="center"></slot>
     </div>

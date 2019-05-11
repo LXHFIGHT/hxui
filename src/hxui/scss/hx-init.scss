@@ -94,7 +94,11 @@ input::-ms-input-placeholder {   /*Internet Explorer*/
 
 
 // 文本编辑组件、选择组件的默认样式
-input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea, select {
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="tel"], 
+input[type="number"], textarea, select {
     width: 100%;
     display: inline-block;
     @include compatible(transition, all .4s);
