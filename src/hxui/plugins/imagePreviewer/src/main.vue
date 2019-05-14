@@ -141,7 +141,7 @@ export default {
   },
   mounted () {
     this.show = true
-    this.$_getCurrentImageIndex()
+    this.index = this.$_getCurrentImageIndex()
   },
   beforeDestroy () {
     clearTimeout(this.closeTimer)

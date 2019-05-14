@@ -104,6 +104,7 @@ input[type="number"], textarea, select {
     @include compatible(transition, all .4s);
     border: 1px solid $color-gray;
     line-height: $height-regular;
+    border-radius: 3px;
     padding: 0 $pm-sm;
     background-color: white;
     font-size: $font-md;

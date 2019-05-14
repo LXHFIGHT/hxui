@@ -238,7 +238,7 @@ $width-label: 110px;
           weight: 300;
         }
         color: white;
-        margin: 0 $pm-sm/2 $pm-sm 0;
+        margin: 0;
         @include borderRadius($height-navbar/2 $height-navbar/2);
         span{
           width: auto;
