@@ -10,44 +10,44 @@ const router = new Router({
     {
       path: '/',
       name: 'Root',
-      component: resolve => require(['@/views/index'], resolve),
+      component: resolve => require(['./views/index'], resolve),
       meta: { keepAlive: true },
       children: [
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['@/views/home'], resolve)
+          component: resolve => require(['./views/home'], resolve)
         },
         {
           path: '/style/list',
           name: 'styleList',
-          component: resolve => require(['@/views/style/list'], resolve)
+          component: resolve => require(['./views/style/list'], resolve)
         },
         {
           path: '/style/display',
           name: 'styleDisplay',
-          component: resolve => require(['@/views/style/display'], resolve)
+          component: resolve => require(['./views/style/display'], resolve)
         }, 
         {
           path: '/components',
           name: 'components',
-          component: resolve => require(['@/views/components/index'], resolve),
+          component: resolve => require(['./views/components/index'], resolve),
           meta: { keepAlive: true },
           children: [
             {
               path: '/components/hx-image',
               name: 'hx-image',
-              component: resolve => require(['@/views/components/image'], resolve)
+              component: resolve => require(['./views/components/image'], resolve)
             },
             {
               path: '/components/hx-button',
               name: 'hx-button',
-              component: resolve => require(['@/views/components/button'], resolve)
+              component: resolve => require(['./views/components/button'], resolve)
             },
             {
               path: '/components/hx-input',
               name: 'hx-input',
-              component: resolve => require(['@/views/components/input'], resolve)
+              component: resolve => require(['./views/components/input'], resolve)
             }
           ]
         },
