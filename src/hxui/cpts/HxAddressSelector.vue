@@ -146,10 +146,11 @@ export default {
       this.onSelect({ address, city, lng, lat, title })
     },
     doChoosePinPoint () {
+      const address = this.$refs.address.value || ''
       const pinpoint = this.map.getCenter()
       const { lng, lat } = pinpoint
       this.onHide()
-      this.onSelect({ address: '', lng, lat })
+      this.onSelect({ address, lng, lat })
     }
   },
   mounted () {

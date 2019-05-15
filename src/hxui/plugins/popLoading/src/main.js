@@ -28,6 +28,6 @@ export const showLoading = (options) => {
 }
 
 export const hideLoading = () => {
-  instance.vm.destroyElement()
+  instance.vm && instance.vm.destroyElement()
   return true
 }
