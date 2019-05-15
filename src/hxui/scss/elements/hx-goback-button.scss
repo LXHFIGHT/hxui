@@ -6,7 +6,7 @@
   background-color: transparent;
   font-size: 24px;
   margin-right: $pm-md;
-  @include borderRadius(50%);
+  border-radius: 50%;
   height: $height-navbar - 2 * $pm-sm;
   width: $height-navbar - 2 * $pm-sm;
   &:hover{

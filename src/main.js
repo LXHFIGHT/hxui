@@ -1,6 +1,5 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
 import App from './App'
 import { sync } from 'vuex-router-sync'
 import router from './router.js'
@@ -12,6 +11,7 @@ import HXUI from './hxui/plugins/index'
 import HxHeader from './hxui/cpts/HxHeader'
 import combineFilters from './tools/combineFilters'
 
+const Vue = window.Vue
 Vue.config.productionTip = false
 Vue.prototype.$hxui = HXUI
 Vue.component('hx-header', HxHeader)

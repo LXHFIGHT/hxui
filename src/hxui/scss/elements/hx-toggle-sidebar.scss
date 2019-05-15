@@ -10,7 +10,7 @@
     height: $height-regular;
     width: $height-regular;
     z-index: 1200;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
     color: $color-main;
     background-color: transparent;
     &.show {

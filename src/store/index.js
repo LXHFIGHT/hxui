@@ -5,11 +5,10 @@
  *   用于存储并引入不同的独立的模块的全局状态
  */
 
-import Vue from 'vue'
-import Vuex from 'vuex'
-
 import user from './modules/user'
 
+const Vue = window.Vue
+const Vuex = window.Vuex
 const debug = process.env.NODE_ENV !== 'production'
 
 Vue.use(Vuex)

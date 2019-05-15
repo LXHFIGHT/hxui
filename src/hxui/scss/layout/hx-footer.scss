@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   border-top: 1px solid $color-gray;
-  @include boxShadow(0 0 24px rgba(0,0,0,.1));
+  box-shadow: 0 0 24px rgba(0,0,0,.1);
   button {
     height: $height-navbar - 2 * $pm-sm;
   }

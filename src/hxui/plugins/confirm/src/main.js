@@ -1,5 +1,6 @@
-import Vue from 'vue'
 import Main from './Main.vue'
+
+const Vue = window.Vue
 const ConfirmConstructor = Vue.extend(Main)
 
 const Confirm = function (options) {

@@ -9,7 +9,7 @@
   display: block;
   max-width: 50%;
   text-align: center;
-  @include compatible(transform, translateX(-50%));
+  transform: translateX(-50%);
   a {
     color: white;
     &:link {

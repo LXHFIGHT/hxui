@@ -61,7 +61,7 @@ $height-checkbox: 20px;
 
 .hx-checkbox {
   &:before {
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
   }
 }
 
@@ -69,7 +69,7 @@ $height-checkbox: 20px;
   &:before {
     background-clip: padding-box;
     padding: 2px;
-    @include borderRadius(50% 50%);
+    border-radius: 50% 50%;
   }
 }
 

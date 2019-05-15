@@ -28,7 +28,7 @@
     border: none;
     -webkit-appearance: none;
     appearance: none;
-    @include compatible(user-appearance, none);
+    user-appearance: none;
     background-color: white;
   }
   a, span {

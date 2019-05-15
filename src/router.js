@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
 import { initMenus } from './config/menus'
 
+const Vue = window.Vue
+const Router = window.VueRouter
 Vue.use(Router)
 
 const router = new Router({

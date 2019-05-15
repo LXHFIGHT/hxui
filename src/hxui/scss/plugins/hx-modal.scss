@@ -24,7 +24,7 @@
   opacity: .0;
   @include block;
   position: fixed;
-  @include compatible(transition, all .4s);
+  transition: all .4s;
   &.show{
     visibility: visible;
     opacity: 1.0;
@@ -49,8 +49,8 @@
     overflow-y: auto;                                // 默认样式为屏幕宽度 60%
     min-width: 300px;
     padding: $pm-md;
-    @include borderRadius($border-radius-md);
-    @include boxShadow(0 24px $pm-bg -16px rgba(0,0,0,.4));
+    border-radius: $border-radius-md;
+    box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -90,7 +90,7 @@
       color: $color-gray-deep;
       background-color: transparent;
       border: none;
-      @include borderRadius($border-radius-md);
+      border-radius: $border-radius-md;
       &:hover {
         background-color: $color-red;
         color: white;
@@ -109,14 +109,14 @@
     // 模态框中部内容面板
     .map {
       min-height: 400px;
-      @include borderRadius($border-radius-md);
+      border-radius: $border-radius-md;
     }
     .main-textarea {
       padding: $pm-md;
       font-size: 14px;
       width: 100%;
       border: 1px solid $color-gray-light;
-      @include borderRadius($border-radius-md);
+      border-radius: $border-radius-md;
       resize: none;
     }
   }
@@ -160,7 +160,7 @@
           width: 28%;
           height: 6px;
           @include centerHorizontal;
-          @include borderRadius(4px);
+          border-radius: 4px;
         }
       }
       .map {
@@ -177,8 +177,8 @@
       top: auto;
       bottom: $pm-bg;
       left: 50%;
-      @include compatible(transition, all .4s);
-      @include compatible(transform, translate(-50%, 50%));
+      transition: all .4s;
+      transform: translate(-50%, 50%);
       position: fixed;
       .hx-content {
         padding: $pm-md;
@@ -192,7 +192,7 @@
     }
     &.show {
       .content {
-        @include compatible(transform, translate(-50%, 0));
+        transform: translate(-50%, 0);
       }
     }
   }

@@ -62,7 +62,7 @@ export default {
   max-width: 60%;
   z-index: 10000;
   color: rgba(255, 255, 255, .9);
-  @include compatible(transition, all .2s);
+  transition: all .2s;
   &.success { background-color: $color-green; }
   &.warn { background-color: $color-orange; }
   &.error { background-color: $color-red; }
@@ -81,18 +81,18 @@ export default {
     &.top {
       top: 0;
       @include centerHorizontal();
-      @include compatible(transform, translate(-50%, -100%));
+      transform: translate(-50%, -100%);
       &.show {
-        @include compatible(transform, translate(-50%, 10%));
+        transform: translate(-50%, 10%);
       }
     }
     &.topLeft,
     &.topRight {
       top: 0;
       position: absolute;
-      @include compatible(transform, translateY(-100%));
+      transform: translateY(-100%);
       &.show {
-        @include compatible(transform, translateY(10%));
+        transform: translateY(10%);
       }
     }
     &.topRight {
@@ -104,19 +104,19 @@ export default {
     &.bottom {
       bottom: 0;
       @include centerHorizontal();
-      @include compatible(transform, translate(-50%, 100%));
+      transform: translate(-50%, 100%);
       @include borderRadiusTop($border-radius-md);
       &.show {
-        @include compatible(transform, translate(-50%, -10%));
+        transform: translate(-50%, -10%);
       }
     }
     &.bottomLeft,
     &.bottomRight {
       bottom: 0;
       position: absolute;
-      @include compatible(transform, translateY(100%));
+      transform: translateY(100%);
       &.show {
-        @include compatible(transform, translateY(-10%));
+        transform: translateY(-10%);
       }
     }
     &.bottomRight {
@@ -152,9 +152,9 @@ export default {
     padding: $pm-md $pm-md $pm-bg;
     max-width: 100%;
     line-height: $font-sm * 2;
-    @include compatible(transform, translateY(100%));
+    transform: translateY(100%);
     &.show {
-      @include compatible(transform, translateY(0));
+      transform: translateY(0);
     }
     &.success:before,
     &.warn:before,
@@ -167,7 +167,7 @@ export default {
       height: 4px;
       display: block;
       @include centerHorizontal;
-      @include borderRadius(4px 4px);
+      border-radius: 4px 4px;
     }
     &.success:before { background-color: $color-green; }
     &.warn:before { background-color: $color-orange; }

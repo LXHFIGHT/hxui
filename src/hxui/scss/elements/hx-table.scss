@@ -23,7 +23,7 @@
       img.avatar {
         height: $height-navbar - $pm-sm;
         width: $height-navbar - $pm-sm;
-        @include borderRadius(50% 50%);
+        border-radius: 50% 50%;
         background-color: $color-gray;
         display: block;
         margin: 0 auto;
@@ -50,7 +50,7 @@
         img {
           height: $height-upload-button;
           width: $width-upload-button;
-          @include borderRadius($border-radius-md);
+          border-radius: $border-radius-md;
         }
       }
       &.td-img-avatar {
@@ -58,7 +58,7 @@
         img {
           height: $height-normal;
           width: $height-normal;
-          @include borderRadius(50% 50%);
+          border-radius: 50% 50%;
         }
       }
       &.td-justify {
@@ -80,7 +80,7 @@
           overflow-x: hidden;
           width: 29px;
           white-space: nowrap;
-          @include compatible(transition, width .2s);
+          transition: width .2s;
           &:hover {
             width: 100px;
           }

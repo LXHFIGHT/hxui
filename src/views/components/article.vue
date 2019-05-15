@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import HxSection from '@/hxui/cpts/HxSection'
+import HxSection from './../../hxui/cpts/HxSection'
 export default {
   components: [ 'HxSection' ],
   data () {

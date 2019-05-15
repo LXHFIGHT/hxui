@@ -37,7 +37,7 @@
     float: left;
     height: $height-regular!important;
     text-align: center;
-    @include borderRadius(0);
+    border-radius: 0;
     @include wcalc(calc(100% - 76px));
   }
 }
@@ -55,11 +55,11 @@
       background-color: $color-main;
       padding: 0;
       color: white;
-      @include borderRadius(50%);
+      border-radius: 50%;
       position: relative;
       border: none;
       top: 50%;
-      @include compatible(transform, translateY(-50%));
+      transform: translateY(-50%);
       &:hover, &:active {
         background-color: darken($color-main, .10)!important;
       }

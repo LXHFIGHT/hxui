@@ -55,7 +55,7 @@ $width-label: 110px;
     height: 280px;
     @include wcalc(calc(45% - 58px));
     background-color: $color-gray-light;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
   }
 
   // 富文本模块
@@ -70,7 +70,7 @@ $width-label: 110px;
       height: 389px;
       border: 1px solid $color-gray;
       padding: $pm-md;
-      @include borderRadius($border-radius-md);
+      border-radius: $border-radius-md;
       overflow-x: hidden;
       overflow-y: auto;
       p {
@@ -113,7 +113,7 @@ $width-label: 110px;
       height: $height-regular;
       display: block;
       background-color: #fafafa;
-      @include borderRadius($border-radius-md);
+      border-radius: $border-radius-md;
       &.border {
         border: 1px solid $color-gray;
       }
@@ -167,10 +167,10 @@ $width-label: 110px;
       font-size: 12px;
       line-height: $height-tips + 1px;
       padding: 0 $pm-sm;
-      @include borderRadius($height-navbar/2);
+      border-radius: $height-navbar/2;
       top: ($height-regular - $height-tips)/2;
       visibility: hidden;
-      @include compatible(transition, all .4s);
+      transition: all .4s;
       @include transform(scale(.0, .0));
       &.show {
         visibility: visible;
@@ -213,8 +213,8 @@ $width-label: 110px;
       background-color: white;
       opacity: .0;
       visibility: hidden;
-      @include boxShadow(0 5px 20px -6px rgba(0,0,0,.3));
-      @include compatible(transition, all .4s);
+      box-shadow: 0 5px 20px -6px rgba(0,0,0,.3);
+      transition: all .4s;
       &.show {
         visibility: visible;
         opacity: 1.0;
@@ -239,7 +239,7 @@ $width-label: 110px;
         }
         color: white;
         margin: 0;
-        @include borderRadius($height-navbar/2 $height-navbar/2);
+        border-radius: $height-navbar/2 $height-navbar/2;
         span{
           width: auto;
           display: inline-block;
@@ -283,7 +283,7 @@ $width-label: 110px;
         line-height: $pm-bg;
         padding: 0 $pm-sm/2;
         font-size: 10px;
-        @include borderRadius($border-radius-md);
+        border-radius: $border-radius-md;
         background-color: $color-gray-deep;
         color: $color-white;
         &:hover {
@@ -306,7 +306,7 @@ $width-label: 110px;
         text-align: center;
         background-color: $color-gray-light;
         color: $color-gray-deep;
-        @include borderRadius($border-radius-md);
+        border-radius: $border-radius-md;
         font-size: $font-bg;
         padding: 0;
       }
@@ -327,8 +327,8 @@ $width-label: 110px;
           font-weight: 200;
           line-height: $height-upload-button;
           text-align: center;
-          @include borderRadius($border-radius-md);
-          @include compatible(transition, all .4s);
+          border-radius: $border-radius-md;
+          transition: all .4s;
         }
       }
       &.preview:hover {
@@ -343,8 +343,8 @@ $width-label: 110px;
       height: $height-upload-button;
       margin: 0 $pm-sm/2 0 0;
       border: 1px solid $color-gray;
-      @include borderRadius($border-radius-md);
-      @include compatible(transition, all .4s);
+      border-radius: $border-radius-md;
+      transition: all .4s;
     }
 
     .btn-upload-image {

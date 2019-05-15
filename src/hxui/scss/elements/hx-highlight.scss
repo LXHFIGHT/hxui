@@ -3,5 +3,5 @@
 .hx-highlight {
   padding: 0 $pm-md/4;
   background-color: $color-golden-light;
-  @include borderRadius($border-radius-bg);
+  border-radius: $border-radius-bg;
 }

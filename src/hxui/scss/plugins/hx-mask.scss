@@ -19,12 +19,12 @@
     color: $color-white;
     font-size: $font-md;
     opacity: 0.2;
-    @include compatible(transform, scale(0, 0));
-    @include compatible(transition, (opacity .4s, transform .4s));
+    transform: scale(0, 0);
+    transition: opacity .4s, transform .4s;
   }
   &:hover {
     &:after {
-      @include compatible(transform, scale(1.0, 1.0));
+      transform: scale(1.0, 1.0);
       opacity: 1.0;
     }
   }

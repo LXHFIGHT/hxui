@@ -11,7 +11,7 @@ $height-admin-navbar: 50px;
   display: block;
   z-index: 10;
   position: relative;
-  @include boxShadow($shadow-md);
+  box-shadow: $shadow-md;
   .nav-left, .nav-right {
     display: inline-block;
     height: $height-navbar;
@@ -59,7 +59,7 @@ $height-admin-navbar: 50px;
         border-radius: 10px;
         bottom: 0;
         transform: scale(.0, 1.0);
-        @include compatible(transition, all .4s);
+        transition: all .4s;
       }
     }
     .hx-dropdown:hover, .hx-dropdown.selected {
@@ -161,7 +161,7 @@ $height-admin-navbar: 50px;
             display: none;
           }
           .item {
-            @include compatible(transform, .4s);
+            transform: .4s;
             left: 0;
             margin-bottom: $pm-sm/2;
             height: $height-normal;
@@ -192,8 +192,8 @@ $height-admin-navbar: 50px;
         height: 2px;
         background-color: $color-gray-deep;
         left: 20%;
-        @include compatible(transition, all .4s);
-        @include compatible(transform, rotate(0deg));
+        transition: all .4s;
+        transform: rotate(0deg);
       }
       &::before {
         top: 35%;
@@ -205,11 +205,11 @@ $height-admin-navbar: 50px;
     .btn-toggle.on {
       &::before {
         top: 50%;
-        @include compatible(transform, rotate(45deg));
+        transform: rotate(45deg);
       }
       &::after {
         top: 50%;
-        @include compatible(transform, rotate(-45deg));
+        transform: rotate(-45deg);
       }
     }
   }

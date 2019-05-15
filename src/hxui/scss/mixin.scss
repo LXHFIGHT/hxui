@@ -8,7 +8,7 @@
 }
 
 @mixin transform($content) {
-  @include compatible(transform, $content);
+  transform: $content;
 }
 
 /* 混入CSS3代码 例如要width: 100% - 60px只需要 @include calc(width, "100% - 60px") */
@@ -32,39 +32,28 @@
   height: $exp;
 }
 
-// 全圆角属性
-@mixin borderRadius($value){
-  @include compatible(border-radius, $value);
-}
-
 // 左上角和右上角圆角属性
 @mixin borderRadiusTop($value){
-  @include compatible(border-top-left-radius, $value);
-  @include compatible(border-top-right-radius, $value);
+  border-top-left-radius: $value;
+  border-top-right-radius: $value;
 }
 
 // 左下角和右下角圆角属性
 @mixin borderRadiusBottom($value){
-  @include compatible(border-bottom-left-radius, $value);
-  @include compatible(border-bottom-right-radius, $value);
+  border-bottom-left-radius: $value;
+  border-bottom-right-radius: $value;
 }
 
 // 左上角和左下角圆角属性
-@mixin borderRadiusLeft($value){
-  @include compatible(border-top-left-radius, $value);
-  @include compatible(border-bottom-left-radius, $value);
+@mixin borderRadiusLeft($value) {
+  border-top-left-radius: $value;
+  border-bottom-left-radius: $value;
 }
 
 // 右上角和右下角圆角属性
 @mixin borderRadiusRight($value){
-  @include compatible(border-top-right-radius, $value);
-  @include compatible(border-bottom-right-radius, $value);
-}
-
-@mixin boxShadow($value){
-  -webkit-box-shadow: $value  ;
-  -moz-box-shadow: $value ;
-  box-shadow: $value  ;
+  border-top-right-radius: $value;
+  border-bottom-right-radius: $value;
 }
 
 // 1. 布局方式
@@ -73,19 +62,19 @@
   top: 50%;
   left: 50%;
   position: absolute!important;
-  @include compatible(transform, translate(-50%, -50%));
+  transform: translate(-50%, -50%);
 }
 
 @mixin centerVertical() {
   top: 50%;
   position: absolute!important;
-  @include compatible(transform, translateY(-50%));
+  transform: translateY(-50%);
 }
 
 @mixin centerHorizontal() {
   left: 50%;
   position: absolute;
-  @include compatible(transform, translateX(-50%));
+  transform: translateX(-50%);
 }
 
 // 全覆盖样式: 请勿将absolute修改为relative
@@ -119,8 +108,8 @@
   }
   color: $color;
   border: 1px solid $bgColor;
-  @include borderRadius(4px);
-  @include compatible(transition, all .4s);
+  border-radius: 4px;
+  transition: all .4s;
   &.sub {
     box-shadow: none;
     color: $color;
@@ -143,7 +132,7 @@
   }
   color: $color;
   border: 1px solid $bgColor;
-  @include compatible(transition, all .4s);
+  transition: all .4s;
   &.sub {
     box-shadow: none;
     color: $color;
@@ -152,10 +141,10 @@
 
 @mixin boxShadowNormal($isHover: true) {
   transition: box-shadow .4s;
-  @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+  box-shadow: 0 3px 10px -5px rgba(0,0,0, .2);
   @if ($isHover) {
     &:hover {
-      @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
+      box-shadow: 0 8px 20px -5px rgba(0,0,0, .2);
     }
   }
 }
@@ -164,11 +153,11 @@
   border: 1px solid $bgColor;
   background-color: $color;
   color: $bgColor;
-  @include compatible(transition, all .4s);
+  transition: all .4s;
   height: $height;
   padding: 0 8px;
   font-size: 14px;
-  @include borderRadius(4px);
+  border-radius: 4px;
   &:hover{
     color: $color;
     background-color: $bgColor;
@@ -178,7 +167,7 @@
 @mixin hxTextButton($color: white, $height:34px) {
   border: none;
   color: $color;
-  @include compatible(transition, all .4s);
+  transition: all .4s;
   height: $height;
   padding: 0 8px;
   font-size: 14px;
@@ -229,10 +218,10 @@
     left: 50%;
   }
   &:before {
-    @include compatible(transform, (translate(-50%, -50%) rotate(45deg)));
+    transform: translate(-50%, -50%) rotate(45deg);
   }
   &:after {
-    @include compatible(transform, (translate(-50%, -50%) rotate(-45deg)));
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }
 // 加载图片
@@ -244,18 +233,18 @@
     width: $width;
     display: block;
     position: absolute;
-    @include borderRadius(50%);
+    border-radius: 50%;
   }
   &:before {
     left: $left;
     top: $top;
-    @include compatible(transform, scale(0.2, 0.2));
-    @include compatible(animation, smallRound 1.5s infinite ease-out);
+    transform: scale(0.2, 0.2);
+    animation: smallRound 1.5s infinite ease-out;
   }
   &:after {
     left: $left;
     top: $top;
-    @include compatible(transform, scale(1.0, 1.0));
-    @include compatible(animation, bigRound 1.5s infinite ease-in);
+    transform: scale(1.0, 1.0);
+    animation: bigRound 1.5s infinite ease-in;
   }
 }

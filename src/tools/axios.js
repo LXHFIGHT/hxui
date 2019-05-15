@@ -5,10 +5,11 @@
  *   用于发起http/https请求的 工具方法
  */
 
-import axios from 'axios'
 import { session } from './storage'
 import { queryString } from './object'
 import { serverPrefix } from './../config'
+
+const axios = window.axios
 
 /**
  * 检查返回数据是否有问题

@@ -99,12 +99,12 @@
 @media screen and (min-width: 640px) {
   .hx-section {
     padding: ($height-normal+$pm-md) $pm-md $pm-md;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
     transition: box-shadow .4s, height .4s;
     &.shadow {
-      @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+      box-shadow: 0 10px 15px -10px rgba(0,0,0,.1);
       &:hover {
-        @include boxShadow(0 5px 20px rgba(0,0,0,.1));
+        box-shadow: 0 5px 20px rgba(0,0,0,.1);
       }
     }
     &.half {
@@ -121,7 +121,7 @@
   .hx-section {
     padding: $height-navbar $pm-md $pm-md;
     transition: height .4s;
-    @include boxShadow(0 10px 15px -10px rgba(0,0,0,.1));
+    box-shadow: 0 10px 15px -10px rgba(0,0,0,.1);
     .header {
       padding: 0 $pm-md;
       button.right {

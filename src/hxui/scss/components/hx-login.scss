@@ -12,7 +12,7 @@
   border: 1px solid $color-gray;
   background-color: white;
   border-radius: $border-radius-md!important;
-  @include compatible(transition, all .4s);
+  transition: all .4s;
   overflow: hidden;
   box-shadow: 0 $pm-sm*2 $pm-md*2  -13px rgba(0,0,0,.3);
   .row {
@@ -38,17 +38,17 @@
     height: 2 * $height-navbar;
     width: 2 * $height-navbar;
     border: 1px solid $color-gray;
-    @include borderRadius(50% 50%);
+    border-radius: 50% 50%;
   }
   input {
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
     border: 1px solid $color-gray;
     line-height: $height-navbar - 2 * $pm-sm;
     height: $height-navbar - 2 * $pm-sm;
     padding: 0 $pm-sm;
     width: 100%;
     background-color: transparent;
-    @include compatible(transition, all .4s);
+    transition: all .4s;
     &:focus {
       border: 1px solid lighten($color-main-light, 10%);
     }
@@ -60,14 +60,14 @@
     background-color: $color-main;
     color: white;
     font-weight: 400!important;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
   }
   .btn-sub {
     margin-top: $pm-md;
     width: 100%;
     font-weight: 400;
     height: $height-regular;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
     background-color: transparent;
     box-shadow: none;
     color: $color-main;
@@ -92,7 +92,7 @@
       padding-left: $pm-sm;
       line-height: 28px;
     }
-    @include boxShadow(none);
+    box-shadow: none;
     .btn-sub, .btn-main {
       margin-top: $pm-sm;
       margin-bottom: 0;
@@ -106,7 +106,7 @@
       padding: 0;
       input {
         background-color: transparent;
-        @include borderRadius(0px);
+        border-radius: 0;
         border: none;
         font-size: 14px;
         border-bottom: 1px solid $color-gray;

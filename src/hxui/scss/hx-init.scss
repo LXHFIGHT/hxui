@@ -101,7 +101,7 @@ input[type="tel"],
 input[type="number"], textarea, select {
     width: 100%;
     display: inline-block;
-    @include compatible(transition, all .4s);
+    transition: all .4s;
     border: 1px solid $color-gray;
     line-height: $height-regular;
     border-radius: 3px;
@@ -112,7 +112,7 @@ input[type="number"], textarea, select {
     height: $height-regular;
     &.blank {
         border: 1px solid transparent;
-        @include compatible(transition, all .4s);
+        transition: all .4s;
         &:hover{
             border: 1px solid transparent;
             background-color: $color-gray-light!important;
@@ -138,7 +138,7 @@ input[type="number"], textarea, select {
         border: 1px solid $color-red!important;
         color: $color-red;
         background-color: lighten($color-red, 32%)!important;
-        @include compatible(transition, all .4s);
+        transition: all .4s;
         &:focus {
             border: 1px solid $color-red-deep!important;
         }
@@ -168,7 +168,80 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
     font-weight: 400;
 }
 
+.color-main { color: $color-main!important; }
+.color-red { color: $color-red!important; }
+.color-green { color: $color-green!important; }
+.color-orange { color: $color-orange!important; }
+.color-golden { color: $color-golden!important; }
+.color-pink { color: $color-pink!important; }
+.color-gray { color: #aaa!important; }
+.color-blue { color: $color-blue!important; }
 
+// 三种居中
+.center-horizontal,
+.center-parent,
+.center-vertical {  position: absolute;  }
+.center-horizontal {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.center-parent {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.center-vertical {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 参照bootstrap和amazeUI的栅格系统
+[class^='col-sm-'], [class^='col-md-'], [class^='col-bg-']
+{ float: left; display: inline-block; }
+
+@media screen and (max-width: 640px) {
+  .col-sm-1 { width: 8.33%;     }
+  .col-sm-2 { width: 16.66%;    }
+  .col-sm-3 { width: 25%;       }
+  .col-sm-4 { width: 33.33%;    }
+  .col-sm-6 { width: 50%;       }
+  .col-sm-8 { width: 66.66%;    }
+  .col-sm-12 { width: 100%;     }
+  .hide-sm { display: none!important; }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .col-md-1 { width: 8.33%;     }
+  .col-md-2 { width: 16.66%;    }
+  .col-md-3 { width: 25%;       }
+  .col-md-4 { width: 33.33%;    }
+  .col-md-6 { width: 50%;       }
+  .col-md-8 { width: 66.66%;    }
+  .col-md-12 { width: 100%;     }
+  .hide-md { display: none!important; }
+}
+
+@media screen and (min-width: 1024px) {
+  .col-bg-1 { width: 8.33%;     }
+  .col-bg-2 { width: 16.66%;    }
+  .col-bg-3 { width: 25%;       }
+  .col-bg-4 { width: 33.33%;    }
+  .col-bg-6 { width: 50%;       }
+  .col-bg-8 { width: 66.66%;    }
+  .col-bg-12 { width: 100%;     }
+  .hide-bg { display: none!important; }
+}
+
+// 定义提供全局使用的动画样式
+// 呼吸动画
+@keyframes breathe {
+  0% { transform: scale(1.0, 1.0); }
+  50% { transform: scale(1.2, 1.2); }
+  100% { transform: scale(1.0, 1.0); }
+}
+
+.align-right { text-align: right; }
+.center { text-align: center; }
 
 .hx-invisible {
     visibility: hidden;

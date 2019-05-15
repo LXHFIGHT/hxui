@@ -18,8 +18,8 @@ textarea.hx-input{
   padding: 0 $pm-sm;
   border: 1px solid $color-gray;
   color: $color-dark;
-  @include compatible(transition, all .4s);
-  @include borderRadius($border-radius-md);
+  transition: all .4s;
+  border-radius: $border-radius-md;
 }
 select.hx-input{
   height: $height-regular;

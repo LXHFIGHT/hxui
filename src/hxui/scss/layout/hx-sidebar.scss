@@ -55,7 +55,7 @@ $color-light-font: $color-heavy;
       margin-bottom: $pm-sm;
       height: $height-navbar;
       width: $height-navbar;
-      @include borderRadius(50% 50%);
+      border-radius: 50% 50%;
     }
     span.text-name {
       display: block;
@@ -79,7 +79,7 @@ $color-light-font: $color-heavy;
   .group-btn-sidebar{
     width: $width-sidebar;
     display: block;
-    @include compatible(transition, .4s);
+    transition: .4s;
     margin-bottom: 1px;
     &:hover {
       background-color: rgba(253, 69, 69, 0.1);
@@ -109,10 +109,10 @@ $color-light-font: $color-heavy;
         margin-top: 0;
         height: 14px;
         width: 14px;
-        @include compatible(transition, all .4s);
+        transition: all .4s;
       }
       &.selected .icon {
-        @include compatible(transform, rotate(90deg));
+        transform: rotate(90deg);
       }
     }
     // 二级普通菜单按钮
@@ -130,7 +130,7 @@ $color-light-font: $color-heavy;
         opacity: $opacity-height;
       }
       &.open:before{
-        @include compatible(transform, rotate(90deg));
+        transform: rotate(90deg);
       }
       &:before {
         text-align: center;
@@ -138,8 +138,8 @@ $color-light-font: $color-heavy;
         display: inline-block;
         vertical-align: top;
         margin-right: $pm-md;
-        @include compatible(transition, all .4s);
-        @include compatible(transform-origin, 25% 55%);
+        transition: all .4s;
+        transform-origin: 25% 55%;
       }
     }
     &.selected button{
@@ -184,8 +184,8 @@ $color-light-font: $color-heavy;
       padding: 0 $pm-sm;
       background-color: transparent;
       color: rgba(255,255,255,.5);
-      @include borderRadius($border-radius-md);
-      @include compatible(transition, all .4s);
+      border-radius: $border-radius-md;
+      transition: all .4s;
       &:hover {
         background-color: rgba(255,255,255,.2);
         color: rgba(255,255,255, 1.0);
@@ -267,8 +267,8 @@ $color-light-font: $color-heavy;
         padding: 0 $pm-sm;
         color: $color-gray-deep;
         background-color: transparent;
-        @include borderRadius($border-radius-md);
-        @include compatible(transition, all .4s);
+        border-radius: $border-radius-md;
+        transition: all .4s;
         &:hover {
           background-color: rgba(0,0,0,.05);
           &.fa-sign-out:after {
@@ -310,7 +310,7 @@ $color-light-font: $color-heavy;
     z-index: 1200;
     overflow-y: hidden;
     overflow-x: auto;
-    @include compatible(transition, left .4s);
+    transition: left .4s;
     &.show {
       left: 0;
     }

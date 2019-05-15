@@ -15,17 +15,17 @@ $padding-switch: 3px;
   display: inline-block;
   background-color: $color-red;
   position: relative;
-  @include borderRadius($height-regular/2 $height-regular/2);
-  @include compatible(transition, background-color .2s);
+  border-radius: $height-regular/2 $height-regular/2;
+  transition: background-color .2s;
   &:before {
     content: "";
-    @include compatible(transition, left .2s);
+    transition: left .2s;
     background-color: white;
     height: $height-switch - $pm-sm/2;
     width: $height-switch - $pm-sm/2;
     top: $pm-sm / 4;
     position: absolute;
-    @include borderRadius(50% 50%);
+    border-radius: 50% 50%;
     left: $padding-switch - 1px;
   }
   &.off {

@@ -5,9 +5,9 @@
  *  HXUI 加载框调用方法
  */
 
-import Vue from 'vue'
 import Main from './main.vue'
 
+const Vue = window.Vue
 const LoadingConstructor = Vue.extend(Main)
 let instance = {}
 

@@ -15,7 +15,7 @@
   &:before, &:after {
     visibility: hidden;
     opacity: .0;
-    @include compatible(transition, all .4s);
+    transition: all .4s;
   }
   &:hover {
     z-index: 11;
@@ -30,7 +30,7 @@
     height: 0;
     width: 0;
     z-index: 999;
-    @include compatible(transition, all .4s);
+    transition: all .4s;
   }
   &:after {
     content: attr(data-title);
@@ -47,15 +47,15 @@
     color: $color-gray-light;
     background-color: $color-dark;
     padding: 6px $pm-sm;
-    @include borderRadius($border-radius-bg);
-    @include boxShadow(0 6px 12px -4px rgba(0,0,0,.4));
+    border-radius: $border-radius-bg;
+    box-shadow: 0 6px 12px -4px rgba(0,0,0,.4);
   }
   // 底部弹出提示框
   &.bottom {
     &:before, &:after {
       top: 100%;
       left: 50%;
-      @include compatible(transform, translateX(-50%));
+      transform: translateX(-50%);
     }
     &:before {
       margin-top: 6px;
@@ -71,7 +71,7 @@
   &.top {
     &:before, &:after {
       left: 50%;
-      @include compatible(transform, translateX(-50%));
+      transform: translateX(-50%);
     }
     &:before {
       top: -12px;
@@ -87,7 +87,7 @@
   &.right {
     &:before, &:after {
       top: 50%;
-      @include compatible(transform, translateY(-50%));
+      transform: translateY(-50%);
     }
     &:before {
       left: calc(100% + 6px);
@@ -103,7 +103,7 @@
   &.left {
     &:before, &:after {
       top: 50%;
-      @include compatible(transform, translateY(-50%));
+      transform: translateY(-50%);
     }
     &:before {
       left: -12px;

@@ -3,14 +3,14 @@
 .hx-tabbar {
   height: $height-regular;
   background-color: $color-gray;
-  @include borderRadius($border-radius-md);
+  border-radius: $border-radius-md;
   overflow: hidden;
   .item {
     padding: 0 $pm-md;
     height: $height-regular;
     line-height: $height-regular;
     display: inline-block;
-    @include borderRadius($border-radius-md);
+    border-radius: $border-radius-md;
     font-size: $font-sm;
     border: none;
     &.selected {
@@ -25,7 +25,7 @@
     width: 100%;
     display: flex;
     background-color: white;
-    @include boxShadow($shadow-right-md);
+    box-shadow: $shadow-right-md;
     .item {
       flex: 1;
       text-align: center;

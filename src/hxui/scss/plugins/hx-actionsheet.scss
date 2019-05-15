@@ -42,7 +42,7 @@
     }
     .hx-actionsheet {
       background-color: $color-white;
-      @include borderRadius($border-radius-bg);
+      border-radius: $border-radius-bg;
       & + .hx-actionsheet {
         margin-top: $pm-md;
       }

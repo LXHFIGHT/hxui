@@ -69,7 +69,7 @@
         display: flex;
         .btn-confirm, .btn-cancel {
           border: none;
-          @include borderRadius(0);
+          border-radius: 0;
           height: $height-normal;
           flex: 1;
           margin: 0!important;

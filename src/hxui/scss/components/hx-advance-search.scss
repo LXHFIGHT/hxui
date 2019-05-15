@@ -4,7 +4,7 @@
   .hx-content {
     .hx-advance-search {
       margin: (-$pm-md) 0 $pm-md (-$pm-md);
-      @include borderRadius(0);
+      border-radius: 0;
       @include wcalc(calc(100% + 32px));
     }
   }
@@ -12,7 +12,7 @@
     background-color: white;
     padding: $pm-md;
     width: 100%;
-    @include borderRadius($pm-sm/2);
+    border-radius: $pm-sm/2;
     @include boxShadowNormal(false);
     position: relative;
     .btn-folder {
@@ -23,7 +23,7 @@
       padding: 0 $pm-bg;
       height: $height-normal/2;
       border: none;
-      @include borderRadius($height-normal/2);
+      border-radius: $height-normal/2;
       position: absolute;
       bottom: -$height-normal/4;
       font-size: 12px;
@@ -38,7 +38,7 @@
       padding-top: 0;
       padding-bottom: 0;
       .pad-search {
-        @include compatible(transform, scaleY(.0));
+        transform: scaleY(.0);
       }
     }
     &.hx {
@@ -52,7 +52,7 @@
       vertical-align: top;
       margin-right: $pm-sm;
       margin-bottom: $pm-sm;
-      @include compatible(transition, background-color .3s);
+      transition: background-color .3s;
       &.long {
         width: 432px;
       }
@@ -70,11 +70,11 @@
         width: 100%;
         input {
           height: $height-regular;
-          @include borderRadius(0);
+          border-radius: 0;
           font-size: $font-md;
         }
         select {
-          @include borderRadius(0);
+          border-radius: 0;
           font-size: $font-md;
         }
       }
@@ -95,8 +95,8 @@
     visibility: hidden;
     max-height: 60%;
     overflow: auto;
-    @include boxShadow(0 5px 15px -5px rgba(0,0,0,.4));
-    @include compatible(transition, .3s);
+    box-shadow: 0 5px 15px -5px rgba(0,0,0,.4);
+    transition: .3s;
     &.show {
       opacity: 1.0;
       top: $height-normal;
@@ -147,7 +147,7 @@
         margin: 0;
         width: 100%;
         select, input {
-          @include borderRadius(0);
+          border-radius: 0;
           border: none;
         }
       }

@@ -15,7 +15,7 @@
   display: block;
   margin-bottom: $pm-md;
   position: relative;
-  @include borderRadius($border-radius-md);
+  border-radius: $border-radius-md;
   @include tipsStyle($color-main, $color-main-light);
   &.green {  @include tipsStyle($color-green, $color-green-light);  }
   &.orange {  @include tipsStyle($color-orange, $color-orange-light);  }

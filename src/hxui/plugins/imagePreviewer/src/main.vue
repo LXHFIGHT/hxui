@@ -173,7 +173,7 @@ export default {
     text-align: left;
     padding-left: $pm-md;
     z-index: 100;
-    @include compatible(transition, background .4s);
+    transition: background .4s;
     .title {
       color: $color-white;
       line-height: $height-navbar;
@@ -185,7 +185,7 @@ export default {
       background-color: transparent;
       height: 100%;
       width: $height-navbar;
-      @include compatible(transition, all .2s);
+      transition:  all .2s;
       position: relative;
       padding: $pm-sm;
       &:hover {
@@ -203,10 +203,10 @@ export default {
         left: 50%;
       }
       &:before {
-        @include compatible(transform, (translate(-50%, -50%) rotate(45deg)));
+        transform: translate(-50%, -50%) rotate(45deg);
       }
       &:after {
-        @include compatible(transform, (translate(-50%, -50%) rotate(-45deg)));
+        transform: translate(-50%, -50%) rotate(-45deg);
       }
     }
     &:hover {
@@ -218,7 +218,7 @@ export default {
     max-width: 80%;
     z-index: 80;
     @include centerInParent;
-    @include compatible(transition, transform .4s);
+    transition:  transform .4s;
     &.movable {
       //cursor: move;
       cursor: grab;
@@ -235,16 +235,16 @@ export default {
     padding: $pm-md;
     display: inline-block;
     background-color: rgba(255,255,255,.4);
-    @include borderRadius($border-radius-bg);
-    @include boxShadow(0 3px 8px rgba(0,0,0, .3));
+    border-radius: $border-radius-bg;
+    box-shadow: 0 3px 8px rgba(0,0,0, .3);
     button, a {
       background-color: transparent;
       color: $color-white;
       text-shadow: 0 3px 8px rgba(0,0,0, .3);
       padding: $pm-md;
       display: inline-block;
-      @include borderRadius($border-radius-bg);
-      @include compatible(transition, background-color .4s);
+      border-radius: $border-radius-bg;
+      transition:  background-color .4s;
       &:hover {
         background-color: rgba(255,255,255,.2);
       }
@@ -258,7 +258,7 @@ export default {
     padding: 0 $pm-md;
     z-index: 100;
     background-color: transparent;
-    @include compatible(transition, all .4s);
+    transition:  all .4s;
     text-shadow: 0 3px 8px rgba(0,0,0, .3);
     &:hover {
       background-color: rgba(255,255,255,.3);
@@ -281,10 +281,10 @@ export default {
       bottom: 0;
       width: 100%;
       padding: $pm-sm $pm-md;
-      @include borderRadius(0);
+      border-radius: 0;
       button, a {
         padding: $pm-sm;
-        @include borderRadius(0);
+        border-radius: 0;
         font-size: $font-lg;
       }
     }

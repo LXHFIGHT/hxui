@@ -15,11 +15,11 @@ $height-card-row: auto;
     cursor: default;
     position: relative;
     max-width: 300px;
-    @include borderRadius($border-radius-bg);
+    border-radius: $border-radius-bg;
     transition: box-shadow .4s;
-    @include boxShadow(0 3px 10px -5px rgba(0,0,0, .2));
+    box-shadow: 0 3px 10px -5px rgba(0,0,0, .2);
     &:hover {
-      @include boxShadow(0 8px 20px -5px rgba(0,0,0, .2));
+      box-shadow: 0 8px 20px -5px rgba(0,0,0, .2);
     }
     .top-left,
     .top-right {

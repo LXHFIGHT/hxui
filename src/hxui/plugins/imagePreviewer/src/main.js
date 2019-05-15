@@ -4,9 +4,9 @@
  * Description:
  *  图片预览组件
  */
-import Vue from 'vue'
 import Main from './main.vue'
 
+const Vue = window.Vue
 const PreviewerConstructor = Vue.extend(Main)
 let PreviewerInstance = null
 
@@ -21,7 +21,9 @@ let PreviewerInstance = null
  * @param options.position 预览框的位置： 默认全屏， left 左半屏， right 右半屏 
  */
 const imagePreviewer = function (options) {
-  PreviewerInstance && PreviewerInstance.vm.destroyElement()
+  if (PreviewerInstance) {
+    PreviewerInstance.vm.destroyElement()
+  }
   let bundle = {}
   if (typeof options === 'string') {
     bundle = {

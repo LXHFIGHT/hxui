@@ -5,8 +5,8 @@
   z-index: 1400;
   background-color: rgba(0, 0, 0, .6);
   margin-top: -20px;
-  @include borderRadius($border-radius-lg);
-  @include compatible(transition, all .4s);
+  border-radius: $border-radius-lg;
+  transition: all .4s;
   height: $height-navbar * 2.4;
   width: $height-navbar * 2.4;
   padding: $pm-md $pm-sm $pm-sm $pm-sm;
@@ -49,11 +49,11 @@
     content: "";
     background-color: rgba(255,255,255,.4);
     display: block;
-    @include borderRadius(10px);
+    border-radius: 10px;
     @include centerVertical;
   }
   &.success:before {
-    @include compatible(transform, rotate(-50deg));
+    transform: rotate(-50deg);
     width: 70%;
     margin-left: 24%;
     margin-top: -7%;
@@ -62,7 +62,7 @@
     margin-top: 5%;
     margin-left: 11%;
     width: 40%;
-    @include compatible(transform, rotate(40deg));
+    transform: rotate(40deg);
   }
   &.error:before,
   &.error:after {
@@ -70,37 +70,37 @@
     width: 80%;
   }
   &.error:before {
-    @include compatible(transform, translate(-50%, -50%) rotate(-45deg));
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
   &.error:after {
-    @include compatible(transform, translate(-50%, -50%) rotate(45deg));
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 }
 @keyframes bigRound {
   0% {
-    @include compatible(transform, scale(0.2, 0.2));
+    transform: scale(0.2, 0.2);
     opacity: .7;
   }
   50% {
-    @include compatible(transform, scale(1.0, 1.0));
+    transform: scale(1.0, 1.0);
     opacity: 1.0;
   }
   100% {
-    @include compatible(transform, scale(0.2, 0.2));
+    transform: scale(0.2, 0.2);
     opacity: .7;
   }
 }
 @keyframes smallRound {
   0% {
-    @include compatible(transform, scale(1.0, 1.0));
+    transform: scale(1.0, 1.0);
     opacity: 1.0;
   }
   50% {
-    @include compatible(transform, scale(0.2, 0.2));
+    transform: scale(0.2, 0.2);
     opacity: .7;
   }
   100% {
-    @include compatible(transform, scale(1.0, 1.0));
+    transform: scale(1.0, 1.0);
     opacity: 1.0;
   }
 }
