@@ -1,0 +1,17 @@
+@import "./../variable.scss";
+.hx-options {
+  display: inline-block;
+  .item {
+    font-size: $font-sm;
+    padding: $pm-sm $pm-md;
+    border-radius: 10vw;
+    background-color: $color-gray;
+    color: white;
+    &.selected {
+      background-color: $color-main;
+    }
+    & + .item {
+      margin-left: 2vw;
+    }
+  }
+}

@@ -107,10 +107,13 @@ $width-label: 110px;
 
     // 不可编辑文本组件样式
     .text {
-      padding-left: $pm-sm;
+      padding: $pm-sm 0 $pm-sm $pm-sm;
       font-size: $font-md;
       width: 100%;
-      height: $height-regular;
+      height: auto;
+      line-height: $height-regular - $pm-sm * 2;
+      text-align: justify;
+      word-break: break-all;
       display: block;
       background-color: #fafafa;
       border-radius: $border-radius-md;
