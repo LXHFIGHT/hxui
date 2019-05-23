@@ -46,39 +46,39 @@
       color: $color-heavy;
       font-size: $font-bg;
       height: auto;
-      padding: 0;
-      header {
-        font-weight: 600;
-        font-size: 16px;
+      padding: $pm-bg $pm-sm;
+      .header {
+        font-weight: 500;
+        font-size: 6vw;
         text-align: center;
-        line-height: $height-navbar;
-        height: $height-navbar;
         display: block;
-        border-bottom: 1px solid $color-gray;
+        border-bottom: none;
+        &:before {
+          display: none;
+        }
       }
       .confirm-content {
         display: block;
         position: relative;
         text-align: center;
-        font-size: 5vw;
+        font-size: $font-md;
         line-height: 24px; 
+        color: $color-gray-deep;
         padding: $pm-bg*1.5 $pm-md;
       }
       footer {
-        font-size: 12px;
-        display: flex;
+        text-align: center;
         .btn-confirm, .btn-cancel {
           border: none;
-          border-radius: 0;
+          font-size: $font-md;
+          border-radius: $pm-sm;
           height: $height-normal;
-          flex: 1;
-          margin: 0!important;
         }
         .btn-cancel {
           background-color: $color-gray-light;
+          margin-right: $pm-md;
         }
       }
     }
   }
 }
-
