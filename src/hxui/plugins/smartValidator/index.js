@@ -4,37 +4,53 @@
  * Description:
  *
  */
-import { $ } from './../tools'
+import { $, isPhone } from './../tools'
 import toast from './../toast'
 
-const smartValidate = (query) => {
-  const RESULT_REQUIRED_ISSUE = 1 // 必填项需要填写
+const _focusFunc = function () {
+  const $view = event.target
+  $view.classList.remove('error')
+}
 
-  let components = $(query ? (query + ' [required]') : '[required]')
+const _validateRequired = (query) => {
   let result = true
-  let focusFunc = function () {
-    const $view = event.target
-    console.log(event.target.classList)
-    $view.classList.remove('error')
-  }
-
+  let components = $(query ? (query + ' [required]') : '[required]')
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
     if (!$view.value) {
-      result = RESULT_REQUIRED_ISSUE
-      console.log('LINUX ', $view.classList)
+      result = false
       $view.classList ? $view.classList.add('error') : $view.classList = ['error']
     }
-    components[i].removeEventListener('focus', focusFunc)
-    components[i].addEventListener('focus', focusFunc)
+    components[i].removeEventListener('focus', _focusFunc)
+    components[i].addEventListener('focus', _focusFunc)
   }
+  return result
+}
 
-  switch (result) {
-    case RESULT_REQUIRED_ISSUE: toast.warn('请完善所有信息'); break
-    default: break
+const _validatePhone = (query) => {
+  let components = $(query ? (query + ' [phone]') : '[phone]')
+  let result = true
+  for (let i = 0; i < components.length; i++) {
+    const $view = components[i]
+    if (!isPhone($view.value)) {
+      result = false
+      $view.classList ? $view.classList.add('error') : $view.classList = ['error']
+    }
+    components[i].removeEventListener('focus', _focusFunc)
+    components[i].addEventListener('focus', _focusFunc)
   }
+  return result
+}
 
-  return (typeof result !== 'number')
+const smartValidate = (query) => {
+  const result = []
+  !_validateRequired(query) && result.push('请完善所有必填项')
+  !_validatePhone(query) && result.push('检测手机格式是否正确')
+  if (result.length) {
+    toast.warn(result.join(', '))
+    return false
+  }
+  return true
 }
 
 export default smartValidate

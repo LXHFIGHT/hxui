@@ -7,6 +7,14 @@
 export const $ = (query) => {
   return document.querySelectorAll(query)
 }
+
+export const isPhone = (phone) => {
+  if (!phone) {
+    return false
+  }
+  return /^1[3456789]\d{9}$/.test(phone)
+}
+
 /**
  * 生成随机数
  * @param options 随机生成对象
@@ -31,4 +39,18 @@ export const randomString = (length) => {
     result += tpl.charAt(randomNumber({from: 0, to: 62}))
   }
   return result
+}
+
+export const getElementToPageTop = (el) => {
+  if (el.parentElement) {
+    return getElementToPageTop(el.parentElement) + el.offsetTop
+  }
+  return el.offsetTop
+}
+
+export const getElementToPageLeft = (el) => {
+  if (el.parentElement) {
+    return getElementToPageLeft(el.parentElement) + el.offsetLeft
+  }
+  return el.offsetLeft
 }
