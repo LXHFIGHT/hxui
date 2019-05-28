@@ -34,6 +34,10 @@ export default {
     }
   },
   props: {
+    upperCase: {
+      type: [String, Boolean, Number],
+      default: false
+    },
     content: { // 纯字符串或整数组成的数组
       type: Array,
       required: true
@@ -53,10 +57,6 @@ export default {
     }
   },
   methods: {
-    $_init () {
-      this.detail = this.value || ''
-      const $view = this.$refs.hxAutoComplete
-    },
     $_showOption () {
       this.showOptions = true
       const $view = this.$refs.hxAutoComplete
@@ -70,28 +70,28 @@ export default {
         return
       }
       this.options = this.content.filter(v => {
-        return v.indexOf(this.detail) === 0
+        return v.indexOf(this.detail) !== -1
       })
     },
     doBlur () {
       this.showOptions = false
     },
     doSelect (option) {
-      this.detail = option
+      console.log('Data:', option, this.detail)
       this.$emit('input', option)
       this.$emit('change')
       this.$forceUpdate()
     } 
   },
-  created () {
-    console.log('Data: ', this.value)
-  },
-  mounted () {
-    this.$_init()
-  },
+  created () {},
+  mounted () {},
   watch: {
     value (newVal) {
-      this.detail = newVal
+      if (newVal) {
+        this.detail = this.upperCase ? newVal.toLocaleUpperCase() : newVal
+      } else {
+        this.detail = ''
+      }
     }
   }
 }

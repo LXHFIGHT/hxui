@@ -11,7 +11,7 @@
       background-color: $color-main;
     }
     & + .item {
-      margin-left: 2vw;
+      margin-left: $pm-sm;
     }
   }
 }
