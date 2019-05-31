@@ -15,15 +15,17 @@
       </option>
     </select>
     <a :class="['fa fa-caret-left', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
-       @click="requestListByPage(searchInfo.page - 1)"></a>
+      @click="requestListByPage(searchInfo.page - 1)"></a>
     <span >{{searchInfo.page}} / {{total}}</span>
     <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
-       @click="requestListByPage(searchInfo.page + 1)"></a>
+      @click="requestListByPage(searchInfo.page + 1)"></a>
     <input type="text"
-           v-model="toPage">
+      value=""
+      autocomplete="off"
+      v-model="toPage">
     <a class="btn-jump"
-       @click="requestListByPage(toPage)">
-       跳转
+      @click="requestListByPage(toPage)">
+      跳转
     </a>
   </div>
 </template>
@@ -61,6 +63,7 @@ export default {
   },
   methods: {
     requestListByPage (page = 1) {
+      console.log(page, this.total)
       if (page > this.total || page < 1 || isNaN(page)) {
         toast({ text: '所选页面超过范围', level: 'warn' })
         return

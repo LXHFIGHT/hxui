@@ -22,6 +22,7 @@
       font-size: 20px;
       margin-bottom: 20px;
       color: $color-heavy;
+      font-weight: 300;
     }
   }
   .tip {
@@ -37,7 +38,6 @@
   .logo-company{
     height: 2 * $height-navbar;
     width: 2 * $height-navbar;
-    border: 1px solid $color-gray;
     border-radius: 50% 50%;
   }
   input {
