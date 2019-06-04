@@ -145,6 +145,11 @@ $height-card-row: auto;
     width: 100%;
     .content {
       max-width: 100%;
+      .row.functions {
+        .hx-button {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

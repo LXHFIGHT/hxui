@@ -6,7 +6,7 @@
 }
 .sidebar-buttons::-webkit-scrollbar-track {
   width: 8px;
-  background-color: $color-main-dark;
+  background-color: $color-gray;
 }
 .sidebar-buttons::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -71,7 +71,7 @@ $color-light-font: $color-heavy;
     }
   }
   .sidebar-buttons {
-    @include hcalc(calc(100% - 260px));
+    @include hcalc(calc(100% - 100px));
     display: block;
     overflow-y: auto;
     overflow-x: hidden;
@@ -247,7 +247,6 @@ $color-light-font: $color-heavy;
     .version {
       color: $color-gray-deep;
       position: absolute;
-      bottom: $height-navbar + $pm-sm;
     }
     .footer-btn-sidebar {
       display: block;
@@ -303,6 +302,13 @@ $color-light-font: $color-heavy;
   background-color: rgba(255, 255, 255, .4);
 }
 
+@media screen and (min-width: 640px) {
+  .hx-sidebar {
+    .version {
+      bottom: $height-navbar + $pm-sm;
+    }
+  }
+}
 @media screen and (max-width: 640px) {
   .hx-sidebar {
     position: absolute!important;
@@ -322,18 +328,18 @@ $color-light-font: $color-heavy;
       }
     }
     .sidebar-buttons {
-      @include hcalc(calc(100% - 209px));
+      @include hcalc(calc(100% - #{$height-navbar + $height-regular}));
       display: block;
       overflow-y: auto;
       overflow-x: hidden;
     }
+    .version {
+      height: $height-regular;
+      bottom: $height-navbar;
+    }
     .footer-btn-sidebar {
       height: $height-normal;
-      margin-top: $pm-sm;
-    }
-    .version {
-      height: $height-normal;
-      margin-bottom: $pm-md;
+      margin-top: 0;
     }
   }
 }

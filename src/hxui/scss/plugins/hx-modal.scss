@@ -44,7 +44,6 @@
   &>.content {
     background-color: white;
     width: 60%;      
-    max-width: 80%;
     max-height: 90%;
     overflow-y: auto;                                // 默认样式为屏幕宽度 60%
     min-width: 300px;
@@ -101,7 +100,6 @@
       text-align: center;
       margin-top: $pm-md;
       padding: $pm-md $pm-md 0;
-      border-top: 1px solid $color-gray;
       button {
         min-width: 100px;
       }
@@ -122,26 +120,37 @@
   }
   // 缩略版模态框
   &.sm {
-    >.content {
+    & > .content {
       max-width: 500px;
       min-width: 300px;
     }
   }
   &.bg {
-    .content {
+    & > .content {
       width: 80%;
     }
   }
 }
 
+@media screen and (min-width: 640px) {
+  .hx-modal {
+    & > .content {
+      max-width: 80%;
+    }
+    & > .footer {
+      border-top: 1px solid $color-gray;
+    }
+  }
+}
 /* ----------------------------------------------------
     移动端样式适配
  ------------------------------------------------------ */
 @media screen and (max-width: 640px) {
   .hx-modal {
     z-index: 20;
-    .pad-content, .content {
+    .pad-content, & > .content {
       width: 95%;
+      max-width: 90%;
       padding: $pm-sm;
       @include centerInParent;
       .btn-close-modal {
@@ -168,6 +177,7 @@
       }
     }
   }
+
   .hx-modal.confirm, .hx-modal.actionsheet  {
     .content {
       padding: $pm-sm;

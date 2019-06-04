@@ -28,16 +28,6 @@ $width-label: 110px;
       font-size: $font-md;
     }
   }
-  &.oneline {
-    .label {
-      width: 100%;
-      display: block;
-    }
-    .content {
-      display: block;
-      width: 100%;
-    }
-  }
   // 居中样式
   &.center { text-align: center; }
 
@@ -351,8 +341,17 @@ $width-label: 110px;
     border-bottom: 1px solid $color-gray;
     padding: $pm-sm/2 0!important;
     margin: 0!important;
+    &.oneline {
+      border-bottom: none;
+      & > label {
+        width: 100%;
+      }
+      & > .content {
+        width: 100%;
+      }
+    }
     label {
-      width: 100%;
+      width: 100px;
       position: relative;
       .tip {
         position: absolute;
@@ -366,7 +365,7 @@ $width-label: 110px;
       }
     }
     .content {
-      width: 100%;
+      width: calc(100% - 108px);
       padding-left: 0;
       input, select, textarea {
         border: none!important;

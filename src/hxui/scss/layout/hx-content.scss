@@ -40,14 +40,15 @@
   .hx-content {
     overflow-x: auto;
     padding: 0;
-    .hx-pad-left, .hx-pad-right, .hx-pad-center {
-      width: 100%;
-    }
   }
   .hx-pad-left,
   .hx-pad-center,
   .hx-pad-right {
     padding: 0;
+    margin: 0;
+  }
+  .hx-pad-left, .hx-pad-right, .hx-pad-center {
+    width: 100%!important;
   }
 }
 

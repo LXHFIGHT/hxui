@@ -95,15 +95,12 @@
 @media screen and (max-width: 640px) {
   $color-header-word: $color-white;  // 统一修改此处调整导航条文字或iconfont字体颜色
   .hx-header {
-    background-color: $color-main;
-    color: $color-header-word;
+    box-shadow: none;
     .title {
       z-index: 10;
       display: inline-block;
       padding: 0;
-      color: $color-header-word;
       height: $height-normal;
-      @include centerHorizontal;
       font: {
         weight: 500;
         size: 16px;
