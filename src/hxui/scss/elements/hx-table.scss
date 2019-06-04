@@ -128,10 +128,11 @@
           height: 80px;
           width: auto;
         }
-        &.sm {  min-width: 60px;   }
-        &.md {  min-width: 120px;  }
+        &.xs {  min-width: 60px;   }
+        &.sm {  min-width: 100px;   }
+        &.md {  min-width: 140px;  }
         &.bg {  min-width: 180px;  }
-        &.lg {  min-width: 240px;  }
+        &.lg {  min-width: 220px;  }
       }
     }
   }

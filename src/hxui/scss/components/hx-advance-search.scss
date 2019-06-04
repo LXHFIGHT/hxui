@@ -48,26 +48,20 @@
     .search-item {
       display: inline-block;
       padding: 0;
-      width: 216px;
       vertical-align: top;
-      margin-right: $pm-sm;
-      margin-bottom: $pm-sm;
-      transition: background-color .3s;
-      &.long {
-        width: 432px;
-      }
+      margin: $pm-sm/2 $pm-sm/2 $pm-sm/2 0;
       label {
-        width: 100%;
-        display: block;
+        display: inline-block;
         line-height: $font-sm * 2;
-        padding-left: $pm-sm;
+        margin-right: $pm-sm/2;
         font: {
           weight: 600;
           size: $font-sm;
         }
       }
       .content {
-        width: 100%;
+        width: 180px;
+        display: inline-block;
         input {
           height: $height-regular;
           border-radius: 0;
@@ -78,10 +72,11 @@
           font-size: $font-md;
         }
       }
-      .search {
-        width: 100%;
-        margin: 0;
-      }
+      &.xs { .content { width: 70px; } }
+      &.sm { .content { width: 110px; } }
+      &.md { .content { width: 150px; } }
+      &.bg { .content { width: 190px; } }
+      &.lg { .content { width: 230px; } }
     }
   }
 }
