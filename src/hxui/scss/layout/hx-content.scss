@@ -5,6 +5,9 @@
   &.no-footer, &.no-header{
     @include hcalc(calc(100% - 50px));
   }
+  &.no-footer.no-header{
+    height: 100%;
+  }
   &.bg{
     padding: $height-navbar;
   }

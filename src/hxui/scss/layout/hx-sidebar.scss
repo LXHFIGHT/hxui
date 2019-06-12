@@ -6,11 +6,11 @@
 }
 .sidebar-buttons::-webkit-scrollbar-track {
   width: 8px;
-  background-color: $color-gray;
+  background-color: transparent;
 }
 .sidebar-buttons::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  box-shadow: inset 0 0 6px rgba(0,0,0,.15);
   background-color: rgba(255, 255, 255, .4);
 }
 
