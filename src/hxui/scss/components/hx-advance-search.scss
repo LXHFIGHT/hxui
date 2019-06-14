@@ -52,8 +52,10 @@
       margin: $pm-sm/2 $pm-sm/2 $pm-sm/2 0;
       label {
         display: inline-block;
-        line-height: $font-sm * 2;
         margin-right: $pm-sm/2;
+        vertical-align: top;
+        min-height: $height-regular;
+        line-height: $height-regular;
         font: {
           weight: 600;
           size: $font-sm;
@@ -62,6 +64,8 @@
       .content {
         width: 180px;
         display: inline-block;
+        min-height: $height-regular;
+        position: relative;
         input {
           height: $height-regular;
           border-radius: 0;

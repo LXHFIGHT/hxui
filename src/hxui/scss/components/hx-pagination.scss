@@ -17,7 +17,6 @@
   padding: 0;
   font-size: 0;
   position: relative;
-
   select {
     padding: 0 10px;
     float: left;
@@ -70,14 +69,14 @@
   input[type=text] {
     position: relative;
     font-size: 14px;
-    min-width: 50px!important;
+    min-width: $height-navbar!important;
     height: $height-regular;
     width: 60px;
     padding: 0 10px!important;
     margin-left: 20px;
     border: none;
+    border-radius: 0;
     vertical-align: top;
-
   }
 }
 
