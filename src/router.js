@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Router from 'vue-router'
 import Index from './views/index.vue'
+const Vue = window.Vue
+const Router = window.VueRouter
 
 Vue.use(Router)
 
