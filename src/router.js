@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from './views/index.vue'
 
 Vue.use(Router)
 
@@ -10,7 +11,7 @@ export default new Router({
     {
       path: '/',
       name: 'Root',
-      component: () => import('./views/index.vue'),
+      component: Index,
       meta: { keepAlive: true },
       children: [
         {
