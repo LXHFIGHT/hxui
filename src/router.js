@@ -1,76 +1,76 @@
-import { initMenus } from './config/menus'
+import Vue from 'vue'
+import Router from 'vue-router'
 
-const Vue = window.Vue
-const Router = window.VueRouter
 Vue.use(Router)
 
-const router = new Router({
+export default new Router({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'Root',
-      component: resolve => require(['views/index.vue'], resolve),
+      component: () => import('./views/index.vue'),
       meta: { keepAlive: true },
       children: [
         {
           path: '/',
           name: 'home',
-          component: resolve => require(['./views/home'], resolve)
+          component: () => import('./views/home')
         },
         {
           path: '/style/list',
           name: 'styleList',
-          component: resolve => require(['./views/style/list'], resolve)
+          component: () => import('./views/style/list')
         },
         {
           path: '/style/display',
           name: 'styleDisplay',
-          component: resolve => require(['./views/style/display'], resolve)
+          component: () => import('./views/style/display')
         }, 
         {
           path: '/components',
           name: 'components',
-          component: resolve => require(['./views/components/index'], resolve),
+          component: () => import('./views/components/index'),
           meta: { keepAlive: true },
           children: [
             {
               path: '/components/hx-image',
               name: 'hx-image',
-              component: resolve => require(['./views/components/image'], resolve)
+              component: () => import('./views/components/image')
             },
             {
               path: '/components/hx-button',
               name: 'hx-button',
-              component: resolve => require(['./views/components/button'], resolve)
+              component: () => import('./views/components/button')
             },
             {
               path: '/components/hx-input',
               name: 'hx-input',
-              component: resolve => require(['./views/components/input'], resolve)
+              component: () => import('./views/components/input')
             }
           ]
         },
         {
           path: '/plugins',
           name: 'plugins',
-          component: resolve => require(['@/views/plugins/index'], resolve),
+          component: () => import('./views/plugins/index'),
           meta: { keepAlive: true },
           children: [
             {
               path: '/plugins/confirm',
               name: 'confirm',
-              component: resolve => require(['@/views/plugins/confirm'], resolve)
+              component: () => import('./views/plugins/confirm')
             },
             {
               path: '/plugins/toast',
               name: 'toast',
-              component: resolve => require(['@/views/plugins/toast'], resolve)
+              component: () => import('./views/plugins/toast')
             },
             {
               path: '/plugins/validate',
               name: 'validate',
-              component: resolve => require(['@/views/plugins/validate'], resolve)
+              component: () => import('./views/plugins/validate')
             }
           ]
         }
@@ -79,17 +79,8 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: resolve => require(['@/views/login'], resolve),
+      component: () => import('./views/login'),
       meta: { keepAlive: true }
     }
   ]
 })
-
-router.beforeEach((to, from, next) => {
-  // 根据当前页前端路由判断打开侧边栏按钮
-  initMenus(to.path)
-  // 页面跳转统一处理方法
-  next()
-})
-
-export default router

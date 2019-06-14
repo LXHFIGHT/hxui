@@ -4,7 +4,6 @@
  * Description:
  *  HXUI 加载框调用方法
  */
-
 import Main from './main.vue'
 
 const Vue = window.Vue
