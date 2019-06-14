@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Admin from '@/components/layout/Admin'
-import FrontPage from '@/components/layout/FrontPage'
-import { project } from '@/config'
+import Admin from './../components/layout/Admin'
+import FrontPage from './../components/layout/FrontPage'
+import { project } from './../config'
 export default {
   components: {
     Admin,

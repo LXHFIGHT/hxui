@@ -15,7 +15,7 @@
 <script>
 import HxNavbar from './../../hxui/cpts/HxNavbar.vue'
 import menus from './../../config/menus'
-import { project } from '@/config' 
+import { project } from './../../config' 
 export default {
   name: 'front-page',
   components: {

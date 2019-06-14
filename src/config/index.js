@@ -8,7 +8,7 @@
  *  serverPrefix: 提供接口数据服务端的URL前缀
  *  ossPrefix: 阿里云或者其他云计算提供商的图片存储桶关联的url或者其CDN关联的URL
  */
-import bgLogin from '@/assets/bg/bg-login.jpg'
+import bgLogin from './../assets/bg/bg-login.jpg'
 
 // 前端项目总配置
 export const project = {

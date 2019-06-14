@@ -123,8 +123,8 @@
 </template>
 
 <script>
-import HxSection from '@/hxui/cpts/HxSection'
-import HxButton from '@/hxui/cpts/HxButton'
+import HxSection from './../../hxui/cpts/HxSection'
+import HxButton from './../../hxui/cpts/HxButton'
 export default {
   components: {
     'hx-section': HxSection,
