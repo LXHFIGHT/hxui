@@ -13,6 +13,10 @@ export default {
       type: Number,
       default: 5
     },
+    readonly: { // 是否为只读
+      type: [Number, Boolean, String],
+      default: ''
+    },
     value: {
       type: [Number, String],
       required: true
@@ -26,7 +30,14 @@ export default {
   },
   methods: {
     doRank (score) {
-      this.$emit('input', score)
+      if (this.readonly) {
+        return
+      }
+      if (score === parseInt(this.value)) {
+        this.$emit('input', '')
+      } else {
+        this.$emit('input', score)
+      }
     }
   }
 }
