@@ -148,7 +148,7 @@
 @media screen and (max-width: 640px) {
   .hx-modal {
     z-index: 20;
-    .pad-content, & > .content {
+    & > .pad-content, & > .content {
       width: 95%;
       max-width: 90%;
       padding: $pm-sm;

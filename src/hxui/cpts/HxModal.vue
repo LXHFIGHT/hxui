@@ -31,12 +31,29 @@ export default {
     title: {
       type: String,
       default: '提示'
+    },
+    isHideable: { // 点击蒙层区域是否关闭模态框
+      type: [String, Number, Boolean],
+      default: false
     }
   },
   methods: {
+    $_init () {
+      this.$nextTick(() => {
+        const body = document.querySelector('body')
+        if (body.append) {
+          body.append(this.$el)
+        } else {
+          body.appendChild(this.$el)
+        }
+      })
+    },
     onHide () {
-      this.$emit('input', false)
+      this.isHideable && this.$emit('input', false)
     }
+  },
+  mounted () {
+    this.$_init()
   }
 }
 </script>

@@ -331,7 +331,7 @@ $width-label: 110px;
 @media screen and (min-width: 640px) {
   .hx-row {
     .content {
-      width: calc(100% - #{$width-label + 5px});
+      width: calc(100% - #{$width-label + 10px});
     }
   }
 }
@@ -353,11 +353,7 @@ $width-label: 110px;
     label {
       width: 100px;
       position: relative;
-      .tip {
-        position: absolute;
-        left: -10px;
-        top: 0;
-      }
+      
       &.full {
         width: 100%;
         line-height: $pm-bg;

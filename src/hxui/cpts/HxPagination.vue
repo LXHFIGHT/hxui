@@ -16,7 +16,7 @@
     </select>
     <a :class="['fa fa-caret-left', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
       @click="requestListByPage(searchInfo.page - 1)"></a>
-    <span >{{searchInfo.page}} / {{total}}</span>
+    <span class="text-page">{{searchInfo.page}} / {{total}}</span>
     <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
       @click="requestListByPage(searchInfo.page + 1)"></a>
     <input type="text"
@@ -29,7 +29,6 @@
     </a>
   </div>
 </template>
-
 <script>
 import toast from './../plugins/toast'
 export default {
@@ -74,3 +73,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import "./../scss/components/hx-pagination.scss";
+</style>
