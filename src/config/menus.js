@@ -42,7 +42,7 @@ export const initMenus = (path) => {
     }
   }
 }
-
+// 恢复侧边栏中所有按钮为未选中/未展开状态
 export const restoreMenu = () => {
   for (let menu of menus) {
     if (menu.state) {
@@ -50,10 +50,29 @@ export const restoreMenu = () => {
       continue
     }
     if (menu.children) {
+      menu.selected = false
       for (let child of menu.children) {
         child.selected = false
       }
     }
   }
-  console.log('UPDATE: ', menus)
+}
+// 选中或展开某侧边栏的功能
+export const autoSelectMenu = (state) => {
+  restoreMenu()
+  for (let menu of menus) {
+    if (!menu.children && menu.state === state) {
+      menu.selected = true
+      break
+    }
+    if (menu.children) {
+      for (let child of menu.children) {
+        if (child.state === state) {
+          menu.selected = true
+          child.selected = true
+          return
+        }
+      }
+    }
+  }
 }

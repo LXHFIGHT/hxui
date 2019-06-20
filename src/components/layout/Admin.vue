@@ -4,7 +4,7 @@
       :isAdmin="true"
       :logo="project.logo"
       :title="project.name">
-      <div slot="right">Admin</div>
+      <div slot="right"></div>
     </hx-navbar>
     <div class="hx-main">
       <!-- HXUI对于管理后台的应用 -->
@@ -21,7 +21,7 @@
                 menu.selected && 'selected',
                 menu.icon && `fa fa-${menu.icon}`,
                 !menu.children && 'no-children']"
-                      @click="doSelect(menu)">
+                @click="doSelect(menu)">
                 <span v-text="menu.name"></span>
                 <img v-if="menu.children" 
                   class="icon" 
@@ -29,11 +29,12 @@
               </button>
               <div class="pad-children"
                   v-if="menu.selected && menu.children">
-                <button :class="`fa fa-${child.icon} ${child.selected && 'selected'}`"
-                        v-for="child in menu.children"
-                        v-bind:key="child.state"
-                        @click="doSelect(child)"
-                        v-text="child.name"></button>
+                <button :class="`second-level fa fa-${child.icon} ${child.selected && 'selected'}`"
+                  v-for="child in menu.children"
+                  v-bind:key="child.state"
+                  @click="doSelect(child)"
+                  v-text="child.name">
+                </button>
               </div>
             </div>
           </div>
@@ -99,6 +100,7 @@ export default {
         menu.selected = true
         this.$router.push(menu.state)
       } else {
+        !menu.selected && restoreMenu()
         menu.selected = !menu.selected
         this.$forceUpdate()
       }

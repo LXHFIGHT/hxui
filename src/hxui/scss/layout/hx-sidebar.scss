@@ -43,6 +43,14 @@ $color-light-font: $color-heavy;
       width: calc(100% - #{$height-navbar});
       float: right;
     }
+    .group-btn-sidebar {
+      button.first-level, button.second-level {
+        padding-left: $pm-md;
+        &::before {
+          margin-right: $pm-md;
+        }
+      }
+    }
   }
   .sidebar {
     height: 100%;
@@ -115,6 +123,9 @@ $color-light-font: $color-heavy;
         transform: rotate(90deg);
       }
     }
+    button.second-level {
+      padding-left: $pm-lg;
+    }
     // 二级普通菜单按钮
     button {
       font-size: 13px;
@@ -137,7 +148,7 @@ $color-light-font: $color-heavy;
         width: $pm-md;
         display: inline-block;
         vertical-align: top;
-        margin-right: $pm-md;
+        margin-right: $pm-sm;
         transition: all .4s;
         transform-origin: 25% 55%;
       }
