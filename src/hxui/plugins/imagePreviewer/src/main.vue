@@ -87,7 +87,6 @@ export default {
       }
     },
     $_reset () {
-      const { imageElem } = this.$refs
       this.animationFrameInt = null
       this.scale = 1.0
       this.degree = 0

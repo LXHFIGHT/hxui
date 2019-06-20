@@ -1,6 +1,6 @@
 <template>
   <div class="hx-smart-uploader" ref="hxSmartUploader"
-    :style="`height: ${height}; width: ${width};`">
+    :style="`height: ${height}; width:${width};`">
     <input class="uploader-images"
       :id="id || key"
       ref="uploader"
@@ -281,7 +281,7 @@ export default {
         const files = fileDatas
         const data = new FormData()
         for (let i = 0; i < files.length; i++) {
-          data.append(`${this.name}[]`, files[i])
+          data.append(`${this.name}${this.multiple ? '[]' : ''}`, files[i])
         }
         this.isUploading = true
         this.isImageError = false
@@ -289,7 +289,7 @@ export default {
           if (res) {
             console.log('success', res.data)
             this.isUploading = false
-            this.onUpload(res.data)
+            this.onUpload(res.data, this.id)
           }
         }).catch(err => {
           this.isUploading = false
@@ -502,10 +502,10 @@ export default {
     }
   }
 }
-
-
 @media screen and (max-width: 640px) {
   .hx-smart-uploader {
+    width: 100%!important;
+    max-width: 100%;;
     .functions {
       bottom: $pm-sm/2;
       right: $pm-sm/2;
@@ -518,6 +518,4 @@ export default {
     }
   }
 }
-
 </style>
-
