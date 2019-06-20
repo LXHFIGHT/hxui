@@ -1,5 +1,9 @@
 <template>
-  <div :class="['hx-image-modal hx-modal', (show ? 'show' : ''), position]">
+  <div :class="['hx-image-modal hx-modal', (show ? 'show' : ''), position]"
+    @mousedown="doMouseDown"
+    @mousemove="doMouseMove"
+    @mouseup="doMouseUp"
+    @touchstart="doTouchImage">
     <div class="mask" @click="doQuitPreview"></div>
     <header class="navbar">
       <span class="title" v-text="`${index + 1} / ${urls.length}`"></span>
@@ -9,6 +13,7 @@
          ref="imageElem"
          ondragstart="return false;"
          :src="current"
+         :style="`margin-top: ${matrix.y}px; margin-left: ${matrix.x}px;`"
          alt="image"/>
     <button v-if="urls.length > 1 && index"
             @click="toLastImage"
@@ -33,8 +38,7 @@
   </div>
 </template>
 <script>
-import popTip from './../../toast'
-import config from './../../config'
+import toast from './../../toast'
 export default {
   data () {
     return {
@@ -46,10 +50,26 @@ export default {
       scale: 1.0,
       maxScale: 2.5,
       degree: 0,
-      closeTimer: null
+      closeTimer: null,
+      isMobile: false,
+      animationFrameInt: null,
+      matrix: {
+        pageX: 0,
+        pageY: 0,
+        startX: 0,
+        startY: 0,
+        x: 0,
+        y: 0,
+        isMoving: false
+      }
     }
   },
   methods: {
+    $_init () {
+      this.show = true
+      this.isMobile = document.body.offsetWidth < 640
+      this.index = this.$_getCurrentImageIndex()
+    },
     // 销毁组件
     destroyElement () {
       this.show = false
@@ -68,16 +88,27 @@ export default {
     },
     $_reset () {
       const { imageElem } = this.$refs
+      this.animationFrameInt = null
       this.scale = 1.0
       this.degree = 0
-      imageElem.style.top = '50%'
-      imageElem.style.left = '50%'
-      imageElem.style.transform = 'translate(-50%, -50%)'
+      window.cancelAnimationFrame(this.animationFrameInt)
+      const recover = () => {
+        if (this.matrix.x <= 1 || this.matrix.y <= 1) {
+          this.matrix.x = 0
+          this.matrix.y = 0
+          this.matrix.startX = 0
+          this.matrix.startY = 0
+          window.cancelAnimationFrame(this.animationFrameInt)
+        } else {
+          this.matrix.x -= this.matrix.x / 6
+          this.matrix.y -= this.matrix.y / 6
+          this.animationFrameInt = window.requestAnimationFrame(recover)
+        }
+      }
+      recover()
     },
     $_transform () {
       const { degree, scale } = this
-      console.log('The elem is ', this.$refs.imageElem)
-      console.log(`translate(-50%, -50%) rotate(${degree}deg) scale(${scale}, ${scale})`)
       this.$refs.imageElem.style.transform = `translate(-50%, -50%) rotate(${degree}deg) scale(${scale}, ${scale})`
     },
     $_adjustScale (isZoomIn) {
@@ -86,20 +117,20 @@ export default {
         if (this.scale < maxScale) {
           scale += 0.5
         } else {
-          popTip({text: '不能再放大了', level: config.level.LEVEL_WARNING})
+          toast.warn('不能再放大了')
         }
       } else {
         if (scale > 1.0) {
           scale -= 0.5
         } else {
-          popTip({text: '不能再缩小了', level: config.level.LEVEL_WARNING})
+          toast.warn('不能再缩小了')
         }
       }
       this.scale = scale
       this.$_transform()
     },
     $_rotate (isRotateRight) {
-      console.log('LINX', popTip.LEVEL_WARNING)
+      console.log('LINX', toast.LEVEL_WARNING)
       const { degree } = this
       const { imageElem } = this.$refs
       isRotateRight ? (this.degree = degree + 90) : (this.degree = degree - 90)
@@ -115,6 +146,7 @@ export default {
         this.index = index + 1
       }
       this.current = urls[this.index]
+      this.$_reset()
     },
     toLastImage () {
       this.$_switchImage(true)
@@ -137,11 +169,40 @@ export default {
     },
     doZoomOut () {
       this.$_adjustScale(false)
+    },
+    doTouchImage () {
+      console.log(event)
+    },
+    doMouseDown () {
+      const { pageX, pageY } = event
+      this.matrix = {
+        ...this.matrix,
+        isMoving: true,
+        pageX, 
+        pageY
+      }
+    },
+    doMouseUp () {
+      this.matrix = {
+        ...this.matrix,
+        isMoving: false,
+        startX: this.matrix.x,
+        startY: this.matrix.y
+      }
+    },
+    doMouseMove () {
+      if (this.matrix.isMoving) {
+        const { pageX, pageY } = event
+        this.matrix = {
+          ...this.matrix,
+          x: this.matrix.startX + pageX - this.matrix.pageX,
+          y: this.matrix.startY + pageY - this.matrix.pageY
+        }
+      }
     }
   },
   mounted () {
-    this.show = true
-    this.index = this.$_getCurrentImageIndex()
+    this.$_init()
   },
   beforeDestroy () {
     clearTimeout(this.closeTimer)
@@ -155,6 +216,10 @@ export default {
 .hx-image-modal.hx-modal {
   text-align: center;
   overflow: hidden;
+  z-index: 1000;
+  .mask {
+    background-color: rgba(0,0,0,.8);
+  }
   &.left, &.right {
     width: 50%;
   }
@@ -275,7 +340,7 @@ export default {
 }
 
 @media screen and (max-width: 640px){
-  .hx-image-modal {
+  .hx-image-modal.hx-modal {
     width: 100%!important;
     .pad-functions {
       bottom: 0;
