@@ -4,7 +4,9 @@
       :isAdmin="true"
       :logo="project.logo"
       :title="project.name">
-      <div slot="right"></div>
+      <div class="right" slot="right">
+        <slot name="right"></slot>
+      </div>
     </hx-navbar>
     <div class="hx-main">
       <!-- HXUI对于管理后台的应用 -->
