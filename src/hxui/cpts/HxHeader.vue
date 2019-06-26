@@ -12,7 +12,7 @@
       v-text="subTitle">
     </small>
     <span class="title">
-      <slot name="subTitle"></slot>
+      <slot name="follow"></slot>
     </span>
     <div class="center">
       <slot name="center"></slot>

@@ -24,6 +24,9 @@
         weight: 800;
       }
     }
+    & + .title {
+      margin-left: $pm-sm;
+    }
   }
   .right, .left {
     display: inline-flex;

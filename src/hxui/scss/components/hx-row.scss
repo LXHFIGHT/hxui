@@ -99,20 +99,16 @@ $width-label: 110px;
     position: relative;
     padding: 0;
     vertical-align: top;
-
     // 缩小规格
     &.short {  width: 200px;  }
-
     &:hover {
       .btn-clear {
         display: inline-flex;
       }
     }
-    
     .hx-switch {
       @include centerVertical;
     }
-
     // 不可编辑文本组件样式
     .text {
       padding: $pm-sm;
@@ -143,7 +139,6 @@ $width-label: 110px;
         margin-top: $pm-sm;
       }
     }
-
     // 提示信息
     .degree,
     .tips {
@@ -164,6 +159,8 @@ $width-label: 110px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      margin-top: -1px;
+      @include centerVertical;
       & + .btn-clear {
         right: $pm-lg + $pm-md;
       }

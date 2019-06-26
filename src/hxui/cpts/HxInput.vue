@@ -1,37 +1,34 @@
 <template>
-  <div class="hx-row">
-    <label>
-      {{ label }}
-      <span v-if="required || typeof required === 'string'"
-        class="tip">*</span>
-    </label>
-    <div class="content">
-      <input
-        v-if="rows === 1"
-        :required="required"
-        :placeholder="placeholder"
-        :type="type"
-        @blur="doBlur"
-        @focus="doFocus"
-        :value="value"
-        @input="doInput">
-      <textarea
-        v-if="rows !== 1"
-        :required="required"
-        :placeholder="placeholder"
-        type="text"
-        @blur="doBlur"
-        @focus="doFocus"
-        :value="value"
-        :rows="rows"
-        @input="doInput">
-      </textarea>
-      <span class="degree" v-if="unit" v-text="unit"></span>
-      <span class="degree" v-if="!unit && showLength" v-text="`${value.length}字`"></span>
-      <button class="btn-clear" v-if="showClearBtn" @click="doClear">
-        <img class="icon" :src="iconClear" alt="">
-      </button>
-    </div>
+  <div class="pad-hx-input">
+    <input
+      v-if="rows === 1"
+      :required="required"
+      :placeholder="placeholder"
+      :type="type"
+      @blur="doBlur"
+      @focus="doFocus"
+      :disabled="disabled"
+      :value="value"
+      @keyup="doKeyup"
+      @input="doInput">
+    <textarea
+      v-if="rows !== 1"
+      :required="required"
+      :placeholder="placeholder"
+      type="text"
+      @blur="doBlur"
+      @focus="doFocus"
+      :value="value"
+      :rows="rows"
+      :disabled="disabled"
+      @keyup="doKeyup"
+      @input="doInput">
+    </textarea>
+    <span class="degree" v-if="unit" v-text="unit"></span>
+    <span class="degree" v-if="!unit && showLength" v-text="`${value.length}字`"></span>
+    <button class="btn-clear" v-if="showClearBtn && !disabled" @click="doClear">
+      <img class="icon" :src="iconClear" alt="">
+    </button>
   </div>
 </template>
 
@@ -69,7 +66,7 @@ export default {
       type: [String, Boolean]
     },
     showClearBtn: {
-      type: Boolean,
+      type: [Boolean, String, Number],
       default: false
     },
     unit: String,
@@ -84,9 +81,17 @@ export default {
     rows: {
       type: Number,
       default: 1
+    },
+    disabled: {
+      type: [Number, String, Boolean],
+      default: false
     }
   },
   methods: {
+    doKeyup () {
+      console.log('good')
+      this.$emit('keyup')
+    },
     doInput () {
       const value = event.target.value
       this.$emit('input', value)
@@ -102,10 +107,12 @@ export default {
       if (this.required) {
         !view.value && view.classList.add('error')
       }
+      this.$emit('blur')
     },
     doFocus () {
       const view = event.target
       view.classList.remove('error')
+      this.$emit('focus')
     }
   }
 }

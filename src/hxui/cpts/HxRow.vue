@@ -6,6 +6,9 @@
     </label>
     <div class="content">
       <slot ></slot>
+      <span class="degree">
+        <slot name="degree"></slot> 
+      </span>
     </div>
   </div>
 </template>
