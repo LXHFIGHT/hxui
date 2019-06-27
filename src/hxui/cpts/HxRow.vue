@@ -10,6 +10,9 @@
         <slot name="degree"></slot> 
       </span>
     </div>
+    <span class="text-tips">
+      <slot name="tips"></slot>
+    </span>
   </div>
 </template>
 

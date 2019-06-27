@@ -7,7 +7,7 @@
   <div class="hx-pagination">
     <select name="sizePerPage"
             v-model="searchInfo.perPage"
-            @change="doRequest(searchInfo)">
+            @change="requestListByPerPage()">
       <option v-for="pageSize in pageSizes"
               v-bind:key="pageSize"
               v-text="`每页${pageSize}条数据`"
@@ -53,6 +53,11 @@ export default {
       type: Number,
       required: true
     },
+    // 暴露到父组件的分页数的参数名
+    pageSizeParamName: {
+      type: String,
+      default: 'perPage'
+    },
     pageSizes: {
       type: Array,
       default () {
@@ -61,14 +66,22 @@ export default {
     }
   },
   methods: {
+    $_initRequest () {
+      let bundle = {}
+      bundle.page = this.searchInfo.page
+      bundle[this.pageSizeParamName] = this.searchInfo.perPage
+      this.doRequest(bundle)
+    },
+    requestListByPerPage () {
+      this.$_initRequest()
+    },
     requestListByPage (page = 1) {
-      console.log(page, this.total)
       if (page > this.total || page < 1 || isNaN(page)) {
         toast({ text: '所选页面超过范围', level: 'warn' })
         return
       }
       this.searchInfo.page = page
-      this.doRequest(this.searchInfo)
+      this.$_initRequest()
     }
   }
 }

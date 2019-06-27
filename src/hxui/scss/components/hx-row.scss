@@ -15,9 +15,7 @@ $width-label: 110px;
   width: 100%;
   padding: 0;
   margin-bottom: $pm-sm * 1.5;
-  line-height: $height-navbar - 2 * $pm-sm;
   color: $color-dark;
-
   // 无内边距样式
   &.null {  padding: 0!important; }
   &.half { 
@@ -65,7 +63,6 @@ $width-label: 110px;
     background-color: $color-gray-light;
     border-radius: $border-radius-md;
   }
-
   // 富文本模块
   div.rich-content {
     display: inline-block;
@@ -92,7 +89,6 @@ $width-label: 110px;
       right: $pm-sm;
     }
   }
-
   // 右侧区域
   div.content {
     display: inline-block;
@@ -140,8 +136,7 @@ $width-label: 110px;
       }
     }
     // 提示信息
-    .degree,
-    .tips {
+    .degree, .unit {
       position: absolute;
       right: 0;
       text-align: center;
@@ -165,7 +160,6 @@ $width-label: 110px;
         right: $pm-lg + $pm-md;
       }
     }
-
     // 错误提示信息
     .tips {
       $height-tips: 26px;
@@ -233,72 +227,12 @@ $width-label: 110px;
       }
     }
 
-    // 标签库样式
-    .pad-tags {
-      width: 100%;
-      padding: 0;
-      display: block;
-      min-height: $height-navbar/2;
-      .tag {
-        padding: 0 0 0 $pm-md;
-        height: $height-navbar/2;
-        line-height: $height-navbar/2;
-        background-color: $color-main;
-        display: inline-block;
-        font: {
-          size: $font-sm;
-          weight: 300;
-        }
-        color: white;
-        margin: 0;
-        border-radius: $height-navbar/2 $height-navbar/2;
-        span{
-          width: auto;
-          display: inline-block;
-          height: $height-navbar/2;
-          line-height: $height-navbar/2;
-          margin-right: $pm-sm;
-          font-size: $font-sm;
-        }
-        .btn-remove {
-          color: $color-white;
-          width: $height-navbar/2;
-          height: $height-navbar/2;
-          display: inline-block;
-          font-size: $font-bg;
-          font-weight: 100;
-          float: right;
-          background-color: transparent;
-          &:hover {
-            color: $color-red;
-          }
-        }
-      }
-    }
-
-    img {
+    img.img {
       height: $height-upload-button;
       margin: 0 $pm-sm/2 0 0;
       border: 1px solid $color-gray;
       border-radius: $border-radius-md;
       transition: all .4s;
-    }
-
-    .btn-upload-image {
-      padding: 0;
-      vertical-align: top;
-      height: $height-upload-button;
-      width: $width-upload-button;
-      border: 2px dashed $color-gray-deep;
-      color: $color-gray-deep;
-      font-size: $font-bg;
-      line-height: $height-upload-button;
-      text-align: center;
-      background-color: transparent;
-      &:hover {
-        color: $color-heavy;
-        border: 2px dashed $color-heavy;
-      }
     }
 
     .btn-clear {
@@ -322,6 +256,15 @@ $width-label: 110px;
         background-color: $color-main;
       }
     }
+  }
+  // 附加提示文本
+  .text-tips {
+    font-size: $font-sm;
+    line-height: 2;
+    display: block;
+    color: #aaa;
+    width: 100%;
+    padding-left: $width-label + 4px;
   }
 }
 
