@@ -30,6 +30,11 @@ const imagePreviewer = function (options) {
       current: options,
       urls: [options]
     }
+  } else if (Array.isArray(options)) {
+    bundle = {
+      current: options[0],
+      urls: options
+    }
   } else {
     bundle = Object.assign({}, options)
     if (options.current && !options.urls) {

@@ -70,7 +70,7 @@ export default {
     height: $height-regular/2;
     .item-star {
       & + .item-star {
-        margin-left: $pm-sm;
+        margin-left: 6px;
       }
       .icon {
         height: $height-regular/2;
