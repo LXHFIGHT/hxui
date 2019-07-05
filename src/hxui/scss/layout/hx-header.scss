@@ -136,6 +136,11 @@
         color: $color-header-word;
       }
     }
+    .center {
+      width: 100%;
+      z-index: 0;
+      @include nowrap;
+    }
     .right button {
       margin: 0 0 0 $pm-sm/2!important;
     }

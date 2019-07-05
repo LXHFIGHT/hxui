@@ -29,3 +29,29 @@
     background-color: $color-gray-light;
   }
 }
+
+.hx-markdown {
+  padding: $pm-bg;
+  a {
+    font-weight: 500;
+    color: $color-main;
+    margin-left: $pm-sm;
+    &:hover {
+      color: lighten($color-main, 8%);
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $pm-sm/2;
+  }
+  p {
+    font-size: $font-md;
+    line-height: 1.6;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hx-markdown {
+    padding: $pm-bg;
+  }
+}

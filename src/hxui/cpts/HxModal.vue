@@ -32,7 +32,7 @@ export default {
       type: String,
       default: '提示'
     },
-    isHideable: { // 点击蒙层区域是否关闭模态框
+    disabledMask: { // 点击蒙层区域是否关闭模态框
       type: [String, Number, Boolean],
       default: false
     }
@@ -49,11 +49,16 @@ export default {
       })
     },
     onHide () {
-      this.isHideable && this.$emit('input', false)
+      !this.disableMask && this.$emit('input', false)
     }
   },
   mounted () {
     this.$_init()
+  },
+  destroyed() {
+    this.$destroy(true)
+    this.$el.parentNode &&
+    this.$el.parentNode.removeChild(this.$el)
   }
 }
 </script>

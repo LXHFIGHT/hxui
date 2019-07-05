@@ -180,6 +180,9 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
 .color-gray { color: #aaa!important; }
 .color-blue { color: $color-blue!important; }
 
+.bg-gray { background-color: $color-gray-light!important; }
+.bg-main { background-color: rgba($color-main, .1)!important; }
+
 // 三种居中
 .center-horizontal,
 .center-parent,

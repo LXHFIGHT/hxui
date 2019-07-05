@@ -111,6 +111,7 @@ $width-label: 110px;
       font-size: $font-md;
       width: 100%;
       height: auto;
+      min-height: $height-regular;
       line-height: $height-regular - $pm-sm * 2;
       text-align: justify;
       word-break: break-all;
@@ -257,7 +258,7 @@ $width-label: 110px;
     }
   }
   // 附加提示文本
-  .text-tips {
+  & > .text-tips {
     font-size: $font-sm;
     line-height: 2;
     display: block;
