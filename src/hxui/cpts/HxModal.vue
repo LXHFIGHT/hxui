@@ -55,7 +55,7 @@ export default {
   mounted () {
     this.$_init()
   },
-  destroyed() {
+  destroyed () {
     this.$destroy(true)
     this.$el.parentNode &&
     this.$el.parentNode.removeChild(this.$el)
