@@ -171,6 +171,9 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
     font-weight: 400;
 }
 
+.hide { display: none; }
+
+
 .color-main { color: $color-main!important; }
 .color-red { color: $color-red!important; }
 .color-green { color: $color-green!important; }
@@ -250,7 +253,7 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
 .center { text-align: center; }
 
 .hx-invisible {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .hx-no-wrap {

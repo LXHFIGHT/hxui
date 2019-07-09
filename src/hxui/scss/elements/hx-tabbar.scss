@@ -5,6 +5,7 @@
   background-color: $color-gray;
   border-radius: $border-radius-md;
   overflow: hidden;
+  position: relative;
   .item {
     padding: 0 $pm-md;
     height: $height-regular;
@@ -13,9 +14,31 @@
     border-radius: $border-radius-md;
     font-size: $font-sm;
     border: none;
+    cursor: default;
+    position: relative;
+    z-index: 2;
+    transition: color .4s;
     &.selected {
-      background-color: $color-main;
       color: white;
+    }
+  }
+  .move-item {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: $border-radius-md;
+    height: 100%;
+    background-color: $color-main;
+    transition: left .4s;
+    display: block;
+  }
+  &.bar {
+    background-color: transparent;
+    .item.selected {
+      color: $color-main;
+    }
+    .move-item {
+      height: $pm-sm/2;
     }
   }
 }

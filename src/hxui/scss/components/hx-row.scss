@@ -28,7 +28,12 @@ $width-label: 110px;
   }
   // 居中样式
   &.center { text-align: center; }
-
+  // 缩小规格
+  &.short {  
+    .content {
+      width: 200px;
+    }
+  }
   label, .content{
     min-height: $height-regular;
     display: inline-block;
@@ -272,6 +277,7 @@ $width-label: 110px;
   .hx-row {
     .content {
       width: calc(100% - #{$width-label + 10px});
+      max-width: calc(100% - #{$width-label + 10px});
     }
   }
 }
@@ -302,6 +308,7 @@ $width-label: 110px;
     }
     .content {
       width: calc(100% - 108px);
+      max-width: calc(100% - 108px);
       padding-left: 0;
       input, select, textarea {
         border: none!important;

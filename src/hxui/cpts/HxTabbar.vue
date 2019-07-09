@@ -1,10 +1,12 @@
 <template>
-  <div class="hx-tabbar">
+  <div class="hx-tabbar" ref="main">
+    <div :style="`width: ${width}px; left: ${width * index}px`" 
+      class="move-item"></div>
     <div :class="['item', (value === item.value) && 'selected']"
       :key="index"
       v-for="(item, index) in tabbarOptions"
-      v-text="item.text"
-      @click="doSelectItem(item)">
+      v-text="item.key"
+      @click="doSelectItem(item, index)">
     </div>
   </div>
 </template>
@@ -13,16 +15,18 @@
  * tabbar组件, 支持v-model， 以下是参数详解：
  * color: {string} 颜色主题，主要包含 main(default), orange(warn), green(success), error(error)
  * onSelect: 选中选项触发事件，接收整个数组单项作为唯一一个参数
- * options: {Array} 必填项，表示各种选项的数据
+ * content: {Array} 必填项，表示各种选项的数据
  *  如果数组单项是对象:
  *   optionItem.value: 选项对应的值
- *   optionItem.text: 选中选项
- *  如果数组单项是字符串或者数值等基本类型，那么text和value都一样是这个值
+ *   optionItem.key: 选中选项
+ *  如果数组单项是字符串或者数值等基本类型，那么key和value都一样是这个值
  */
 export default {
   data () {
     return {
-      tabbarOptions: []
+      tabbarOptions: [],
+      width: 0,
+      index: 0
     }
   },
   props: {
@@ -31,7 +35,7 @@ export default {
       type: String,
       default: 'main'
     },
-    options: {
+    content: {
       type: Array,
       required: true
     },
@@ -40,19 +44,29 @@ export default {
     }
   },
   created () {
-    this.tabbarOptions = this.options.map((v, i) => {
+    this.tabbarOptions = this.content.map((v, i) => {
       let item = {}
       if (typeof v === 'object') {
         item = v
       } else {
-        item.text = v
+        item.key = v
         item.value = v
+      }
+      if (this.value === item.value) {
+        this.index = i
       }
       return item
     })
   },
+  mounted () {
+    this.$_initMagicBar()
+  },
   methods: {
-    doSelectItem (item) {
+    $_initMagicBar () {
+      this.width = this.$refs.main.clientWidth / this.content.length
+    },
+    doSelectItem (item, index) {
+      this.index = index
       this.$emit('input', item.value)
       this.onSelect instanceof Function && this.onSelect(item)
     }

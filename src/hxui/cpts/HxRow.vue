@@ -29,7 +29,7 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
+      type: [String, Boolean, Number],
       default: false
     }
   },
