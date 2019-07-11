@@ -70,7 +70,14 @@ export default {
       this.$emit('input', item.value)
       this.onSelect instanceof Function && this.onSelect(item)
     }
-  }
+  },
+  watch: {
+    value (newVal) {
+      console.log('Change ', newVal)
+      this.index = newVal
+      this.$forceUpdate()
+    }
+  } 
 }
 </script>
 <style lang="scss" scoped>

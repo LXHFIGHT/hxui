@@ -40,7 +40,6 @@ $width-label: 110px;
     font-size: $font-md;
     vertical-align: top;
   }
-
   // 左侧表单内容文案
   label{
     line-height: $height-regular;
@@ -111,7 +110,7 @@ $width-label: 110px;
       @include centerVertical;
     }
     // 不可编辑文本组件样式
-    .text {
+    a.text, section.text, strong.text, span.text {
       padding: $pm-sm;
       font-size: $font-md;
       width: 100%;
