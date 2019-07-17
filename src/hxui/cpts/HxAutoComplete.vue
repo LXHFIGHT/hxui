@@ -123,7 +123,7 @@ export default {
     .option {
       width: 100%;
       display: block;
-      padding: 0 $pm-sm;
+      padding: $pm-sm;
       @include nowrap;
       cursor: default;
       font-size: $font-md;
