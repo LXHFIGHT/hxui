@@ -34,6 +34,20 @@ $width-label: 110px;
       width: 200px;
     }
   }
+  // 没有label文本的情况下
+  &.no-label {
+    label {
+      display: none;
+    }
+    .content {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+    .text-tips {
+      padding-left: $pm-sm;
+    }
+  }
   label, .content{
     min-height: $height-regular;
     display: inline-block;
@@ -293,6 +307,7 @@ $width-label: 110px;
       }
       & > .content {
         width: 100%;
+        max-width: 100%;
       }
     }
     label {
@@ -327,11 +342,6 @@ $width-label: 110px;
       }
       &.for-switch {
         width: 150px !important;
-      }
-      &.one-line {
-        width: 100%!important;
-        padding-left: 0!important;
-        padding-right: $pm-sm!important;
       }
       .for-image {
         height: auto!important;

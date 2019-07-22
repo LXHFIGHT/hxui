@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-row', oneline && 'oneline']">
+  <div :class="['hx-row', oneline && 'oneline', !label && 'no-label']">
     <label v-if="label">
       {{ label }}
       <span v-if="required" class="tip">*</span>
@@ -21,8 +21,7 @@ export default {
   name: 'hx-row',
   props: {
     label: {
-      type: String,
-      required: true
+      type: String
     },
     oneline: {
       type: [String, Boolean, Number],
