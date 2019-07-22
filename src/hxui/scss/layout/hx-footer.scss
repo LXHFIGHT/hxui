@@ -21,6 +21,9 @@
   &.center {
     text-align: center;
   }
+  &.right {
+    text-align: right;
+  }
 }
 
 @media screen and (max-width: 640px) {
