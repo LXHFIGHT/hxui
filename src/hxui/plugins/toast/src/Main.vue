@@ -67,7 +67,7 @@ export default {
   &.warn { background-color: $color-orange; }
   &.error { background-color: $color-red; }
   &.default { background-color:#aaa; }
-  &.info { background-color: $color-main; }
+  &.info { background-color: $color-blue; }
 }
 
 @media screen and (min-width: 640px) {
@@ -173,7 +173,7 @@ export default {
     &.warn:before { background-color: $color-orange; }
     &.error:before { background-color: $color-red; }
     &.default:before { background-color: #aaa; }
-    &.info:before { background-color: $color-main; }
+    &.info:before { background-color: $color-blue; }
   }
 }
 </style>

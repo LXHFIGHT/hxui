@@ -20,12 +20,10 @@ $height-checkbox: 20px;
 
 .hx-checkbox, .hx-radio {
   background-color: transparent;
-  padding: 7px;
-  height: $height-regular;
-  line-height: $height-checkbox;
+  height: $height-normal/2;
   display: inline-block;
   cursor: default;
-
+  margin: 0;
   &[disabled] {
     color: $color-gray-deep;
     cursor: not-allowed;
@@ -41,13 +39,12 @@ $height-checkbox: 20px;
     content: '';
     height: $height-checkbox;
     width: $height-checkbox;
-    float: left;
+    display: block;
     vertical-align: middle;
     background-color: $color-gray-light;
     background-position: center;
     background-size: 90% 90%;
     display: inline-block;
-    margin-right: 6px;
     overflow: hidden;
     border: 1px solid $color-gray;
   }

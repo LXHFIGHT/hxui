@@ -15,9 +15,8 @@
       <div v-for="(option, idx) in options" 
         :key="idx"
         @click="doSelect(option)"
-        :value="option"
         class="option">
-        {{ option }}
+        {{ option.key }}
       </div>
     </div>
   </div>
@@ -65,12 +64,20 @@ export default {
     doAnalysing () {
       this.$_showOption()
       this.$emit('input', this.detail)
+      const _getOptions = () => {
+        return this.content.map(v => {
+          if (typeof v !== 'object') {
+            return { key: v, value: v }
+          }
+          return v
+        })
+      }
       if (this.detail === '') {
-        this.options = this.content
+        this.options = _getOptions()
         return
       }
-      this.options = this.content.filter(v => {
-        return v.indexOf(this.detail) !== -1
+      this.options = _getOptions().filter(v => {
+        return v.key.indexOf(this.detail) !== -1
       })
     },
     doBlur () {
@@ -78,8 +85,8 @@ export default {
     },
     doSelect (option) {
       console.log('Data:', option, this.detail)
-      this.$emit('input', option)
-      this.$emit('change')
+      this.$emit('input', option.key)
+      this.$emit('change', option)
       this.$forceUpdate()
     } 
   },

@@ -16,7 +16,7 @@
         输入内容回车即可添加标签
       </span>
       <div v-for="(item, idx) in value" class="tag" :key="idx">
-        {{ item }}
+        {{ item.key }}
         <button class="btn-remove" @click="doRemoveTag(idx)">×</button>
       </div>
     </div>
@@ -50,6 +50,12 @@ export default {
     disabled: {
       type: [Boolean, String, Number],
       default: false
+    },
+    onConfirm: { // 回车创建时
+      type: Function
+    },
+    onRemove: { // 当删除指定标签时
+      type: Function
     }
   },
   methods: {
@@ -63,12 +69,14 @@ export default {
       }
       let result = [].concat(this.value)
       result.push(this.content)
+      this.onConfirm instanceof Function && this.onConfirm(this.content)
       this.$emit('input', result)
       this.content = ''
     },
     doRemoveTag (idx) {
       let result = [].concat(this.value)
       result.splice(idx, 1)
+      this.onRemove instanceof Function && this.onRemove(this.value[idx])
       this.$emit('input', result)
     }
   }
