@@ -1,6 +1,7 @@
 @import './../variable.scss';
 
 .hx-tabbar {
+  display: inline-block;
   height: $height-regular;
   background-color: $color-gray;
   border-radius: $border-radius-md;

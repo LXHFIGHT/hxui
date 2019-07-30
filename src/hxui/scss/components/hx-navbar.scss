@@ -11,6 +11,7 @@ $height-admin-navbar: 50px;
   display: block;
   z-index: 10;
   position: relative;
+  
   box-shadow: $shadow-md;
   .nav-left, .nav-right {
     display: inline-block;
@@ -97,7 +98,7 @@ $height-admin-navbar: 50px;
     }
     .nav-right {
       height: $height-admin-navbar;
-      padding: 10px;
+      padding: $pm-sm;
     }
   }
 }

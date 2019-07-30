@@ -1,6 +1,6 @@
 <template>
   <div class="hx-tabbar" ref="main">
-    <div :style="`width: ${width}px; left: ${width * index}px`" 
+    <div :style="`width: ${width}px; left: ${left}px`" 
       class="move-item"></div>
     <div :class="['item', (value === item.value) && 'selected']"
       :key="index"
@@ -26,6 +26,7 @@ export default {
     return {
       tabbarOptions: [],
       width: 0,
+      left: 0,
       index: 0
     }
   },
@@ -63,11 +64,21 @@ export default {
   },
   methods: {
     $_initMagicBar () {
-      this.width = this.$refs.main.clientWidth / this.content.length
+      const $items = document.querySelectorAll('.hx-tabbar>.item')
+      for (let i = 0; i < $items.length; i++) {
+        this.tabbarOptions[i].width = $items[i].offsetWidth
+      }
+      this.width = this.tabbarOptions[0].width
     },
     doSelectItem (item, index) {
       this.index = index
       this.$emit('input', item.value)
+      this.width = item.width
+      let left = 0
+      for (let i = 0; i < index; i++) {
+        left += this.tabbarOptions[i].width
+      }
+      this.left = left
       this.onSelect instanceof Function && this.onSelect(item)
     }
   },
