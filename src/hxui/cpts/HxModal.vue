@@ -5,6 +5,9 @@
       <header class="header">
         {{ title }}
         <slot name="header"></slot>
+        <div class="right">
+          <slot name="right"></slot>  
+        </div>
       </header>
       <div >
         <slot name="content"></slot>

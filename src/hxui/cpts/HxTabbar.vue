@@ -84,7 +84,6 @@ export default {
   },
   watch: {
     value (newVal) {
-      console.log('Change ', newVal)
       this.index = newVal
       this.$forceUpdate()
     }
@@ -92,5 +91,49 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  @import "./../../hxui/scss/elements/hx-tabbar.scss";
+@import './../scss/variable.scss';
+.hx-tabbar {
+  height: $height-regular;
+  background-color: $color-gray;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  position: relative;
+  .item {
+    padding: 0 $pm-md;
+    height: $height-regular;
+    line-height: $height-regular;
+    display: inline-block;
+    border-radius: $border-radius-md;
+    font-size: $font-sm;
+    border: none;
+    cursor: default;
+    vertical-align: top;
+    position: relative;
+    z-index: 2;
+    transition: color .4s;
+    &.selected {
+      color: white;
+    }
+  }
+  .move-item {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: $border-radius-md;
+    height: 100%;
+    background-color: $color-main;
+    transition: left .4s;
+    display: block;
+  }
+  &.bar {
+    background-color: transparent;
+    .item.selected {
+      color: $color-main;
+    }
+    .move-item {
+      height: $pm-sm/2;
+    }
+  }
+}
+
 </style>

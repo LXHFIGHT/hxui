@@ -66,5 +66,8 @@
     .btn-show-sidebar {
       @include btnSidebar($color-main);
     }
+    .btn-toggle-sidebar {
+      display: none;
+    }
   }
 }

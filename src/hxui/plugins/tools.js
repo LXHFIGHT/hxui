@@ -50,6 +50,7 @@ export const getElementToPageTop = (el) => {
 
 export const getElementToPageLeft = (el) => {
   if (el.parentElement) {
+    console.log(el.parentElement.classList, el.offsetLeft)
     return getElementToPageLeft(el.parentElement) + el.offsetLeft
   }
   return el.offsetLeft

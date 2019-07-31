@@ -63,6 +63,10 @@
       padding-left: $pm-md;
       margin-bottom: $pm-md;
       position: relative;
+      .right {
+        display: inline-block;
+        float: right;
+      }
       &:before {
         content: '';
         height: $height-normal/2;
