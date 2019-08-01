@@ -24,6 +24,14 @@
         text-align: center;
         font-size: $font-md;
       }
+      .alert-content {
+        padding: $pm-lg $pm-md $pm-bg;
+        font-size: $font-bg;
+        text-align: center;
+      }
+      .prompt-content {
+        padding: $pm-sm 0 0;
+      }
       footer {
         text-align: right;
         padding: 0;

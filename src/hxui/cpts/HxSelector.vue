@@ -101,7 +101,7 @@ export default {
     width: 100%;
     @include centerHorizontal;
     max-width: 200px;
-    padding: $pm-sm;
+    padding: 0;
     box-shadow: 0 0px 20px rgba(0,0,0,.2);
     border-radius: $pm-sm;
     visibility: hidden;
@@ -124,7 +124,7 @@ export default {
     .option {
       width: 100%;
       display: block;
-      padding: $pm-sm/2 $pm-md;
+      padding: $pm-sm $pm-md;
       @include nowrap;
       cursor: default;
       font-size: $font-md;

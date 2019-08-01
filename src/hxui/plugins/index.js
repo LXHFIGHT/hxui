@@ -8,6 +8,8 @@ import toast from './toast'
 import popLoading from './popLoading'
 import previewImage from './imagePreviewer'
 import Confirm from './confirm'
+import Alert from './alert'
+import Prompt from './prompt'
 import validate from './smartValidator'
 
 export default {
@@ -25,5 +27,7 @@ export default {
       level: '', 提示等级  参考hxui/config.js
    */
   confirm: Confirm,
+  alert: Alert,
+  prompt: Prompt,
   validate
 }
