@@ -1,24 +1,17 @@
 <template>
   <div class="hx-tag-editor">
-    <div class="zone-input">
-      <hx-input 
-        :placeholder="placeholder" 
-        v-model="content"
-        type="text" 
-        :rows="1"
-        :disabled="disabled"
-        @keyup="doCreateTag"
-        showClearBtn="1">
-      </hx-input>
-    </div>
     <div class="zone-tags">
-      <span class="text-tips" v-if="!value.length">
-        输入内容回车即可添加标签
-      </span>
       <div v-for="(item, idx) in value" class="tag" :key="idx">
         {{ item }}
         <button class="btn-remove" @click="doRemoveTag(idx)">×</button>
       </div>
+      <input 
+        :placeholder="placeholder" 
+        v-model="content"
+        type="text" 
+        class="tag-inputer"
+        v-if="!disabled"
+        @keydown="doCreateTag" />
     </div>
   </div>
 </template>
@@ -45,7 +38,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请输入标签内容并回车添加'
+      default: '输入按回车添加标签'
     },
     disabled: {
       type: [Boolean, String, Number],
@@ -64,6 +57,12 @@ export default {
       this.$emit('input', value)
     },
     doCreateTag () {
+      if (!this.content && event.keyCode === 8) { 
+        // 内容为空时按删除按钮
+        console.log(event.keyCode)
+        this.doRemoveTag(this.value.length - 1)
+        return
+      }
       if (!this.content || event.keyCode !== 13) {
         return
       }
@@ -86,29 +85,18 @@ export default {
   @import "./../scss/variable.scss";
   .hx-tag-editor {
     .zone-tags {
-      padding: $pm-sm;
-      background-color: $color-gray-light;
-      .text-tips {
-        color: $color-gray-deep;
-        line-height: 1.4;
-        font-size: $font-md;
-        text-align: center;
-        display: block;
-      }
       .tag {
         cursor: default;
-        padding: $pm-sm/2 $pm-sm;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 $pm-sm;
         background-color: white;
         text-align: center;
         color: $color-heavy;
         border-radius: $pm-sm/2;
         display: inline-block;
-        line-height: $height-normal/2;
         border: 1px solid $color-gray;
-        margin-bottom: $pm-sm/2;
-        & + .tag {
-          margin-left: $pm-sm;
-        }
+        margin: $pm-sm/4 $pm-sm $pm-sm/4 0;
         .btn-remove {
           position: relative;
           margin-right: -$pm-sm;
@@ -124,5 +112,15 @@ export default {
         }
       }
     }
+    .tag-inputer {
+      height: 30px;
+      width: 140px;
+      margin-top: $pm-sm/4;
+      display: inline-block;
+      border: none!important;
+      background-color: transparent;
+      padding: 0;
+    }
   }
+  
 </style>
