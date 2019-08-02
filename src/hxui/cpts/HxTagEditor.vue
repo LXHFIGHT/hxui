@@ -16,7 +16,7 @@
         输入内容回车即可添加标签
       </span>
       <div v-for="(item, idx) in value" class="tag" :key="idx">
-        {{ item.key }}
+        {{ item }}
         <button class="btn-remove" @click="doRemoveTag(idx)">×</button>
       </div>
     </div>
