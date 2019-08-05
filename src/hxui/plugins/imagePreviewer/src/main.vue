@@ -3,7 +3,9 @@
     @mousedown="doMouseDown"
     @mousemove="doMouseMove"
     @mouseup="doMouseUp"
-    @touchstart="doTouchImage">
+    @touchstart="doTouchDown"
+    @touchend="doTouchUp"
+    @touchmove="doTouchMove">
     <div class="mask" @click="doQuitPreview"></div>
     <header class="navbar">
       <span class="title" v-text="`${index + 1} / ${urls.length}`"></span>
@@ -192,6 +194,36 @@ export default {
     doMouseMove () {
       if (this.matrix.isMoving) {
         const { pageX, pageY } = event
+        this.matrix = {
+          ...this.matrix,
+          x: this.matrix.startX + pageX - this.matrix.pageX,
+          y: this.matrix.startY + pageY - this.matrix.pageY
+        }
+      }
+    },
+    doTouchDown () {
+      console.log('START', event)
+      const { pageX, pageY } = event.targetTouches[0]
+      this.matrix = {
+        ...this.matrix,
+        isMoving: true,
+        pageX, 
+        pageY
+      }
+    },
+    doTouchUp () {
+      console.log('END', event)
+      this.matrix = {
+        ...this.matrix,
+        isMoving: false,
+        startX: this.matrix.x,
+        startY: this.matrix.y
+      }
+    },
+    doTouchMove () {
+      console.log('MOVING:', event)
+      if (this.matrix.isMoving) {
+        const { pageX, pageY } = event.changedTouches[0]
         this.matrix = {
           ...this.matrix,
           x: this.matrix.startX + pageX - this.matrix.pageX,
