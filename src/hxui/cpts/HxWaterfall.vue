@@ -15,14 +15,23 @@ export default {
       lines: 1,
       lineWidth: 0,
       slots: [],
-      childrens: [],
-      divideWidth: 16 // 间隔大小
+      childrens: []
+    }
+  },
+  props: {
+    width: { // 卡片的大致宽度， 真实宽度会在该值左右浮动
+      type: Number,
+      default: 250
+    },
+    divideWidth: { // 卡片之间间隔大小
+      type: Number,
+      default: 16
     }
   },
   methods: {
     $_getLines () {
       for (let i = 1; i < 10; i++) {
-        if (235 * i + (i - 1) * this.divideWidth < this.clientWidth) {
+        if (this.width * i + (i - 1) * this.divideWidth < this.clientWidth) {
           continue
         }
         this.lines = i
