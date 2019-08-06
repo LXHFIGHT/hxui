@@ -5,8 +5,7 @@
  *  HXUI 弹出框调用方法
  */
 import Main from './Main.vue'
-
-const Vue = window.Vue
+import { Vue } from './../../tools'
 const PoptipConstructor = Vue.extend(Main)
 
 let toast = function (options) {

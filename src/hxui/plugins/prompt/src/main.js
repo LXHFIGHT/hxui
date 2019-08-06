@@ -1,6 +1,6 @@
 import Main from './Main.vue'
+import { Vue } from './../../tools'
 
-const Vue = window.Vue
 const PromptConstructor = Vue.extend(Main)
 
 const Prompt = function (options) {

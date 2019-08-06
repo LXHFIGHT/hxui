@@ -4,6 +4,9 @@
  * Description:
  *   通用工具方法
  */
+// import vue from 'vue' // 如果Vue是由npm管理的选择此项
+const vue = window.Vue // 如果Vue是通过script标签引入
+
 export const $ = (query) => {
   return document.querySelectorAll(query)
 }
@@ -55,3 +58,5 @@ export const getElementToPageLeft = (el) => {
   }
   return el.offsetLeft
 }
+
+export const Vue = vue

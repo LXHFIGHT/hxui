@@ -6,8 +6,8 @@
  */
 
 import Main from './main.vue'
+import { Vue } from './../../tools'
 
-const Vue = window.Vue
 const LoadingConstructor = Vue.extend(Main)
 let instance = {}
 

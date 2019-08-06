@@ -1,6 +1,6 @@
 import Main from './Main.vue'
+import { Vue } from './../../tools'
 
-const Vue = window.Vue
 const AlertConstructor = Vue.extend(Main)
 
 const Alert = function (text) {
