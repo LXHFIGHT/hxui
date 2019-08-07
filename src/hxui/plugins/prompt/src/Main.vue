@@ -4,9 +4,17 @@
     <div class="content">
       <header class="header" v-text="title"></header>
       <div class="prompt-content">
-        <textarea v-model="text" ref="editor" cols="30" rows="3"
+        <textarea v-if="type === InputTypes.TEXTAREA" v-model="text" ref="editor" cols="30" rows="3"
           autofocus="autofocus"
           :placeholder="placeholder"></textarea>
+        <input v-if="type === InputTypes.TEXT" v-model="text" ref="editor"
+          autofocus="autofocus"
+          class="hx-input"
+          :placeholder="placeholder" />
+        <input v-if="type === InputTypes.NUMBER" v-model="text" ref="editor"
+          autofocus="autofocus"
+          class="inputer-number"
+          :placeholder="placeholder" />  
       </div>
       <footer class="footer">
         <button class="hx-button btn-cancel"
@@ -27,6 +35,7 @@ export default {
     return {
       title: '',
       text: '',
+      type: 'textarea', // 文本输入框行数，当textarea显示为文本域， 等于text时显示为文本框, 登录Number时显示为数字
       placeholder: '请输入内容',
       onConfirm: () => {},
       onCancel: () => {},
@@ -35,7 +44,12 @@ export default {
       level: '',
       show: false,
       fadeInTimer: null,
-      fadeOutTimer: null
+      fadeOutTimer: null,
+      InputTypes: {
+        TEXTAREA: 'textarea',
+        TEXT: 'text',
+        NUMBER: 'number'
+      }
     }
   },
   methods: {
@@ -79,4 +93,19 @@ export default {
 @import './../../../scss/variable.scss';
 @import './../../../scss/plugins/hx-modal.scss';
 @import './../../../scss/plugins/hx-confirm.scss';
+.inputer-number {
+  font-size: 35px;
+  line-height: 35px;
+  width: 100%;
+  padding: $pm-lg $pm-sm;
+  border: none;
+  text-align: center;
+  border-bottom: 1px solid $color-gray;
+  margin-bottom: $pm-md;
+  &::placeholder {
+    font-size: 20px;
+    line-height: 35px;
+    height: 35px;
+  }
+}
 </style>

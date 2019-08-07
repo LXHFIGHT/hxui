@@ -51,9 +51,8 @@
 </template>
 
 <script>
-import { randomString } from './../plugins/tools'
+import { randomString, axios } from './../plugins/tools'
 import previewImage from './../plugins/imagePreviewer'
-const axios = window.axios
 const SIZE_KB = 1024 // 1KB大小
 const SIZE_MAX_FOR_CANVAS = 2000 * 2000 // canvas最大像素限制
 const SIZE_MAX_FOR_IMAGE = 1000 * 1000 // 图片大于

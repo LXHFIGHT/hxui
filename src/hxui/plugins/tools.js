@@ -4,8 +4,10 @@
  * Description:
  *   通用工具方法
  */
-// import vue from 'vue' // 如果Vue是由npm管理的选择此项
-const vue = window.Vue // 如果Vue是通过script标签引入
+import vue from 'vue' // 如果Vue是由npm管理的选择此项
+import Axios from 'axios' // 如果Vue是由npm管理的选择此项
+// const vue = window.Vue
+// const axios = window.axios
 
 export const $ = (query) => {
   return document.querySelectorAll(query)
@@ -39,7 +41,7 @@ export const randomString = (length) => {
   let result = ''
   let tpl = '0123456789qwertyuiopasdfghjklzxcvbnmZXCVBNMASDFGHJKLQWERTYUIOP'
   for (let i = 0; i < length; i++) {
-    result += tpl.charAt(randomNumber({ from: 0, to: 62 }))
+    result += tpl.charAt(randomNumber({from: 0, to: 62}))
   }
   return result
 }
@@ -60,3 +62,4 @@ export const getElementToPageLeft = (el) => {
 }
 
 export const Vue = vue
+export const axios = Axios
