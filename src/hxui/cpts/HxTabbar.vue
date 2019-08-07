@@ -94,10 +94,11 @@ export default {
 @import './../scss/variable.scss';
 .hx-tabbar {
   height: $height-regular;
-  background-color: $color-gray;
-  border-radius: $border-radius-md;
+  background-color: $color-gray-light;
+  border-radius: $border-radius-md+1px;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.1);
   .item {
     padding: 0 $pm-md;
     height: $height-regular;
@@ -111,8 +112,14 @@ export default {
     position: relative;
     z-index: 2;
     transition: color .4s;
+    &:hover {
+      color: #888;
+    }
     &.selected {
       color: white;
+      &:hover {
+        color: white;
+      }
     }
   }
   .move-item {
@@ -127,6 +134,7 @@ export default {
   }
   &.bar {
     background-color: transparent;
+    box-shadow: inset 0 0 6px $color-main;
     .item.selected {
       color: $color-main;
     }
