@@ -115,11 +115,6 @@ $width-label: 110px;
     vertical-align: top;
     // 缩小规格
     &.short {  width: 200px;  }
-    &:hover {
-      .btn-clear {
-        display: inline-flex;
-      }
-    }
     .hx-switch {
       @include centerVertical;
     }
@@ -168,12 +163,12 @@ $width-label: 110px;
     }
     .degree {
       color: $color-gray-deep;
-      min-width: $height-normal;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin-top: -1px;
       @include centerVertical;
+      right: $pm-md;
       & + .btn-clear {
         right: $pm-lg + $pm-md;
       }
@@ -221,11 +216,6 @@ $width-label: 110px;
       line-height: $height-regular;
     }
 
-    textarea ~ .btn-clear {
-      top: auto;
-      bottom: 0;
-    }
-
     .pad-dropdown {
       position: absolute;
       top: $height-regular + $pm-sm;
@@ -251,28 +241,6 @@ $width-label: 110px;
       border: 1px solid $color-gray;
       border-radius: $border-radius-md;
       transition: all .4s;
-    }
-
-    .btn-clear {
-      @include centerVertical;
-      right: $pm-md;
-      height: 18px;
-      width: 18px;
-      border-radius: 30px;
-      padding: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background-color: $color-gray;
-      img.icon {
-        width: 60%;
-        height: 60%;
-        border: none;
-        margin: 0;
-      }
-      &:hover {
-        background-color: $color-main;
-      }
     }
   }
   // 附加提示文本

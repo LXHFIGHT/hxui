@@ -9,6 +9,7 @@
       <div class="pad-preview">
         <div class="demo">
           <hx-button type="main">主题色</hx-button>
+          <hx-button type="info">提示</hx-button>
           <hx-button type="success">正常</hx-button>
           <hx-button type="default">默认</hx-button>
           <hx-button type="warn">警告</hx-button>
@@ -54,8 +55,9 @@
       <div class="pad-preview">
         <div class="demo">
           <hx-button type="main" blank>主题色</hx-button>
+          <hx-button type="info" blank>提示</hx-button>
           <hx-button type="success" blank>正常</hx-button>
-          <hx-button type="warn" blank>警告</hx-button>
+          <hx-button type="error" blank>错误</hx-button>
           <hx-button type="main" text>主题色</hx-button>
           <hx-button type="success" text>正常</hx-button>
           <hx-button type="warn" text>警告</hx-button>
@@ -123,17 +125,16 @@
 </template>
 
 <script>
-import HxSection from './../../hxui/cpts/HxSection'
 import HxButton from './../../hxui/cpts/HxButton'
 export default {
   components: {
-    'hx-section': HxSection,
     HxButton
   },
   data () {
     return {
       text: `
 <hx-button type="main"> 主题色 </hx-button>
+<hx-button type="info">提示</hx-button>
 <hx-button type="success"> 正常 </hx-button>
 <hx-button type="default"> 默认 </hx-button>
 <hx-button type="warn"> 警告 </hx-button>
@@ -146,8 +147,9 @@ export default {
 <hx-button size="bg"> 大按钮 </hx-button>`,
       typeText: `
 <hx-button type="main" blank>主题色</hx-button>
+<hx-button type="info" blank>提示</hx-button>
 <hx-button type="success" blank>正常</hx-button>
-<hx-button type="warn" blank>警告</hx-button>
+<hx-button type="error" blank>错误</hx-button>
 <hx-button type="main" text>主题色</hx-button>
 <hx-button type="success" text>正常</hx-button>
 <hx-button type="warn" text>警告</hx-button>
@@ -178,4 +180,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../global.scss";
+.demo .hx-button {
+  margin-right: $pm-sm;
+}
 </style>
