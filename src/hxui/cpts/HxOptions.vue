@@ -3,7 +3,7 @@
     <button :class="['item', value === item.value && 'selected']" 
       :key="index"
       @click="doSelect(item)"
-      v-text="item.text"
+      v-text="item[keyName]"
       v-for="(item, index) in options">
     </button>
   </div>
@@ -14,6 +14,10 @@ export default {
     content: {
       type: Array,
       required: true
+    },
+    keyName: {
+      type: String,
+      default: 'text'
     },
     value: {
       type: [String, Number]
@@ -48,7 +52,9 @@ export default {
       }
       this.options = this.content.map(item => {
         if (typeof item === 'string') {
-          return { text: item, value: item }
+          let bundle = { value: item }
+          bundle[this.keyName] = item
+          return bundle
         }
         return item
       })
