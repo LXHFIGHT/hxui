@@ -47,6 +47,11 @@ export default new Router({
               path: '/components/hx-input',
               name: 'hx-input',
               component: () => import('./views/components/input')
+            },
+            {
+              path: '/components/select',
+              name: 'select',
+              component: () => import('./views/components/select')
             }
           ]
         },

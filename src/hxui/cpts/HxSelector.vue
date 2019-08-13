@@ -4,6 +4,7 @@
       :class="['text-option', (_optionFilter(value) === placeholder) && 'color-gray']" 
       @focus="doFocus"
       @blur="doBlur"
+      :disabled="disabled"
       :value="_optionFilter(value)" />
     <div class="pad-options">
       <div v-for="(option, idx) in options" 
@@ -36,6 +37,10 @@ export default {
     keyName: { // 选项和value对应的键名
       type: String,
       default: 'text'
+    },
+    disabled: {
+      type: [String, Boolean, Number],
+      default: false
     },
     placeholder: {
       type: String,

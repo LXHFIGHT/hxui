@@ -49,12 +49,12 @@
         </div>
         <div class="code">
           <span class="tips">
-            按钮 type 属性会对应到 HxButton 的类中
+            当rows属性大于1时，HxInput显示为文本域形式，参数和文本框一样
           </span>
-          <!-- <pre class="detail" v-highlightjs="text" >
+          <pre class="detail" v-highlightjs="text2" >
             <code class="xml">
             </code>
-          </pre> -->
+          </pre>
         </div>
       </div>
     </div>
@@ -116,8 +116,18 @@ export default {
 <hx-row label="限制10个字数">
   <hx-input v-model="hxInput4" :maxLength="10" :showLength="true" 
     placeholder="请输入文本..."/>
-</hx-row>`,
-      sizeText: ``,
+</hx-row>
+
+`,
+      text2: `
+<hx-row label="正常">
+  <hx-input :rows="3" type="text" placeholder="请输入文本..."/>
+</hx-row>
+<hx-row label="带清空按钮">
+  <hx-input :rows="3" type="text" showClearBtn="true" placeholder="请输入文本..." error/>
+</hx-row>
+
+`,
       typeText: ``,
       props: [
         { name: 'rows', desc: '行数：> 1时显示为文本域', type: 'Number', option: '整数', default: '1' },
@@ -129,7 +139,7 @@ export default {
         { name: 'showLength', desc: '是否显示已输入字数', type: 'Boolean', option: '整数', default: '空字符串' },
         { name: 'readonly', desc: '是否只读', type: 'Boolean/String', option: 'true/false/"readonly"', default: 'false' },
         { name: 'disabled', desc: '只读且禁用事件', type: 'Boolean/String', option: 'true/false/"disabled"', default: 'false' },
-        { name: 'maxLength', desc: '允许输入的最大字符串', type: 'Number', option: '整数', default: '' }
+        { name: 'maxLength', desc: '允许输入的最大字符串', type: 'Number', option: '整数', default: '--' }
       ]
     }
   },
