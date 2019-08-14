@@ -1,7 +1,10 @@
 <template>
   <div class="pad-hx-message" v-if="!isClose">
     <div :class="['hx-message', level]">
-      <span class="text" v-text="text"></span>
+      <span class="text">
+        {{ text }}
+        <slot></slot>
+      </span>
       <span class="btn-close" @click="doClose">×</span>
     </div>
   </div>
