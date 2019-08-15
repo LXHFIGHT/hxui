@@ -6,13 +6,18 @@
       @blur="doBlur"
       :disabled="disabled"
       :value="_optionFilter(value)" />
+    <button class="btn-clear" @click="doClear">
+      ×
+    </button>
     <div class="pad-options">
-      <div v-for="(option, idx) in options" 
-        :key="idx"
-        @click="doSelect(option)"
-        :value="option.value"
-        :class="['option', option.value === value && 'selected']">
-        {{ option[keyName] }}
+      <div class="pad-select-zone">
+        <div v-for="(option, idx) in options" 
+          :key="idx"
+          @click="doSelect(option)"
+          :value="option.value"
+          :class="['option', option.value === value && 'selected']">
+          {{ option[keyName] }}
+        </div>
       </div>
     </div>
   </div>
@@ -70,6 +75,10 @@ export default {
         this.options.push(option)
       }
     },
+    doClear () {
+      this.$emit('input', '')
+      this.$forceUpdate()
+    },
     doFocus () {
       this.showOptions = true
     },
@@ -96,6 +105,28 @@ export default {
   display: block;
   position: relative;
   z-index: 100;
+  cursor: default;
+  &:hover {
+    .btn-clear {
+      display: block;
+    }
+  }
+  .btn-clear {
+    display: none;
+    position: absolute;
+    right: $pm-sm;
+    top: $pm-sm;
+    height: $height-regular - $pm-md;
+    width: $height-regular - $pm-md;
+    line-height: 0;
+    text-align: center;
+    background-color: transparent;
+    padding: 0;
+    font-size: $font-bg;
+    &:hover {
+      color: $color-red;
+    }
+  }
   .text-option {
     font-size: $font-md;
   }
@@ -105,7 +136,6 @@ export default {
     background-color: white;
     width: 100%;
     @include centerHorizontal;
-    max-width: 200px;
     padding: 0;
     box-shadow: 0 0px 20px rgba(0,0,0,.2);
     border-radius: $pm-sm;
@@ -125,6 +155,13 @@ export default {
       border-top: 0 solid transparent;
       position: absolute;
       @include centerHorizontal;
+    }
+    .pad-select-zone {
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-width: 200px;
+      display: block;
     }
     .option {
       width: 100%;
