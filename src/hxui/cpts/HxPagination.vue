@@ -19,10 +19,9 @@
     <span class="text-page">{{searchInfo.page}} / {{total}}</span>
     <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
       @click="requestListByPage(searchInfo.page + 1)"></a>
-    <input type="text"
-      value=""
-      autocomplete="off"
-      v-model="toPage">
+    <input type="tel"
+      class="page-inputer"
+      v-model="toPage" />
     <a class="btn-jump"
       @click="requestListByPage(toPage)">
       跳转

@@ -129,6 +129,7 @@ export default {
   }
   .text-option {
     font-size: $font-md;
+    cursor: default;
   }
   .pad-options {
     font-size: $font-md;
@@ -162,6 +163,7 @@ export default {
       overflow-x: hidden;
       max-width: 200px;
       display: block;
+      -webkit-overflow-scrolling: touch;
     }
     .option {
       width: 100%;
