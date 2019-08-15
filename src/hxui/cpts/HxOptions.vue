@@ -2,6 +2,8 @@
   <div class="hx-options">
     <button :class="['item', value === item.value && 'selected']" 
       :key="index"
+      :disabled="disabled"
+      v-if="!disabled || (disabled && value === item.value)"
       @click="doSelect(item)"
       v-text="item[keyName]"
       v-for="(item, index) in options">
@@ -27,6 +29,10 @@ export default {
       default () {
         return () => {}
       }
+    },
+    disabled: {
+      type: [String, Number, Boolean],
+      default: false
     }
   },
   data () {
