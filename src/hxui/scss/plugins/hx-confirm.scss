@@ -31,6 +31,10 @@
       }
       .prompt-content {
         padding: $pm-sm 0 0;
+        .tips {
+          font-size: $font-md;
+          color: #aaa;
+        }
       }
       footer {
         text-align: right;

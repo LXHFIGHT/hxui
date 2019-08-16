@@ -11,10 +11,13 @@
           autofocus="autofocus"
           class="hx-input"
           :placeholder="placeholder" />
-        <input v-if="type === InputTypes.NUMBER" v-model="text" ref="editor"
+        <input v-if="type === InputTypes.NUMBER" 
+          v-model="text" 
+          ref="editor"
           autofocus="autofocus"
           class="inputer-number"
-          :placeholder="placeholder" />  
+          :placeholder="placeholder" />
+        <span class="tips" v-if="tips" v-html="tips"></span>
       </div>
       <footer class="footer">
         <button class="hx-button btn-cancel"
@@ -35,6 +38,7 @@ export default {
     return {
       title: '',
       text: '',
+      tips: '', // 提示语
       type: 'textarea', // 文本输入框行数，当textarea显示为文本域， 等于text时显示为文本框, 登录Number时显示为数字
       placeholder: '请输入内容',
       onConfirm: () => {},
@@ -43,6 +47,7 @@ export default {
       cancelText: '取消',
       level: '',
       show: false,
+      max: null, // 最大值限制
       fadeInTimer: null,
       fadeOutTimer: null,
       InputTypes: {
@@ -81,6 +86,18 @@ export default {
   mounted () {
     this.startTimer()
     this.$refs['editor'].focus()
+  },
+  watch: {
+    text (newVal) {
+      // 当编辑类型为数值时，且有最大数限制时
+      console.log(newVal)
+      if (isNaN(newVal) || this.type !== this.InputTypes.NUMBER) {
+        return
+      }
+      if (this.max && this.max < newVal) {
+        this.text = this.max
+      }
+    }
   },
   beforeDestroy () {
     clearTimeout(this.fadeInTimer)
