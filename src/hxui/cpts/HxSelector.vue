@@ -94,6 +94,14 @@ export default {
   },
   created () {
     this.$_init()
+  },
+  watch: {
+    content: {
+      handler (newVal) {
+        this.$_init()
+      },
+      deep: true
+    }
   }
 }
 </script>
