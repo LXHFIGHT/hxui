@@ -50,6 +50,7 @@ export default {
         this.$emit('input', '')
       } else {
         this.$emit('input', item.value)
+        this.$emit('change', item.value)
       }
     },
     $_initContent () {
