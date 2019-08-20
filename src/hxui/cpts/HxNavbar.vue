@@ -4,6 +4,7 @@
       <div class="nav-left">
         <img class="logo" :src="logo" alt="">
         <span class="title" v-if="title" v-text="title"></span>
+        <span class="tag" v-if="tag" v-text="tag"></span>
       </div>
       <div :class="['nav-buttons', (showNavbuttons && 'show')]">
         <div class="mask hide-md hide-bg" @click="doToggle"></div>
@@ -40,6 +41,9 @@ export default {
     }
   },
   props: {
+    tag: {
+      type: [String, Number]
+    },
     menus: {
       type: Array
     },

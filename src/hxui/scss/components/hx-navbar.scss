@@ -29,6 +29,16 @@ $height-admin-navbar: 50px;
       margin-left: $pm-sm;
       font-weight: 800;
     }
+    .tag {
+      height: $height-regular/2;
+      line-height: $height-regular/2;
+      font-size: $font-sm;
+      background-color: $color-green;
+      color: white!important;
+      vertical-align: top;
+      padding: 2px 4px;
+      border-radius: $pm-xs;
+    }
   }
   .nav-right {
     float: right;

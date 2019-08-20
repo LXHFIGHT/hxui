@@ -20,7 +20,7 @@
       <div class="pad-poi">
         <div class="item-poi special" @click="doChoosePinPoint">
           选择坐标图标所指位置
-          <button class="hx-text-button sm green btn-select-poi">
+          <button class="hx-button sm green btn-select-poi">
             选择
           </button>
         </div>
@@ -31,7 +31,7 @@
              @click="doChooseItem(item)">
           {{item.title}}
           <small v-text="item.address"></small>
-          <button class="hx-text-button sm green btn-select-poi">
+          <button class="hx-button sm btn-select-poi">
             选择
           </button>
         </div>
