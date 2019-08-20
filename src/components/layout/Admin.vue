@@ -42,8 +42,8 @@
           </div>
           <div class="version" v-text="project.version"></div>
           <div class="footer-btn-sidebar">
-            <button class="fa fa-user" @click="toUserInfo()"></button>
-            <button class="fa fa-sign-out" @click="doLogout()"></button>
+            <button class="hx-button" @click="toUserInfo()" style="margin-right: 8px;">修改密码</button>
+            <button class="hx-button" @click="doLogout()">退出登录</button>
           </div>
         </div>
       </div>
