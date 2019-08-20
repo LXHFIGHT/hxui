@@ -56,6 +56,14 @@ export default {
   },
   created () {
     this.$_init()
+  },
+  watch: {
+    content: {
+      deep: true,
+      handler () {
+        this.$_init()
+      }
+    }
   }
 }
 </script>
