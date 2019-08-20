@@ -24,6 +24,12 @@ export default {
     value: {
       type: Array,
       required: true
+    },
+    onSelect: { // 当选择选项时
+      type: Function
+    },
+    onCancel: { // 当取消选择选项时
+      type: Function
     }
   },
   methods: {
@@ -48,8 +54,10 @@ export default {
             break
           }
         }
+        this.onCancel instanceof Function && this.onCancel(item.value)
       } else {
         tempValue.push(item.value)
+        this.onSelect instanceof Function && this.onSelect(item.value)
       }
       this.$emit('input', tempValue)
     }
