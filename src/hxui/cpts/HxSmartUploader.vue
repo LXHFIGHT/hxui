@@ -44,7 +44,7 @@
       :diabled="isUploading || disabled"
       v-if="$_isEmpty(value)">
       <span class="icon fa fa-picture-o" style="top: 3px; position: relative"></span>&nbsp;
-      <span v-if="!isImageError">{{ isUploading ? '正在上传...' : text }}</span>
+      <span v-if="!isImageError">{{ isUploading ? '正在上传' : text }}</span>
       <span v-if="isImageError">图片请重新上传</span>
     </button>
   </div>
@@ -431,7 +431,7 @@ export default {
     }
     .text-amount, .btn-next, .btn-last, .btn-preview, .btn-upload, .btn-delete {
       position: absolute;
-      font-size: 16px;
+      font-size: 14px;
       display: inline-block;
       height: $height-regular;
       width: $height-regular;

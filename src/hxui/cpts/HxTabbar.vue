@@ -60,31 +60,36 @@ export default {
     })
   },
   mounted () {
-    this.$_initMagicBar()
+    this.$_init()
   },
   methods: {
-    $_initMagicBar () {
+    $_init () {
       const $items = document.querySelectorAll('.hx-tabbar>.item')
       for (let i = 0; i < $items.length; i++) {
         this.tabbarOptions[i].width = $items[i].offsetWidth
       }
       this.width = this.tabbarOptions[0].width
+      this.$_locateMagicBar(this.value)
     },
-    doSelectItem (item, index) {
-      this.index = index
-      this.$emit('input', item.value)
-      this.width = item.width
+    $_locateMagicBar (index) {
       let left = 0
       for (let i = 0; i < index; i++) {
         left += this.tabbarOptions[i].width
       }
       this.left = left
+    },
+    doSelectItem (item, index) {
+      this.index = index
+      this.$emit('input', item.value)
+      this.width = item.width
+      this.$_locateMagicBar(index)
       this.onSelect instanceof Function && this.onSelect(item)
     }
   },
   watch: {
     value (newVal) {
       this.index = newVal
+      this.$_locateMagicBar(newVal)
       this.$forceUpdate()
     }
   } 
