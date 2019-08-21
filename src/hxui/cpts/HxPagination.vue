@@ -6,7 +6,7 @@
   -->
   <div class="hx-pagination">
     <select name="sizePerPage"
-            v-model="searchInfo.perPage"
+            v-model="searchInfo.per_page"
             @change="requestListByPerPage()">
       <option v-for="pageSize in pageSizes"
               v-bind:key="pageSize"
@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       searchInfo: {
-        perPage: this.pageSizes[0],
+        per_page: this.pageSizes[0],
         page: 1
       },
       toPage: ''
@@ -55,7 +55,7 @@ export default {
     // 暴露到父组件的分页数的参数名
     pageSizeParamName: {
       type: String,
-      default: 'perPage'
+      default: 'per_page'
     },
     pageSizes: {
       type: Array,
@@ -68,7 +68,7 @@ export default {
     $_initRequest () {
       let bundle = {}
       bundle.page = this.searchInfo.page
-      bundle[this.pageSizeParamName] = this.searchInfo.perPage
+      bundle[this.pageSizeParamName] = this.searchInfo.per_page
       this.doRequest(bundle)
     },
     requestListByPerPage () {

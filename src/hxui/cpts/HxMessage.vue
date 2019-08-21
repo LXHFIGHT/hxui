@@ -18,8 +18,7 @@ export default {
   },
   props: {
     text: {
-      type: String,
-      required: true
+      type: String
     },
     level: {
       type: String,
