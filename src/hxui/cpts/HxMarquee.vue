@@ -1,5 +1,5 @@
 <template>
-  <div class="hx-marquee" :style="height && `height: ${height}`" ref="hxMarquee" @click="toNext">
+  <div :class="['hx-marquee', direction]" :style="height && `height: ${height}`" ref="hxMarquee" @click="toNext">
     <span :style="`height: ${clientHeight}px;`"
       v-if="!content.length" 
       class="item color-gray" 
@@ -32,6 +32,13 @@ export default {
     placeholder: {
       type: String,
       default: '暂无滚动信息'
+    },
+    direction: { // 滚动方向, 默认为纵向滚动
+      type: String,
+      default: 'column',
+      validator (val) {
+        return ['', 'column', 'row'].includes(val)
+      }
     },
     content: {
       type: Array,
@@ -103,16 +110,31 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    transition: top .4s;
     display: flex;
     align-items: center;
     @include nowrap;
     width: 100%;
-    &.next { 
-      top: 100%;
+  }
+  &.column {
+    .item {
+      transition: top .4s;
+      &.next { 
+        top: 100%;
+      }
+      &.last {
+        top: -100%;
+      }
     }
-    &.last {
-      top: -100%;
+  }
+  &.row {
+    .item {
+      transition: left .4s;
+      &.next { 
+        left: 100%;
+      }
+      &.last {
+        left: -100%;
+      }
     }
   }
 }
