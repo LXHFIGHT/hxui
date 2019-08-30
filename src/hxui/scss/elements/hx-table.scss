@@ -27,9 +27,6 @@
         background-color: $color-gray;
         display: block;
         margin: 0 auto;
-        & + span {
-          margin-left: $pm-sm;
-        }
       }
       .link {
         color: $color-heavy;
