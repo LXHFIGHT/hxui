@@ -265,7 +265,7 @@ $width-label: 110px;
 
 @media screen and (max-width: 640px) {
   .hx-row {
-    border-bottom: 1px solid $color-gray;
+    border-bottom: 1px solid $color-gray-light;
     padding: $pm-sm/2 0!important;
     margin: 0!important;
     &.oneline {
