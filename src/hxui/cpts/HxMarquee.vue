@@ -2,7 +2,7 @@
   <div :class="['hx-marquee', direction]" :style="height && `height: ${height}`" ref="hxMarquee" @click="toNext">
     <span :style="`height: ${clientHeight}px;`"
       v-if="!content.length" 
-      class="item color-gray" 
+      class="item-marquee color-gray" 
       v-text="placeholder">
     </span>
   </div>
@@ -63,7 +63,7 @@ export default {
     // 增加控件
     $_append (className) {
       let elem = document.createElement('div')
-      elem.classList.add('item')
+      elem.classList.add('item-marquee')
       className && elem.classList.add(className)
       elem.style.height = `${this.clientHeight}px`
       if (className !== 'last') {
@@ -77,8 +77,9 @@ export default {
       this.index = this.content.length > this.index + 1 ? this.index + 1 : 0
     },
     $_getItem (className) {
-      for (let i = 0; i < this.$refs.hxMarquee.children.length; i++) {
-        if (this.$refs.hxMarquee.children[i].classList.contains(className)) {
+      const { children } = this.$refs.hxMarquee
+      for (let i = 0; i < children.length; i++) {
+        if (children[i].getAttribute('class').includes(className)) {
           return this.$refs.hxMarquee.children[i]
         }
       }
@@ -87,19 +88,15 @@ export default {
       const lastItem = this.$_getItem('last')
       const nextItem = this.$_getItem('next')
       const currentItem = this.$_getItem('current')
-      lastItem.classList.add('hide')
-      lastItem.classList.remove('last')
+      lastItem.setAttribute('class', 'item-marquee next hide')
+      currentItem.setAttribute('class', 'item-marquee last')
+      nextItem.setAttribute('class', 'item-marquee current')
       if (this.html) {
         lastItem.innerHTML = this.content[this.index]
       } else if (!this.html) {
         lastItem.innerText = this.content[this.index]
       }
       this.index = this.content.length > this.index + 1 ? this.index + 1 : 0
-      lastItem.classList.add('next')
-      currentItem.classList.remove('current')
-      currentItem.classList.add('last')
-      nextItem.classList.remove('next', 'hide')
-      nextItem.classList.add('current')
     }
   },
   mounted () {
@@ -118,23 +115,29 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+  // border: 1px solid red;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   overflow: hidden;
-  .item {
+  .item-marquee {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     position: absolute;
-    transition: transform .4s;
     left: 0;
     top: 0;
-    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     @include nowrap;
     width: 100%;
+    transition: transform 1s;
     &.hide {
       visibility: hidden;
     }
   }
   &.column {
-    .item {
+    .item-marquee {
+      transform: translateY(0);
       &.next { 
         transform: translateY(100%);
       }
@@ -144,12 +147,15 @@ export default {
     }
   }
   &.row {
-    .item {
+    .item-marquee {
+      &.current { 
+        transform: translateX(0);
+      }
       &.next { 
-        transform: translateX(-100%);
+        transform: translateX(-120%);
       }
       &.last {
-        transform: translateX(100%);
+        transform: translateX(120%);
       }
     }
   }
