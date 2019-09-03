@@ -53,39 +53,53 @@ export default {
       if (!this.content.length) {
         return
       }
-      this.$_append()
+      this.$_append('last')
+      this.$_append('current')
       this.$_append('next')
       this.timer = window.setInterval(() => {
         this.toNext()
       }, this.during)
     },
     // 增加控件
-    $_append (className) { 
+    $_append (className) {
       let elem = document.createElement('div')
       elem.classList.add('item')
       className && elem.classList.add(className)
       elem.style.height = `${this.clientHeight}px`
-      if (this.html) {
-        elem.innerHTML = this.content[this.index]
-      } else if (!this.html) {
-        elem.innerText = this.content[this.index]
+      if (className !== 'last') {
+        if (this.html) {
+          elem.innerHTML = this.content[this.index]
+        } else if (!this.html) {
+          elem.innerText = this.content[this.index]
+        }
       }
       this.$refs.hxMarquee.appendChild(elem)
       this.index = this.content.length > this.index + 1 ? this.index + 1 : 0
     },
-    toNext () {
-      const firstChild = this.$refs.hxMarquee.children[0]
-      const secondChild = this.$refs.hxMarquee.children[1]
-      if (firstChild.classList.contains('last')) {
-        this.$refs.hxMarquee.removeChild(this.$refs.hxMarquee.children[0])
-        this.$refs.hxMarquee.children[0].classList.add('last')
-        this.$refs.hxMarquee.children[1].classList.remove('next')
-        this.$_append('next')
-      } else {
-        firstChild.classList.add('last')
-        secondChild.classList.remove('next')
-        this.$_append('next')
+    $_getItem (className) {
+      for (let i = 0; i < this.$refs.hxMarquee.children.length; i++) {
+        if (this.$refs.hxMarquee.children[i].classList.contains(className)) {
+          return this.$refs.hxMarquee.children[i]
+        }
       }
+    },
+    toNext () {
+      const lastItem = this.$_getItem('last')
+      const nextItem = this.$_getItem('next')
+      const currentItem = this.$_getItem('current')
+      lastItem.classList.add('hide')
+      lastItem.classList.remove('last')
+      if (this.html) {
+        lastItem.innerHTML = this.content[this.index]
+      } else if (!this.html) {
+        lastItem.innerText = this.content[this.index]
+      }
+      this.index = this.content.length > this.index + 1 ? this.index + 1 : 0
+      lastItem.classList.add('next')
+      currentItem.classList.remove('current')
+      currentItem.classList.add('last')
+      nextItem.classList.remove('next', 'hide')
+      nextItem.classList.add('current')
     }
   },
   mounted () {
@@ -107,33 +121,35 @@ export default {
   overflow: hidden;
   .item {
     position: absolute;
-    top: 0;
+    transition: transform .4s;
     left: 0;
+    top: 0;
     width: 100%;
     display: flex;
     align-items: center;
     @include nowrap;
     width: 100%;
+    &.hide {
+      visibility: hidden;
+    }
   }
   &.column {
     .item {
-      transition: top .4s;
       &.next { 
-        top: 100%;
+        transform: translateY(100%);
       }
       &.last {
-        top: -100%;
+        transform: translateY(-100%);
       }
     }
   }
   &.row {
     .item {
-      transition: left .4s;
       &.next { 
-        left: 100%;
+        transform: translateX(-100%);
       }
       &.last {
-        left: -100%;
+        transform: translateX(100%);
       }
     }
   }
