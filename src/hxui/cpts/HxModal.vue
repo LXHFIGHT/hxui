@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-modal', value && 'show', size, (type || 'normal')]">
+  <div :class="['hx-modal', value && 'show', size, (type || 'normal'), level]">
     <div class="mask" @click="onHide"></div>
     <div class="content">
       <header class="header">
@@ -28,6 +28,12 @@ export default {
   props: {
     value: {
       type: [Number, String, Boolean]
+    },
+    level: {
+      type: String,
+      validator (val) {
+        return ['info', 'success', 'warn', 'error', 'fatal'].includes(val)
+      }
     },
     size: String,
     type: { // 弹出框形式：目前支持常规，以及侧边 side 弹出

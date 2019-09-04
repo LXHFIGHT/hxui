@@ -1,0 +1,90 @@
+@import "./../variable.scss";
+.hx-slider {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-color: white;
+  overflow: hidden;
+  &.vertical {
+    .hx-slider-item {
+      width: 100%;
+      display: block;
+      left: 0;
+      position: absolute;
+    }
+    .pad-indicators {
+      display: block;
+      position: absolute;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+      @include centerVertical;
+      right: 2%;
+      width: $pm-sm/2;
+      li {
+        list-style: none;
+        display: block;
+        height: $pm-sm;
+        width: $pm-sm/4;
+        
+        background-color: white;
+        &.item-indicator {
+          width: $pm-sm/2;
+          height: $pm-md;
+          box-shadow: $shadow-md;
+          transition: background-color .4s;
+          background-color: rgba(255,255,255,.3);
+        }
+        &.item-indicator.selected {
+          background-color: rgba(255,255,255,.7);
+        }
+      }
+    }
+  }
+  .pad-slider {
+    position: relative;
+    height: 100%;
+    transition: transform .4s;
+    display: block;
+    white-space: nowrap;
+  }
+  &.horizontal {
+    .hx-slider-item {
+      height: 100%;
+      display: inline-block;
+      top: 0;
+      position: absolute;
+    }
+    .pad-indicators {
+      display: block;
+      position: absolute;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+      @include centerHorizontal;
+      bottom: 6%;
+      li {
+        list-style: none;
+        display: inline-block;
+        height: $pm-sm/2;
+        width: $pm-sm/2;
+        background-color: white;
+        &.item-indicator {
+          width: $pm-bg;
+          box-shadow: $shadow-md;
+          transition: background-color .4s;
+          background-color: rgba(255,255,255,.3);
+        }
+        &.item-indicator.selected {
+          background-color: rgba(255,255,255,.7);
+        }
+      }
+    }
+  }
+  
+}
+@media screen and (max-width: 640px) {
+  .hx-slider {
+  }
+}
