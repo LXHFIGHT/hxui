@@ -6,12 +6,12 @@
   -->
   <div class="hx-pagination">
     <select name="sizePerPage"
-            v-model="searchInfo.per_page"
-            @change="requestListByPerPage()">
+      v-model="searchInfo.per_page"
+      @change="requestListByPerPage()">
       <option v-for="pageSize in pageSizes"
-              v-bind:key="pageSize"
-              v-text="`每页${pageSize}条数据`"
-              :value="pageSize">
+        v-bind:key="pageSize"
+        v-text="`每页${pageSize}条数据`"
+        :value="pageSize">
       </option>
     </select>
     <a :class="['fa fa-caret-left', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
@@ -19,8 +19,9 @@
     <span class="text-page">{{searchInfo.page}} / {{total}}</span>
     <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
       @click="requestListByPage(searchInfo.page + 1)"></a>
-    <input type="tel"
+    <input type="text"
       class="page-inputer"
+      autocomplete="off"
       v-model="toPage" />
     <a class="btn-jump"
       @click="requestListByPage(toPage)">
@@ -34,11 +35,12 @@ export default {
   name: 'HxPagination',
   data () {
     return {
+      timer: null,
       searchInfo: {
         per_page: this.pageSizes[0],
         page: 1
       },
-      toPage: ''
+      toPage: ' '
     }
   },
   props: {
@@ -81,6 +83,23 @@ export default {
       }
       this.searchInfo.page = page
       this.$_initRequest()
+    }
+  },
+  mounted () {
+    this.timer = window.setTimeout(() => {
+      this.toPage = ''
+      window.clearTimeout(this.timer)
+    }, 5000)
+  },
+  beforeDestroy () {
+    window.clearTimeout(this.timer)
+  },
+  watch: {
+    total (newVal) {
+      if (newVal < this.searchInfo.page) {
+        this.searchInfo.page = newVal
+        this.$_initRequest()
+      }
     }
   }
 }
