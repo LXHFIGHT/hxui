@@ -77,6 +77,7 @@ export default {
     },
     doClear () {
       this.$emit('input', '')
+      this.$emit('change')
       this.$forceUpdate()
     },
     doFocus () {
