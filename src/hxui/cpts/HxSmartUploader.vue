@@ -53,9 +53,7 @@
 <script>
 import { randomString, axios } from './../plugins/tools'
 import previewImage from './../plugins/imagePreviewer'
-const SIZE_KB = 1024 // 1KB大小
-const SIZE_MAX_FOR_CANVAS = 2000 * 2000 // canvas最大像素限制
-const SIZE_MAX_FOR_IMAGE = 1000 * 1000 // 图片大于
+import compressImage from './../plugins/compressImage'
 const _doUploadImages = (path, formData) => {
   const headers = {
     'Content-Type': 'multipart/form-data'
@@ -147,113 +145,6 @@ export default {
     $_isString () {
       return typeof this.value === 'string'
     },
-    // 获取上传图片的数据 
-    $_gatheringImagesData (files, callback) {
-      this.isCompressing = true
-      let fileDatas = []
-      const that = this
-      const total = files.length
-      for (let i = 0; i < files.length; i++) {
-        // 遇到非图片的文件时，直接放入files
-        if (!/\/(?:jpeg|png|gif)/i.test(files[i].type)) {
-          fileDatas.push(files[i])
-          if (fileDatas.length === total) {
-            callback instanceof Function && callback(fileDatas)
-          } else {
-            continue
-          }
-        }
-        const reader = new FileReader()
-        reader.onload = function () {
-          const done = () => {
-            if (result.length < that.maxsize * SIZE_KB || !that.compress) {
-              fileDatas.push(files[i])
-            } else if (that.compress) {
-              const data = that.$_compressImage(img)
-              fileDatas.push(that.$_base64ToBlob(data))
-            }
-            img = null
-            if (fileDatas.length === total) {
-              callback instanceof Function && callback(fileDatas)
-            }
-          }
-          let result = this.result
-          let img = new Image()
-          img.src = result
-          img.onload = done
-        }
-        reader.readAsDataURL(files[i])
-      }
-    },
-    // 压缩图片并返回压缩之后图片的base64数据
-    $_compressImage (img) {
-      const initSize = img.src.length
-      let height = img.height
-      let width = img.width
-      console.log('初始图片高宽：', height, width)
-      let ratio = width * height / SIZE_MAX_FOR_CANVAS
-      let canvas = document.createElement('canvas')
-      // 如果图片大于四百万像素，计算压缩比并将大小压至400万以下
-      if ((ratio > 1)) {
-        ratio = Math.sqrt(ratio)
-        width /= ratio
-        height /= ratio
-      } else {
-        ratio = 1
-      }
-      // 部署一个全局的Canvas
-      canvas.height = height
-      canvas.width = width
-      let ctx = canvas.getContext('2d')
-      ctx.fillStyle = '#ffffff'
-      ctx.fillRect(0, 0, width, height)
-     
-      // 将图片瓦片化渲染到canvas上
-      let count = width * height / SIZE_MAX_FOR_IMAGE
-      if (count > 1) {
-        count = ~~(Math.sqrt(count) + 1)
-        // 获取每个瓦片的宽高
-        let pw = ~~(width / count) 
-        let ph = ~~(height / count)
-        let tmpCanvas = document.createElement('canvas')
-        tmpCanvas.width = pw
-        tmpCanvas.height = ph
-        let tctx = tmpCanvas.getContext('2d')
-        for (let i = 0; i < count; i++) {
-          for (let j = 0; j < count; j++) {
-            // canvas drawImage参数详见： http://www.w3school.com.cn/html5/canvas_drawimage.asp
-            tctx.drawImage(img, i * pw * ratio, j * ph * ratio, pw * ratio, ph * ratio, 0, 0, pw, ph)
-            ctx.drawImage(tmpCanvas, i * pw, j * ph, pw, ph)
-          }
-        }
-      } else {
-        ctx.drawImage(img, 0, 0, width, height)
-      }
-      const nData = canvas.toDataURL('image/jpeg', this.compress / 100)
-      console.log('压缩之前：', initSize)
-      console.log('压缩之后：', nData.length)
-      console.log('压缩比率：', `${(nData.length / initSize) * 100}%`)
-      return nData
-    },
-    // 将base64数据转换为formData接受的二进制对象
-    $_base64ToBlob (baseData, type) {
-      let baseStr = window.atob(baseData.split(',')[1]) // 将base64数据转为字符串
-      let buffer = new ArrayBuffer(baseStr.length)
-      let ubuffer = new Uint8Array(buffer)
-      for (let i = 0; i < baseStr.length; i++) {
-        ubuffer[i] = baseStr.charCodeAt(i)
-      }
-      let Builder = window.WebKitBlobBuilder || window.MozBlobBuilder
-      let blob
-      if (Builder) {
-        let builder = new Builder()
-        builder.append(buffer)
-        blob = builder.getBlob(type)
-      } else {
-        blob = new window.Blob([buffer], { type })
-      }
-      return blob
-    },
     $_analyseImage (image) {
       let img = new Image()
       if (!image) {
@@ -275,26 +166,29 @@ export default {
       this.index = index
     },
     doUploadImage () {
-      // TODO 异步处理
-      this.$_gatheringImagesData(event.target.files, (fileDatas) => {
-        const files = fileDatas
-        const data = new FormData()
-        for (let i = 0; i < files.length; i++) {
-          data.append(`${this.name}${this.multiple ? '[]' : ''}`, files[i])
-        }
-        this.isUploading = true
-        this.isImageError = false
-        _doUploadImages(this.uploadApi, data).then(res => {
-          if (res) {
-            console.log('success', res.data)
-            this.isUploading = false
-            this.onUpload(res.data, this.id)
+      compressImage({
+        files: event.target.files, 
+        compress: this.compress,
+        maxsize: this.maxsize,
+        handler: (fileDatas) => {
+          const files = fileDatas
+          const data = new FormData()
+          for (let i = 0; i < files.length; i++) {
+            data.append(`${this.name}${this.multiple ? '[]' : ''}`, files[i])
           }
-        }).catch(err => {
-          this.isUploading = false
-          console.error(err)
-        })
-        // this.doUpload(data, (this.id || this.key))
+          this.isUploading = true
+          this.isImageError = false
+          _doUploadImages(this.uploadApi, data).then(res => {
+            if (res) {
+              console.log('success', res.data)
+              this.isUploading = false
+              this.onUpload(res.data, this.id)
+            }
+          }).catch(err => {
+            this.isUploading = false
+            console.error(err)
+          })
+        }
       })
     },
     triggerUploadImage () {

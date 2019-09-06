@@ -10,6 +10,7 @@
 @import "./../variable.scss";
 
 $width-label: 110px;
+$width-label-bg: 200px;
 
 .hx-row {
   width: 100%;
@@ -28,12 +29,6 @@ $width-label: 110px;
   }
   // 居中样式
   &.center { text-align: center; }
-  // 缩小规格
-  &.short {  
-    .content {
-      width: 200px;
-    }
-  }
   // 没有label文本的情况下
   &.no-label {
     label {
@@ -46,6 +41,20 @@ $width-label: 110px;
     }
     .text-tips {
       padding-left: $pm-sm;
+    }
+  }
+  &.bg-label {
+    label {
+      width: $width-label-bg;
+    }
+    .content {
+      width: calc(100% - #{$width-label-bg + $pm-sm});
+    }
+  }
+  // 缩小规格
+  &.short {  
+    .content {
+      width: 200px;
     }
   }
   label, .content{

@@ -11,6 +11,7 @@ import Confirm from './confirm'
 import Alert from './alert'
 import Prompt from './prompt'
 import validate from './smartValidator'
+import compressImage from './compressImage'
 
 export default {
   ...popLoading,
@@ -29,5 +30,13 @@ export default {
   confirm: Confirm,
   alert: Alert,
   prompt: Prompt,
-  validate
+  validate,
+  /**
+   * 压缩图片对象
+   * @param {*} object.files 文件对象
+   * @param {*} object.maxsize 需要压缩的文件的大小， 单位是KB
+   * @param {*} object.compress 是否需要压缩， 单位是1%， 如果需要50%压缩率则填50
+   * @param {*} object.handler 处理（回调）方法， 参数带着压缩后可供append到formData中的文件列表files
+   */
+  compressImage
 }
