@@ -1,4 +1,3 @@
-import Index from './views/index.vue'
 const Vue = window.Vue
 const Router = window.VueRouter
 
@@ -10,71 +9,71 @@ export default new Router({
     {
       path: '/',
       name: 'Root',
-      component: Index,
+      component: resolve => require(['@/views/index'], resolve),
       children: [
         {
           path: '/',
           name: 'home',
-          component: () => import('./views/home')
+          component: resolve => require(['@/views/home'], resolve)
         },
         {
           path: '/style/list',
           name: 'styleList',
-          component: () => import('./views/style/list')
+          component: resolve => require(['@/views/style/list'], resolve)
         },
         {
           path: '/style/display',
           name: 'styleDisplay',
-          component: () => import('./views/style/display')
+          component: resolve => require(['@/views/style/display'], resolve)
         }, 
         {
           path: '/components',
           name: 'components',
-          component: () => import('./views/components/index'),
+          component: resolve => require(['@/views/components/index'], resolve),
           meta: { keepAlive: true },
           children: [
             {
               path: '/components/hx-image',
               name: 'hx-image',
-              component: () => import('./views/components/image')
+              component: resolve => require(['@/views/components/image'], resolve)
             },
             {
               path: '/components/hx-button',
               name: 'hx-button',
-              component: () => import('./views/components/button')
+              component: resolve => require(['@/views/components/button'], resolve)
             },
             {
               path: '/components/hx-input',
               name: 'hx-input',
-              component: () => import('./views/components/input')
+              component: resolve => require(['@/views/components/input'], resolve)
             },
             {
               path: '/components/select',
               name: 'select',
-              component: () => import('./views/components/select')
+              component: resolve => require(['@/views/components/select'], resolve)
             }
           ]
         },
         {
           path: '/plugins',
           name: 'plugins',
-          component: () => import('./views/plugins/index'),
+          component: resolve => require(['@/views/plugins/index'], resolve),
           meta: { keepAlive: true },
           children: [
             {
               path: '/plugins/confirm',
               name: 'confirm',
-              component: () => import('./views/plugins/confirm')
+              component: resolve => require(['@/views/plugins/confirm'], resolve)
             },
             {
               path: '/plugins/toast',
               name: 'toast',
-              component: () => import('./views/plugins/toast')
+              component: resolve => require(['@/views/plugins/toast'], resolve)
             },
             {
               path: '/plugins/validate',
               name: 'validate',
-              component: () => import('./views/plugins/validate')
+              component: resolve => require(['@/views/plugins/validate'], resolve)
             }
           ]
         }
@@ -83,7 +82,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('./views/login'),
+      component: resolve => require(['@/views/login'], resolve),
       meta: { keepAlive: true }
     }
   ]
