@@ -9,11 +9,12 @@ export default new Router({
     {
       path: '/',
       name: 'Root',
-      component: resolve => require(['@/views'], resolve),
+      component: resolve => require(['@/views/index.vue'], resolve),
       meta: { keepAlive: true },
+      redirect: '/home',
       children: [
         {
-          path: '/',
+          path: '/home',
           name: 'home',
           component: resolve => require(['@/views/home.vue'], resolve)
         },

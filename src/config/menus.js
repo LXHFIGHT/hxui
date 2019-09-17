@@ -8,7 +8,7 @@
 let menus = [
   {
     name: 'home',
-    state: '/',
+    state: '/home',
     icon: 'home'
   },
   {

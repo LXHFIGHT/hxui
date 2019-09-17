@@ -35,7 +35,7 @@ const fetch = (method, path, data) => {
   }
   const url = `${serverPrefix}${path}`
   const bundle = (method === 'get' || method === 'delete') ? { params: data } : data
-  return axios[method](url, bundle, {headers})
+  return axios[method](url, bundle, { headers })
     .then(res => {
       return checkResponse(res)
     })
@@ -52,7 +52,7 @@ const upload = (path, data) => {
     'Content-Type': contentType,
     'Authorization': `Bearer ${token}`
   }
-  return axios['post'](url, data, {headers})
+  return axios['post'](url, data, { headers })
     .then(res => {
       return checkResponse(res)
     })
