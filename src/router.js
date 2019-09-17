@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'Root',
-      component: resolve => require(['@/views/index.vue'], resolve),
+      // component: resolve => require(['@/views/index.vue'], resolve),
       meta: { keepAlive: true },
       children: [
         {
