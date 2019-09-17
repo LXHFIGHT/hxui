@@ -9,9 +9,10 @@
 
 @import "./../variable.scss";
 
-$width-label: 110px;
+$width-label: 120px;
+$width-label-sm: 80px;
+$width-label-md: 160px;
 $width-label-bg: 200px;
-
 .hx-row {
   width: 100%;
   padding: 0;
@@ -30,26 +31,29 @@ $width-label-bg: 200px;
   // 居中样式
   &.center { text-align: center; }
   // 没有label文本的情况下
-  &.no-label {
-    label {
-      display: none;
-    }
+  &.no-label, &.null-label {
+    label { display: none; }
     .content {
       width: 100%;
       max-width: 100%;
       display: block;
     }
-    .text-tips {
-      padding-left: $pm-sm;
-    }
+    .text-tips { padding-left: $pm-sm; }
   }
   &.bg-label {
-    label {
-      width: $width-label-bg;
-    }
-    .content {
-      width: calc(100% - #{$width-label-bg + $pm-sm});
-    }
+    label { width: $width-label-bg; }
+    .content { width: calc(100% - #{$width-label-bg + $pm-sm}); }
+    .text-tips { padding-left: $width-label-bg + $pm-sm; }
+  }
+  &.md-label {
+    label { width: $width-label-md; }
+    .content { width: calc(100% - #{$width-label-md + $pm-sm}); }
+    .text-tips { padding-left: $width-label-md + $pm-sm; }
+  }
+  &.sm-label {
+    label { width: $width-label-sm; }
+    .content { width: calc(100% - #{$width-label-sm + $pm-sm}); }
+    .text-tips { padding-left: $width-label-sm + $pm-sm; }
   }
   // 缩小规格
   &.short {  
