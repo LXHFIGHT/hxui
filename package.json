@@ -1,7 +1,16 @@
 {
   "name": "hxui-vue",
-  "version": "0.6.0",
-  "private": true,
+  "author": "lxhfight",
+  "version": "0.5.1",
+  "private": false,
+  "keywords": [
+    "hxui",
+    "vue",
+    "vueComponents",
+    "components",
+    "ui",
+    "frontend"
+  ],
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -32,5 +41,6 @@
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "main": "lib/"
 }
