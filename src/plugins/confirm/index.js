@@ -4,5 +4,5 @@
  * Description:
  *   弹出确认框
  */
-import Confirm from './src/main.js.js'
+import Confirm from './src/main.js'
 export default Confirm

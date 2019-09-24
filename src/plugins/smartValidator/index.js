@@ -4,8 +4,8 @@
  * Description:
  *
  */
-import { $, isPhone } from '../tools'
-import toast from '../toast'
+import { $, isPhone } from './../tools'
+import toast from './../toast'
 
 const _focusFunc = function () {
   const $view = event.target

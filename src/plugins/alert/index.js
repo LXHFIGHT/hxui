@@ -4,5 +4,5 @@
  * Description:
  *   弹出确认框
  */
-import Alert from './src/main.js.js'
+import Alert from './src/main.js'
 export default Alert

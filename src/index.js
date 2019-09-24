@@ -1,6 +1,6 @@
 import HxAddressSelector from './cpts/HxAddressSelector'
 import HxAutoComplete from './cpts/HxAutoComplete'
-import HxButton from './cpts/HxButton'
+import HxButton from './cpts/HxButton/'
 import HxCalendar from './cpts/HxCalendar'
 import HxCatalog from './cpts/HxCatalog'
 import HxCheckboxGroup from './cpts/HxCheckboxGroup'
@@ -32,16 +32,15 @@ import HxTags from './cpts/HxTags'
 import HxWaterfall from './cpts/HxWaterfall'
 import plugins from './plugins'
 
-const components = [HxRow, HxPagination, HxHeader, HxSection]
+const requiredComponents = [HxRow, HxPagination, HxHeader, HxSection]
 const install = (Vue) => {
   Vue.prototype.$hxui = plugins
-  components.forEach((component) => {
+  requiredComponents.forEach((component) => {
     Vue.component(component.name, component)
   })
 }
 
-export default {
-  install,
+export {
   HxAddressSelector, // 地址选择组件
   HxAutoComplete,
   HxButton,
@@ -75,3 +74,4 @@ export default {
   HxTags,
   HxWaterfall
 }
+export default { install }

@@ -4,5 +4,5 @@
  * Description:
  *   弹出确认框
  */
-import Prompt from './src/main.js.js'
+import Prompt from './src/main.js'
 export default Prompt
