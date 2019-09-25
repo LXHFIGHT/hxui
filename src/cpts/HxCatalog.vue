@@ -123,5 +123,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "./../../hxui/scss/components/hx-catalog.scss";
+  @import "./../scss/components/hx-catalog.scss";
 </style>

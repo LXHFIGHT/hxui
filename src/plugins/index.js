@@ -5,7 +5,10 @@
  *  HXUI 插件方法集合
  */
 import toast from './toast'
-import popLoading from './popLoading'
+import {
+  showLoading,
+  hideLoading
+} from './popLoading'
 import previewImage from './imagePreviewer'
 import Confirm from './confirm'
 import Alert from './alert'
@@ -14,7 +17,8 @@ import validate from './smartValidator'
 import compressImage from './compressImage'
 
 export default {
-  ...popLoading,
+  showLoading,
+  hideLoading,
   toast,
   previewImage,
   /**

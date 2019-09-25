@@ -88,5 +88,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "./../../hxui/scss/components/hx-navbar.scss";
+  @import "./../scss/components/hx-navbar.scss";
 </style>

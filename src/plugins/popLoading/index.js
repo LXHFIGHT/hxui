@@ -7,7 +7,7 @@
 
 import { showLoading, hideLoading } from './src/main'
 
-export default {
+export {
   showLoading,
   hideLoading
 }
