@@ -23,7 +23,7 @@ import HxSearch from './cpts/HxSearch'
 import HxSection from './cpts/HxSection'
 import HxSelector from './cpts/HxSelector'
 import HxSlider from './cpts/HxSlider'
-import HxSmartCard from './cpts/HxSmartCard'
+import HxSmartcard from './cpts/HxSmartcard'
 import HxSmartUploader from './cpts/HxSmartUploader'
 import HxSwitch from './cpts/HxSwitch'
 import HxTabbar from './cpts/HxTabbar'
@@ -66,7 +66,7 @@ export {
   HxSection,
   HxSelector,
   HxSlider,
-  HxSmartCard,
+  HxSmartcard,
   HxSmartUploader,
   HxSwitch,
   HxTabbar,
