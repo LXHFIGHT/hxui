@@ -72,6 +72,7 @@ export {
   HxTabbar,
   HxTagEditor,
   HxTags,
-  HxWaterfall
+  HxWaterfall,
+  plugins
 }
 export default { install }
