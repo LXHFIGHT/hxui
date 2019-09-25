@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import iconPointDown from './../../hxui/img/icon/icon-point-down.png'
+import iconPointDown from './../img/icon/icon-point-down.png'
 export default {
   name: 'hx-catalog',
   data () {

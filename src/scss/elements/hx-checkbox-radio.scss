@@ -5,7 +5,7 @@ $height-checkbox: 20px;
 
 @mixin checkboxColor($color) {
   &:before {
-    background-image: url("/hxui/img/icon/icon-check.png");
+    background-image: url("/img/icon/icon-check.png");
     border: 1px solid $color;
     background-color: $color;
   }
