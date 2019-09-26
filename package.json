@@ -3,6 +3,7 @@
   "author": "lxhfight",
   "version": "0.1.3",
   "private": false,
+  "license": "MIT",
   "keywords": [
     "hxui",
     "vue",
@@ -18,21 +19,37 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@vue/babel-preset-app": "^3.11.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
+    "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
     "chai": "^4.1.2",
+    "css-loader": "^3.2.0",
+    "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "sass": "^1.18.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.22.12",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
   },
-  "main": "src/index.js",
+  "main": "lib/hxui.common.js",
   "files": [
     "lib",
     "src",
