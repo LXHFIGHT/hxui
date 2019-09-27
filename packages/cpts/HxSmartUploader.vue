@@ -26,26 +26,30 @@
         <tt>&gt;</tt>
       </button>
       <button class="btn-preview" @click="doPreviewImage()">
-        <img v-if="!isUploading" src="./../img/icon/icon-full-screen.png" alt="">
+        <img v-if="!isUploading" src="./../img/svg/expend.svg" alt="">
         <span v-if="isUploading">上传中</span>
       </button>
       <button @click="triggerUploadImage(id)"
         :diabled="isUploading"
         v-if="!disabled"
-        class="btn-upload fa fa-upload">
+        class="btn-upload">
+        <img class="icon" src="./../img/svg/upload.svg" alt="">
       </button>
       <button @click="doClearImage"
         v-if="!disabled"
-        class="btn-delete fa fa-trash">
+        class="btn-delete">
+        <img class="icon" src="./../img/svg/delete.svg" alt="">
       </button>
     </div>
     <button class="btn-upload"
       @click="triggerUploadImage(id)"
       :diabled="isUploading || disabled"
       v-if="$_isEmpty(value)">
-      <span class="icon fa fa-picture-o" style="top: 3px; position: relative"></span>&nbsp;
-      <span v-if="!isImageError">{{ isUploading ? '正在上传' : text }}</span>
-      <span v-if="isImageError">图片请重新上传</span>
+      <span class="icon">
+        <img src="./../img/svg/image.svg" alt="">
+      </span>
+      <span class="text" v-if="!isImageError">{{ isUploading ? '正在上传' : text }}</span>
+      <span class="text" v-if="isImageError">图片请重新上传</span>
     </button>
   </div>
 </template>
@@ -345,6 +349,10 @@ export default {
       &:hover {
         background-color: rgba(255,255,255,.3);
       } 
+      .icon {
+        height: $height-normal / 2;
+        width: auto;
+      }
     }
     .btn-last { top: 0; left: 0; }
     .btn-next { top: 0; right: 0; }
@@ -381,8 +389,21 @@ export default {
     border-radius: $pm-sm/4;
     padding: 0 $pm-bg;
     .icon {
-      font-size: 25px;
-      padding-left: 0;
+      position: relative;
+      display: block;
+      margin: 0 auto $pm-sm;
+      height: 40px;
+      width: 40px;
+      img {
+        height: 40px;
+        display: block;
+        width: auto;
+      }
+    }
+    .text {
+      display: block;
+      text-align: center;
+      width: 100%;
     }
     &:hover {
       background-color: $color-gray-light;

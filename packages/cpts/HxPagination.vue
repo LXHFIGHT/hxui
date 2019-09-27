@@ -14,11 +14,15 @@
         :value="pageSize">
       </option>
     </select>
-    <a :class="['fa fa-caret-left', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
-      @click="requestListByPage(searchInfo.page - 1)"></a>
+    <a :class="['btn-switch', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
+      @click="requestListByPage(searchInfo.page - 1)">
+      <img :src="iconCaretLeft" alt="" class="icon">
+    </a>
     <span class="text-page">{{searchInfo.page}} / {{total}}</span>
-    <a :class="['fa fa-caret-right', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
-      @click="requestListByPage(searchInfo.page + 1)"></a>
+    <a :class="['btn-switch', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
+      @click="requestListByPage(searchInfo.page + 1)">
+      <img :src="iconCaretRight" alt="" class="icon">
+    </a>
     <input type="text"
       class="page-inputer"
       autocomplete="off"
@@ -31,11 +35,15 @@
 </template>
 <script>
 import toast from './../plugins/toast'
+import iconCaretLeft from './../img/svg/caret-left-gray.svg'
+import iconCaretRight from './../img/svg/caret-right-gray.svg'
 export default {
   name: 'hx-pagination',
   data () {
     return {
       timer: null,
+      iconCaretLeft,
+      iconCaretRight,
       searchInfo: {
         per_page: this.pageSizes[0],
         page: 1

@@ -7,7 +7,7 @@
     border-radius: 10vw;
     background-color: #ccc;
     color: white;
-    &.selected {
+    &.selected, &.selected:disabled {
       background-color: $color-main;
     }
     & + .item {

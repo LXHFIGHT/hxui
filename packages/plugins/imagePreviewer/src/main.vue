@@ -12,38 +12,72 @@
       <button class="btn-quit-preview" @click="doQuitPreview"></button>
     </header>
     <img class="modal-image-preview"
-         ref="imageElem"
-         ondragstart="return false;"
-         :src="current"
-         :style="`margin-top: ${matrix.y}px; margin-left: ${matrix.x}px;`"
-         alt="image"/>
+      ref="imageElem"
+      ondragstart="return false;"
+      :src="current"
+      :style="`margin-top: ${matrix.y}px; margin-left: ${matrix.x}px;`"
+      alt="image"/>
     <button v-if="urls.length > 1 && index"
-            @click="toLastImage"
-            class="btn-to-last hide-sm fa fa-angle-left"></button>
+      @click="toLastImage"
+      class="btn-to-last hide-sm">
+      <img class="icon" :src="iconLeft" />
+    </button>
     <button v-if="urls.length > 1 && index !== urls.length - 1"
-            @click="toNextImage"
-            class="btn-to-next hide-sm fa fa-angle-right"></button>
+      @click="toNextImage"
+      class="btn-to-next hide-sm">
+      <img class="icon" :src="iconRight" />
+    </button>
     <div class="pad-functions">
       <button v-if="urls.length > 1 && index"
-              @click="toLastImage"
-              class="btn-to-last hide-md hide-bg fa fa-angle-left"></button>
-      <button @click="doZoomIn" class="btn-search-plus fa fa-search-plus"></button>
-      <button @click="doZoomOut" class="btn-search-minus fa fa-search-minus"></button>
-      <button @click="doRotateLeft" class="btn-rotate-left fa fa-undo"></button>
-      <button  @click="doRotateRight"
-               class="btn-rotate-right fa fa-repeat"></button>
-      <a class="btn-download fa fa-download" target="_blank" :href="current" download="图片预览效果.jpg"></a>
+        @click="toLastImage"
+        class="btn-to-last hide-md hide-bg">
+        <img class="icon" :src="iconLeft" />
+      </button>
+      <button @click="doZoomIn" class="btn-function">
+        <img class="icon" :src="iconZoomIn" />
+      </button>
+      <button @click="doZoomOut" class="btn-function">
+        <img class="icon" :src="iconZoomOut" />
+      </button>
+      <button @click="doRotateLeft" class="btn-function">
+        <img class="icon" :src="iconRotateLeft" />
+      </button>
+      <button  @click="doRotateRight" class="btn-function">
+        <img class="icon" :src="iconRotateRight" />
+      </button>
+      <button class="btn-function" 
+        @click="doDownload(current)"
+        :href="current" 
+        download="图片预览效果.jpg">
+        <img class="icon" :src="iconDownload" />
+      </button>
       <button v-if="urls.length > 1 && index !== urls.length - 1"
-              @click="toNextImage"
-              class="btn-to-next hide-md hide-bg fa fa-angle-right"></button>
+        @click="toNextImage"
+        class="btn-to-next hide-md hide-bg">
+        <img class="icon" :src="iconRight" />
+      </button>
     </div>
   </div>
 </template>
 <script>
 import toast from './../../toast'
+import iconLeft from './../../../img/svg/left.svg'
+import iconRight from './../../../img/svg/right.svg'
+import iconZoomIn from './../../../img/svg/zoom-in.svg'
+import iconZoomOut from './../../../img/svg/zoom-out.svg'
+import iconRotateLeft from './../../../img/svg/rotate-left.svg'
+import iconRotateRight from './../../../img/svg/rotate-right.svg'
+import iconDownload from './../../../img/svg/download.svg'
 export default {
   data () {
     return {
+      iconLeft,
+      iconRight,
+      iconZoomIn,
+      iconZoomOut,
+      iconRotateLeft,
+      iconRotateRight,
+      iconDownload,
       current: '',
       urls: [],
       show: false,
@@ -174,57 +208,54 @@ export default {
     },
     doMouseDown () {
       const { pageX, pageY } = event
-      this.matrix = {
-        ...this.matrix,
+      this.matrix = Object.assign({}, this.matrix, {
         isMoving: true,
         pageX, 
         pageY
-      }
+      })
     },
     doMouseUp () {
-      this.matrix = {
-        ...this.matrix,
+      this.matrix = Object.assign({}, this.matrix, {
         isMoving: false,
         startX: this.matrix.x,
         startY: this.matrix.y
-      }
+      })
     },
     doMouseMove () {
       if (this.matrix.isMoving) {
         const { pageX, pageY } = event
-        this.matrix = {
-          ...this.matrix,
+        this.matrix = Object.assign({}, this.matrix, {
           x: this.matrix.startX + pageX - this.matrix.pageX,
           y: this.matrix.startY + pageY - this.matrix.pageY
-        }
+        })
       }
     },
     doTouchDown () {
       const { pageX, pageY } = event.targetTouches[0]
-      this.matrix = {
-        ...this.matrix,
+      this.matrix = Object.assign({}, this.matrix, {
         isMoving: true,
         pageX, 
         pageY
-      }
+      })
     },
     doTouchUp () {
-      this.matrix = {
-        ...this.matrix,
+      this.matrix = Object.assign({}, this.matrix, {
         isMoving: false,
         startX: this.matrix.x,
         startY: this.matrix.y
-      }
+      })
     },
     doTouchMove () {
       if (this.matrix.isMoving) {
         const { pageX, pageY } = event.changedTouches[0]
-        this.matrix = {
-          ...this.matrix,
+        this.matrix = Object.assign({}, this.matrix, {
           x: this.matrix.startX + pageX - this.matrix.pageX,
           y: this.matrix.startY + pageY - this.matrix.pageY
-        }
+        })
       }
+    },
+    doDownload (src) {
+      window.open(src, '_blank')
     }
   },
   mounted () {
@@ -304,7 +335,7 @@ export default {
       background-color: rgba(255,255,255,.4);
     }
   }
-  img {
+  .modal-image-preview {
     max-height: 80%;
     max-width: 80%;
     z-index: 80;
@@ -328,31 +359,46 @@ export default {
     background-color: rgba(255,255,255,.4);
     border-radius: $border-radius-bg;
     box-shadow: 0 3px 8px rgba(0,0,0, .3);
-    button, a {
+    button {
       background-color: transparent;
       color: $color-white;
       text-shadow: 0 3px 8px rgba(0,0,0, .3);
-      padding: $pm-md;
+      padding: $pm-sm;
       display: inline-block;
       border-radius: $border-radius-bg;
       transition:  background-color .4s;
+      display: inline-block;
       &:hover {
         background-color: rgba(255,255,255,.2);
       }
+      .icon {
+        height: $height-navbar/2;
+        width: $height-navbar/2;
+        display: block;
+        background-color: transparent;
+        color: transparent;
+      }
+    }
+    .btn-function + .btn-function {
+      margin-left: $pm-md;
     }
   }
   .btn-to-last, .btn-to-next {
     @include centerVertical;
     color: $color-white;
-    font-size: 44px;
     height: 140px;
-    padding: 0 $pm-md;
+    padding: 0 $pm-sm;
     z-index: 100;
     background-color: transparent;
     transition:  all .4s;
     text-shadow: 0 3px 8px rgba(0,0,0, .3);
     &:hover {
       background-color: rgba(255,255,255,.3);
+    }
+    .icon {
+      height: $height-normal;
+      width: auto;
+      display: block;
     }
   }
   .btn-to-last {

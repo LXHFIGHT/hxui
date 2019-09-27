@@ -3,7 +3,6 @@
     <button :class="['item', value === item.value && 'selected']" 
       :key="index"
       :disabled="disabled"
-      v-if="!disabled || (disabled && value === item.value)"
       @click="doSelect(item)"
       v-text="item[keyName]"
       v-for="(item, index) in options">

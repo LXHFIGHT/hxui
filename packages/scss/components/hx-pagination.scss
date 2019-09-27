@@ -52,12 +52,19 @@
       background-color: darken($color-gray-light, 4%);
     }
     &:active {
-      color: $color-white;
-      background-color: $color-main;
+      background-color: $color-gray;
     }
     &.btn-jump {
       vertical-align: top;
       margin-left: 0;
+    }
+  }
+  .btn-switch {
+    position: relative;
+    .icon {
+      height: 15px;
+      display: block;
+      @include centerInParent;
     }
   }
   span {
