@@ -31,13 +31,29 @@ import HxTagEditor from './cpts/HxTagEditor'
 import HxTags from './cpts/HxTags'
 import HxWaterfall from './cpts/HxWaterfall'
 import plugins from './plugins'
+import './scss/index.scss'
 
-const requiredComponents = [HxRow, HxPagination, HxHeader, HxSection]
+const components = [
+  HxRow, 
+  HxPagination, 
+  HxHeader, 
+  HxSection
+]
 const install = (Vue) => {
+  if (install.installed) {
+    return
+  }
+  install.installed = true
+  // 注入HXUI插件
   Vue.prototype.$hxui = plugins
-  requiredComponents.forEach((component) => {
+  // 注册行、分页、头部和块 组件
+  components.forEach((component) => {
     Vue.component(component.name, component)
   })
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
 }
 
 export {
@@ -75,4 +91,7 @@ export {
   HxWaterfall,
   plugins
 }
-export default { install }
+
+export default { 
+  install
+}

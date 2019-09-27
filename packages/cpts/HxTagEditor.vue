@@ -16,12 +16,8 @@
   </div>
 </template>
 <script>
-import HxInput from './HxInput'
 // 标签编辑器
 export default {
-  components: {
-    HxInput
-  },
   data () {
     return {
       content: ''

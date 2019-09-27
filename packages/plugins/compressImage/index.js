@@ -90,9 +90,9 @@ const _compressImage = (img, compress) => {
     ctx.drawImage(img, 0, 0, width, height)
   }
   const nData = canvas.toDataURL('image/jpeg', compress / 100)
-  console.log('压缩之前：', initSize)
-  console.log('压缩之后：', nData.length)
-  console.log('压缩比率：', `${(nData.length / initSize) * 100}%`)
+  console.warn('压缩之前：', initSize)
+  console.warn('压缩之后：', nData.length)
+  console.warn('压缩比率：', `${(nData.length / initSize) * 100}%`)
   return nData
 }
 // 将base64数据转换为formData接受的二进制对象

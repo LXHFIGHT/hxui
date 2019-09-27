@@ -1,4 +1,4 @@
-# hxui-vue
+# hxui
 
 ## Project setup
 ```

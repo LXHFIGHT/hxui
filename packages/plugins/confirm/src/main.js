@@ -1,14 +1,14 @@
 import Main from './Main.vue'
 import { Vue } from './../../tools'
 
-const PromptConstructor = Vue.extend(Main)
+const ConfirmConstructor = Vue.extend(Main)
 
-const Prompt = function (options) {
+const Confirm = function (options) {
   if (typeof options !== 'object') {
-    console.log('this.$hxui.prompt方法需要传入一个对象')
+    console.warn('this.$hxui.confirm方法需要传入一个对象')
     return null
   }
-  const instance = new PromptConstructor({
+  const instance = new ConfirmConstructor({
     data: options
   })
   instance.vm = instance.$mount()
@@ -16,4 +16,4 @@ const Prompt = function (options) {
   return instance.vm
 }
 
-export default Prompt
+export default Confirm
