@@ -9,6 +9,14 @@
     "lib",
     "packages"
   ],
+  "keywords": [
+    "hxui",
+    "vue",
+    "vueComponents",
+    "components",
+    "ui",
+    "frontend"
+  ],
   "description": "A sweet UI component library for Vue.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -23,6 +31,7 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-unit-mocha": "^3.11.0",
