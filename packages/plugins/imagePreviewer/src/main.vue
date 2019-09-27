@@ -20,36 +20,34 @@
     <button v-if="urls.length > 1 && index"
       @click="toLastImage"
       class="btn-to-last hide-sm">
-      <img class="icon" :src="iconLeft" />
+      <IconLeft class="icon"></IconLeft>
     </button>
     <button v-if="urls.length > 1 && index !== urls.length - 1"
       @click="toNextImage"
       class="btn-to-next hide-sm">
-      <img class="icon" :src="iconRight" />
+      <IconRight class="icon"></IconRight>
     </button>
     <div class="pad-functions">
       <button v-if="urls.length > 1 && index"
         @click="toLastImage"
         class="btn-to-last hide-md hide-bg">
-        <img class="icon" :src="iconLeft" />
+        <IconLeft class="icon"></IconLeft>
       </button>
       <button @click="doZoomIn" class="btn-function">
-        <img class="icon" :src="iconZoomIn" />
+        <IconZoomIn class="icon"></IconZoomIn>
       </button>
       <button @click="doZoomOut" class="btn-function">
-        <img class="icon" :src="iconZoomOut" />
+        <IconZoomOut class="icon"></IconZoomOut>
       </button>
       <button @click="doRotateLeft" class="btn-function">
-        <img class="icon" :src="iconRotateLeft" />
+        <IconRotateLeft class="icon"></IconRotateLeft>
       </button>
       <button  @click="doRotateRight" class="btn-function">
-        <img class="icon" :src="iconRotateRight" />
+        <IconRotateRight class="icon"></IconRotateRight>
       </button>
       <button class="btn-function" 
-        @click="doDownload(current)"
-        :href="current" 
-        download="图片预览效果.jpg">
-        <img class="icon" :src="iconDownload" />
+        @click="doDownload(current)">
+        <IconDownload class="icon"></IconDownload>
       </button>
       <button v-if="urls.length > 1 && index !== urls.length - 1"
         @click="toNextImage"
@@ -61,23 +59,16 @@
 </template>
 <script>
 import toast from './../../toast'
-import iconLeft from './../../../img/svg/left.svg'
-import iconRight from './../../../img/svg/right.svg'
-import iconZoomIn from './../../../img/svg/zoom-in.svg'
-import iconZoomOut from './../../../img/svg/zoom-out.svg'
-import iconRotateLeft from './../../../img/svg/rotate-left.svg'
-import iconRotateRight from './../../../img/svg/rotate-right.svg'
-import iconDownload from './../../../img/svg/download.svg'
+import IconLeft from './../../../img/svg/left.svg'
+import IconRight from './../../../img/svg/right.svg'
+import IconZoomIn from './../../../img/svg/zoom-in.svg'
+import IconZoomOut from './../../../img/svg/zoom-out.svg'
+import IconRotateLeft from './../../../img/svg/rotate-left.svg'
+import IconRotateRight from './../../../img/svg/rotate-right.svg'
+import IconDownload from './../../../img/svg/download.svg'
 export default {
   data () {
     return {
-      iconLeft,
-      iconRight,
-      iconZoomIn,
-      iconZoomOut,
-      iconRotateLeft,
-      iconRotateRight,
-      iconDownload,
       current: '',
       urls: [],
       show: false,
@@ -99,6 +90,15 @@ export default {
         isMoving: false
       }
     }
+  },
+  components: {
+    IconLeft,
+    IconRight,
+    IconZoomIn,
+    IconZoomOut,
+    IconRotateLeft,
+    IconRotateRight,
+    IconDownload
   },
   methods: {
     $_init () {

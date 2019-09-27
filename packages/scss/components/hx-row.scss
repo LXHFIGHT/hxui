@@ -138,7 +138,7 @@ $width-label-bg: 200px;
       @include centerVertical;
     }
     // 不可编辑文本组件样式
-    a.text, section.text, strong.text, span.text {
+    & > .text {
       padding: $pm-sm;
       font-size: $font-md;
       width: 100%;

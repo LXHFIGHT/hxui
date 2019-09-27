@@ -6,7 +6,7 @@
       ref="uploader"
       :accept="accept"
       @change="doUploadImage"
-      type="file" 
+      type="file"
       :name="name"
       :multiple="multiple">
     <div class="pad-image" v-if="!$_isEmpty(value) && typeof value === 'string'">
@@ -26,19 +26,19 @@
         <tt>&gt;</tt>
       </button>
       <button class="btn-preview" @click="doPreviewImage()">
-        <img v-if="!isUploading" src="./../img/svg/expend.svg" alt="">
+        <IconExpend class="icon" v-if="!isUploading"></IconExpend>
         <span v-if="isUploading">上传中</span>
       </button>
       <button @click="triggerUploadImage(id)"
         :diabled="isUploading"
         v-if="!disabled"
         class="btn-upload">
-        <img class="icon" src="./../img/svg/upload.svg" alt="">
+        <IconUpload class="icon"></IconUpload>
       </button>
       <button @click="doClearImage"
         v-if="!disabled"
         class="btn-delete">
-        <img class="icon" src="./../img/svg/delete.svg" alt="">
+        <IconDelete class="icon"></IconDelete>
       </button>
     </div>
     <button class="btn-upload"
@@ -46,7 +46,7 @@
       :diabled="isUploading || disabled"
       v-if="$_isEmpty(value)">
       <span class="icon">
-        <img src="./../img/svg/image.svg" alt="">
+        <IconImage class="icon"></IconImage>
       </span>
       <span class="text" v-if="!isImageError">{{ isUploading ? '正在上传' : text }}</span>
       <span class="text" v-if="isImageError">图片请重新上传</span>
@@ -55,6 +55,10 @@
 </template>
 
 <script>
+import IconExpend from './../img/svg/expend.svg' 
+import IconUpload from './../img/svg/upload.svg' 
+import IconDelete from './../img/svg/delete.svg' 
+import IconImage from './../img/svg/image.svg'
 import { randomString, axios } from './../plugins/tools'
 import previewImage from './../plugins/imagePreviewer'
 import compressImage from './../plugins/compressImage'
@@ -70,6 +74,12 @@ const _doUploadImages = (path, formData) => {
  */
 export default {
   name: 'hx-smart-uploader',
+  components: {
+    IconExpend,
+    IconUpload,
+    IconDelete,
+    IconImage
+  },
   data () {
     return {
       key: ``,
@@ -362,7 +372,7 @@ export default {
       box-sizing: content-box;
       border-radius: $pm-sm/2;
       width: auto;
-      img {
+      .icon {
         height: 100%;
         width: auto;
         border: none;

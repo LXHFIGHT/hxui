@@ -16,12 +16,12 @@
     </select>
     <a :class="['btn-switch', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
       @click="requestListByPage(searchInfo.page - 1)">
-      <img :src="iconCaretLeft" alt="" class="icon">
+      <IconCaretLeft class="icon"></IconCaretLeft>
     </a>
     <span class="text-page">{{searchInfo.page}} / {{total}}</span>
     <a :class="['btn-switch', (searchInfo.page === total || !total) ? 'hx-invisible' : '']"
       @click="requestListByPage(searchInfo.page + 1)">
-      <img :src="iconCaretRight" alt="" class="icon">
+      <IconCaretRight class="icon"></IconCaretRight> 
     </a>
     <input type="text"
       class="page-inputer"
@@ -35,21 +35,23 @@
 </template>
 <script>
 import toast from './../plugins/toast'
-import iconCaretLeft from './../img/svg/caret-left-gray.svg'
-import iconCaretRight from './../img/svg/caret-right-gray.svg'
+import IconCaretLeft from './../img/svg/caret-left-gray.svg'
+import IconCaretRight from './../img/svg/caret-right-gray.svg'
 export default {
   name: 'hx-pagination',
   data () {
     return {
       timer: null,
-      iconCaretLeft,
-      iconCaretRight,
       searchInfo: {
         per_page: this.pageSizes[0],
         page: 1
       },
       toPage: ' '
     }
+  },
+  components: {
+    IconCaretLeft,
+    IconCaretRight
   },
   props: {
     // 父组件传入方法可以带上一个对象作为参数，对象中包含 per_page和pageSize参数

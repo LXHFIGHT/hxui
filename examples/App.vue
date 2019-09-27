@@ -1,27 +1,33 @@
 <template>
   <div id="app" class="hx-block">
-    <hx-header title="HXUI Playground">
+    <hx-header >
+      <strong slot="center">HXUI Playground</strong>
     </hx-header>
     <div class="hx-content">
-      <img alt="Vue logo" src="./assets/logo.png" @click="doLink">
-      <hx-smart-uploader v-model="img"></hx-smart-uploader>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div class="hx-pad-center">
+        <hx-section title="总配置">
+          <hx-row label="总价格">
+            <input class="hx-input" type="text" />
+          </hx-row>
+          <hx-row label="上传LOGO">
+            <hx-smart-uploader uploadApi="baidu.com" :onUpload="() => {}" v-model="img"></hx-smart-uploader>
+          </hx-row>
+        </hx-section>
+      </div>
     </div>
     <div class="hx-footer">
-      <hx-pagination total="90"></hx-pagination>
+      <hx-pagination :doRequest="()=>{}" :total="90"></hx-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import HxPagination from './../packages/cpts/HxPagination'
 import HxSmartUploader from './../packages/cpts/HxSmartUploader'
 const img = 'https://static.shengxintech.com/images/vehicle/icon-logo.png'
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     HxPagination,
     HxSmartUploader
   },
@@ -31,12 +37,6 @@ export default {
     }
   },
   methods: {
-    doLink () {
-      this.$hxui.previewImage({
-        current: img, 
-        urls: [img, img, img]
-      })
-    }
   }
 }
 </script>
@@ -47,7 +47,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>
