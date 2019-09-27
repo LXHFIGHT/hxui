@@ -40,10 +40,6 @@ const components = [
   HxSection
 ]
 const install = (Vue) => {
-  if (install.installed) {
-    return
-  }
-  install.installed = true
   // 注入HXUI插件
   Vue.prototype.$hxui = plugins
   // 注册行、分页、头部和块 组件
