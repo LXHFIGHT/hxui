@@ -1,12 +1,21 @@
 <template>
   <div id="app" class="hx-block">
-    <hx-header >
-      <strong slot="center">HXUI Playground</strong>
+    <hx-header>
+      <strong slot="center">
+        HXUI Playground
+      </strong>
+      <hx-button slot="center">
+        Just do it
+      </hx-button>
     </hx-header>
     <div class="hx-content">
+      
       <div class="hx-pad-center">
         <hx-section title="总配置">
           <hx-row label="总价格">
+            <hx-button >
+              Just do it
+            </hx-button>
             <input class="hx-input" type="text" />
           </hx-row>
           <hx-row label="上传LOGO">
@@ -22,12 +31,14 @@
 </template>
 
 <script>
+import { HxButton } from './../lib/hxui.umd'
 import HxPagination from './../packages/cpts/HxPagination'
 import HxSmartUploader from './../packages/cpts/HxSmartUploader'
 const img = 'https://static.shengxintech.com/images/vehicle/icon-logo.png'
 export default {
   name: 'app',
   components: {
+    HxButton,
     HxPagination,
     HxSmartUploader
   },

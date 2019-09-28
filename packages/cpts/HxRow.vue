@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-row', oneline && 'oneline', !label && 'no-label', labelSize && `${labelSize}-label`]">
+  <div class="hx-row" :class="[oneline && 'oneline', !label && 'no-label', labelSize && `${labelSize}-label`]">
     <label v-if="label">
       {{ label }}
       <span v-if="required" class="tip">*</span>
@@ -45,6 +45,7 @@ export default {
   },
   data () {
     return {}
-  }
+  },
+  created () {}
 }
 </script>

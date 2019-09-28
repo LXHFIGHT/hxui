@@ -39,7 +39,12 @@ const components = [
   HxHeader, 
   HxSection
 ]
+
 const install = (Vue) => {
+  if (install.installed) {
+    return
+  }
+  install.installed = true
   // 注入HXUI插件
   Vue.prototype.$hxui = plugins
   // 注册行、分页、头部和块 组件
@@ -48,9 +53,9 @@ const install = (Vue) => {
   })
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
+// if (typeof window !== 'undefined' && window.Vue) {
+//   install(window.Vue)
+// }
 
 export {
   HxAddressSelector, // 地址选择组件
