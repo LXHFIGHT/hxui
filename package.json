@@ -1,10 +1,17 @@
 {
   "name": "hxui",
   "version": "0.1.14",
-  "email": "",
+  "email": "lxhfight1@gmail.com",
   "private": false,
   "license": "MIT",
   "main": "lib/hxui.umd.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LXHFIGHT/hxui-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LXHFIGHT/hxui-vue/issues"
+  },
   "files": [
     "lib",
     "packages"

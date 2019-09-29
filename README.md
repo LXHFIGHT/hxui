@@ -1,34 +1,54 @@
 # hxui
 
-## Project setup
-```
-yarn install
+> A sweet UI component library for Vue.js
+
+## Install
+```shell
+npm i -S hxui
 ```
 
-### Compiles and hot-reloads for development
+### Quick Start
+
+located `main.js` in your project created by Vue.js
+```javascript
+import Vue from 'vue'
+import hxui from 'hxui'
+import 'hxui/lib/hxui.css' // important
+
+Vue.use('hxui')
 ```
-yarn run serve
+<span style="color: #999;">The above imports HXUI's plugins entirely and four components of HXUI lib. Note that CSS file needs to be imported separately.</span>
+
+<br />
+
+### Use Plugins
+It's easy to use plugins of hxui, with `this.$hxui` in the vue template file. 
+
+```javascript
+this.$hxui.toast.success('Hello world')
+
+this.$hxui.validate('.form-sweet')
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
+<br />
+
+### Use Components
+```javascript
+import { 
+  HxTagEditor, 
+  HxSmartUploader
+} from 'hxui'
+
+export default {
+  components: {
+    // other components
+    HxTagEditor,
+    HxSmartUploader
+  },
+  // ...
+}
 ```
 
-### Run your tests
-```
-yarn run test
-```
+### Browser Support
 
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Modern browsers and Internet Explorer 10+.
