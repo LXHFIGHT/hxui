@@ -9,10 +9,9 @@
       </hx-button>
     </hx-header>
     <div class="hx-content">
-      
       <div class="hx-pad-center">
         <hx-section title="总配置">
-          <hx-row label="总价格">
+          <hx-row label="总价格" oneline="oneline">
             <hx-button >
               Just do it
             </hx-button>

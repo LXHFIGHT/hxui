@@ -91,7 +91,6 @@ $width-label-bg: 200px;
       display: block;
     }
   }
-
   // 地图模块
   .map {
     display: inline-block;
@@ -99,32 +98,6 @@ $width-label-bg: 200px;
     @include wcalc(calc(45% - 58px));
     background-color: $color-gray-light;
     border-radius: $border-radius-md;
-  }
-  // 富文本模块
-  div.rich-content {
-    display: inline-block;
-    position: relative;
-    padding: 0;
-    width: 100%;
-    vertical-align: top;
-    @include wcalc(calc(100% - 125px));
-    .rich-editor  {
-      height: 389px;
-      border: 1px solid $color-gray;
-      padding: $pm-md;
-      border-radius: $border-radius-md;
-      overflow-x: hidden;
-      overflow-y: auto;
-      p {
-        margin: 0;
-      }
-    }
-
-    .btn-to-edit {
-      position: absolute;
-      top: $pm-sm;
-      right: $pm-sm;
-    }
   }
   // 右侧区域
   div.content {
@@ -278,6 +251,15 @@ $width-label-bg: 200px;
     .content {
       width: calc(100% - #{$width-label + 10px});
       max-width: calc(100% - #{$width-label + 10px});
+    }
+    &.oneline {
+      & > label {
+        width: 100%!important;
+      }
+      & > .content {
+        width: 100%!important;
+        max-width: 100%!important;
+      }
     }
   }
 }

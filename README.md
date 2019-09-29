@@ -1,7 +1,6 @@
 # hxui
 
 > A sweet UI component library for Vue.js
-
 ## Install
 ```shell
 npm i -S hxui
@@ -17,20 +16,16 @@ import 'hxui/lib/hxui.css' // important
 
 Vue.use('hxui')
 ```
-<span style="color: #999;">The above imports HXUI's plugins entirely and four components of HXUI lib. Note that CSS file needs to be imported separately.</span>
-
-<br />
+<span style="color: #999;">The above imports all plugins and four components of HXUI lib. Please note that CSS file needs to be imported separately.</span>
 
 ### Use Plugins
-It's easy to use plugins of hxui, with `this.$hxui` in the vue template file. 
+It is easy to use **HXUI plugins**. What you need to do is to simply call the method in **this.$hxui** in your vue template file.
 
 ```javascript
 this.$hxui.toast.success('Hello world')
 
 this.$hxui.validate('.form-sweet')
 ```
-
-<br />
 
 ### Use Components
 ```javascript
@@ -52,3 +47,4 @@ export default {
 ### Browser Support
 
 Modern browsers and Internet Explorer 10+.
+
