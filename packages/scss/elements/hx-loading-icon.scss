@@ -1,0 +1,25 @@
+@keyframes rotating {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+.pad-loading-icon {
+  @include block;
+  position: relative;
+  &.center {
+    @include centerInParent;
+  }
+  .hx-loading-canvas {
+    animation: rotating 6s linear infinite;
+  }
+  .text-loading {
+    font-size: $font-md;
+    margin-top: $pm-sm;
+    display: block;
+    animation: breatheOpacity 3s infinite;
+  }
+}

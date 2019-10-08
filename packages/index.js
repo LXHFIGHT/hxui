@@ -8,6 +8,7 @@ import HxDatetimePicker from './cpts/HxDatetimePicker'
 import HxHeader from './cpts/HxHeader'
 import HxImage from './cpts/HxImage'
 import HxInput from './cpts/HxInput'
+import HxLoadingIcon from './cpts/HxLoadingIcon'
 import HxMap from './cpts/HxMap'
 import HxMarquee from './cpts/HxMarquee'
 import HxMessage from './cpts/HxMessage'
@@ -68,6 +69,7 @@ export {
   HxHeader,
   HxImage,
   HxInput,
+  HxLoadingIcon,
   HxMap,
   HxMarquee,
   HxMessage,

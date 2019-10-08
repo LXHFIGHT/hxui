@@ -29,7 +29,7 @@ export default {
       onCancel: () => {}, 点击取消后触发方法
       confirmText: '确定', 确认按钮文案
       cancelText: '取消', 取消按钮文案
-      level: '', 提示等级  参考hxui/config.js
+      level: '', 提示等级  参考hxui/const.js
    */
   confirm: Confirm,
   alert: Alert,

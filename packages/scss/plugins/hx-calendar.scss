@@ -1,11 +1,5 @@
 @import "./../variable.scss";
 
-@keyframes breathe {
-  0% { opacity: .1; } 
-  50% { opacity: 1.0; } 
-  100% { opacity: .1; } 
-}
-
 .hx-calendar {
   height: 100%;
   width: 100%;
@@ -41,7 +35,7 @@
     z-index: 100;
     font-size: $font-bg;
     color: $color-heavy;
-    animation: breathe 1.2s infinite;
+    animation: breatheOpacity 1.2s infinite;
   }
   .pad-dates {
     transition: filter .4s;

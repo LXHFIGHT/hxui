@@ -250,6 +250,12 @@ button, input[type='submit'], input[type='button'], input[type='reset']{
   100% { transform: scale(1.0, 1.0); }
 }
 
+@keyframes breatheOpacity {
+  0% { opacity: .1; } 
+  50% { opacity: 1.0; } 
+  100% { opacity: .1; } 
+}
+
 .align-right { text-align: right; }
 .center { text-align: center; }
 

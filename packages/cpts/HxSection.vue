@@ -16,8 +16,15 @@
       </button>
       <slot name="right"></slot>
     </div>
-    <slot class="content">
-    </slot>
+    <div class="pad-content">
+      <slot class="content">
+      </slot>
+      <div class="pad-loading" v-if="loading">
+        <hx-loading-icon position="center" height="35px" width="35px" :level="level">
+          <span v-if="loadingText" v-text="loadingText"></span>
+        </hx-loading-icon>
+      </div>
+    </div>
     <span class="side-tag"
       v-text="tag">
     </span>
@@ -29,6 +36,7 @@
  *   slot:right  可以放置header中居右的按钮组
  */
 import iconCaretDown from './../img/icon/icon-caret-down.png'
+import HxLoadingIcon from './HxLoadingIcon'
 export default {
   name: 'hx-section',
   data () {
@@ -37,8 +45,18 @@ export default {
       iconCaretDown
     }
   },
+  components: {
+    HxLoadingIcon
+  },
   props: {
     title: String,
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    loadingText: {
+      type: String
+    },
     shadow: {
       type: Boolean,
       default: false
@@ -49,6 +67,13 @@ export default {
     },
     tag: {
       type: String
+    },
+    level: {
+      type: String,
+      validator (data) {
+        return ['info', 'success', 'error', 'warn', 'fatal'].includes(data)
+      },
+      default: 'info'
     }
   },
   methods: {

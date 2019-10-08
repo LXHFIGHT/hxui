@@ -16,9 +16,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import config from './../../config'
+import { levelFilter } from './../../../const'
 export default {
   data () {
     return {
@@ -59,7 +58,7 @@ export default {
     }
   },
   created () {
-    this.title || (this.title = config.levelFilter(this.title))
+    this.title || (this.title = levelFilter(this.title))
   },
   mounted () {
     this.startTimer()
