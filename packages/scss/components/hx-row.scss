@@ -8,32 +8,49 @@
  */
 
 @import "./../variable.scss";
+@mixin labelSize ($width) {
+  & > label { width: $width; }
+  & > .content { width: calc(100% - #{$width + $pm-sm}); }
+  & > .text-tips { padding-left: $width + $pm-sm; }
+}
 
-$width-label: 120px;
+$width-label: 110px;
 $width-label-sm: 80px;
-$width-label-md: 160px;
-$width-label-bg: 200px;
+$width-label-md: 150px;
+$width-label-bg: 190px;
 .hx-row {
   width: 100%;
   padding: 0;
   color: $color-dark;
+
   & + .hx-row {
     margin-top: $pm-sm * 1.5;
   }
-  // 无内边距样式
-  &.null {  padding: 0!important; }
-  &.half { 
-    font-size: 0;
-    width: 50%;
-    float: left;
-    label, .content {
-      font-size: $font-md;
-    }
-  }
+
   // 居中样式
   &.center { text-align: center; }
-  // 没有label文本的情况下
-  &.no-label, &.null-label {
+  &.right { text-align: right; } 
+  &.left { text-align: justify; } // 默认居左
+
+  // hx-row 规格 & 特性
+  // 缩小规格
+  &.short {  
+    .content {
+      width: 200px;
+    }
+  }
+  // 标签和行内容各占一行
+  &.oneline {
+    & > label {
+      width: 100%!important;
+    }
+    & > .content {
+      width: 100%!important;
+      max-width: 100%!important;
+    }
+  }
+  // label标签大小，默认110px, sm 为 90px, md 为 150px,  bg 为 190px
+  &.null-label {
     label { display: none; }
     .content {
       width: 100%;
@@ -42,35 +59,19 @@ $width-label-bg: 200px;
     }
     .text-tips { padding-left: $pm-sm; }
   }
-  &.bg-label {
-    label { width: $width-label-bg; }
-    .content { width: calc(100% - #{$width-label-bg + $pm-sm}); }
-    .text-tips { padding-left: $width-label-bg + $pm-sm; }
-  }
-  &.md-label {
-    label { width: $width-label-md; }
-    .content { width: calc(100% - #{$width-label-md + $pm-sm}); }
-    .text-tips { padding-left: $width-label-md + $pm-sm; }
-  }
-  &.sm-label {
-    label { width: $width-label-sm; }
-    .content { width: calc(100% - #{$width-label-sm + $pm-sm}); }
-    .text-tips { padding-left: $width-label-sm + $pm-sm; }
-  }
-  // 缩小规格
-  &.short {  
-    .content {
-      width: 200px;
-    }
-  }
+  &.bg-label { @include labelSize($width-label-bg); }
+  &.md-label { @include labelSize($width-label-md); }
+  &.sm-label { @include labelSize($width-label-sm); }
+  
   label, .content{
     min-height: $height-regular;
     display: inline-block;
     font-size: $font-md;
     vertical-align: top;
   }
+
   // 左侧表单内容文案
-  label{
+  & > label {
     line-height: $height-regular;
     width: $width-label;
     color: $color-heavy;
@@ -93,22 +94,15 @@ $width-label-bg: 200px;
       display: block;
     }
   }
-  // 地图模块
-  .map {
-    display: inline-block;
-    height: 280px;
-    @include wcalc(calc(45% - 58px));
-    background-color: $color-gray-light;
-    border-radius: $border-radius-md;
-  }
-  // 右侧区域
-  div.content {
+
+  // 右侧主区域
+  & > .content {
     display: inline-block;
     position: relative;
     padding: 0;
     vertical-align: top;
-    // 缩小规格
-    &.short {  width: 200px;  }
+    width: calc(100% - #{$width-label + $pm-sm});
+    max-width: calc(100% - #{$width-label + $pm-sm});
     .hx-switch {
       @include centerVertical;
     }
@@ -143,7 +137,7 @@ $width-label-bg: 200px;
       }
     }
     // 提示信息
-    .degree, .unit {
+    .right, .unit, .degree {
       position: absolute;
       right: 0;
       text-align: center;
@@ -152,15 +146,14 @@ $width-label-bg: 200px;
       width: auto;
       cursor: default;
     }
-    .error + .degree {
+    .error + .right {
       color: $color-red;
     }
-    .degree {
+    .right, .degree {
       color: $color-gray-deep;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-top: -1px;
       @include centerVertical;
       right: $pm-md;
       & + .btn-clear {
@@ -186,57 +179,23 @@ $width-label-bg: 200px;
         @include transform(scale(1.0, 1.0));
       }
     }
-
     img { 
       display: block;
     }
-    
-    input [type='file'] {
-      position: absolute;
-      visibility: hidden;
-    }
-
     textarea {
       display: block;
       line-height: 24px;
       padding: 5px $pm-sm;
       height: auto;
     }
-
-    textarea + .degree {
+    textarea + .right {
       top: auto;
       bottom: 0;
       height: $height-regular;
       line-height: $height-regular;
     }
-
-    .pad-dropdown {
-      position: absolute;
-      top: $height-regular + $pm-sm;
-      left: 0;
-      width: 100%;
-      padding: $pm-md;
-      z-index: 123;
-      display: inline-block;
-      background-color: white;
-      opacity: .0;
-      visibility: hidden;
-      box-shadow: 0 5px 20px -6px rgba(0,0,0,.3);
-      transition: all .4s;
-      &.show {
-        visibility: visible;
-        opacity: 1.0;
-      }
-    }
-
-    img.img {
-      height: $height-upload-button;
-      margin: 0 $pm-sm/2 0 0;
-      border: 1px solid $color-gray;
-      border-radius: $border-radius-md;
-      transition: all .4s;
-    }
   }
+
   // 附加提示文本
   & > .text-tips {
     font-size: $font-sm;
@@ -245,24 +204,6 @@ $width-label-bg: 200px;
     color: #aaa;
     width: 100%;
     padding-left: $width-label + 4px;
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .hx-row {
-    .content {
-      width: calc(100% - #{$width-label + 10px});
-      max-width: calc(100% - #{$width-label + 10px});
-    }
-    &.oneline {
-      & > label {
-        width: 100%!important;
-      }
-      & > .content {
-        width: 100%!important;
-        max-width: 100%!important;
-      }
-    }
   }
 }
 
@@ -282,9 +223,7 @@ $width-label-bg: 200px;
       }
     }
     label {
-      width: 100px;
       position: relative;
-      
       &.full {
         width: 100%;
         line-height: $pm-bg;
@@ -292,8 +231,6 @@ $width-label-bg: 200px;
       }
     }
     .content {
-      width: calc(100% - 108px);
-      max-width: calc(100% - 108px);
       padding-left: 0;
       input, select, textarea {
         border: none!important;
@@ -334,7 +271,7 @@ $width-label-bg: 200px;
         width: 100%;
       }
       // 单位
-      .degree {
+      .right {
         color: $color-gray-deep;
         position: absolute;
         right: 0;
@@ -347,10 +284,29 @@ $width-label-bg: 200px;
         line-height: 25px;
       }
     }
+    .text-tips { 
+      padding-left: $width-label + $pm-sm;
+      line-height: 1.5;
+    }
     #map-preview {
       margin-left: 0;
       margin-bottom: $pm-sm;
       width: 100%;
+    }
+    &.bg-label {
+      label { width: $width-label-bg; }
+      .content { width: calc(100% - #{$width-label-bg + $pm-sm}); }
+      .text-tips { padding-left: $width-label-bg + $pm-sm; }
+    }
+    &.md-label {
+      label { width: $width-label-md; }
+      .content { width: calc(100% - #{$width-label-md + $pm-sm}); }
+      .text-tips { padding-left: $width-label-md + $pm-sm; }
+    }
+    &.sm-label {
+      label { width: $width-label-sm; }
+      .content { width: calc(100% - #{$width-label-sm + $pm-sm}); }
+      .text-tips { padding-left: $width-label-sm + $pm-sm; }
     }
   }
 }
