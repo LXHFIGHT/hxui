@@ -157,7 +157,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  @import './../scss/plugins/hx-baidu-map.scss';
-</style>

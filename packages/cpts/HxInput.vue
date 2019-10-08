@@ -139,34 +139,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import "./../scss/variable.scss";
-.pad-hx-input {
-  position: relative;
-  textarea ~ .btn-clear {
-    top: auto;
-    bottom: 0;
-  }
-  .btn-clear {
-    @include centerVertical;
-    right: $pm-md;
-    height: 18px;
-    width: 18px;
-    display: flex;
-    border-radius: 30px;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-    background-color: #ccc;
-    img.icon {
-      width: 60%;
-      height: 60%;
-      border: none;
-      margin: 0;
-    }
-    &:hover {
-      background-color: $color-main;
-    }
-  }
-}
-</style>

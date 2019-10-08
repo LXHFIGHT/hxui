@@ -89,18 +89,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import "./../scss/variable.scss";
-.hx-waterfall {
-  height: 100%;
-  width: 100%;
-  display: block;
-  top: 0;
-  left: 0;
-  position: relative;
-  > div {
-    opacity: .0;
-    transition: all .2s;
-  }
-}
-</style>

@@ -16,8 +16,10 @@ $width-label-bg: 200px;
 .hx-row {
   width: 100%;
   padding: 0;
-  margin-bottom: $pm-sm * 1.5;
   color: $color-dark;
+  & + .hx-row {
+    margin-top: $pm-sm * 1.5;
+  }
   // 无内边距样式
   &.null {  padding: 0!important; }
   &.half { 

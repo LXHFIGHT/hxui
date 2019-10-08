@@ -77,6 +77,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import "./../scss/components/hx-options.scss";
-</style>

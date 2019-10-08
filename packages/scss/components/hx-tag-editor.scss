@@ -1,0 +1,40 @@
+@import "./../variable.scss";
+.hx-tag-editor {
+  .zone-tags {
+    .tag {
+      cursor: default;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 $pm-sm;
+      background-color: white;
+      text-align: center;
+      color: $color-heavy;
+      border-radius: $pm-sm/2;
+      display: inline-block;
+      border: 1px solid $color-gray;
+      margin: $pm-sm/4 $pm-sm $pm-sm/4 0;
+      .btn-remove {
+        position: relative;
+        margin-right: -$pm-sm;
+        display: none;
+        &:hover {
+          color: $color-red;
+        }
+      }
+      &:hover {
+        .btn-remove {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .tag-inputer {
+    height: 30px;
+    width: 140px;
+    margin-top: $pm-sm/4;
+    display: inline-block;
+    border: none!important;
+    background-color: transparent;
+    padding: 0;
+  }
+}

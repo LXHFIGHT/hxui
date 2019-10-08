@@ -114,6 +114,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import "./../scss/components/hx-pagination.scss";
-</style>

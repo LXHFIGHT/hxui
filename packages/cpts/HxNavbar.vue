@@ -86,7 +86,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  @import "./../scss/components/hx-navbar.scss";
-</style>

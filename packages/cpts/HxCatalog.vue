@@ -121,7 +121,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  @import "./../scss/components/hx-catalog.scss";
-</style>
