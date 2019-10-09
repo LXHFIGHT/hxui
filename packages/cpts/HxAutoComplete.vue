@@ -22,7 +22,6 @@
   </div>
 </template>
 <script>
-// import { getElementToPageTop, getElementToPageLeft } from './../plugins/tools'
 export default {
   data () {
     return {

@@ -14,7 +14,7 @@
 </template>
 <script>
 // HXUI日历选择空间
-import { getElementToPageTop, getElementToPageLeft } from './../plugins/tools'
+import { getElementToPageTop, getElementToPageLeft } from './../tools/dom'
 export default {
   data () {
     return {

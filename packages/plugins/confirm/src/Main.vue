@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { levelFilter } from './../../../const'
 export default {

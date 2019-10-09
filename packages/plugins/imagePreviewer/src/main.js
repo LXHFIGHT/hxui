@@ -5,7 +5,7 @@
  *  图片预览组件
  */
 import Main from './main.vue'
-import { Vue } from './../../tools'
+import { Vue } from './../../../tools/object'
 const PreviewerConstructor = Vue.extend(Main)
 let PreviewerInstance = null
 

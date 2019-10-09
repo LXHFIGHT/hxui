@@ -59,15 +59,10 @@ import IconExpend from './../img/svg/expend.svg'
 import IconUpload from './../img/svg/upload.svg' 
 import IconDelete from './../img/svg/delete.svg' 
 import IconImage from './../img/svg/image.svg'
-import { randomString, axios } from './../plugins/tools'
+import { randomString } from './../tools/object'
+import { uploadFiles } from './../tools/http'
 import previewImage from './../plugins/imagePreviewer'
 import compressImage from './../plugins/compressImage'
-const _doUploadImages = (path, formData) => {
-  const headers = {
-    'Content-Type': 'multipart/form-data'
-  }
-  return axios['post'](path, formData, { headers })
-}
 /**
  * 组件： 上传图片组件
  * @prop Function 当上传图片到浏览器后，需要执行的操作，接受两个参数，前者是包含上传的文件对象 FormData，后者是这个上传组件的ID
@@ -191,10 +186,10 @@ export default {
           }
           this.isUploading = true
           this.isImageError = false
-          _doUploadImages(this.uploadApi, data).then(res => {
+          uploadFiles(this.uploadApi, data).then(res => {
             if (res) {
               this.isUploading = false
-              this.onUpload(res.data, this.id)
+              this.onUpload(res, this.id)
             }
           }).catch(err => {
             this.isUploading = false

@@ -4,7 +4,8 @@
  * Description:
  *
  */
-import { $, isPhone } from './../tools'
+import { isPhone } from './../../tools/object'
+import { $ } from './../../tools/dom'
 import toast from './../toast'
 
 const _focusFunc = function () {
