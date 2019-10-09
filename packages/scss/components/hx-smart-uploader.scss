@@ -83,6 +83,7 @@
     .text-amount {
       top: 0;
       width: 50px;
+      line-height: $height-regular;
       @include centerHorizontal;
     }
     .btn-last, .btn-next, .btn-preview, .btn-delete, .btn-upload {
@@ -102,6 +103,12 @@
     }
     .btn-last { top: 0; left: 0; }
     .btn-next { top: 0; right: 0; }
+    .btn-last, .btn-next { 
+      .icon {
+        height: $height-regular / 2;
+        display: block;
+      }
+    }
     .btn-preview { 
       @include centerInParent;
       padding: $pm-sm/2 $pm-sm;
@@ -156,6 +163,12 @@
     }
     &:active {
       background-color: $color-gray;
+    }
+    &.error { // 当表单验证失败时的效果
+      border: 1px solid $color-red;
+      color: $color-red;
+      background-color: lighten($color-red, 32%)!important;
+      transition: all .4s;
     }
   }
 }

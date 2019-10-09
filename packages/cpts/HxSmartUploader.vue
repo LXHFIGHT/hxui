@@ -1,5 +1,7 @@
 <template>
   <div class="hx-smart-uploader" ref="hxSmartUploader"
+    :required="!!required ? 'required' : false"
+    :data-value="value"
     :style="`height: ${height}; width:${width};`">
     <input class="uploader-images"
       :id="id || key"
@@ -19,11 +21,11 @@
     </div>
     <div class="pad-functions" v-if="!$_isEmpty(value)">
       <button class="btn-last" v-if="index !== 0 && !$_isString()" @click="toImageIndex(index - 1)">
-        <tt>&lt;</tt>
+        <icon-left class="icon"></icon-left>
       </button>
       <span class="text-amount" v-if="!$_isString()" v-text="`${index + 1}/${value.length}`"></span>
       <button class="btn-next" v-if="index !== value.length - 1 && !$_isString()" @click="toImageIndex(index + 1)">
-        <tt>&gt;</tt>
+        <icon-right class="icon"></icon-right>
       </button>
       <button class="btn-preview" @click="doPreviewImage()">
         <IconExpend class="icon" v-if="!isUploading"></IconExpend>
@@ -59,6 +61,8 @@ import IconExpend from './../img/svg/expend.svg'
 import IconUpload from './../img/svg/upload.svg' 
 import IconDelete from './../img/svg/delete.svg' 
 import IconImage from './../img/svg/image.svg'
+import IconLeft from './../img/svg/left.svg'
+import IconRight from './../img/svg/right.svg'
 import { randomString } from './../tools/object'
 import { uploadFiles } from './../tools/http'
 import previewImage from './../plugins/imagePreviewer'
@@ -73,7 +77,9 @@ export default {
     IconExpend,
     IconUpload,
     IconDelete,
-    IconImage
+    IconImage,
+    IconLeft,
+    IconRight
   },
   data () {
     return {
@@ -124,6 +130,10 @@ export default {
     width: {
       type: String,
       default: '220px'
+    },
+    required: {
+      type: [String, Boolean, Number],
+      default: false
     },
     maxsize: { // 当超过多少KB时执行压缩图片任务
       type: Number,
@@ -182,7 +192,7 @@ export default {
           const files = fileDatas
           const data = new FormData()
           for (let i = 0; i < files.length; i++) {
-            data.append(`${this.name}${this.multiple ? '[]' : ''}`, files[i])
+            data.append(`${this.name}${this.multiple ? ('_' + i) : ''}`, files[i])
           }
           this.isUploading = true
           this.isImageError = false
@@ -232,11 +242,10 @@ export default {
     }
   },
   mounted () {
+    console.log(!!this.required)
     this.doAnalyseImage()
     this.key = `image-uploader-${randomString(6)}`
-    if (Array.isArray(this.value)) {
-      this.padImagesWidth = this.$refs.hxSmartUploader.clientWidth
-    }
+    this.padImagesWidth = this.$refs.hxSmartUploader.clientWidth
   },
   watch: {
     value (val, oldVal) {

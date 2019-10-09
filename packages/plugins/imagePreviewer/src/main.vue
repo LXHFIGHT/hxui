@@ -42,7 +42,7 @@
       <button @click="doRotateLeft" class="btn-function">
         <IconRotateLeft class="icon"></IconRotateLeft>
       </button>
-      <button  @click="doRotateRight" class="btn-function">
+      <button @click="doRotateRight" class="btn-function">
         <IconRotateRight class="icon"></IconRotateRight>
       </button>
       <button class="btn-function" 
@@ -52,7 +52,7 @@
       <button v-if="urls.length > 1 && index !== urls.length - 1"
         @click="toNextImage"
         class="btn-to-next hide-md hide-bg">
-        <img class="icon" :src="iconRight" />
+        <IconRight class="icon"></IconRight>
       </button>
     </div>
   </div>

@@ -5,12 +5,17 @@
  *
  */
 import { isPhone } from './../../tools/object'
-import { $ } from './../../tools/dom'
+import { $, getChildByClassName } from './../../tools/dom'
 import toast from './../toast'
 
 const _focusFunc = function () {
   const $view = event.target
   $view.classList.remove('error')
+}
+const _setInvalidStatus = ($view) => {
+  $view.classList ? $view.classList.add('error') : $view.classList = ['error']
+  $view.removeEventListener('focus', _focusFunc)
+  $view.addEventListener('focus', _focusFunc)
 }
 
 const _validateRequired = (query) => {
@@ -18,11 +23,15 @@ const _validateRequired = (query) => {
   let components = $(query ? (query + ' [required]') : '[required]')
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
+    if ($view.getAttribute('class') === 'hx-smart-uploader' && !$view.dataset['value']) {
+      result = false
+      const lastChild = getChildByClassName($view, 'btn-upload')
+      lastChild && _setInvalidStatus(lastChild)
+      continue
+    }
     if (!$view.value) {
       result = false
-      $view.classList ? $view.classList.add('error') : $view.classList = ['error']
-      components[i].removeEventListener('focus', _focusFunc)
-      components[i].addEventListener('focus', _focusFunc)
+      _setInvalidStatus($view)
     }
   }
   return result
@@ -35,9 +44,7 @@ const _validatePhone = (query) => {
     const $view = components[i]
     if (!isPhone($view.value)) {
       result = false
-      $view.classList ? $view.classList.add('error') : $view.classList = ['error']
-      components[i].removeEventListener('focus', _focusFunc)
-      components[i].addEventListener('focus', _focusFunc)
+      _setInvalidStatus($view)
     }
   }
   return result
@@ -51,9 +58,7 @@ const _validateEmail = (query) => {
     const $view = components[i]
     if (!regExp.test($view.value)) {
       result = false
-      $view.classList ? $view.classList.add('error') : $view.classList = ['error']
-      components[i].removeEventListener('focus', _focusFunc)
-      components[i].addEventListener('focus', _focusFunc)
+      _setInvalidStatus($view)
     }
   }
   return result

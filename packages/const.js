@@ -24,7 +24,6 @@ export const levelArray = [
 // 等级筛选器
 export const levelFilter = (text, target = 'text') => {
   let result = levelArray.filter(v => v.key === text)
-  console.log('WARN', result)
   if (result.length) {
     return result[0][target]
   }

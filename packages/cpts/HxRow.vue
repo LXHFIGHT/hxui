@@ -50,7 +50,7 @@ export default {
     },
     required: {
       type: [String, Boolean, Number],
-      default: ''
+      default: false
     }
   },
   data () {
