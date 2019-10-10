@@ -1,0 +1,26 @@
+.hx-status-icon {
+  display: inline-block;
+  height: $height-icon-md;
+  width: $height-icon-md;
+  &.xs {
+    height: $height-icon-xs;
+    width: $height-icon-xs;
+  }
+  &.sm {
+    height: $height-icon-sm;
+    width: $height-icon-sm;
+  }
+  &.bg {
+    height: $height-icon-bg;
+    width: $height-icon-bg;
+  }
+  &.lg {
+    height: $height-icon-lg;
+    width: $height-icon-lg;
+  }
+  .icon {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}

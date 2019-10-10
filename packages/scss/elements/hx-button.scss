@@ -42,7 +42,7 @@
   &.excel   {  @include hxButton($color-green-excel);  }
   &.pink    {  @include hxButton($color-pink);  }
   &.black, &.fatal    {  @include hxButton($color-black);  }
-  &.yellow  {  @include hxButton($color-golden, $color-heavy);  }
+  &.yellow  {  @include hxButton($color-golden);  }
 }
 
 // 空心按钮

@@ -7,6 +7,11 @@
     display: inline-block;
     min-width: $height-navbar * 5;
     border: 1px solid $color-gray;
+    position: relative;
+    & + .item {
+      margin-left: $pm-sm;
+      vertical-align: top;
+    }
     .header {
       line-height: $height-normal;
       height: $height-normal;

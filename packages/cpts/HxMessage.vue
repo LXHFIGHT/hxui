@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+import { levelKeys, Levels } from './../const'
 export default {
   data () {
     return {
@@ -23,9 +24,9 @@ export default {
     level: {
       type: String,
       validator (data) {
-        return ['info', 'success', 'error', 'warn', 'fatal'].includes(data)
+        return levelKeys.includes(data)
       },
-      default: 'info'
+      default: Levels.INFO
     }
   },
   methods: {

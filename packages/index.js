@@ -9,6 +9,7 @@ import HxHeader from './cpts/HxHeader'
 import HxImage from './cpts/HxImage'
 import HxInput from './cpts/HxInput'
 import HxLoadingIcon from './cpts/HxLoadingIcon'
+import HxStatusIcon from './cpts/HxStatusIcon'
 import HxMap from './cpts/HxMap'
 import HxMarquee from './cpts/HxMarquee'
 import HxMessage from './cpts/HxMessage'
@@ -70,6 +71,7 @@ export {
   HxImage,
   HxInput,
   HxLoadingIcon,
+  HxStatusIcon,
   HxMap,
   HxMarquee,
   HxMessage,
