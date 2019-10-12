@@ -23,10 +23,12 @@ const _validateRequired = (query) => {
   let components = $(query ? (query + ' [required]') : '[required]')
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
-    if ($view.getAttribute('class') === 'hx-smart-uploader' && !$view.dataset['value']) {
-      result = false
-      const lastChild = getChildByClassName($view, 'btn-upload')
-      lastChild && _setInvalidStatus(lastChild)
+    if ($view.classList.contains('hx-smart-uploader')) {
+      if (!$view.dataset['value']) {
+        result = false
+        const lastChild = getChildByClassName($view, 'btn-upload')
+        lastChild && _setInvalidStatus(lastChild)
+      }
       continue
     }
     if (!$view.value) {
