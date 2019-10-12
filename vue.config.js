@@ -8,6 +8,9 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    // config // 打包情况汇报
+    //   .plugin('webpack-bundle-analyzer')
+    //   .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
     svgRule

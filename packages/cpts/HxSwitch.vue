@@ -39,7 +39,6 @@ export default {
         oppositValue += 0
       }
       this.$emit('input', oppositValue)
-      this.$emit('change')
       this.doToggle(oppositValue)
     }
   }

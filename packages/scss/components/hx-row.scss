@@ -14,10 +14,10 @@
   & > .text-tips { padding-left: $width + $pm-sm; }
 }
 
-$width-label: 110px;
 $width-label-sm: 80px;
-$width-label-md: 150px;
-$width-label-bg: 190px;
+$width-label-md: 110px;
+$width-label-bg: 150px;
+$width-label-lg: 190px;
 .hx-row {
   width: 100%;
   padding: 0;
@@ -59,9 +59,10 @@ $width-label-bg: 190px;
     }
     .text-tips { padding-left: $pm-sm; }
   }
-  &.bg-label { @include labelSize($width-label-bg); }
-  &.md-label { @include labelSize($width-label-md); }
   &.sm-label { @include labelSize($width-label-sm); }
+  &.md-label { @include labelSize($width-label-md); }
+  &.bg-label { @include labelSize($width-label-bg); }
+  &.lg-label { @include labelSize($width-label-lg); }
   
   label, .content{
     min-height: $height-regular;
@@ -73,7 +74,7 @@ $width-label-bg: 190px;
   // 左侧表单内容文案
   & > label {
     line-height: $height-regular;
-    width: $width-label;
+    width: $width-label-md;
     color: $color-heavy;
     font-weight: 500;
     &.title {
@@ -101,8 +102,8 @@ $width-label-bg: 190px;
     position: relative;
     padding: 0;
     vertical-align: top;
-    width: calc(100% - #{$width-label + $pm-sm});
-    max-width: calc(100% - #{$width-label + $pm-sm});
+    width: calc(100% - #{$width-label-md + $pm-sm});
+    max-width: calc(100% - #{$width-label-sm + $pm-sm});
     .hx-switch {
       @include centerVertical;
     }
@@ -203,7 +204,7 @@ $width-label-bg: 190px;
     display: block;
     color: #aaa;
     width: 100%;
-    padding-left: $width-label + 4px;
+    padding-left: $width-label-md + 4px;
   }
 }
 
@@ -285,7 +286,7 @@ $width-label-bg: 190px;
       }
     }
     .text-tips { 
-      padding-left: $width-label + $pm-sm;
+      padding-left: $width-label-md + $pm-sm;
       line-height: 1.5;
     }
     #map-preview {
@@ -293,15 +294,15 @@ $width-label-bg: 190px;
       margin-bottom: $pm-sm;
       width: 100%;
     }
+    &.lg-label {
+      label { width: $width-label-lg; }
+      .content { width: calc(100% - #{$width-label-lg + $pm-sm}); }
+      .text-tips { padding-left: $width-label-lg + $pm-sm; }
+    }
     &.bg-label {
       label { width: $width-label-bg; }
       .content { width: calc(100% - #{$width-label-bg + $pm-sm}); }
       .text-tips { padding-left: $width-label-bg + $pm-sm; }
-    }
-    &.md-label {
-      label { width: $width-label-md; }
-      .content { width: calc(100% - #{$width-label-md + $pm-sm}); }
-      .text-tips { padding-left: $width-label-md + $pm-sm; }
     }
     &.sm-label {
       label { width: $width-label-sm; }

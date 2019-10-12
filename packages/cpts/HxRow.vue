@@ -38,7 +38,7 @@ export default {
     labelSize: { // 行元素标签的宽度， null为不展示标签， 除此之外还有md, bg两种规格
       type: String,
       validator (val) {
-        return ['md', 'bg'].includes(val)
+        return ['md', 'bg', 'sm', 'lg'].includes(val)
       }
     },
     tips: {
