@@ -4,12 +4,14 @@
       :class="['text-option', (_optionFilter(value) === placeholder) && 'color-gray']" 
       @focus="doFocus"
       @blur="doBlur"
+      ref="inputer"
       :disabled="disabled"
       :value="_optionFilter(value)" />
     <button class="btn-clear" @click="doClear">
       ×
     </button>
-    <div class="pad-options">
+    <div class="pad-options" ref="padOptions" 
+      :style="`left: ${left}px; top: ${top}px; width: ${inputerWidth}px;`">
       <div class="pad-select-zone">
         <div v-for="(option, idx) in options" 
           :key="idx"
@@ -23,11 +25,18 @@
   </div>
 </template>
 <script>
+import { getElementToPageTop, getElementToPageLeft } from './../tools/dom'
 export default {
   data () {
     return {
+      screenWidth: 0,
       showOptions: false,
-      options: []
+      options: [],
+      left: 0,
+      top: 0,
+      inputerHeight: 0,
+      inputerWidth: 0,
+      timer: null
     }
   },
   props: {
@@ -75,6 +84,13 @@ export default {
         this.options.push(option)
       }
     },
+    $_initLayout () {
+      const $view = this.$refs.inputer
+      const inputerHeight = $view.clientHeight
+      this.inputerWidth = $view.clientWidth
+      this.left = getElementToPageLeft($view)
+      this.top = getElementToPageTop($view) + inputerHeight + 16
+    },
     doClear () {
       this.$emit('input', '')
       this.$emit('change')
@@ -90,10 +106,23 @@ export default {
       this.$emit('input', option.value)
       this.$emit('change')
       this.$forceUpdate()
-    } 
+    }
   },
   created () {
     this.$_init()
+  },
+  mounted () {
+    this.screenWidth = document.body.clientWidth
+    this.$_initLayout()
+    this.timer = window.setInterval(() => {
+      if (document.body.clientWidth !== this.screenWidth) {
+        this.screenWidth = document.body.clientWidth
+        this.$_initLayout()
+      }
+    }, 1000)
+  },
+  beforeDestroy () {
+    window.clearInterval(this.timer)
   },
   watch: {
     content: {

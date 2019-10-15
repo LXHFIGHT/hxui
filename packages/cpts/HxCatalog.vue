@@ -78,9 +78,18 @@ export default {
       type: Array,
       required: true
     },
+    /**
+     * 该参数传入一个方法作为点击选中其中一项时，触发的事件，方法的第一个参数为该项的value
+     */
     onSelect: {
       type: Function,
       required: true
+    },
+    /**
+     * 验证器： 一般在初始化的时候，传入一个返回true或false的方法，验证具体哪一项是选中状态
+     */
+    validator: {
+      type: Function
     }
   },
   methods: {
@@ -90,12 +99,31 @@ export default {
     _isString (obj) {
       return typeof obj === 'string'
     },
+    doInitSelection (item) { // 初始化当前目录
+      if (typeof this.validator === 'function' && typeof item !== 'object') {
+        return false
+      }
+      if (this.validator(item)) {
+        item.selected = true
+        this.cacheSelectItem = item
+        this.$forceUpdate()
+      }
+    },
     initCatalogMenu () {
       this.catalogMenus = [].concat(this.menus)
       for (let i = 0; i < this.catalogMenus.length; i++) {
+        if (!this.catalogMenus[i].children) {
+          this.doInitSelection(this.catalogMenus[i])
+          continue
+        }
         if (this.catalogMenus[i].children) {
           this.catalogMenus[i].opened = true
-          break
+          if (typeof this.validator !== 'function') {
+            break
+          }
+          for (let j = 0; j < this.catalogMenus[i].children.length; j++) {
+            this.doInitSelection(this.catalogMenus[i].children[j])
+          }
         }
       }
     },

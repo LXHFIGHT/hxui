@@ -32,19 +32,20 @@
     cursor: default;
   }
   .pad-options {
+    z-index: 100;
     font-size: $font-md;
     top: 100%;
     background-color: white;
     width: 100%;
-    @include centerHorizontal;
+    position: fixed;
     padding: 0;
-    box-shadow: 0 0px 20px rgba(0,0,0,.2);
+    box-shadow: 0 0px 20px rgba(190, 185, 185, 0.2);
     border-radius: $pm-sm;
     visibility: hidden;
     border: 1px solid $color-gray;
     opacity: .0;
-    top: 100%;
-    transition: all .4s;
+    transition: opacity .4s, visibility .4s;
+    transform: none;
     &::before {
       content: "";
       height: 0;
@@ -55,13 +56,13 @@
       border-right: 7px solid transparent;
       border-top: 0 solid transparent;
       position: absolute;
-      @include centerHorizontal;
     }
     .pad-select-zone {
       max-height: 300px;
+      max-width: unset;
+      width: 100%!important;
       overflow-y: auto;
       overflow-x: hidden;
-      max-width: 200px;
       display: block;
       -webkit-overflow-scrolling: touch;
     }
