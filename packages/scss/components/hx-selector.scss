@@ -31,62 +31,64 @@
     font-size: $font-md;
     cursor: default;
   }
-  .pad-options {
-    z-index: 100;
-    font-size: $font-md;
-    top: 100%;
-    background-color: white;
-    width: 100%;
-    position: fixed;
-    padding: 0;
-    box-shadow: 0 0px 20px rgba(190, 185, 185, 0.2);
-    border-radius: $pm-sm;
-    visibility: hidden;
-    border: 1px solid $color-gray;
-    opacity: .0;
-    transition: opacity .4s, visibility .4s;
-    transform: none;
-    &::before {
-      content: "";
-      height: 0;
-      width: 0;
-      top: -7px;
-      border-bottom: 7px solid white;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-top: 0 solid transparent;
-      position: absolute;
-    }
-    .pad-select-zone {
-      max-height: 300px;
-      max-width: unset;
-      width: 100%!important;
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: block;
-      -webkit-overflow-scrolling: touch;
-    }
-    .option {
-      width: 100%;
-      display: block;
-      padding: $pm-sm $pm-md;
-      @include nowrap;
-      cursor: default;
-      font-size: $font-md;
-      color: $color-dark;
-      &.selected { 
-        background-color: rgba($color-main, .1);
-      }
-      &:hover {
-        background-color: rgba($color-main, .05);
-      }
-    }
+}
+
+.hx-pad-options {
+  z-index: 100;
+  font-size: $font-md;
+  top: 100%;
+  background-color: white;
+  width: 100%;
+  min-width: 200px;
+  position: fixed;
+  padding: 0;
+  box-shadow: 0 0px 20px rgba(190, 185, 185, 0.2);
+  border-radius: $pm-sm;
+  visibility: hidden;
+  border: 1px solid $color-gray;
+  opacity: .0;
+  transition: opacity .4s, visibility .4s;
+  transform: none;
+  &::before {
+    content: "";
+    height: 0;
+    width: 0;
+    top: -7px;
+    border-bottom: 7px solid white;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 0 solid transparent;
+    position: absolute;
+    @include centerHorizontal;
   }
   &.show {
-    .pad-options {
-      visibility: visible;
-      opacity: 1.0;
-      top: calc(100% + #{$pm-md});
+    visibility: visible;
+    opacity: 1.0;
+    top: calc(100% + #{$pm-md});
+  }
+  .pad-select-zone {
+    max-height: 300px;
+    max-width: unset;
+    width: 100%!important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+  }
+  .option {
+    width: 100%;
+    display: block;
+    padding: $pm-sm $pm-md;
+    @include nowrap;
+    cursor: default;
+    font-size: $font-md;
+    color: $color-dark;
+    &.selected { 
+      background-color: rgba($color-main, .1);
+    }
+    &:hover {
+      background-color: rgba($color-main, .05);
     }
   }
 }
+

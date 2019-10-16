@@ -29,3 +29,10 @@ export const getElementToPageLeft = (el) => {
   }
   return el.offsetLeft
 }
+
+export const getElementScrollTop = (el) => {
+  if (el.offsetParent) {
+    return getElementScrollTop(el.offsetParent) + el.scrollTop
+  }
+  return el.scrollTop
+}

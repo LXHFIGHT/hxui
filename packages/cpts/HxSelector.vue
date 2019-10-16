@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-selector', showOptions && 'show']">
+  <div :class="['hx-selector']">
     <input type="text" readonly
       :class="['text-option', (_optionFilter(value) === placeholder) && 'color-gray']" 
       @focus="doFocus"
@@ -10,8 +10,8 @@
     <button class="btn-clear" @click="doClear">
       ×
     </button>
-    <div class="pad-options" ref="padOptions" 
-      :style="`left: ${left}px; top: ${top}px; width: ${inputerWidth}px;`">
+    <div :class="['hx-pad-options', showOptions && 'show']" ref="padOptions" 
+      :style="`left: ${left}px; top: ${top}px; width: ${inputerWidth}px; transform: translateY(${startScrollTop - scroll}px)`">
       <div class="pad-select-zone">
         <div v-for="(option, idx) in options" 
           :key="idx"
@@ -25,7 +25,11 @@
   </div>
 </template>
 <script>
-import { getElementToPageTop, getElementToPageLeft } from './../tools/dom'
+import { 
+  getElementToPageTop, 
+  getElementToPageLeft, 
+  getElementScrollTop 
+} from './../tools/dom'
 export default {
   data () {
     return {
@@ -36,6 +40,9 @@ export default {
       top: 0,
       inputerHeight: 0,
       inputerWidth: 0,
+      padOptionsWidth: 0,
+      startScrollTop: 0,
+      scroll: 0,
       timer: null
     }
   },
@@ -84,12 +91,26 @@ export default {
         this.options.push(option)
       }
     },
-    $_initLayout () {
+    $_initPosition () {
+      this.$nextTick(() => {
+        const $padOptions = this.$refs.padOptions
+        const body = document.querySelector('body')
+        if (body.append) {
+          body.append($padOptions)
+        } else {
+          body.appendChild($padOptions)
+        }
+      })
+    },
+    $_renderLayout () {
       const $view = this.$refs.inputer
       const inputerHeight = $view.clientHeight
+      const $padOptions = this.$refs.padOptions
+      this.padOptionsWidth = $padOptions.clientWidth
       this.inputerWidth = $view.clientWidth
-      this.left = getElementToPageLeft($view)
+      this.left = getElementToPageLeft($view) - (this.padOptionsWidth - this.inputerWidth) / 2
       this.top = getElementToPageTop($view) + inputerHeight + 16
+      this.scroll = getElementScrollTop($view)
     },
     doClear () {
       this.$emit('input', '')
@@ -113,16 +134,21 @@ export default {
   },
   mounted () {
     this.screenWidth = document.body.clientWidth
-    this.$_initLayout()
+    this.startScrollTop = getElementScrollTop(this.$refs.inputer)
+    this.scroll = this.startScrollTop
+    this.$_initPosition()
+    this.$_renderLayout()
     this.timer = window.setInterval(() => {
-      if (document.body.clientWidth !== this.screenWidth) {
-        this.screenWidth = document.body.clientWidth
-        this.$_initLayout()
-      }
-    }, 1000)
+      this.$_renderLayout()
+    }, 1000 / 60)
   },
   beforeDestroy () {
     window.clearInterval(this.timer)
+    const body = document.querySelector('body')
+    body.removeChild(this.$refs.padOptions)
+  },
+  destroyed () {
+    this.$destroy(true)
   },
   watch: {
     content: {
