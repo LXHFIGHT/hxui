@@ -107,8 +107,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './../../../scss/variable.scss';
-@import './../../../scss/plugins/hx-modal.scss';
-@import './../../../scss/plugins/hx-confirm.scss';
 .inputer-number {
   font-size: 35px;
   line-height: 35px;

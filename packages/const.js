@@ -58,3 +58,21 @@ export const Sizes = {
   LG: SIZE_LG
 }
 export const sizeKeys = [ SIZE_XS, SIZE_SM, SIZE_MD, SIZE_BG, SIZE_LG ]
+export const Colors = {
+  WHITE: 'white',
+  GRAY_LIGHT: '#f8f8f8',
+  GRAY: '#eaeaea',
+  GRAY_DEEP: '#bbb',
+  HEAVY: '#636363',
+  DARK: '#363636',
+  BLACK: '#000',
+  GREEN: 'rgb(135, 208, 104)',
+  GREEN_EXCEL: '#1c7243',
+  YELLOW: 'rgba(255, 235, 90, 1)',
+  GOLDEN: '#febf04',
+  ORANGE: '#ff8d0a',
+  RED: '#ff5a50',
+  RED_DEEP: '#dd4b30',
+  PINK: '#f688B4',
+  BLUE: 'cornflowerblue'
+}

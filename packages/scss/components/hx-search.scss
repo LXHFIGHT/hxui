@@ -1,17 +1,104 @@
-// 高级搜索栏
-@import "./../variable.scss";
+@import './../variable.scss';
+
+@media screen and (min-width: 640px) {
+  .hx-content {
+    .hx-advance-search {
+      margin: (-$pm-md) 0 $pm-md (-$pm-md);
+      border-radius: 0;
+      @include wcalc(calc(100% + 32px));
+      position: sticky;
+      top: -$pm-md;
+      left: 0;
+      z-index: 99;
+    }
+  }
+  .hx-advance-search {
+    background-color: white;
+    padding: $pm-sm $pm-md;
+    width: 100%;
+    border-radius: $pm-sm/2;
+    @include boxShadowNormal(false);
+    position: relative;
+    .btn-folder {
+      display: none;
+    }
+    &.hx {
+      padding: $pm-sm;
+      height: auto;
+    }
+    .search-item, .item {
+      display: inline-block;
+      padding: 0;
+      vertical-align: top;
+      margin: $pm-sm/2 $pm-sm/2 $pm-sm/2 0;
+      height: $height-regular;
+      label {
+        display: inline-block;
+        margin-right: $pm-sm/2;
+        vertical-align: top;
+        min-height: $height-regular;
+        line-height: $height-regular;
+        font: {
+          weight: 600;
+          size: $font-sm;
+        }
+      }
+      .content {
+        width: 180px;
+        display: inline-block;
+        min-height: $height-regular;
+        position: relative;
+        input {
+          height: $height-regular;
+          border-radius: 0;
+          font-size: $font-md;
+        }
+        select {
+          border-radius: 0;
+          font-size: $font-md;
+        }
+      }
+      &.xs { .content { width: 70px; } }
+      &.sm { .content { width: 110px; } }
+      &.md { .content { width: 150px; } }
+      &.bg { .content { width: 190px; } }
+      &.lg { .content { width: 230px; } }
+    }
+  }
+}
 
 @media screen and (max-width: 640px) {
-  .hx-search {
-    position: absolute;
-    left: 0;
+  .hx-advance-search {
+    width: 100%;
+    height: $height-navbar;
+    position: sticky;
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,.2);
+    transition: .3s;
+    padding: $pm-sm;
+    z-index: 99;
     top: 0;
-    opacity: .0;
-    visibility: hidden;
-    box-shadow: 0 5px 15px -5px rgba(0,0,0,.4);
-    &.show {
-      opacity: 1.0;
-      visibility: visible;
+    left: 0;
+    background-color: $color-gray-light;
+    .pad-search {
+      position: absolute;
+      padding: $pm-sm 0;
+      background-color: $color-gray-light;
+      width: 100%;
+      opacity: .0;
+      visibility: hidden;
+      top: 0;
+      left: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      box-shadow: 0 3px 10px -2px rgba(0,0,0,.2);
+      transition: all .4s;
+    }
+    &.show { 
+      .pad-search {
+        opacity: 1.0;
+        top: $height-navbar;
+        visibility: visible;
+      }
     }
     .hx-row {
       border: none;
@@ -29,30 +116,61 @@
         .pad-datepicker {
           width: 100%!important;
         }
-        input.input-select-date {
-          //width: 100%!important;
-        }
       }
     }
-  }
-}
-
-@media screen and (min-width: 640px) and (max-width: 1024px) {
-  // 高级搜索栏
-  .hx-search{
-    padding-bottom: 0;
-    .hx-row {
-      margin-bottom: $pm-sm;
+    .search-item {
+      margin-bottom: 0;
+      padding: 0 $pm-sm;
+      width: 100%;
+      display: block;
+      label {
+        line-height: $height-regular;
+        font-size: $font-sm;
+        color: $color-heavy;
+        display: block;
+        padding-left: $pm-sm;
+      }
+      .search {
+        margin: 0;
+        width: 100%;
+        float: none;
+        .pad-edit {
+          width: 100%;
+        }
+      }
+      .content {
+        margin: 0;
+        width: 100%;
+        select, input {
+          border-radius: 0;
+          border: none;
+        }
+      }
+      .hx-button {
+        width: 100%;
+        margin-top: $pm-md;
+      }
     }
-  }
-}
-
-@media screen and (min-width: 1024px){
-  // 高级搜索栏
-  .hx-search{
-    padding-bottom: 0;
-    .hx-row {
-      margin-bottom: $pm-sm;
+    .btn-folder {
+      z-index:  100;
+      height: $height-regular;
+      width: 100%;
+      background-color: white;
+      border-radius: $pm-sm/2;
+      position: relative;
+      line-height: 1;
+      display: block;
+      opacity: 1.0;
+      .icon {
+        display: inline;
+        height: $height-icon-xs;
+        width: $height-icon-xs;
+        vertical-align: middle;
+      }
+      .text {
+        line-height: $height-icon-xs;
+        color: $color-heavy;
+      }
     }
   }
 }
