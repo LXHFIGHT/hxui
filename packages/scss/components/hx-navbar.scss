@@ -223,5 +223,15 @@ $height-admin-navbar: 50px;
         transform: rotate(-45deg);
       }
     }
+    .nav-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      float: right;
+      .right {
+        float: right;
+      }
+    }
   }
 }

@@ -59,6 +59,7 @@
       font-size: $font-bg;
       height: auto;
       padding: 0;
+      padding-top: 0!important;
       header {
         font-weight: 600;
         font-size: 16px;
@@ -67,6 +68,13 @@
         height: $height-navbar;
         display: block;
         border-bottom: 1px solid $color-gray;
+        &::before {
+          width: 20%;
+          top: 0;
+          @include centerHorizontal;
+          height: $pm-sm/2;
+          border-radius: $pm-sm/2;
+        }
       }
       .confirm-content {
         display: block;
@@ -76,9 +84,10 @@
         line-height: 24px; 
         padding: $pm-bg*1.5 $pm-md;
       }
-      footer {
+      footer, footer.footer {
         font-size: 12px;
         display: flex;
+        margin-top: 0;
         .btn-confirm, .btn-cancel {
           border: none;
           border-radius: 0;

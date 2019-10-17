@@ -46,7 +46,10 @@
     color: $color-gray-deep;
     margin-right: $pm-md;
   }
-  .btn-right {
+  .left, .right {
+    .hx-button {
+      margin-bottom: 0;
+    }
   }
   .pad-search {
     width: 100%;
