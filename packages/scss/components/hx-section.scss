@@ -127,11 +127,12 @@
 }
 @media screen and (max-width: 640px) {
   .hx-section {
-    padding: $height-navbar $pm-md $pm-sm;
+    padding: $height-navbar $md $pm-sm;
     transition: height .4s;
     box-shadow: 0 10px 15px -10px rgba(0,0,0,.1);
+    margin-bottom: $md;
     .header {
-      padding: 0 $pm-md;
+      padding: 0 $md;
       button.right {
         margin-top: 0;
       }
@@ -143,10 +144,10 @@
       background-color: $color-main;
       @include centerVertical;
       display: block;
-      left: $pm-md;
+      left: $md;
     }
     .header:first-child {
-      padding-left: 2 * $pm-md;
+      padding-left: 2 * $md;
     }
     .hx-row:nth-last-child(1) {
       border: none;

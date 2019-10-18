@@ -68,6 +68,12 @@
 }
 
 @media screen and (max-width: 640px) {
+  .hx-content > .hx-advance-search {
+    top: -$md;
+    left: -$md;
+    position: sticky;
+    @include wcalc(calc(100% + #{2 * $md}));
+  }
   .hx-advance-search {
     width: 100%;
     height: $height-navbar;

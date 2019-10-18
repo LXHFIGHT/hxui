@@ -42,7 +42,7 @@
 @media screen and (max-width: 640px) {
   .hx-content {
     overflow-x: auto;
-    padding: 0;
+    padding: $md;
   }
   .hx-pad-left,
   .hx-pad-center,

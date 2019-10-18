@@ -81,6 +81,13 @@ $pm-md: 16px;
 $pm-bg: 24px;
 $pm-lg: 32px;
 
+// 移动端：padding margin 标准
+$xs: 0.5vw;
+$sm: 1.5vw;
+$md: 3vw;
+$bg: 4.5vw;
+$lg: 6vw;
+
 // 通用阴影标准
 $shadow-md: 0 3px 6px rgba(0,0,0, .1);
 $shadow-md-dark: 0 3px 6px rgba(0,0,0, .3);

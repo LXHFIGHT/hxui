@@ -102,6 +102,7 @@
   $color-header-word: $color-white;  // 统一修改此处调整导航条文字或iconfont字体颜色
   .hx-header {
     box-shadow: none;
+    padding: $pm-sm $md;
     .title {
       z-index: 10;
       display: inline-block;
@@ -115,21 +116,12 @@
         color: $color-header-word;
         font: {
           weight: 600;
-          size: $font-md + 3px;
+          size: $font-bg;
         }
       }
     }
     small.title {
       display: none;
-    }
-    .btn-left,
-    .btn-back,
-    .btn-right {
-      color: $color-header-word;
-      height: $height-regular;
-    }
-    .btn-left, .btn-back {
-      margin-left: $pm-bg;
     }
     .hx-search {
       z-index: 1001;
