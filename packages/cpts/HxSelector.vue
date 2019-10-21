@@ -1,24 +1,28 @@
 <template>
-  <div :class="['hx-selector']">
+  <div :class="['hx-selector']"
+    :data-value="value"
+    :required="!!required ? 'required' : false">
     <input type="text" readonly
       :class="['text-option', (_optionFilter(value) === placeholder) && 'color-gray']" 
       @focus="doFocus"
       @blur="doBlur"
       ref="inputer"
       :disabled="disabled"
-      :value="_optionFilter(value)" />
-    <button class="btn-clear" @click="doClear">
-      ×
-    </button>
+      :value="_optionFilter(value)"/>
+    <button v-if="value" class="btn-clear" @click="doClear">×</button>
     <div :class="['hx-pad-options', showOptions && 'show']" ref="padOptions" 
       :style="`left: ${left}px; top: ${top}px; width: ${inputerWidth}px; transform: translateY(${startScrollTop - scroll}px)`">
       <div class="pad-select-zone">
-        <div v-for="(option, idx) in options" 
-          :key="idx"
-          @click="doSelect(option)"
-          :value="option.value"
-          :class="['option', option.value === value && 'selected']">
-          {{ option[keyName] }}
+        <div v-for="(option, idx) in options" :key="idx">
+          <div @click="doSelect(option)"
+            v-if="option.value !== '|' || option[keyName] !== '|'"
+            :value="option.value"
+            :class="['option', 
+              option.disabled ? 'disabled' : '', 
+              option.value === value && 'selected']">
+            {{ option[keyName] }}
+          </div>
+          <div class="line-divider" v-if="option.value === '|' && option[keyName] === '|'"></div>
         </div>
       </div>
     </div>
@@ -52,8 +56,9 @@ export default {
       required: true
     },
     value: { // 该选择器关联的数据
-      type: [Number, Boolean, String],
-      required: true
+      type: [Number, String],
+      required: true,
+      default: ''
     },
     keyName: { // 选项和value对应的键名
       type: String,
@@ -124,6 +129,9 @@ export default {
       this.showOptions = false
     },
     doSelect (option) {
+      if (option.disabled) {
+        return
+      }
       this.$emit('input', option.value)
       this.$emit('change')
       this.$forceUpdate()

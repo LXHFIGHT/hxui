@@ -242,7 +242,6 @@ export default {
     }
   },
   mounted () {
-    console.log(!!this.required)
     this.doAnalyseImage()
     this.key = `image-uploader-${randomString(6)}`
     this.padImagesWidth = this.$refs.hxSmartUploader.clientWidth

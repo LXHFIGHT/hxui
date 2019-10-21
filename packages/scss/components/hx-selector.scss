@@ -42,7 +42,7 @@
   min-width: 200px;
   position: fixed;
   padding: 0;
-  box-shadow: 0 0px 20px rgba(190, 185, 185, 0.2);
+  box-shadow: 0 0px $pm-bg rgba(190, 185, 185, 0.28);
   border-radius: $pm-sm;
   visibility: hidden;
   border: 1px solid $color-gray;
@@ -74,6 +74,14 @@
     overflow-x: hidden;
     display: block;
     -webkit-overflow-scrolling: touch;
+    padding: $pm-sm/2 0 0;
+  }
+  .line-divider {
+    display: block;
+    margin: 0;
+    height: 1px;
+    width: 100%;
+    background-color: $color-gray;
   }
   .option {
     width: 100%;
@@ -85,6 +93,12 @@
     color: $color-dark;
     &.selected { 
       background-color: rgba($color-main, .1);
+      color: $color-main;
+    }
+    &.disabled {
+      background-color: $color-gray-light!important;
+      color: $color-gray-deep!important;
+      cursor: not-allowed;
     }
     &:hover {
       background-color: rgba($color-main, .05);

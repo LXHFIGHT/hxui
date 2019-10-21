@@ -17,14 +17,12 @@ export const getElementToPageTop = (el) => {
   if (el.offsetParent) {
     return getElementToPageTop(el.offsetParent) + el.offsetTop
   }
-  // console.log('Element_top:', el, el.offsetTop)
   return el.offsetTop
 }
 
 // 获取距离屏幕左边的距离
 export const getElementToPageLeft = (el) => {
   if (el.offsetParent) {
-    // console.warn('Element_left:', el, el.offsetLeft)
     return getElementToPageLeft(el.offsetParent) + el.offsetLeft
   }
   return el.offsetLeft
