@@ -57,7 +57,10 @@ export default {
     }
   },
   props: {
-    value: String,
+    value: {
+      type: [String, Number],
+      default: ''
+    },
     placeholder: {
       type: String,
       default: ''
