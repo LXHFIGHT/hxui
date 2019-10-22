@@ -92,7 +92,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,.45);
+    background-color: rgba(0,0,0,.65);
     padding: $md;
     box-sizing: border-box;
     transition: opacity .2s, visibility .2s;
@@ -107,23 +107,25 @@
       padding: $sm 0;
       transition: bottom .4s;
       .btn-option:first-child .option {
-        @include borderRadiusTop($sm/2);
+        @include borderRadiusTop($sm);
       }
       .btn-option:nth-last-child(2) .option {
-        @include borderRadiusBottom($sm/2);
+        @include borderRadiusBottom($sm);
       }
       .option {
         background-color: white;
         border-bottom: 1px solid $color-gray-light;
         text-align: center;
-        height: $height-normal;
-        line-height: $height-normal;
+        height: $normal;
+        line-height: $normal;
         padding: 0;
+        color: #000;
       }
       .btn-cancel {
         margin-top: $md;
-        border-radius: $sm/2;
+        border-radius: $sm;
         background-color: $color-gray-light;
+        color: $color-heavy;
       }
     }
     &.show {

@@ -133,6 +133,7 @@
     margin-bottom: $md;
     .header {
       padding: 0 $md;
+      color: $color-black;
       button.right {
         margin-top: 0;
       }
@@ -146,6 +147,7 @@
       display: block;
       left: $md;
     }
+
     .header:first-child {
       padding-left: 2 * $md;
     }

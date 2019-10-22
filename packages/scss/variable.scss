@@ -1,10 +1,15 @@
 // 用于编写适用于整个项目的CSS属性变量
 @import "./mixin";
 
-// 导航栏行高
+// PC端行高参数
 $height-navbar: 50px;
 $height-normal: 42px;
 $height-regular: 34px;
+
+// 移动端行高参数
+$navbar: 14vw;
+$normal: 12vw;
+$regular: 10vw;
 
 $height-icon-xs: 18px;
 $height-icon-sm: 26px;

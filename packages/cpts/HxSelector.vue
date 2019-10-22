@@ -24,7 +24,7 @@
           </div>
           <div class="line-divider" v-if="option.value === '|' && option[keyName] === '|'"></div>
         </div>
-        <div class="btn-cancel option" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
+        <div class="btn-cancel option" @click="doHideOptions" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
           取消选择
         </div>
       </div>
@@ -141,8 +141,13 @@ export default {
       if (option.disabled) {
         return
       }
+      this.showOptions = false
       this.$emit('input', option.value)
       this.$emit('change')
+      this.$forceUpdate()
+    },
+    doHideOptions () {
+      this.showOptions = false
       this.$forceUpdate()
     }
   },
