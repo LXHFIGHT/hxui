@@ -2,6 +2,7 @@
   <div :class="['hx-advance-search', show && 'show']">
     <div class="pad-search">
       <slot></slot>
+      <span @click="show = false" class="btn-hide">点此收起搜索栏</span>
     </div>
     <button class="btn-folder"
       @click="doToggleFold">
