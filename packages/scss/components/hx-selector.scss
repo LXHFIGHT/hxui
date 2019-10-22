@@ -36,40 +36,20 @@
 .hx-pad-options {
   z-index: 100;
   font-size: $font-md;
-  top: 100%;
-  background-color: white;
   width: 100%;
   min-width: 200px;
   position: fixed;
   padding: 0;
-  box-shadow: 0 0px $pm-bg rgba(190, 185, 185, 0.28);
-  border-radius: $pm-sm;
   visibility: hidden;
   border: 1px solid $color-gray;
   opacity: .0;
-  transition: opacity .4s, visibility .4s;
   transform: none;
-  &::before {
-    content: "";
-    height: 0;
-    width: 0;
-    top: -7px;
-    border-bottom: 7px solid white;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 0 solid transparent;
-    position: absolute;
-    @include centerHorizontal;
-  }
   &.show {
     visibility: visible;
     opacity: 1.0;
-    top: calc(100% + #{$pm-md});
   }
   .pad-select-zone {
-    max-height: 300px;
     max-width: unset;
-    width: 100%!important;
     overflow-y: auto;
     overflow-x: hidden;
     display: block;
@@ -106,3 +86,75 @@
   }
 }
 
+@media screen and (max-width: 640px) {
+  .hx-pad-options {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.45);
+    padding: $md;
+    box-sizing: border-box;
+    transition: opacity .2s, visibility .2s;
+    &::before {
+      display: none;
+    }
+    .pad-select-zone {
+      position: absolute;
+      bottom: -100%;
+      width: calc(100% - #{$md * 2});
+      border-radius: $pm-sm;
+      padding: $sm 0;
+      transition: bottom .4s;
+      .btn-option:first-child .option {
+        @include borderRadiusTop($sm/2);
+      }
+      .btn-option:nth-last-child(2) .option {
+        @include borderRadiusBottom($sm/2);
+      }
+      .option {
+        background-color: white;
+        border-bottom: 1px solid $color-gray-light;
+        text-align: center;
+        height: $height-normal;
+        line-height: $height-normal;
+        padding: 0;
+      }
+      .btn-cancel {
+        margin-top: $md;
+        border-radius: $sm/2;
+        background-color: $color-gray-light;
+      }
+    }
+    &.show {
+      .pad-select-zone {
+        bottom: $md;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hx-pad-options {
+    background-color: white;
+    box-shadow: 0 0px $pm-bg rgba(190, 185, 185, 0.28);
+    border-radius: $pm-sm;
+    transition: opacity .4s, visibility .4s;
+    &::before {
+      content: "";
+      height: 0;
+      width: 0;
+      top: -7px;
+      border-bottom: 7px solid white;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 0 solid transparent;
+      position: absolute;
+      @include centerHorizontal;
+    }
+    .pad-select-zone {
+      width: 100%!important;
+      max-height: 300px;
+    }
+  }
+}

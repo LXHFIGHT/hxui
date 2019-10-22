@@ -11,9 +11,9 @@
       :value="_optionFilter(value)"/>
     <button v-if="value" class="btn-clear" @click="doClear">×</button>
     <div :class="['hx-pad-options', showOptions && 'show']" ref="padOptions" 
-      :style="`left: ${left}px; top: ${top}px; width: ${inputerWidth}px; transform: translateY(${startScrollTop - scroll}px)`">
+      :style="styles">
       <div class="pad-select-zone">
-        <div v-for="(option, idx) in options" :key="idx">
+        <div class="btn-option" v-for="(option, idx) in options" :key="idx">
           <div @click="doSelect(option)"
             v-if="option.value !== '|' || option[keyName] !== '|'"
             :value="option.value"
@@ -23,6 +23,9 @@
             {{ option[keyName] }}
           </div>
           <div class="line-divider" v-if="option.value === '|' && option[keyName] === '|'"></div>
+        </div>
+        <div class="btn-cancel option" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
+          取消选择
         </div>
       </div>
     </div>
@@ -34,9 +37,11 @@ import {
   getElementToPageLeft, 
   getElementScrollTop 
 } from './../tools/dom'
+import { MOBILE_DEVICE_MAX_WIDTH } from './../const'
 export default {
   data () {
     return {
+      MOBILE_DEVICE_MAX_WIDTH,
       screenWidth: 0,
       showOptions: false,
       options: [],
@@ -71,6 +76,10 @@ export default {
     placeholder: {
       type: String,
       default: '请选择'
+    },
+    required: {
+      type: [String, Boolean, Number],
+      default: false
     }
   },
   methods: {
@@ -142,9 +151,12 @@ export default {
   },
   mounted () {
     this.screenWidth = document.body.clientWidth
+    this.$_initPosition()
+    if (this.screenWidth <= MOBILE_DEVICE_MAX_WIDTH) {
+      return
+    }
     this.startScrollTop = getElementScrollTop(this.$refs.inputer)
     this.scroll = this.startScrollTop
-    this.$_initPosition()
     this.$_renderLayout()
     this.timer = window.setInterval(() => {
       this.$_renderLayout()
@@ -157,6 +169,15 @@ export default {
   },
   destroyed () {
     this.$destroy(true)
+  },
+  computed: {
+    styles () {
+      const left = this.left ? `left: ${this.left}px;` : ''
+      const top = this.top ? `top: ${this.top}px;` : ''
+      const width = this.inputerWidth ? `width: ${this.inputerWidth}px;` : ''
+      const transform = this.left ? `transform: translateY(${this.startScrollTop - this.scroll}px);` : ''
+      return (left + top + width + transform)
+    }
   },
   watch: {
     content: {

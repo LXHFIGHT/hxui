@@ -1,4 +1,5 @@
 // HXUI中使用到的常量汇总于此
+export const MOBILE_DEVICE_MAX_WIDTH = 640 // 移动设备屏宽最大限度
 
 const INFO = 'info'
 const DEFAULT = 'default'

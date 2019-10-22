@@ -71,6 +71,8 @@
   .hx-content > .hx-advance-search {
     top: -$md;
     left: -$md;
+    margin-top: -$md;
+    margin-left: -$md;
     position: sticky;
     @include wcalc(calc(100% + #{2 * $md}));
   }
