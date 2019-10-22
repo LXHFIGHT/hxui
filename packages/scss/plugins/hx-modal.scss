@@ -13,6 +13,7 @@
     }
   }
 }
+
 /*
    模态框样式
    .hx-modal 为普通模态框
@@ -24,12 +25,14 @@
   opacity: .0;
   @include block;
   position: fixed;
-  transition: all .4s;
+  transition: visibility .4s, opacity .4s;
   overflow-x: hidden;
-  &.show{
+  &.show {
     visibility: visible;
     opacity: 1.0;
-    &.normal>.content, &.confirm>.content, &.hx-image-modal>.content {
+    &.normal>.content, 
+    &.confirm>.content, 
+    &.hx-image-modal>.content {
       transform: translate(-50%, -50%) scale(1.0, 1.0);
     }
     &.side>.content {
@@ -186,7 +189,6 @@
   }  
 }
 
-
 @media screen and (min-width: 640px) {
   .hx-modal {
     & > .content {
@@ -213,11 +215,16 @@
         top: $pm-sm;
       }
       .header {
-        font-size: $font-md;
-        height: $height-regular;
-        line-height: $height-regular;
+        height: $height-navbar;
+        line-height: $height-navbar;
+        border-bottom: 1px solid $color-gray-light;
         padding-left: 0;
+        text-align: center;
         margin-bottom: 0;
+        font: {
+          size: $font-bg;
+          weight: 500;
+        }
         &:before {
           height: $height-regular/2;
           top: -2px;
