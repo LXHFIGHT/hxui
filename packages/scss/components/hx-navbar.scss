@@ -154,6 +154,11 @@ $height-admin-navbar: 50px;
           background-color: white;
           height: $height-normal;
         }
+        &.selected {
+          .button {
+            background-color: $color-gray-light;
+          }
+        }
         &:hover {
           .list {
             top: 0;

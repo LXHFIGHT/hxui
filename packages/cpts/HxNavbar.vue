@@ -75,6 +75,7 @@ export default {
       if (option.selected) {
         return
       }
+      this.showNavbuttons = false
       this.$_restoreOptions()
       option.selected = true
       this.$forceUpdate()

@@ -120,6 +120,9 @@
         line-height: $normal;
         padding: 0;
         color: #000;
+        &.selected {
+          color: $color-main;
+        }
       }
       .btn-cancel {
         margin-top: $md;
