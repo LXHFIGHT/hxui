@@ -26,6 +26,10 @@
           display: inline-block;
         }
       }
+      &.disabled {
+        background-color: #fafafa;
+        cursor: not-allowed;
+      }
     }
   }
   .tag-inputer {
