@@ -1,5 +1,5 @@
 <template>
-  <div class="pad-hx-input">
+  <div class="pad-hx-input" @click="doFocus">
     <input
       v-if="rows === 1"
       :required="required"
@@ -110,8 +110,6 @@ export default {
         this.$emit('keydown')
       }
     },
-    doChange () {
-    },
     doInput () {
       let value = ''
       if (this.maxLength && event.target.value.length > this.maxLength) {
@@ -120,7 +118,6 @@ export default {
         value = event.target.value
       }
       this.$emit('input', value)
-      this.$forceUpdate()
     },
     doClear () {
       const view = event.target
