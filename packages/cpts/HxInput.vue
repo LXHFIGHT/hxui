@@ -10,6 +10,7 @@
       :readonly="readonly"
       :disabled="disabled"
       :value="value"
+      :data-type="dataType"
       @keyup="doKeyup"
       @keydown="doKeyDown"
       @input="doInput">
@@ -18,6 +19,7 @@
       :required="required"
       :placeholder="placeholder"
       type="text"
+      :data-type="dataType"
       @blur="doBlur"
       @focus="doFocus"
       :value="value"
@@ -38,7 +40,7 @@
 
 <script>
 import iconClear from './../img/icon/icon-close.png'
-import { MOBILE_DEVICE_MAX_WIDTH } from './../const'
+import { MOBILE_DEVICE_MAX_WIDTH, valueTypeArray } from './../const'
 /**
  * HxInput组件所接受参数：
  * @prop {String} placeholder 文本框内容
@@ -80,6 +82,16 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    dataType: {
+      type: String,
+      validator (data) {
+        if (!data) {
+          return true
+        }
+        return valueTypeArray.includes(data)
+      },
+      default: ''
     },
     rows: {
       type: Number,

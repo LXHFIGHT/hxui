@@ -40,10 +40,11 @@ const _validateRequired = (query) => {
 }
 
 const _validatePhone = (query) => {
-  let components = $(query ? (query + ' [phone]') : '[phone]')
+  let components = $(query ? (query + ' [data-type=cellphone]') : '[data-type=cellphone]')
   let result = true
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
+    console.log('Value', components[i], $view.value)
     if (!isPhone($view.value)) {
       result = false
       _setInvalidStatus($view)

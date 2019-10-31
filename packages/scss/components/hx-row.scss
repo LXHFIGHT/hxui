@@ -43,10 +43,20 @@ $width-label-lg: 190px;
   &.oneline {
     & > label {
       width: 100%!important;
+      .label-tips {
+        display: inline-block;
+        margin-left: $pm-sm;
+        font-size: $font-md;
+        line-height: $height-regular;
+        height: $height-regular;
+      }
     }
     & > .content {
       width: 100%!important;
       max-width: 100%!important;
+    }
+    & > .text-tips {
+      padding-left: $pm-sm;
     }
   }
   // label标签大小，默认110px, sm 为 90px, md 为 150px,  bg 为 190px

@@ -77,3 +77,10 @@ export const Colors = {
   PINK: '#f688B4',
   BLUE: 'cornflowerblue'
 }
+
+export const ValueTypes = {
+  CELLPHONE: 'cellphone' // 手机类型
+}
+export const valueTypeArray = [
+  ValueTypes.CELLPHONE
+]

@@ -5,6 +5,7 @@
       cursor: default;
       height: 30px;
       line-height: 30px;
+      min-width: $height-normal;
       padding: 0 $pm-sm;
       background-color: white;
       text-align: center;
@@ -13,10 +14,15 @@
       display: inline-block;
       border: 1px solid $color-gray;
       margin: $pm-sm/4 $pm-sm $pm-sm/4 0;
+      position: relative;
       .btn-remove {
-        position: relative;
-        margin-right: -$pm-sm;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 0;
         display: none;
+        background-color: rgba(255,255,255,.8);
         &:hover {
           color: $color-red;
         }

@@ -46,8 +46,13 @@
       .content {
         width: 180px;
         display: inline-block;
+        align-items: center;
         min-height: $height-regular;
         position: relative;
+        &.center {
+          display: inline-flex;
+          align-items: center;
+        }
         input {
           height: $height-regular;
           border-radius: 0;
@@ -63,6 +68,7 @@
       &.md { .content { width: 150px; } }
       &.bg { .content { width: 190px; } }
       &.lg { .content { width: 230px; } }
+      &.auto { .content { width: auto; } }
     }
     .btn-hide {
       display: none;
