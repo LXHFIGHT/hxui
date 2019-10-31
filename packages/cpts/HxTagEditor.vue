@@ -21,6 +21,7 @@ import toast from './../plugins/toast'
 export default {
   data () {
     return {
+      hasInitiated: false,
       isString: false, // 传入值 value 是否为字符串
       content: '',
       target: ''
@@ -62,6 +63,7 @@ export default {
     $_initTarget () {
       if (Array.isArray(this.value)) {
         this.target = [].concat(this.value)
+        console.log('Array:', this.target)
         return
       }
       this.isString = true
@@ -70,6 +72,7 @@ export default {
       } else {
         this.target = this.value.split(this.splitChar)
       }
+      console.log('String:', this.value, this.target)
     },
     $_syncTarget () {
       if (this.isString) {
@@ -114,6 +117,16 @@ export default {
   },
   created () {
     this.$_initTarget()
+  },
+  watch: {
+    value: {
+      deep: true,
+      handler (newVal) {
+        if (newVal) {
+          this.$_initTarget()
+        }
+      }
+    }
   }
 }
 </script>
