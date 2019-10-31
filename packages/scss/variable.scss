@@ -1,6 +1,5 @@
 // 用于编写适用于整个项目的CSS属性变量
 @import "./mixin";
-@import "./../../scss/external.scss";
 
 // PC端行高参数
 $height-navbar: 50px;
@@ -28,7 +27,7 @@ $full: 100%;
 $half: 50%;
 
 // 通用颜色标注
-
+$color-main: #ff8f02;
 $color-main-dark: darken($color-main, 36%);
 $color-main-light: rgba($color-main, .1);
 
