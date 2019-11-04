@@ -97,14 +97,17 @@ export default {
       type: String,
       default: ``
     },
+    // 如果上传逻辑是在业务组件中进行，则是用此方法
+    doUpload: {
+      type: Function
+    },
+    // 服务端上传文件的路径，配合onUpload方法使用
     uploadApi: {
-      type: String,
-      required: true
+      type: String
     },
     // 当成功上传之后的处理方法，接受一个参数，对应上传成功服务端返回的链接等信息
     onUpload: {
-      type: Function,
-      required: true
+      type: Function
     },
     multiple: { // 组件是否多选上传 
       type: [Boolean, String, Number],
@@ -190,21 +193,27 @@ export default {
         maxsize: this.maxsize,
         handler: (fileDatas) => {
           const files = fileDatas
-          const data = new FormData()
-          for (let i = 0; i < files.length; i++) {
-            data.append(`${this.name}${this.multiple ? ('_' + i) : ''}`, files[i])
-          }
           this.isUploading = true
           this.isImageError = false
-          uploadFiles(this.uploadApi, data).then(res => {
-            if (res) {
-              this.isUploading = false
-              this.onUpload(res, this.id)
+          if (this.doUpload instanceof Function) {
+            this.doUpload(fileDatas)
+          } else if (!this.uploadApi && this.onUpload instanceof Function) {
+            const data = new FormData()
+            for (let i = 0; i < files.length; i++) {
+              data.append(`${this.name}${this.multiple ? ('_' + i) : ''}`, files[i])
             }
-          }).catch(err => {
-            this.isUploading = false
-            console.error(err)
-          })
+            uploadFiles(this.uploadApi, data).then(res => {
+              if (res) {
+                this.isUploading = false
+                this.onUpload(res, this.id)
+              }
+            }).catch(err => {
+              this.isUploading = false
+              console.error(err)
+            })
+          } else {
+            console.warn('使用HxSmartUploader上传组件需要传入 onUpload和uploadApi参数 或 doUpload 方法')
+          }
         }
       })
     },

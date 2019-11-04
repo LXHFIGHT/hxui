@@ -5,14 +5,13 @@ const SIZE_MAX_FOR_IMAGE = 1000 * 1000 // 图片大于
  * 收集区分文件数据
  * @param {*} object.files 文件对象列表  通过input[type="file"]的DOM元素的files属性获取
  * @param {*} object.maxsize 需要压缩的文件的大小， 单位是KB: 默认 2MB
- * @param {*} object.compress 是否需要压缩， 单位是1%， 如果需要50%压缩率则填50， 默认需要
+ * @param {*} object.compress 是否需要压缩， 单位是1%， 如果需要50%压缩率则填50， 默认不需要压缩
  * @param {*} object.handler 处理（回调）方法， 参数带着压缩后可供append到formData中的文件列表files
  */
 export default (object) => {
   let fileDatas = []
   let { files, maxsize, compress, handler } = object
   maxsize = maxsize == null ? 2 * SIZE_KB * SIZE_KB : maxsize // 默认 2MB
-  compress = compress == null ? 80 : compress // 默认需要压缩
   const total = files.length
   for (let i = 0; i < files.length; i++) {
     // 遇到非图片的文件时，直接放入files

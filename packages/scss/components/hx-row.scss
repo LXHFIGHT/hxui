@@ -10,7 +10,7 @@
 @import "./../variable.scss";
 @mixin labelSize ($width) {
   & > label { width: $width; }
-  & > .content { width: calc(100% - #{$width + $pm-sm}); }
+  & > .content { width: calc(100% - #{$width}); }
   & > .text-tips { padding-left: $width + $pm-sm; }
 }
 
@@ -112,7 +112,7 @@ $width-label-lg: 190px;
     position: relative;
     padding: 0;
     vertical-align: top;
-    width: calc(100% - #{$width-label-md + $pm-sm});
+    width: calc(100% - #{$width-label-md});
     max-width: calc(100% - #{$width-label-sm + $pm-sm});
     .hx-switch {
       @include centerVertical;

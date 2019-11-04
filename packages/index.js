@@ -22,6 +22,7 @@ import HxProgressModal from './cpts/HxProgressModal'
 import HxRank from './cpts/HxRank'
 import HxRow from './cpts/HxRow'
 import HxSearch from './cpts/HxSearch'
+import HxSearchItem from './cpts/HxSearchItem'
 import HxSection from './cpts/HxSection'
 import HxSelector from './cpts/HxSelector' 
 import HxSlider from './cpts/HxSlider'
@@ -84,6 +85,7 @@ export {
   HxRank,
   HxRow,
   HxSearch,
+  HxSearchItem,
   HxSection,
   HxSelector,
   HxSlider,
