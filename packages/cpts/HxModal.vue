@@ -1,7 +1,7 @@
 <template>
   <div :class="['hx-modal', value && 'show', size, (type || 'normal'), level]">
     <div class="mask" @click="onHide"></div>
-    <div class="content">
+    <div class="content" :style="type === 'side' ? `width: ${width}` : ''">
       <header class="header">
         {{ title }}
         <slot name="header"></slot>
@@ -49,9 +49,13 @@ export default {
       type: String,
       default: '提示'
     },
-    disabledMask: { // 点击蒙层区域是否关闭模态框
+    disableMask: { // 点击蒙层区域是否关闭模态框
       type: [String, Number, Boolean],
       default: false
+    },
+    width: { // 当type是侧边栏类型的模态框时，width可配置模态框的宽度
+      type: String,
+      default: '300px'
     }
   },
   methods: {

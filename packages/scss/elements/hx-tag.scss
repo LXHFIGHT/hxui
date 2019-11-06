@@ -1,7 +1,7 @@
 @import "./../variable.scss";
 
 /**
-    全局按钮样式
+  全局按钮样式
  */
 
 // 实心按钮
@@ -16,6 +16,10 @@
   display: inline-block;
   cursor: default;
   border-radius: 2px;
+  margin-bottom: 6px;
+  & + & {
+    margin-left: $pm-sm;
+  }
   &.material {
     box-shadow: $shadow-material;
   }
@@ -28,10 +32,6 @@
   &.excel   {  @include hxTag($color-green-excel);  }
   &.pink    {  @include hxTag($color-pink);  }
   &.yellow  {  @include hxTag($color-golden, $color-heavy);  }
-
-  & + & {
-    margin: 0 0 0 $pm-sm/2;
-  }
 }
 
 // 空心按钮

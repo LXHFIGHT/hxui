@@ -3,6 +3,11 @@
 // HxInput Component Stylesheet
 .pad-hx-input {
   position: relative;
+  &:hover {
+    .btn-clear {
+      display: flex;
+    }
+  }
   textarea ~ .btn-clear {
     top: auto;
     bottom: 0;
@@ -12,12 +17,12 @@
     right: $pm-md;
     height: 18px;
     width: 18px;
-    display: flex;
+    display: none;
     border-radius: 30px;
     padding: 0;
     align-items: center;
     justify-content: center;
-    background-color: #ccc;
+    background-color: #ddd;
     img.icon {
       width: 60%;
       height: 60%;

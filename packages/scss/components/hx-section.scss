@@ -131,14 +131,14 @@
     transition: height .4s;
     box-shadow: 0 10px 15px -10px rgba(0,0,0,.1);
     margin-bottom: $md;
-    .header {
+    > .header {
       padding: 0 $md;
       color: $color-black;
       button.right {
         margin-top: 0;
       }
     }
-    .header:before {
+    > .header:before {
       content: "";
       height: $height-navbar/2;
       width: 3px;
@@ -147,8 +147,7 @@
       display: block;
       left: $md;
     }
-
-    .header:first-child {
+    > .header:first-child {
       padding-left: 2 * $md;
     }
     .hx-row:nth-last-child(1) {

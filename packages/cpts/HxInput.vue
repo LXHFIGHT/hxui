@@ -114,7 +114,6 @@ export default {
       this.$emit('keyup')
     },
     doKeyDown () {
-      console.log('gddd')
       if (this.maxLength && this.value.length >= this.maxLength && event.keyCode !== 8) {
         const result = this.value.substring(0, this.maxLength)
         this.$emit('input', result)

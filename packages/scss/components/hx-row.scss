@@ -22,6 +22,7 @@ $width-label-lg: 190px;
   width: 100%;
   padding: 0;
   color: $color-dark;
+  font-size: 0;
 
   & + .hx-row {
     margin-top: $pm-sm * 1.5;
