@@ -14,7 +14,7 @@
         :value="pageSize">
       </option>
     </select>
-    <a :class="['btn-switch', (searchInfo.page === 1 ? 'hx-invisible' : '')]"
+    <a :class="['btn-switch', (searchInfo.page <= 1 ? 'hx-invisible' : '')]"
       @click="requestListByPage(searchInfo.page - 1)">
       <IconCaretLeft class="icon"></IconCaretLeft>
     </a>
@@ -64,11 +64,17 @@ export default {
       type: Number,
       required: true
     },
-    // 暴露到父组件的分页数的参数名
+    // 暴露到父组件的当前所在页的参数名，默认为："page"
+    pageParamName: {
+      type: String,
+      default: 'page'
+    },
+    // 暴露到父组件的分页数的参数名，默认为："per_page"
     pageSizeParamName: {
       type: String,
       default: 'per_page'
     },
+    // 分页选项集合
     pageSizes: {
       type: Array,
       default () {
@@ -79,8 +85,8 @@ export default {
   methods: {
     $_initRequest () {
       let bundle = {}
-      bundle.page = this.searchInfo.page
       bundle[this.pageSizeParamName] = this.searchInfo.per_page
+      bundle[this.pageParamName] = this.searchInfo.page
       this.doRequest(bundle)
     },
     requestListByPerPage () {
@@ -106,7 +112,7 @@ export default {
   },
   watch: {
     total (newVal) {
-      if (newVal < this.searchInfo.page) {
+      if (newVal < this.searchInfo.page && newVal) {
         this.searchInfo.page = newVal
         this.$_initRequest()
       }
