@@ -1,10 +1,11 @@
 <template>
    <div class="hx-tags">
      <span :class="['hx-tag', colorStyle, size]"
-          :style="`background-color: ${color}; color: ${textColor}; border: ${ color ? 'none' : '' }`"
-          v-for="(item, index) in value"
-          v-bind:key="index"
-          v-text="item"></span>
+        :style="`background-color: ${color}; color: ${textColor}; border: ${ color ? 'none' : '' }`"
+        v-for="(item, index) in value"
+        v-bind:key="index"
+        v-text="item">
+      </span>
    </div>
 </template>
 
