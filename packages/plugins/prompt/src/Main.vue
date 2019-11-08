@@ -7,7 +7,9 @@
         <textarea v-if="type === InputTypes.TEXTAREA" v-model="text" ref="editor" cols="30" rows="3"
           autofocus="autofocus"
           :placeholder="placeholder"></textarea>
-        <input v-if="type === InputTypes.TEXT" v-model="text" ref="editor"
+        <input v-if="type === InputTypes.TEXT" 
+          v-model="text" 
+          ref="editor"
           autofocus="autofocus"
           class="hx-input"
           :placeholder="placeholder" />
@@ -104,22 +106,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import './../../../scss/variable.scss';
-.inputer-number {
-  font-size: 35px;
-  line-height: 35px;
-  width: 100%;
-  padding: $pm-lg $pm-sm;
-  border: none;
-  text-align: center;
-  border-bottom: 1px solid $color-gray;
-  margin-bottom: $pm-md;
-  &::placeholder {
-    font-size: 20px;
-    line-height: 35px;
-    height: 35px;
-  }
-}
-</style>

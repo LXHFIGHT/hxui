@@ -66,9 +66,10 @@
       }
       .hx-button {
         padding: 0 $pm-sm;
-        height: $height-regular - $pm-sm / 2;
+        height: ($height-regular - $pm-sm / 2)!important;
         min-height: $height-regular - $pm-sm / 2;
-        margin: 0 $pm-sm/2 $pm-sm/2 0;
+        margin: 0 $pm-sm/2 $pm-sm/2 0!important;
+        vertical-align: top;
         &.standard {
           margin-bottom: $pm-sm/2;
         }

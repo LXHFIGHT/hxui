@@ -9,6 +9,24 @@
       padding-top: $pm-md;
     }
   }
+  .inputer-number {
+    font-size: 35px;
+    line-height: 35px;
+    width: 100%;
+    padding: $pm-lg $pm-sm;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid $color-gray;
+    margin-bottom: $pm-md;
+    &::placeholder {
+      font-size: 20px;
+      line-height: 35px;
+      height: 35px;
+    }
+  }
+  .hx-input {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 640px) {

@@ -38,15 +38,8 @@
 /*--------------------------------------------------------------------------------------*/
 /*  hx-input 适用于全部文本输入框的自定义组件样式
 /*--------------------------------------------------------------------------------------*/
-.hx-datetime-picker .hx-input,
-input[type='text'].hx-input,
-input[type='email'].hx-input,
-input[type='number'].hx-input,
-input[type='url'].hx-input,
-input[type='password'].hx-input,
-input[type='date'].hx-input,
-select.hx-input,
-textarea.hx-input{
+.hx-input,
+.hx-datetime-picker .hx-input {
   position: relative;
   font-size: 14px;
   line-height: $height-regular;
