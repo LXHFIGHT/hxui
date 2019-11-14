@@ -107,6 +107,9 @@ export default {
     },
     maxLength: {
       type: Number
+    },
+    max: { // 最大数字，仅当内容为数字时有效
+      type: Number 
     }
   },
   methods: {
@@ -124,11 +127,15 @@ export default {
     },
     doInput () {
       let value = ''
-      if (this.maxLength && event.target.value.length > this.maxLength) {
+      let currentValue = event.target.value
+      if (this.maxLength && currentValue.length > this.maxLength) {
         value = event.target.value.substring(0, this.maxLength)
+      } else if (this.max && !isNaN(currentValue) && currentValue > this.max) {
+        value = this.max
       } else {
-        value = event.target.value
+        value = currentValue
       }
+      event.target.value = value
       this.$emit('input', value)
     },
     doClear () {
