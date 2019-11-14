@@ -4,9 +4,10 @@
     <div class="pad-address-content">
       <div class="pad-address-selector">
         <input type="text"
-               ref="address"
-               id="suggestion"
-               placeholder="搜索地点"/>
+          class="inputer"
+          ref="address"
+          id="suggestion"
+          placeholder="点此输入地址搜索"/>
         <button class="btn-close-modal" @click="onHide"></button>
       </div>
       <div class="pad-map">
