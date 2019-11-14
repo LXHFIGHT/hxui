@@ -63,7 +63,6 @@ export default {
     $_initTarget () {
       if (Array.isArray(this.value)) {
         this.target = [].concat(this.value)
-        console.log('Array:', this.target)
         return
       }
       this.isString = true
@@ -72,7 +71,6 @@ export default {
       } else {
         this.target = this.value.split(this.splitChar)
       }
-      console.log('String:', this.value, this.target)
     },
     $_syncTarget () {
       if (this.isString) {

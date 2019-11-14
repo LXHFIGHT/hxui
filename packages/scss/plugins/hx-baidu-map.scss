@@ -82,8 +82,8 @@ td[id|=tangram-suggestion] {
       display: block;
     }
     .icon-pinpoint {
-      height: $height-navbar;
-      width: $height-navbar;
+      height: $height-regular;
+      width: auto;
       margin-top: -16px;
       @include centerInParent;
     }

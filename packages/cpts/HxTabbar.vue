@@ -64,6 +64,9 @@ export default {
   },
   methods: {
     $_init () {
+      if (!this.tabbarOptions.length) {
+        return
+      }
       const $items = document.querySelectorAll('.hx-tabbar>.item')
       for (let i = 0; i < $items.length; i++) {
         this.tabbarOptions[i].width = $items[i].offsetWidth
