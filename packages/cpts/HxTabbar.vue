@@ -64,9 +64,6 @@ export default {
   },
   methods: {
     $_init () {
-      if (!this.tabbarOptions.length) {
-        return
-      }
       const $items = document.querySelectorAll('.hx-tabbar>.item')
       for (let i = 0; i < $items.length; i++) {
         this.tabbarOptions[i].width = $items[i].offsetWidth
@@ -74,9 +71,17 @@ export default {
       this.width = this.tabbarOptions[0].width
       this.$_locateMagicBar(this.value)
     },
-    $_locateMagicBar (index) {
+    $_getIndex () {
+      for (let i = 0; i < this.tabbarOptions.length; i++) {
+        if (this.tabbarOptions[i].value === this.value) {
+          this.index = i
+          return
+        }
+      }      
+    },
+    $_locateMagicBar () {
       let left = 0
-      for (let i = 0; i < index; i++) {
+      for (let i = 0; i < this.index; i++) {
         left += this.tabbarOptions[i].width
       }
       this.left = left
@@ -85,14 +90,14 @@ export default {
       this.index = index
       this.$emit('input', item.value)
       this.width = item.width
-      this.$_locateMagicBar(index)
+      this.$_locateMagicBar()
       this.onSelect instanceof Function && this.onSelect(item)
     }
   },
   watch: {
     value (newVal) {
-      this.index = newVal
-      this.$_locateMagicBar(newVal)
+      this.$_getIndex()
+      this.$_locateMagicBar()
       this.$forceUpdate()
     }
   } 

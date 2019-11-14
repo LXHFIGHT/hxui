@@ -210,11 +210,12 @@ $width-label-lg: 190px;
   // 附加提示文本
   & > .text-tips {
     font-size: $font-sm;
-    line-height: 2;
+    line-height: 1.5;
     display: block;
     color: #aaa;
     width: 100%;
     padding-left: $width-label-md + 4px;
+    padding-top: $pm-sm / 2;
   }
 }
 
