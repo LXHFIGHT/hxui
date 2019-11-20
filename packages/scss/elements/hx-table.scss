@@ -2,7 +2,6 @@
 
 .hx-table {
   padding: 0;
-  background-color: white;
   border-radius: $border-radius-md;
   display: block;
   position: relative;
@@ -16,7 +15,8 @@
   table {
     width: 100%;
     font-size: 14px;
-    border-collapse:collapse;
+    border-collapse: collapse;
+    background-color: white;
     td {
       min-height: $height-navbar;
       text-align: center;
@@ -117,6 +117,7 @@
   }
   .pad-loading {
     height: 300px;
+    background-color: transparent;
   }
   .hx-emptyset {
     height: 300px;

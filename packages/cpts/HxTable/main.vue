@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-table', isEmpty && 'no-shadow']">
+  <div :class="['hx-table', !isNotEmpty && 'no-shadow']">
     <div class="pad-loading" v-if="loading">
       <hx-loading-icon position="center" height="35px" width="35px" level="warn">
         <span v-if="loadingText" v-text="loadingText"></span>
