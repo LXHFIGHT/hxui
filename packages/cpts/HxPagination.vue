@@ -26,6 +26,7 @@
     <input type="text"
       class="page-inputer"
       autocomplete="off"
+      placeholder="请输入"
       v-model="toPage" />
     <input type="password" 
       autocomplete="new-password" 

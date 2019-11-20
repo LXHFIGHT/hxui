@@ -2,9 +2,17 @@
 
 .hx-table {
   padding: 0;
-  @include boxShadowNormal();
   background-color: white;
   border-radius: $border-radius-md;
+  display: block;
+  position: relative;
+  @include boxShadowNormal();
+  &.no-shadow {
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
   table {
     width: 100%;
     font-size: 14px;
@@ -106,6 +114,12 @@
         tr:hover{ background-color: $color-gray-light;  }
       }
     }
+  }
+  .pad-loading {
+    height: 300px;
+  }
+  .hx-emptyset {
+    height: 300px;
   }
 }
 

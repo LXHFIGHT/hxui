@@ -24,6 +24,9 @@
           <span v-if="loadingText" v-text="loadingText"></span>
         </hx-loading-icon>
       </div>
+      <input type="password" 
+        autocomplete="new-password" 
+        style="visiblity: hidden; display: none;" />
     </div>
     <span class="side-tag"
       v-text="tag">
