@@ -8,10 +8,22 @@ import { isPhone } from './../../tools/object'
 import { $, getChildByClassName } from './../../tools/dom'
 import toast from './../toast'
 
+const _isValidatableHXUIComponents = (classList) => {
+  const cptNames = ['hx-smart-uploader', 'hx-selector', 'hx-options'] // 可进行验证的HXUI组件
+  for (let cptName of cptNames) {
+    console.log(classList.contains(cptName), classList, cptName)
+    if (classList.contains(cptName)) {
+      return true
+    }
+  } 
+  return false
+}
+
 const _focusFunc = function () {
   const $view = event.target
   $view.classList.remove('error')
 }
+
 const _setInvalidStatus = ($view) => {
   $view.classList ? $view.classList.add('error') : $view.classList = ['error']
   $view.removeEventListener('focus', _focusFunc)
@@ -23,11 +35,15 @@ const _validateRequired = (query) => {
   let components = $(query ? (query + ' [required]') : '[required]')
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
-    if ($view.classList.contains('hx-smart-uploader') || $view.classList.contains('hx-selector')) {
+    if (_isValidatableHXUIComponents($view.classList)) { // 判断是否为HXUI组件
       if (!$view.dataset['value']) {
         result = false
         const lastChild = getChildByClassName($view, 'btn-upload')
-        lastChild && _setInvalidStatus(lastChild)
+        if (lastChild) {
+          _setInvalidStatus(lastChild)
+        } else {
+          _setInvalidStatus($view)
+        }
       }
       continue
     }

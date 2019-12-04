@@ -1,12 +1,19 @@
 @import "./../variable.scss";
 .hx-options {
   display: inline-block;
+  &.error {
+    .item {
+      box-shadow: 0 0 $pm-sm rgba($color-red, .6);
+    }
+  }
   .item {
     font-size: $font-sm;
     padding: $pm-sm $pm-md;
     border-radius: 10vw;
-    background-color: #ccc;
+    background-color: #e2e2e2;
     color: white;
+    box-shadow: none;
+    transition: box-shadow .4s;
     &.selected, &.selected:disabled {
       background-color: $color-main;
     }

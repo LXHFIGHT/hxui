@@ -1,6 +1,6 @@
 <template>
    <div class="hx-tags">
-     <span :class="['hx-tag', colorStyle, size]"
+     <span :class="['hx-tag', level, size]"
         :style="`background-color: ${color}; color: ${textColor}; border: ${ color ? 'none' : '' }`"
         v-for="(item, index) in value"
         v-bind:key="index"
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { levelKeys } from './../const'
 export default {
   name: 'HxTags',
   data () {
@@ -24,11 +25,12 @@ export default {
       type: Boolean,
       default: false
     },
-    colorStyle: {
+    level: {
       type: String,
       validator (val) {
-        return ['main', 'green', 'red', 'blue', 'orange'].includes(val)
-      }
+        return !val || levelKeys.includes(val)
+      },
+      default: ''
     },
     color: {
       type: String

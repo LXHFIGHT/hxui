@@ -12,6 +12,15 @@
       box-shadow: none;
     }
   }
+  &.hovering{
+    table {
+      tbody {
+        tr:hover{ 
+          background-color: rgba($color-main, .075);  
+        }
+      }
+    }
+  }
   table {
     width: 100%;
     font-size: 14px;
@@ -74,9 +83,9 @@
       }
       .hx-button {
         padding: 0 $pm-sm;
-        height: ($height-regular - $pm-sm / 2)!important;
+        height: ($height-regular - $pm-sm / 2);
         min-height: $height-regular - $pm-sm / 2;
-        margin: 0 $pm-sm/2 $pm-sm/2 0!important;
+        margin: 0 $pm-sm/2 $pm-sm/2 0;
         vertical-align: top;
         &.standard {
           margin-bottom: $pm-sm/2;
@@ -109,9 +118,6 @@
       }
       tr:nth-child(even) {
         background-color: $color-gray-light;
-      }
-      &.hovering{
-        tr:hover{ background-color: $color-gray-light;  }
       }
     }
   }

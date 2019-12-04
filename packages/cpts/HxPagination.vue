@@ -100,7 +100,7 @@ export default {
         toast({ text: '所选页面超过范围', level: 'warn' })
         return
       }
-      this.searchInfo.page = page
+      this.searchInfo.page = parseInt(page)
       this.$_initRequest()
     }
   },

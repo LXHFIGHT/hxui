@@ -1,5 +1,7 @@
 <template>
-  <div class="hx-options">
+  <div class="hx-options" 
+    ref="hxOptions"
+    :data-value="value" :required="!!required ? 'required' : false">
     <button :class="['item', value === item.value && 'selected']" 
       :key="index"
       :disabled="disabled"
@@ -32,6 +34,10 @@ export default {
     disabled: {
       type: [String, Number, Boolean],
       default: false
+    },
+    required: {
+      type: [String, Boolean, Number],
+      default: false
     }
   },
   data () {
@@ -45,6 +51,7 @@ export default {
   methods: {
     doSelect (item) {
       this.onSelect(item)
+      this.$refs.hxOptions.classList.remove('error')
       if (this.value === item.value) {
         this.$emit('input', '')
       } else {

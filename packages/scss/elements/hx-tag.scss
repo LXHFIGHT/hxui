@@ -10,7 +10,7 @@
   position: relative;
   color: $color-heavy;
   background-color: $color-gray-light;
-  height: $height-regular - 10px!important;
+  height: $height-regular - 8px!important;
   line-height: $height-regular - 10px;
   border: 1px solid $color-gray;
   display: inline-block;
@@ -25,10 +25,10 @@
   }
   &.main    {  @include hxTag($color-main);  }
   &.gray    {  @include hxTag(darken($color-gray-deep, 14%));  }
-  &.orange  {  @include hxTag($color-orange);  }
-  &.red     {  @include hxTag($color-red);  }
-  &.blue    {  @include hxTag($color-blue);  }
-  &.green   {  @include hxTag($color-green);  }
+  &.orange, &.warn  {  @include hxTag($color-orange);  }
+  &.red, &.error     {  @include hxTag($color-red);  }
+  &.blue, &.info    {  @include hxTag($color-blue);  }
+  &.green, &.success   {  @include hxTag($color-green);  }
   &.excel   {  @include hxTag($color-green-excel);  }
   &.pink    {  @include hxTag($color-pink);  }
   &.yellow  {  @include hxTag($color-golden, $color-heavy);  }
@@ -46,11 +46,11 @@
       background-color: darken($color-gray, 5%)!important;
     }
   }
-  &.gray    {  @include hxBlankTag(darken($color-gray-deep, 14%));  }
-  &.orange  {  @include hxBlankTag($color-orange);  }
-  &.red     {  @include hxBlankTag($color-red);  }
-  &.blue    {  @include hxBlankTag($color-blue);  }
-  &.green   {  @include hxBlankTag($color-green);  }
+  &.gray {  @include hxBlankTag(darken($color-gray-deep, 14%));  }
+  &.orange, &.warn {  @include hxBlankTag($color-orange);  }
+  &.red, &.error {  @include hxBlankTag($color-red);  }
+  &.blue, &.info {  @include hxBlankTag($color-blue);  }
+  &.green, &.success {  @include hxBlankTag($color-green);  }
   &.excel   {  @include hxBlankTag($color-green-excel);  }
   &.pink    {  @include hxBlankTag($color-pink);  }
   &.yellow  {  @include hxBlankTag($color-golden);  }

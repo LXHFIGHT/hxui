@@ -18,8 +18,10 @@ let PreviewerInstance = null
  * @param options.urls 图片列表页面
  * @param options.max 最大放大比例
  * @param options.position 预览框的位置： 默认全屏， left 左半屏， right 右半屏 
+ * 
+ * @param urls 当第一个参数为图片链接是生效，表示所有预览图片链接
  */
-const imagePreviewer = function (options) {
+const imagePreviewer = function (options, urls) {
   if (PreviewerInstance) {
     PreviewerInstance.vm.destroyElement()
   }
@@ -27,7 +29,7 @@ const imagePreviewer = function (options) {
   if (typeof options === 'string') {
     bundle = {
       current: options,
-      urls: [options]
+      urls: Array.isArray(urls) ? urls : [options]
     }
   } else if (Array.isArray(options)) {
     bundle = {

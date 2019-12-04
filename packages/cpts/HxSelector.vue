@@ -15,14 +15,14 @@
       <div class="pad-select-zone">
         <div class="btn-option" v-for="(option, idx) in options" :key="idx">
           <div @click="doSelect(option)"
-            v-if="option.value !== '|' || option[keyName] !== '|'"
+            v-if="option.value !== '|' || option[key] !== '|'"
             :value="option.value"
             :class="['option', 
               option.disabled ? 'disabled' : '', 
               option.value === value && 'selected']">
-            {{ option[keyName] }}
+            {{ option[key] }}
           </div>
-          <div class="line-divider" v-if="option.value === '|' && option[keyName] === '|'"></div>
+          <div class="line-divider" v-if="option.value === '|' && option[key] === '|'"></div>
         </div>
         <div class="btn-cancel option" @click="doHideOptions" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
           取消选择
@@ -52,7 +52,8 @@ export default {
       padOptionsWidth: 0,
       startScrollTop: 0,
       scroll: 0,
-      timer: null
+      timer: null,
+      key: ''
     }
   },
   props: {
@@ -66,8 +67,7 @@ export default {
       default: ''
     },
     keyName: { // 选项和value对应的键名
-      type: String,
-      default: 'text'
+      type: String
     },
     disabled: {
       type: [String, Boolean, Number],
@@ -83,22 +83,43 @@ export default {
     }
   },
   methods: {
+    $_getKeyName () { // 智能分析传入数据的key对应的字段
+      if (this.keyName) {
+        this.key = this.keyName
+        return
+      }
+      if (!this.content.length) {
+        return
+      }
+      if (typeof this.content[0] === 'string') {
+        this.key = 'text'
+        return 
+      }
+      if (this.content[0]['text']) {
+        this.key = 'text'
+        return
+      }
+      if (this.content[0]['key']) {
+        this.key = 'key'
+      }
+    },
     _optionFilter (data) {
       if (!this.options) {
         return this.placeholder
       }
       const result = this.options.filter(v => v.value === data)
       if (result.length) {
-        return result[0][this.keyName]
+        return result[0][this.key]
       }
       return this.placeholder
     },
     $_init () {
       this.options = []
+      this.$_getKeyName()
       for (let option of this.content) {
         if (typeof option !== 'object') {
           let obj = { value: option }
-          obj[this.keyName] = option
+          obj[this.key] = option
           this.options.push(obj)
           continue
         }
