@@ -41,7 +41,9 @@ const components = [
   HxRow, 
   HxPagination, 
   HxHeader, 
-  HxSection
+  HxSection,
+  HxInput,
+  HxButton
 ]
 
 const install = (Vue) => {

@@ -114,6 +114,7 @@ export default {
   },
   methods: {
     doKeyup () {
+      console.log('HxInput KeyUp')
       this.$emit('keyup')
     },
     doKeyDown () {
