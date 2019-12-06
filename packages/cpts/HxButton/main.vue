@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'hx-button',
   data () {
     return {}
   },
