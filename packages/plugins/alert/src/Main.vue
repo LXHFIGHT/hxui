@@ -1,11 +1,11 @@
 <template>
-  <div :class="['hx-modal confirm', show && 'show', level]">
-    <div class="mask" @click="destroyElement"></div>
+  <div :class="['hx-modal confirm', show && 'show']">
+    <div class="mask" style="opacity: .6"></div>
     <div class="content">
       <div class="alert-content" v-text="text"></div>
       <footer class="footer">
         <button class="hx-button main btn-confirm"
-          @click="doConfirm">
+          @click="destroyElement">
           确定
         </button>
       </footer>
@@ -18,7 +18,6 @@ export default {
   data () {
     return {
       text: '',
-      onCancel: () => {},
       show: false,
       fadeInTimer: null,
       fadeOutTimer: null

@@ -43,8 +43,9 @@
         font-size: $font-md;
       }
       .alert-content {
-        padding: $pm-lg $pm-md $pm-bg;
+        padding: $pm-lg $pm-md $pm-md;
         font-size: $font-bg;
+        font-weight: 500;
         text-align: center;
       }
       .prompt-content {
@@ -102,13 +103,19 @@
         line-height: 24px; 
         padding: $pm-bg*1.5 $pm-md;
       }
+      .alert-content {
+        padding: $pm-lg $pm-md;
+        font-size: $font-bg;
+        font-weight: 500;
+        text-align: center;
+      }
       footer, footer.footer {
         font-size: 12px;
         display: flex;
         margin-top: 0;
         .btn-confirm, .btn-cancel {
           border: none;
-          border-radius: 0;
+          border-radius: $sm;
           height: $height-normal;
           flex: 1;
           margin: 0!important;
