@@ -12,10 +12,25 @@ export const getChildByClassName = ($view, className) => {
   return null
 }
 
+const _getTranslateFromMatrix = (str) => {
+  if (str.indexOf('matrix') === -1) {
+    return { x: 0, y: 0 }
+  }
+  const start = str.indexOf('(') + 1
+  const end = str.indexOf(')')
+  const arr = str.substring(start, end).split(', ')
+  return {
+    x: parseInt(arr[arr.length - 2]),
+    y: parseInt(arr[arr.length - 1])
+  }
+}
+
 // 获取距离屏幕顶部的距离
 export const getElementToPageTop = (el) => {
   if (el.offsetParent) {
-    return getElementToPageTop(el.offsetParent) + el.offsetTop
+    const transform = document.defaultView.getComputedStyle(el.offsetParent, null).webkitTransform
+    const { y } = _getTranslateFromMatrix(transform)
+    return getElementToPageTop(el.offsetParent) + el.offsetTop + y
   }
   return el.offsetTop
 }
@@ -23,7 +38,9 @@ export const getElementToPageTop = (el) => {
 // 获取距离屏幕左边的距离
 export const getElementToPageLeft = (el) => {
   if (el.offsetParent) {
-    return getElementToPageLeft(el.offsetParent) + el.offsetLeft
+    const transform = document.defaultView.getComputedStyle(el.offsetParent, null).webkitTransform
+    const { x } = _getTranslateFromMatrix(transform)
+    return getElementToPageLeft(el.offsetParent) + el.offsetLeft + x
   }
   return el.offsetLeft
 }

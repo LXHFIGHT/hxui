@@ -4,7 +4,7 @@
   width: 100%;
   display: block;
   position: relative;
-  z-index: 100;
+  z-index: 101;
   cursor: default;
   &:hover {
     .btn-clear {
@@ -34,7 +34,7 @@
 }
 
 .hx-pad-options {
-  z-index: 100;
+  z-index: 101;
   font-size: $font-md;
   width: 100%;
   min-width: 200px;

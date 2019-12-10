@@ -8,10 +8,11 @@
       <footer class="footer">
         <button class="hx-button btn-cancel"
           v-text="cancelText"
-          @click="destroyElement"></button>
+          @click="doCancel"></button>
         <button class="hx-button main btn-confirm"
           v-text="confirmText"
-          @click="doConfirm"></button>
+          @click="doConfirm">
+        </button>
       </footer>
     </div>
   </div>

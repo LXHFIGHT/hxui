@@ -28,6 +28,10 @@ $padding-switch: 3px;
     border-radius: 50% 50%;
     left: $padding-switch - 1px;
   }
+  &.disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
   &.off {
     &:before {
       left: $padding-switch;

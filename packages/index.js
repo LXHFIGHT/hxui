@@ -31,6 +31,7 @@ import HxSmartUploader from './cpts/HxSmartUploader'
 import HxSwitch from './cpts/HxSwitch'
 import HxTabbar from './cpts/HxTabbar'
 import HxTable from './cpts/HxTable'
+import HxTableColumn from './cpts/HxTableColumn'
 import HxTagEditor from './cpts/HxTagEditor'
 import HxTags from './cpts/HxTags'
 import HxWaterfall from './cpts/HxWaterfall'
@@ -97,6 +98,7 @@ export {
   HxSwitch,
   HxTabbar,
   HxTable,
+  HxTableColumn,
   HxTagEditor,
   HxTags,
   HxWaterfall,

@@ -9,7 +9,7 @@
       ref="inputer"
       :disabled="disabled"
       :value="_optionFilter(value)"/>
-    <button v-if="value" class="btn-clear" @click="doClear">×</button>
+    <button v-if="value && !disabled" class="btn-clear" @click="doClear">×</button>
     <div :class="['hx-pad-options', showOptions && 'show']" ref="padOptions" 
       :style="styles">
       <div class="pad-select-zone">
