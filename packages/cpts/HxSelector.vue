@@ -1,6 +1,7 @@
 <template>
   <div :class="['hx-selector']"
     :data-value="value"
+    ref="hxSelector"
     :required="!!required ? 'required' : false">
     <input type="text" readonly
       :class="['text-option', (_optionFilter(value) === placeholder) && 'color-gray']" 
@@ -164,6 +165,7 @@ export default {
       }
       this.showOptions = false
       this.$emit('input', option.value)
+      this.$refs.hxSelector.classList.remove('error')
       this.$emit('change')
       this.$forceUpdate()
     },

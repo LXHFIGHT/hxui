@@ -6,6 +6,15 @@
   position: relative;
   z-index: 101;
   cursor: default;
+  &.error input {
+    border: 1px solid $color-red!important;
+    color: $color-red;
+    background-color: lighten($color-red, 32%)!important;
+    transition: all .4s;
+    &:focus {
+      border: 1px solid $color-red-deep!important;
+    }
+  }
   &:hover {
     .btn-clear {
       display: block;
