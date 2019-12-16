@@ -92,10 +92,27 @@ $color-light-font: $color-heavy;
     &:hover {
       background-color: rgba(253, 69, 69, 0.1);
     }
+    .divider {
+      display: block;
+      margin: $pm-sm 0;
+      height: 1px;
+      width: 100%;
+      background-color: $color-gray-light;
+    }
     // 一级菜单按钮
     button.first-level {
       display: block;
       height: $height-navbar;
+      position: relative;
+      &.special::before {
+        height: 100%;
+        width: 3px;
+        content: "";
+        background-color: $color-main;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
       &.selected.no-children {
         background-color: rgba(255,255,255, .1);
         color: white;
