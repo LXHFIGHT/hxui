@@ -15,6 +15,7 @@
   }
   &:active {
     background-color: #f6f6f6;
+    transform: scale(0.92, 0.92);
   }
   &:disabled, &.disabled {
     background-color: darken($color-gray, 10%)!important;

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hx-selector']"
+  <div class="hx-selector"
     :data-value="value"
     ref="hxSelector"
     :required="!!required ? 'required' : false">
@@ -11,7 +11,7 @@
       :disabled="disabled"
       :value="_optionFilter(value)"/>
     <button v-if="value && !disabled" class="btn-clear" @click="doClear">×</button>
-    <div :class="['hx-pad-options', showOptions && 'show']" ref="padOptions" 
+    <div :class="['hx-pad-options selector', showOptions && 'show']" ref="padOptions" 
       :style="styles">
       <div class="pad-select-zone">
         <div class="btn-option" v-for="(option, idx) in options" :key="idx">
@@ -114,7 +114,7 @@ export default {
       }
       return this.placeholder
     },
-    $_init () {
+    $_initOptions () {
       this.options = []
       this.$_getKeyName()
       for (let option of this.content) {
@@ -175,7 +175,7 @@ export default {
     }
   },
   created () {
-    this.$_init()
+    this.$_initOptions()
   },
   mounted () {
     this.screenWidth = document.body.clientWidth
@@ -210,7 +210,7 @@ export default {
   watch: {
     content: {
       handler (newVal) {
-        this.$_init()
+        this.$_initOptions()
       },
       deep: true
     }

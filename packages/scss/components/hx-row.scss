@@ -190,7 +190,7 @@ $width-label-lg: 190px;
         @include transform(scale(1.0, 1.0));
       }
     }
-    img { 
+    & > img { 
       display: block;
       max-width: 100%;
     }
