@@ -39,7 +39,7 @@
       transform: translateX(0);
     }
   }
-  .mask {
+  & > .mask {
     @include block;
     background-color: rgba(0,0,0, .65);
   }
@@ -62,10 +62,10 @@
     }
   }
   // 模态框内容版
-  &>.content {
+  & > .content {
     background-color: white;
     // 模态框头部
-    >.header {
+    > .header {
       line-height: $height-normal;
       height: $height-normal;
       padding-left: $pm-md;
@@ -109,9 +109,8 @@
       }
     }
     // 模态框底部
-    .footer {
+    > .footer {
       text-align: center;
-      margin-top: $pm-md;
       padding: $pm-md $pm-md 0;
       button {
         min-width: 100px;
@@ -170,7 +169,7 @@
       }
     }
     .pad-main-content {
-      height: calc(100% - #{$height-normal*2 + $pm-sm} );
+      height: calc(100% - #{$height-normal * 2 + $pm-sm} );
       width: 100%;
       display: block;
       overflow-y: auto;
@@ -196,6 +195,7 @@
     }
     & > .footer {
       border-top: 1px solid $color-gray;
+      margin-top: $pm-md;
     }
   }
 }
@@ -214,13 +214,15 @@
         right: $pm-sm;
         top: $pm-sm;
       }
-      .header {
+      & > .header {
         height: $height-navbar;
         line-height: $height-navbar;
         border-bottom: 1px solid $color-gray-light;
         padding-left: 0;
         text-align: center;
         margin-bottom: 0;
+        display: block;
+        background-color: white;
         font: {
           size: $font-bg;
           weight: 500;

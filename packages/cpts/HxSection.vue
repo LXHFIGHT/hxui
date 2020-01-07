@@ -1,10 +1,11 @@
 <template>
   <div ref="section"
     :class="['hx-section ',
+      !title && 'no-title',
       shadow && 'shadow',
       foldable && 'foldable',
       expand && 'fold']">
-    <header class="header">
+    <header class="header" v-if="title">
       <span class="title" v-text="title"></span>
       <span class="title">
         <slot name="left"></slot>

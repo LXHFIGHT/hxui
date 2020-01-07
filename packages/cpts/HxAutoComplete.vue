@@ -26,16 +26,12 @@
   </div>
 </template>
 <script>
-import HxLoadingIcon from './HxLoadingIcon'
 import { 
   getElementToPageTop, 
   getElementToPageLeft, 
   getElementScrollTop 
 } from './../tools/dom'
 export default {
-  components: {
-    HxLoadingIcon
-  },
   data () {
     return {
       showOptions: false,
