@@ -6,6 +6,7 @@
     (blank && 'blank'), 
     (text && 'text')]" 
     @click="doClick">
+    <div v-if="dot" class="hx-dot"></div>
     <slot></slot>
   </button>
 </template>
@@ -31,6 +32,10 @@ export default {
     size: {
       type: String,
       default: 'md'
+    },
+    dot: {
+      type: [Boolean, String],
+      default: false
     }
   },
   methods: {

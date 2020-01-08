@@ -1,0 +1,21 @@
+@import "./../variable.scss";
+// 红点样式 一般出现在组件右上角，需要注意的是，
+// 添加红点的组件的 overflow 不能设置为 hidden, 且 position 不能是默认的 static
+$size-sm: 5px;
+$size-md: 8px;
+$size-bg: 11px;
+@mixin common($size) {
+  height: $size;
+  width: $size;
+  border-radius: $size;
+  top: $size / -2.3;
+  right: $size / -2.3;
+}
+.hx-dot {
+  position: absolute;
+  background-color: $color-red;
+  display: block;
+  @include common($size-md);
+  &.sm { @include common($size-sm); }
+  &.bg { @include common($size-bg); }
+}
