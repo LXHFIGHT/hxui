@@ -165,13 +165,53 @@
         float: right;
       }
     }
+    .pad-weeks {
+      height:$height-regular;
+      background-color: $color-gray-light;
+      .item {
+        height:$height-regular;
+        line-height:$height-regular;
+        font-size: 12px;
+        border: none;
+        color: $color-gray-deep;
+      }
+    }
     .pad-dates {
       .item {
+        border: none;
+        padding: $pm-sm/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         &.normal:hover {
           z-index: 10;
           transform: scale(1.1, 1.1);
           border: 1px solid $color-gray;
           box-shadow: $shadow-bg;
+        }
+        .date {
+          font-size: 17px;
+          color: $color-heavy;
+          font-weight: 400;
+        }
+        .pad-tags {
+          display: none;
+          @include hcalc(calc(100% - 24px));
+          overflow: auto;
+          .tag {
+            height: $height-normal/2;
+            line-height: $height-normal/2;
+          }
+        }
+        .text {
+          bottom: $pm-sm/2;
+          font-size: $font-sm;
+          color: $color-gray-deep;
+          margin-top: $pm-sm/2;
+          height: $font-sm;
+          line-height: $font-sm;
+          display: block;
         }
       }
     }
