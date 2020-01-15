@@ -4,18 +4,75 @@
 $size-sm: 5px;
 $size-md: 8px;
 $size-bg: 11px;
-@mixin common($size) {
+@mixin commonSize($size) {
   height: $size;
   width: $size;
   border-radius: $size;
-  top: $size / -2.3;
-  right: $size / -2.3;
 }
+@mixin commonColor($color) {
+  color: white;
+  background-color: $color;
+  &.blank {
+    box-shadow: inset 0 0 $pm-sm rgba($color, .35);
+    background-color: white;
+    color: $color;
+  }
+}
+@mixin commonText($font) {
+  height: $font + $pm-sm;
+  line-height: $font + $pm-sm;
+  min-width: $font + $pm-sm;
+  text-align: center;
+  width: auto;
+  padding: 0 $pm-sm/2;
+  font-size: $font;
+  border-radius: $font + $pm-sm;
+  color: white;
+  font-weight: 500;
+  z-index: 10;
+}
+
 .hx-dot {
   position: absolute;
   background-color: $color-red;
   display: block;
-  @include common($size-md);
-  &.sm { @include common($size-sm); }
-  &.bg { @include common($size-bg); }
+  // 颜色 color 和 level
+  &.main { @include commonColor($color-main); }
+  &.red, &.error { @include commonColor($color-red); }
+  &.green, &.success { @include commonColor($color-green); }
+  &.orange, &.warn { @include commonColor($color-orange); }
+  &.blue, &.info, &.default { @include commonColor($color-blue); }
+  &.golden { @include commonColor($color-golden); }
+  &.black, &.fatal { @include commonColor($color-black); }
+  // 大小配置 size
+  &.md {@include commonSize($size-md); }
+  &.sm { @include commonSize($size-sm); }
+  &.bg { @include commonSize($size-bg); }
+  // 带文字 text
+  &.text { @include commonText(12px); }
+  // 位置
+  &.topRight {
+    top: 0;
+    right: 0;
+    transform: translate(40%, -40%);
+    &.text { transform: translate(60%, -50%); }
+  }
+  &.topLeft {
+    left: 0;
+    top: 0;
+    transform: translate(-40%, -40%);
+    &.text { transform: translate(-60%, -50%); }
+  }
+  &.bottomLeft {
+    left: 0;
+    bottom: 0;
+    transform: translate(-40%, 40%);
+    &.text { transform: translate(-60%, 50%); }
+  }
+  &.bottomRight {
+    right: 0;
+    bottom: 0;
+    transform: translate(40%, 40%);
+    &.text { transform: translate(60%, 50%); }
+  }
 }

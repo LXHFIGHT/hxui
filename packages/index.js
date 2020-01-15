@@ -5,6 +5,7 @@ import HxCalendar from './cpts/HxCalendar'
 import HxCatalog from './cpts/HxCatalog'
 import HxCheckboxGroup from './cpts/HxCheckboxGroup'
 import HxDatetimePicker from './cpts/HxDatetimePicker'
+import HxDot from './cpts/HxDot'
 import HxHeader from './cpts/HxHeader'
 import HxImage from './cpts/HxImage'
 import HxInput from './cpts/HxInput'
@@ -72,6 +73,7 @@ export {
   HxCatalog,
   HxCheckboxGroup,
   HxDatetimePicker,
+  HxDot,
   HxHeader,
   HxImage,
   HxInput,

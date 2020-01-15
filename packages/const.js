@@ -58,7 +58,8 @@ export const Sizes = {
   BG: SIZE_BG,
   LG: SIZE_LG
 }
-export const sizeKeys = [ SIZE_XS, SIZE_SM, SIZE_MD, SIZE_BG, SIZE_LG ]
+export const sizeKeys = [SIZE_XS, SIZE_SM, SIZE_MD, SIZE_BG, SIZE_LG]
+export const sizeKeysLess = [SIZE_SM, SIZE_MD, SIZE_BG]
 export const Colors = {
   WHITE: 'white',
   GRAY_LIGHT: '#f8f8f8',
