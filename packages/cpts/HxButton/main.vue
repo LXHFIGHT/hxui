@@ -34,7 +34,7 @@ export default {
       default: 'md'
     },
     dot: {
-      type: [Boolean, String],
+      type: [Boolean, String, Number],
       default: false
     }
   },

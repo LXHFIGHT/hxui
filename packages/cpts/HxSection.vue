@@ -17,11 +17,11 @@
       </button>
       <slot name="right"></slot>
     </div>
-    <div class="pad-content">
+    <div :class="['pad-content', loading && 'loading']">
       <slot class="content">
       </slot>
       <div class="pad-loading" v-if="loading">
-        <hx-loading-icon position="center" height="35px" width="35px" :level="level">
+        <hx-loading-icon position="center" height="34px" :level="level">
           <span v-if="loadingText" v-text="loadingText"></span>
         </hx-loading-icon>
       </div>

@@ -44,6 +44,10 @@
   > .pad-content {
     display: block;
     position: relative;
+    &.loading {
+      min-height: $height-regular;
+      width: 100%;
+    }
     .pad-loading {
       @include block;
       background-color: rgba(255,255,255,.90);

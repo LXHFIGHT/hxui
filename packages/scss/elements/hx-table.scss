@@ -87,6 +87,7 @@
         min-height: $height-regular - $pm-sm / 2;
         margin: 0 $pm-sm/2 $pm-sm/2 0;
         vertical-align: top;
+        zoom: 0.9;
         &.standard {
           margin-bottom: $pm-sm/2;
         }
