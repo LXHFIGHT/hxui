@@ -1,9 +1,9 @@
 <template>
-  <div :class="['pad-loading-icon', position]" 
+  <div :class="['pad-loading-icon', position, direction]" 
     ref="padLoadingIcon"
     :style="`height: ${height};`">
     <canvas :id="id" :class="`hx-loading-canvas`"></canvas>
-    <span class="text-loading" :style="`color: ${mainColor}`">
+    <span class="text-loading" :style="`color: ${mainColor}; height: ${height}; line-height: ${height};`">
       <slot></slot>
     </span>
   </div>
@@ -45,6 +45,13 @@ export default {
     },
     position: {
       type: String 
+    },
+    direction: { // 加载中文本和加载动画的布局方式，分别有 “row 在同一行” 以及 “column 在同一列（默认）”
+      type: String,
+      validator (data) {
+        return ['row', 'column'].includes(data)
+      },
+      default: 'column'
     }
   },
   methods: {

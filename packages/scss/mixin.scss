@@ -11,27 +11,6 @@
   transform: $content;
 }
 
-/* 混入CSS3代码 例如要width: 100% - 60px只需要 @include calc(width, "100% - 60px") */
-//@mixin calc($property, $expression) {
-//  #{$property}: -webkit-calc(#{$expression});
-//  #{$property}: -moz-calc(#{$expression});
-//  #{$property}: calc(#{$expression});
-//}
-// 宽度计算 @include wcalc(calc(100% * 2 /3 - 6rem))
-
-@mixin wcalc($exp) {
-  width: -moz-$exp;
-  width: -webkit-$exp;
-  width: $exp;
-}
-
-// 高度度计算 @include hcalc(calc(100% * 2 /3 - 6rem))
-@mixin hcalc($exp) {
-  height: -moz-$exp;
-  height: -webkit-$exp;
-  height: $exp;
-}
-
 // 左上角和右上角圆角属性
 @mixin borderRadiusTop($value){
   border-top-left-radius: $value;
@@ -101,7 +80,11 @@
 @mixin hxButton($bgColor, $color: white, $height:34px) {
   height: $height;
   padding: 0 10px;
-  background-color: $bgColor;
+  @if $bgColor == white {
+    background-color: $bgColor;
+  } @else {
+    background-color: $bgColor!important;
+  }
   font: {
     weight: 400;
     size: 14px;

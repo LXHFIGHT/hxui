@@ -79,7 +79,7 @@ $color-light-font: $color-heavy;
     }
   }
   .sidebar-buttons {
-    @include hcalc(calc(100% - #{$height-navbar}));
+    height: calc(100% - #{$height-navbar});
     display: block;
     overflow-y: auto;
     overflow-x: hidden;
@@ -314,7 +314,7 @@ $color-light-font: $color-heavy;
       }
     }
     .sidebar-buttons {
-      @include hcalc(calc(100% - #{$height-navbar + $height-regular}));
+      height: calc(100% - #{$height-navbar + $height-regular});
       display: block;
       overflow-y: auto;
       overflow-x: hidden;

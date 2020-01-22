@@ -111,7 +111,7 @@
       }
       .pad-tags {
         margin-top: $pm-sm/2;
-        @include hcalc(calc(100% - 28px));
+        height: calc(100% - 28px);
         overflow: auto;
         .tag {
           background-color: $color-main;
@@ -197,7 +197,7 @@
         }
         .pad-tags {
           display: none;
-          @include hcalc(calc(100% - 24px));
+          height: calc(100% - 24px);
           overflow: auto;
           .tag {
             height: $height-normal/2;
@@ -267,7 +267,7 @@
         }
         .pad-tags {
           display: none;
-          @include hcalc(calc(100% - 24px));
+          height: calc(100% - 24px);
           overflow: auto;
           .tag {
             height: $height-normal/2;

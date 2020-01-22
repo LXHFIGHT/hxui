@@ -6,7 +6,7 @@
     (blank && 'blank'), 
     (text && 'text')]" 
     @click="doClick">
-    <div v-if="dot" class="hx-dot"></div>
+    <div v-if="dot" class="hx-dot topRight md"></div>
     <slot></slot>
   </button>
 </template>
@@ -34,7 +34,7 @@ export default {
       default: 'md'
     },
     dot: {
-      type: [Boolean, String],
+      type: [Boolean, String, Number],
       default: false
     }
   },

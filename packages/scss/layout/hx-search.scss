@@ -5,7 +5,7 @@
     .hx-advance-search {
       margin: (-$pm-md) 0 $pm-md (-$pm-md);
       border-radius: 0;
-      @include wcalc(calc(100% + 32px));
+      width: calc(100% + 32px);
       position: sticky;
       top: -$pm-md;
       left: 0;
@@ -79,7 +79,7 @@
     margin-top: -$md;
     margin-left: -$md;
     position: sticky;
-    @include wcalc(calc(100% + #{2 * $md}));
+    width: calc(100% + #{2 * $md});
   }
   .hx-advance-search {
     width: 100%;

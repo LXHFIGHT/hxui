@@ -3,7 +3,7 @@
 .hx-content {
   position: relative;
   &.no-footer, &.no-header{
-    @include hcalc(calc(100% - 50px));
+    height: calc(100% - #{height-navbar});
   }
   &.no-footer.no-header{
     height: 100%;
@@ -12,7 +12,7 @@
     padding: $height-navbar;
   }
   background-color: $color-gray-light;
-  @include hcalc(calc(100% - 100px)); // 92px是头部（42px）加上底部（50px）
+  height: calc(100% - 100px); // 92px是头部（42px）加上底部（50px）
   width: 100%;
   overflow-y: auto;
 }

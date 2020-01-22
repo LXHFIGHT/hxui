@@ -3,12 +3,30 @@
  *  通过组合 hx-row 构建管理后台具有交互性的表单页面
  */
 @import "./../variable.scss";
+@mixin sectionLevelMixin($color) {
+  > .header::before {
+    background-color: $color;
+  }
+  .side-tag {
+    color: rgba($color, .2);
+  }
+  button {
+    background-color: $color;
+    color: white;
+  }
+}
 .hx-section {
   border: 1px solid $color-gray;
   position: relative;
   margin-bottom: $pm-md;
   overflow: hidden;
   background-color: white;
+  &.info, &.blue { @include sectionLevelMixin($color-blue); }
+  &.success, &.green { @include sectionLevelMixin($color-green); }
+  &.error, &.red { @include sectionLevelMixin($color-red); }
+  &.warn, &.orange { @include sectionLevelMixin($color-orange); }
+  &.fatal, &.black { @include sectionLevelMixin($color-black); }
+  &.main { @include sectionLevelMixin($color-main); }
   > .header {
     top: 0;
     left: 0;
@@ -30,7 +48,6 @@
       content: "";
       height: $height-navbar/2;
       width: 3px;
-      background-color: $color-main;
       @include centerVertical;
       display: block;
       left: $pm-md;
@@ -124,11 +141,11 @@
     }
     &.half {
       display: inline-block;
-      @include wcalc(calc(50% - 8px));
+      width: calc(50% - #{$pm-sm});
     }
     &.one-third {
       display: inline-block;
-      @include wcalc(calc(33.33% - 8px));
+      width: calc(33.33% - #{$pm-sm});
     }
   }
 }

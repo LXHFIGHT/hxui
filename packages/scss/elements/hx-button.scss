@@ -34,16 +34,16 @@
     @include loading($height-regular - 10px, $height-regular - 10px, 5px, $pm-md);
     border: 1px solid $color-gray!important;
   }
-  &.main    {  @include hxButton($color-main);  }
-  &.gray    {  @include hxButton($color-gray-deep);  }
-  &.orange, &.warn {  @include hxButton($color-orange);  }
-  &.red, &.error {  @include hxButton($color-red);  }
-  &.blue, &.info {  @include hxButton($color-blue);  }
-  &.green, &.success {  @include hxButton($color-green);  }
-  &.excel   {  @include hxButton($color-green-excel);  }
-  &.pink    {  @include hxButton($color-pink);  }
-  &.black, &.fatal    {  @include hxButton($color-black);  }
-  &.yellow  {  @include hxButton($color-golden);  }
+  &.main {  @include hxButton($color-main); }
+  &.gray {  @include hxButton($color-gray-deep); }
+  &.orange, &.warn {  @include hxButton($color-orange); }
+  &.red, &.error {  @include hxButton($color-red); }
+  &.blue, &.info {  @include hxButton($color-blue); }
+  &.green, &.success {  @include hxButton($color-green); }
+  &.excel {  @include hxButton($color-green-excel); }
+  &.pink {  @include hxButton($color-pink);  }
+  &.black, &.fatal {  @include hxButton($color-black);  }
+  &.yellow {  @include hxButton($color-golden);  }
 }
 
 // 空心按钮

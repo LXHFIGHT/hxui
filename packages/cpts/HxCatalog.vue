@@ -100,7 +100,7 @@ export default {
       return typeof obj === 'string'
     },
     doInitSelection (item) { // 初始化当前目录
-      if (typeof this.validator === 'function' && typeof item !== 'object') {
+      if (typeof this.validator !== 'function' || typeof item !== 'object') {
         return false
       }
       if (this.validator(item)) {

@@ -38,7 +38,7 @@
     height: $height-regular!important;
     text-align: center;
     border-radius: 0;
-    @include wcalc(calc(100% - 76px));
+    width: calc(100% - 76px);
   }
 }
 
@@ -66,7 +66,7 @@
     }
     input {
       height: $height-normal;
-      @include wcalc(calc(100% - 52px));
+      width: calc(100% - #{$height-navbar});
     }
   }
 }

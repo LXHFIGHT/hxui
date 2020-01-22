@@ -4,6 +4,7 @@
       !title && 'no-title',
       shadow && 'shadow',
       foldable && 'foldable',
+      level,
       expand && 'fold']">
     <header class="header" v-if="title">
       <span class="title" v-text="title"></span>
@@ -21,7 +22,7 @@
       <slot class="content">
       </slot>
       <div class="pad-loading" v-if="loading">
-        <hx-loading-icon position="center" height="34px" :level="level">
+        <hx-loading-icon position="center" height="34px" :level="level" direction="row">
           <span v-if="loadingText" v-text="loadingText"></span>
         </hx-loading-icon>
       </div>

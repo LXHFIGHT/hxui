@@ -12,13 +12,22 @@
   position: relative;
   &.center {
     @include centerInParent;
+    top: 40%;
+  }
+  &.row {
+    .text-loading {
+      display: inline-block;
+      margin-left: $pm-md;
+      vertical-align: top;
+      margin-top: 0;
+    }
   }
   .hx-loading-canvas {
     animation: rotating 6s linear infinite;
   }
   .text-loading {
     font-size: $font-md;
-    margin-top: $pm-sm;
+    margin-top: $pm-sm / 2;
     display: block;
     animation: breatheOpacity 3s infinite;
   }

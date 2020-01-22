@@ -106,7 +106,7 @@ td[id|=tangram-suggestion] {
     }
   }
   .pad-poi {
-    @include hcalc(calc(60% - 42px));
+    height: calc(60% - #{height-normal});
     background-color: white;
     display: block;
     float: left;
@@ -202,7 +202,7 @@ td[id|=tangram-suggestion] {
       .pad-address-selector {
         height: $height-navbar;
         input {
-          @include wcalc(calc(100% - 50px));
+          width: calc(100% - #{$height-navbar});
         }
         .btn-close-modal {
           width: $height-navbar;
