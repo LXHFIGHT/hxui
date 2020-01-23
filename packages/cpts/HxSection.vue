@@ -1,7 +1,6 @@
 <template>
   <div ref="section"
     :class="['hx-section ',
-      !title && 'no-title',
       shadow && 'shadow',
       foldable && 'foldable',
       level,
@@ -14,6 +13,7 @@
     </header>
     <div class="right">
       <button class="hx-button btn-toggle" @click="doToggleFold" v-if="foldable">
+        {{ expand ? '展开' : '收起' }}
         <img class="icon-toggle" src="./../img/icon/icon-caret-down.png" alt="">
       </button>
       <slot name="right"></slot>
@@ -57,7 +57,7 @@ export default {
   props: {
     title: String,
     loading: {
-      type: Boolean,
+      type: [Boolean, String, Number],
       default: false
     },
     loadingText: {
@@ -70,6 +70,10 @@ export default {
     foldable: {
       type: Boolean,
       default: false
+    },
+    foldedHeight: { // 折叠状态的高度
+      type: String,
+      default: '50px'
     },
     tag: {
       type: String
@@ -84,6 +88,12 @@ export default {
   },
   methods: {
     doToggleFold () {
+      const $view = this.$refs.section
+      if (!this.expand) {
+        $view.style.height = this.foldedHeight
+      } else {
+        $view.style.height = 'unset'
+      }
       this.expand = !this.expand
     }
   }
