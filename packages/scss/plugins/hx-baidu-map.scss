@@ -106,7 +106,7 @@ td[id|=tangram-suggestion] {
     }
   }
   .pad-poi {
-    height: calc(60% - #{height-normal});
+    height: calc(60% - #{$height-normal});
     background-color: white;
     display: block;
     float: left;

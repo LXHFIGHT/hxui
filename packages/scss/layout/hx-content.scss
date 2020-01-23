@@ -3,7 +3,7 @@
 .hx-content {
   position: relative;
   &.no-footer, &.no-header{
-    height: calc(100% - #{height-navbar});
+    height: calc(100% - #{$height-navbar});
   }
   &.no-footer.no-header{
     height: 100%;
