@@ -5,7 +5,7 @@ $size-sm: 5px;
 $size-md: 8px;
 $size-bg: 11px;
 @mixin commonSize($size) {
-  height: $size + 1px;
+  height: $size;
   width: $size;
   border-radius: $size;
 }
