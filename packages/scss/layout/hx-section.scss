@@ -10,9 +10,11 @@
   .side-tag {
     color: rgba($color, .2);
   }
-  button {
-    background-color: $color;
-    color: white;
+  > .right {
+    button {
+      background-color: $color;
+      color: white;
+    }
   }
 }
 .hx-section {

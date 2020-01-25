@@ -42,7 +42,7 @@
  */
 import iconCaretDown from './../img/icon/icon-caret-down.png'
 import HxLoadingIcon from './HxLoadingIcon'
-import { levelKeys, Levels } from './../const'
+import { levelKeys } from './../const'
 export default {
   name: 'hx-section',
   data () {
@@ -83,7 +83,7 @@ export default {
       validator (data) {
         return levelKeys.includes(data)
       },
-      default: Levels.INFO
+      default: 'main'
     }
   },
   methods: {
