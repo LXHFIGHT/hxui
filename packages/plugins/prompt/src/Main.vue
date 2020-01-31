@@ -25,7 +25,7 @@
         <button class="hx-button btn-cancel"
           v-text="cancelText"
           @click="destroyElement"></button>
-        <button class="hx-button main btn-confirm"
+        <button :class="['hx-button btn-confirm', level || 'main']"
           v-text="confirmText"
           @click="doConfirm"></button>
       </footer>

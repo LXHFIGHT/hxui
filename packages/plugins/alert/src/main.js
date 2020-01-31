@@ -3,7 +3,8 @@ import { Vue } from './../../../tools/object'
 
 const AlertConstructor = Vue.extend(Main)
 let alertQueue = []
-const Alert = function (text) {
+const Alert = function (...params) {
+  console.log(params)
   if (alertQueue[0] && alertQueue[0].$el.parentNode) {
     alertQueue[0].$el.parentNode.removeChild(alertQueue[0].$el)
     alertQueue[0].$destroy(true)
@@ -11,7 +12,7 @@ const Alert = function (text) {
   }
   const instance = new AlertConstructor({
     data: {
-      text
+      text: params || ''
     }
   })
   instance.vm = instance.$mount()

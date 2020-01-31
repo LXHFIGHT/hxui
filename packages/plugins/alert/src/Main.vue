@@ -2,7 +2,7 @@
   <div :class="['hx-modal confirm', show && 'show']">
     <div class="mask" style="opacity: .6"></div>
     <div class="content">
-      <div class="alert-content" v-text="text"></div>
+      <div class="alert-content" v-text="content"></div>
       <footer class="footer">
         <button class="hx-button main btn-confirm"
           @click="destroyElement">
@@ -18,12 +18,24 @@ export default {
   data () {
     return {
       text: '',
+      content: '',
       show: false,
       fadeInTimer: null,
       fadeOutTimer: null
     }
   },
   methods: {
+    $_initContent () {
+      const result = []
+      for (let param of this.text) {
+        if (typeof param === 'object') {
+          result.push(JSON.stringify(param))
+        } else {
+          result.push(param)
+        }
+      }
+      this.content = result.join(' ')
+    },
     destroyElement () {
       this.show = false
       this.fadeOutTimer = setTimeout(() => {
@@ -43,6 +55,7 @@ export default {
   },
   mounted () {
     this.startTimer()
+    this.$_initContent()
   },
   beforeDestroy () {
     clearTimeout(this.fadeInTimer)

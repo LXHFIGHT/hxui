@@ -3,13 +3,14 @@
     <div class="mask" @click="destroyElement"></div>
     <div class="content">
       <header class="header" v-text="title"></header>
-      <div class="confirm-content" v-if="text" v-text="text"></div>
+      <div class="confirm-content" v-if="text && !html" v-text="text"></div>
       <div class="confirm-content" v-if="html" v-html="html"></div>
       <footer class="footer">
         <button class="hx-button btn-cancel"
           v-text="cancelText"
-          @click="doCancel"></button>
-        <button class="hx-button main btn-confirm"
+          @click="doCancel">
+        </button>
+        <button :class="['hx-button btn-confirm', level || 'main']"
           v-text="confirmText"
           @click="doConfirm">
         </button>

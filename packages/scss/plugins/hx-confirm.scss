@@ -1,5 +1,17 @@
 @import "./../variable.scss";
-
+@mixin promptInputer ($color) {
+  .prompt-content > textarea,
+  .prompt-content > .hx-input  {
+    &:focus {
+      border: 1px solid $color;
+    }
+  }
+  .prompt-content > .inputer-number  {
+    &:focus {
+      border-bottom: 1px solid $color;
+    }
+  }
+}
 .hx-modal.confirm {
   .content {
     .header, .footer { 
@@ -27,6 +39,11 @@
   .hx-input {
     width: 100%;
   }
+  &.info, &.default, &.blue { @include promptInputer($color-blue); } 
+  &.success { @include promptInputer($color-green); } 
+  &.warn { @include promptInputer($color-orange); } 
+  &.error { @include promptInputer($color-red); } 
+  &.fatal { @include promptInputer($color-black); } 
 }
 
 @media screen and (min-width: 640px) {
@@ -43,7 +60,7 @@
         font-size: $font-md;
       }
       .alert-content {
-        padding: $pm-lg $pm-md $pm-md;
+        padding: $pm-bg*2 $pm-md $pm-md;
         font-size: $font-bg;
         font-weight: 500;
         text-align: center;

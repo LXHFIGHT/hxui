@@ -11,15 +11,18 @@ $height-admin-navbar: 50px;
   display: block;
   z-index: 10;
   position: relative;
-  
-  box-shadow: $shadow-md;
+  // box-shadow: $shadow-md;
+  & > .hx-container {
+    border-bottom: 1px solid $color-gray;
+  }
   .nav-left, .nav-right {
     display: inline-block;
     height: $height-navbar;
     position: relative;
     padding: $height-navbar / 4;
     .logo {
-      height: $height-navbar / 2;
+      height: $height-navbar / 2.5;
+      margin-top: ($height-navbar / 2 - $height-navbar / 2.5)/2;
     }
     .title {
       height: $height-navbar / 2;

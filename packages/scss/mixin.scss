@@ -134,7 +134,7 @@
 
 @mixin hxBlankButton($bgColor, $color: white, $height:34px) {
   border: 1px solid $bgColor;
-  background-color: $color;
+  background-color: $color!important;
   color: $bgColor;
   transition: all .4s;
   height: $height;
@@ -154,7 +154,7 @@
   height: $height;
   padding: 0 8px;
   font-size: 14px;
-  background-color: transparent;
+  background-color: transparent!important;
   &:hover{
     color: darken($color, 5%);
     background-color: $color-gray-light!important;
