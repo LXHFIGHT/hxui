@@ -7,12 +7,12 @@
   max-width: 60%;
   z-index: 10000;
   color: rgba(255, 255, 255, .9);
-  transition: all .2s;
   &.success { background-color: $color-green; }
   &.warn { background-color: $color-orange; }
   &.error { background-color: $color-red; }
   &.default { background-color:#aaa; }
   &.info { background-color: $color-blue; }
+  &.fatal { background-color: $color-black; }
 }
 
 @media screen and (min-width: 640px) {
@@ -23,6 +23,7 @@
     height: auto;
     padding: ($pm-md - 3px) $pm-md;
     border-radius: $border-radius-md;
+    transition: all .2s;
     &.top {
       top: 0;
       @include centerHorizontal();
@@ -86,27 +87,51 @@
 
 @media screen and (max-width: 640px){
   .hx-toast {
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    max-width: calc(100% - #{2 * $pm-md});
+    border-radius: $pm-sm;
     text-align: center;
-    background-color: rgba(0,0,0,.75)!important;
+    background-color: rgba(0,0,0,.73)!important;
     color: rgba(255, 255, 255, .9);
     position: fixed;
-    font-size: $font-sm;
+    font-size: $font-md;
     padding: $pm-md $pm-md $pm-bg;
-    max-width: 100%;
     line-height: $font-sm * 2;
-    transform: translateY(100%);
-    &.show {
-      transform: translateY(0);
+    display: block;
+    &.default, &.bottom {
+      bottom: 0;
+      left: 50%;
+      transition: transform .3s;
+      transform: translate(-50%, 100%);
+      width: calc(100% - #{2 * $pm-md});
+      &.show {
+        transform: translate(-50%, -16px);
+      }
     }
-    &.success:before,
-    &.warn:before,
-    &.error:before,
-    &.default:before {
+    &.center {
+      top: 50%;
+      left: 50%;
+      opacity: .0;
+      width: 70%;
+      transform: translate(-50%, -50%) scale(1.2, 1.2);
+      transition: transform .3s, opacity .3s;
+      &.show {
+        opacity: 1.0;
+        transform: translate(-50%, -50%) scale(1.0, 1.0);
+      }
+    }
+    &.top {
+      top: 0;
+      left: 50%;
+      transition: transform .3s;
+      transform: translate(-50%, -100%);
+      width: calc(100% - #{2 * $pm-md});
+      &.show {
+        transform: translate(-50%, 16px);
+      }
+    }
+    &::before {
       content: '';
-      width: 30%;
+      width: 20%;
       position: absolute;
       bottom: $pm-sm;
       height: 4px;
@@ -119,5 +144,6 @@
     &.error:before { background-color: $color-red; }
     &.default:before { background-color: #aaa; }
     &.info:before { background-color: $color-blue; }
+    &.fatal:before { background-color: white; }
   }
 }

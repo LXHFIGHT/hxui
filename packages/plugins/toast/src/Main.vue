@@ -2,7 +2,10 @@
   <div :class="['hx-toast',
     position,
     level,
-    (isShow ? 'show' : '')]" v-text="text"></div>
+    (isShow ? 'show' : '')]">
+    <span v-if="text" v-text="text"></span>
+    <span v-if="html" v-html="html"></span>
+  </div>
 </template>
 
 <script>
@@ -14,8 +17,9 @@ export default {
       fadeOutTimer: {},
       fadeInTimer: {},
       text: '',
-      position: '',
-      level: Levels.DEFAULT,
+      html: '',
+      position: 'default',
+      level: Levels.INFO,
       during: 1500
     }
   },

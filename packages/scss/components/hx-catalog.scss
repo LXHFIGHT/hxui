@@ -4,136 +4,136 @@
   display: inline-block;
   width: 100%;
   .section-first  {
-      width: 100%;
+    width: 100%;
+    display: block;
+    margin-bottom: $pm-md;
+    & > .btn-main{
+      color: $color-dark;
+      font-weight: 800;
+      font-size: 16px;
+      height: $height-navbar;
+    }
+    & .section-second {
+      transform: scaleY(.0);
+      display: none;
+    }
+    &.opened .section-second {
+      transform: scaleY(1.0);
       display: block;
-      margin-bottom: $pm-md;
-      & > .btn-main{
-          color: $color-dark;
-          font-weight: 800;
-          font-size: 16px;
-          height: $height-navbar;
-      }
-      & .section-second {
-          transform: scaleY(.0);
-          display: none;
-      }
-      &.opened .section-second {
-          transform: scaleY(1.0);
-          display: block;
-      }
+    }
   }
   .section-second {
-      .btn-main {
-          font-size: 14px;
-          height: $height-normal;
-          color: $color-heavy;
-      }
-      & .section-third {
-          transform: scaleY(.0);
-          display: none;
-      }
-      &.opened .section-third {
-          transform: scaleY(1.0);
-          display: block;
-      }
+    .btn-main {
+      font-size: 14px;
+      height: $height-normal;
+      color: $color-heavy;
+    }
+    & .section-third {
+      transform: scaleY(.0);
+      display: none;
+    }
+    &.opened .section-third {
+      transform: scaleY(1.0);
+      display: block;
+    }
   }
   .section-third { 
-      & > .btn-main {
-          font-size: 12px;
-          height: $height-normal;
-      }
+    & > .btn-main {
+      font-size: 12px;
+      height: $height-normal;
+    }
   }
   .section {
-      .btn-main {
-          width: 100%;
-          background-color: transparent;
-          text-align: left;
-          position: relative;
-          padding: 0 0 0 $pm-sm;
-          transition: background-color .4s;
-          @include nowrap;
-          &.option {
-              cursor: pointer;
-          }
-          &.selected {
-              background-color: $color-gray-light;
-              .btn-toggle {
-                  img {
-                      opacity: 1.0;
-                  }
-              }
-          }
-          &::before {
-              content: '';
-              height: 50%;
-              width: 3px;
-              background-color: transparent;
-              display: inline-block;
-              position: absolute;
-              left: 0;
-              top: 25%;
-              transition: background-color .4s;
-          }
-          &:hover {
-              &::before {
-                  background-color: $color-gray;
-              }
-              &.option::before {
-                  background-color: $color-main;
-              }
-              .btn-toggle {
-                  img {
-                      opacity: 1.0;
-                  }
-              }
-          }
+    .btn-main {
+      width: 100%;
+      background-color: transparent;
+      text-align: left;
+      position: relative;
+      padding-left: $pm-md;
+      transition: background-color .4s;
+      @include nowrap;
+      &.option {
+        cursor: pointer;
       }
-      &.opened>.btn-main img {
-          transform: rotate(0);
-      }
-      .btn-toggle {
-          @include centerVertical;
-          height: $height-navbar/2;
-          width: $height-navbar/2;
-          padding: $pm-sm/2;
-          position: absolute;
-          right: $pm-sm;
-          background-color: transparent;
-          border-radius: 50%;
+      &.selected {
+        background-color: $color-gray-light;
+        .btn-toggle {
           img {
-              opacity: .0;
-              height: 100%;
-              width: 100%;
-              transform: rotate(-180deg);
-              transition: transform .4s;
+            opacity: 1.0;
           }
-          &.go {
-              img {
-                  transform: rotate(-90deg)!important;
-              }
-          }
-          &:hover {
-              background-color: #f6f6f6;
-          }
-          &:active {
-              background-color: #f2f2f2;
-          }
+        }
       }
-      .text-title {
-          padding-left: $pm-sm; 
-          height: $height-regular;
-          line-height: $height-regular;
-          font-size: 14px;
-          display: block;
-          color: $color-gray-deep;
-          @include nowrap;
+      &::before {
+        content: '';
+        height: 50%;
+        width: 3px;
+        background-color: transparent;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 25%;
+        transition: background-color .4s;
       }
-      .divider {
-          height: 1px;
-          display: block;
-          margin: $pm-sm 0;
-          width: 100%;
+      &:hover {
+        &::before {
           background-color: $color-gray;
+        }
+        &.option::before {
+          background-color: $color-main;
+        }
+        .btn-toggle {
+          img {
+            opacity: 1.0;
+          }
+        }
       }
+    }
+    &.opened>.btn-main img {
+      transform: rotate(0);
+    }
+    .btn-toggle {
+      @include centerVertical;
+      height: $height-navbar/2;
+      width: $height-navbar/2;
+      padding: $pm-sm/2;
+      position: absolute;
+      right: $pm-sm;
+      background-color: transparent;
+      border-radius: 50%;
+      img {
+        opacity: .0;
+        height: 100%;
+        width: 100%;
+        transform: rotate(-180deg);
+        transition: transform .4s;
+      }
+      &.go {
+        img {
+          transform: rotate(-90deg)!important;
+        }
+      }
+      &:hover {
+        background-color: #f6f6f6;
+      }
+      &:active {
+        background-color: #f2f2f2;
+      }
+    }
+    .text-title {
+      padding-left: $pm-md; 
+      height: $height-regular;
+      line-height: $height-regular;
+      font-size: 14px;
+      display: block;
+      color: $color-gray-deep;
+      @include nowrap;
+    }
+    .divider {
+      height: 1px;
+      display: block;
+      margin: $pm-sm 0;
+      width: 100%;
+      background-color: $color-gray;
+    }
   }
 }

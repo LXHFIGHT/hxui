@@ -12,7 +12,7 @@ $height-admin-navbar: 50px;
   z-index: 10;
   position: relative;
   // box-shadow: $shadow-md;
-  & > .hx-container {
+  & > .container {
     border-bottom: 1px solid $color-gray;
   }
   .nav-left, .nav-right {

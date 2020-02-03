@@ -1,6 +1,6 @@
 <template>
   <nav :class="['hx-nav', isAdmin && 'admin']">
-    <div :class="isAdmin ? '' : 'hx-container'">
+    <div class="container">
       <div class="nav-left">
         <img class="logo" :src="logo" alt="">
         <span class="title" v-if="title" v-text="title"></span>
