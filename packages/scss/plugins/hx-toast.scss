@@ -10,7 +10,6 @@
   &.success { background-color: $color-green; }
   &.warn { background-color: $color-orange; }
   &.error { background-color: $color-red; }
-  &.default { background-color:#aaa; }
   &.info { background-color: $color-blue; }
   &.fatal { background-color: $color-black; }
 }
@@ -24,7 +23,7 @@
     padding: ($pm-md - 3px) $pm-md;
     border-radius: $border-radius-md;
     transition: all .2s;
-    &.top {
+    &.top, &.default {
       top: 0;
       @include centerHorizontal();
       transform: translate(-50%, -100%);
