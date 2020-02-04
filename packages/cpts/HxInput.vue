@@ -11,6 +11,7 @@
       :disabled="disabled"
       :value="value"
       :data-type="dataType"
+      :min-length="minLength"
       @keyup="doKeyup"
       @keydown="doKeyDown"
       @input="doInput">
@@ -20,6 +21,7 @@
       :placeholder="placeholder"
       type="text"
       :data-type="dataType"
+      :min-length="minLength"
       @blur="doBlur"
       @focus="doFocus"
       :value="value"
@@ -69,6 +71,9 @@ export default {
     },
     required: {
       type: [String, Boolean]
+    },
+    minLength: {
+      type: [String, Number]
     },
     showClearBtn: {
       type: [Boolean, String, Number],

@@ -80,8 +80,14 @@ export const Colors = {
 }
 
 export const ValueTypes = {
-  CELLPHONE: 'cellphone' // 手机类型
+  CELLPHONE: 'cellphone', // 手机类型
+  EMAIL: 'email', // 电子邮箱
+  ID_NUMBER: 'idNumber', // 身份证号
+  NUMBER: 'number' // 数字
 }
 export const valueTypeArray = [
-  ValueTypes.CELLPHONE
+  ValueTypes.CELLPHONE,
+  ValueTypes.EMAIL,
+  ValueTypes.ID_NUMBER,
+  ValueTypes.NUMBER
 ]

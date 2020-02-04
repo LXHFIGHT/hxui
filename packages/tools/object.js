@@ -7,13 +7,10 @@
 import vue from 'vue' // 如果Vue是由npm管理的选择此项
 // const vue = window.Vue
 
-export const isPhone = (phone) => {
-  if (!phone) {
-    return false
-  }
-  return /^1[3456789]\d{9}$/.test(phone)
-}
-
+export const cellphoneRegExp = /^1[3456789]\d{9}$/
+export const emailRegExp = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/
+export const idNumberRegExp = /^[1-9]\d{5}((1\d)|(2\d)|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/ // 身份证类型验证
+export const numberRegExp = /^-?[0-9]*\.?[0-9]*$/ // 数字类型验证
 /**
  * 生成随机数
  * @param options 随机生成对象

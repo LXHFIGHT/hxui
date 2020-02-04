@@ -4,7 +4,12 @@
  * Description:
  *
  */
-import { isPhone } from './../../tools/object'
+import { 
+  cellphoneRegExp,
+  emailRegExp,
+  idNumberRegExp,
+  numberRegExp
+} from './../../tools/object'
 import { $, getChildByClassName } from './../../tools/dom'
 import toast from './../toast'
 
@@ -55,27 +60,35 @@ const _validateRequired = (query) => {
   return result
 }
 
-const _validatePhone = (query) => {
-  let components = $(query ? (query + ' [data-type=cellphone]') : '[data-type=cellphone]')
+const _validateType = (query, attr, regExp) => {
+  let components = $(query ? (query + ' ' + attr) : attr)
   let result = true
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
-    console.log('Value', components[i], $view.value)
-    if (!isPhone($view.value)) {
+    if (!regExp.test($view.value)) {
       result = false
       _setInvalidStatus($view)
     }
   }
   return result
 }
-
-const _validateEmail = (query) => {
-  let components = $(query ? (query + ' [type=email]') : '[type=email]')
+const _validateLength = (query, type) => {
   let result = true
-  const regExp = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/
+  let components = type === 'max' 
+    ? $(query ? (query + ' [max-length]') : '[max-length]') 
+    : $(query ? (query + ' [min-length]') : '[min-length]')
   for (let i = 0; i < components.length; i++) {
     const $view = components[i]
-    if (!regExp.test($view.value)) {
+    let length = type === 'max' 
+      ? parseInt($view.getAttribute('max-length')) 
+      : parseInt($view.getAttribute('min-length'))
+    let content = $view.value || ''
+    console.log(type, 'The Length is :', length, (type === 'min' && content.length < length))
+    if (isNaN(length)) {
+      console.warn('存在部分表单组件的 max-length 或 min-length 属性值不是填写整数，故不生效，请检查')
+      continue
+    }
+    if ((type === 'max' && content.length > length) || (type === 'min' && content.length < length)) {
       result = false
       _setInvalidStatus($view)
     }
@@ -86,8 +99,12 @@ const _validateEmail = (query) => {
 const smartValidate = (query) => {
   const result = []
   !_validateRequired(query) && result.push('完善所有必填项')
-  !_validatePhone(query) && result.push('检测手机格式是否正确')
-  !_validateEmail(query) && result.push('检测邮箱信息是否正确')
+  !_validateType(query, '[data-type=cellphone]', cellphoneRegExp) && result.push('检查手机格式是否正确')
+  !_validateType(query, '[data-type=email]', emailRegExp) && result.push('检查邮箱信息是否正确')
+  !_validateType(query, '[data-type=idNumber]', idNumberRegExp) && result.push('检查身份证号格式是否正确')
+  !_validateType(query, '[data-type=number]', numberRegExp) && result.push('检查是否为数字类型')
+  !_validateLength(query, 'max') && result.push('检查内容长度是否超过最大限制')
+  !_validateLength(query, 'min') && result.push('检查内容长度是否低于最小限制')
   if (result.length) {
     toast({
       text: `请${result.join(', ')}`,
