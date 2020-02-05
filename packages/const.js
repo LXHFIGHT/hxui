@@ -7,6 +7,7 @@ const WARN = 'warn'
 const ERROR = 'error'
 const SUCCESS = 'success'
 const FATAL = 'fatal'
+const MAIN = 'main'
 
 export const Levels = {
   INFO,
@@ -14,9 +15,10 @@ export const Levels = {
   WARN,
   ERROR,
   SUCCESS,
-  FATAL
+  FATAL,
+  MAIN
 }
-export const levelKeys = [INFO, DEFAULT, WARN, ERROR, SUCCESS, FATAL]
+export const levelKeys = [INFO, DEFAULT, WARN, ERROR, SUCCESS, FATAL, MAIN]
 export const levelArray = [
   { key: INFO, color: 'cornflowerblue', text: '提示' },
   { key: DEFAULT, color: 'cornflowerblue', text: '提示' },
