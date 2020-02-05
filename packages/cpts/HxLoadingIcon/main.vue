@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { levelFilter } from './../../const'
+import { levelFilter, levelKeys } from './../../const'
 export default {
   name: 'hx-loading-icon',
   data () {
@@ -36,7 +36,7 @@ export default {
     level: {
       type: String,
       validator (data) {
-        return ['info', 'success', 'error', 'warn', 'fatal'].includes(data)
+        return levelKeys.includes(data)
       },
       default: 'info'
     },
@@ -44,7 +44,7 @@ export default {
       type: String
     },
     position: {
-      type: String 
+      type: String
     },
     direction: { // 加载中文本和加载动画的布局方式，分别有 “row 在同一行” 以及 “column 在同一列（默认）”
       type: String,
