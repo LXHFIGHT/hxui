@@ -8,10 +8,29 @@
  */
 
 @import "./../variable.scss";
-@mixin labelSize ($width) {
+@mixin labelSize ($width, $offset: 0) {
   & > label { width: $width; }
-  & > .content { width: calc(100% - #{$width}); }
+  & > .content { width: calc(100% - #{$width + $offset}); }
   & > .text-tips { padding-left: $width + $pm-sm; }
+}
+@mixin oneline () {
+  & > label {
+    width: 100%!important;
+    .label-tips {
+      display: inline-block;
+      margin-left: $pm-sm;
+      font-size: $font-md;
+      line-height: $height-regular;
+      height: $height-regular;
+    }
+  }
+  & > .content {
+    width: 100%!important;
+    max-width: 100%!important;
+  }
+  & > .text-tips {
+    padding-left: $pm-sm;
+  }
 }
 
 $width-label-sm: 80px;
@@ -23,11 +42,9 @@ $width-label-lg: 190px;
   padding: 0;
   color: $color-dark;
   font-size: 0;
-
   & + .hx-row {
     margin-top: $pm-sm * 1.5;
   }
-
   // 居中样式
   &.center { text-align: center; }
   &.right { text-align: right; } 
@@ -41,23 +58,7 @@ $width-label-lg: 190px;
   }
   // 标签和行内容各占一行
   &.oneline {
-    & > label {
-      width: 100%!important;
-      .label-tips {
-        display: inline-block;
-        margin-left: $pm-sm;
-        font-size: $font-md;
-        line-height: $height-regular;
-        height: $height-regular;
-      }
-    }
-    & > .content {
-      width: 100%!important;
-      max-width: 100%!important;
-    }
-    & > .text-tips {
-      padding-left: $pm-sm;
-    }
+    @include oneline;
   }
   // label标签大小，默认110px, sm 为 90px, md 为 150px,  bg 为 190px
   &.null-label {
@@ -69,18 +70,12 @@ $width-label-lg: 190px;
     }
     .text-tips { padding-left: $pm-sm; }
   }
-  &.sm-label { @include labelSize($width-label-sm); }
-  &.md-label { @include labelSize($width-label-md); }
-  &.bg-label { @include labelSize($width-label-bg); }
-  &.lg-label { @include labelSize($width-label-lg); }
-  
   label, .content{
     min-height: $height-regular;
     display: inline-block;
     font-size: $font-md;
     vertical-align: top;
   }
-
   // 左侧表单内容文案
   & > label {
     line-height: $height-regular;
@@ -220,19 +215,31 @@ $width-label-lg: 190px;
   }
 }
 
+@media screen and (min-width: 640px) {
+  .hx-row {
+    &.half {
+      width: 50%;
+      display: inline-block;
+    }
+    &.sm-label { @include labelSize($width-label-sm); }
+    &.md-label { @include labelSize($width-label-md); }
+    &.bg-label { @include labelSize($width-label-bg); }
+    &.lg-label { @include labelSize($width-label-lg); }
+  }
+}
 @media screen and (max-width: 640px) {
   .hx-row {
     border-bottom: 1px solid $color-gray-light;
     padding: $pm-sm/2 0!important;
     margin: 0!important;
-    &.oneline {
-      border-bottom: none;
-      & > label {
-        width: 100%;
-      }
-      & > .content {
-        width: 100%;
-        max-width: 100%;
+    &.half {
+      width: 100%;
+      display: block;
+    }
+    &.sm-oneline {
+      @include oneline;
+      .text-tips { 
+        padding-left: $sm!important;
       }
     }
     label {
@@ -305,20 +312,9 @@ $width-label-lg: 190px;
       margin-bottom: $pm-sm;
       width: 100%;
     }
-    &.lg-label {
-      label { width: $width-label-lg; }
-      .content { width: calc(100% - #{$width-label-lg + $pm-sm}); }
-      .text-tips { padding-left: $width-label-lg + $pm-sm; }
-    }
-    &.bg-label {
-      label { width: $width-label-bg; }
-      .content { width: calc(100% - #{$width-label-bg + $pm-sm}); }
-      .text-tips { padding-left: $width-label-bg + $pm-sm; }
-    }
-    &.sm-label {
-      label { width: $width-label-sm; }
-      .content { width: calc(100% - #{$width-label-sm + $pm-sm}); }
-      .text-tips { padding-left: $width-label-sm + $pm-sm; }
-    }
+    &.lg-label { @include labelSize($width-label-lg, $pm-sm); }
+    &.bg-label { @include labelSize($width-label-bg, $pm-sm); }
+    &.md-label { @include labelSize($width-label-md, $pm-sm); }
+    &.sm-label { @include labelSize($width-label-sm, $pm-sm); }
   }
 }

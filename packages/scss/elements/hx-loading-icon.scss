@@ -22,6 +22,11 @@
       margin-top: 0;
     }
   }
+  &.column {
+    width: auto;
+    text-align: center;
+    overflow-y: visible!important;
+  }
   .hx-loading-canvas {
     animation: rotating 6s linear infinite;
   }

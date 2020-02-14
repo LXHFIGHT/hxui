@@ -1,5 +1,7 @@
 <template>
-  <div :class="['pad-loading-icon', position, direction]" 
+  <div :class="['pad-loading-icon', 
+    position, 
+    direction === 'row' ? 'row' : 'column']" 
     ref="padLoadingIcon"
     :style="`height: ${height};`">
     <canvas :id="id" :class="`hx-loading-canvas`"></canvas>
