@@ -143,7 +143,7 @@ $width-label-lg: 190px;
       }
     }
     // 提示信息
-    .right, .unit, .degree {
+    & > .right, & > .unit, & > .degree {
       position: absolute;
       right: 0;
       text-align: center;
@@ -155,7 +155,7 @@ $width-label-lg: 190px;
     .error + .right {
       color: $color-red;
     }
-    .right, .degree {
+    & > .right, & > .degree {
       color: $color-gray-deep;
       display: inline-flex;
       align-items: center;

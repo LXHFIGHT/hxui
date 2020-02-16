@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     doToggleSwitch () {
-      console.log(this.value)
       if (this.disabled) {
         return
       }

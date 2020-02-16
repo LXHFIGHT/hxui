@@ -33,6 +33,24 @@
       background-color: $color-main;
     }
   }
+  // 提示信息
+  & > .unit {
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    cursor: default;
+    color: $color-gray-deep;
+    @include centerVertical;
+    font-size: $font-md;
+    right: $pm-md;
+    & + .btn-clear {
+      right: $pm-lg + $pm-md;
+    }
+  }
+  .error + .unit {
+    color: $color-red;
+  }
 }
 
 /*--------------------------------------------------------------------------------------*/

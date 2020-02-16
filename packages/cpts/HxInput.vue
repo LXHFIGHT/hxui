@@ -32,8 +32,8 @@
       @keydown="doKeyDown"
       @input="doInput">
     </textarea>
-    <span class="degree" v-if="unit" v-text="unit"></span>
-    <span class="degree" v-if="!unit && showLength" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
+    <span class="unit" v-if="unit" v-text="unit"></span>
+    <span class="unit" v-if="!unit && showLength" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
     <button class="btn-clear" v-if="showClearBtn && !readonly" @click="doClear">
       <img class="icon" :src="iconClear" alt="">
     </button>
