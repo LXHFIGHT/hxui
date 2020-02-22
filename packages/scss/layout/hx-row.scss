@@ -236,7 +236,7 @@ $width-label-lg: 190px;
       width: 100%;
       display: block;
     }
-    &.sm-oneline {
+    &.sm-oneline, &.oneline-sm {
       @include oneline;
       .text-tips { 
         padding-left: $sm!important;

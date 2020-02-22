@@ -67,8 +67,12 @@ export default {
       required: true,
       default: ''
     },
-    keyName: { // 选项和value对应的键名
+    keyName: { // 选项和value对应的键字段名
       type: String
+    },
+    valueName: { // 选项和value对应的值字段名
+      type: String,
+      default: 'value'
     },
     disabled: {
       type: [String, Boolean, Number],
@@ -122,9 +126,9 @@ export default {
           let obj = { value: option }
           obj[this.key] = option
           this.options.push(obj)
-          continue
+        } else {
+          this.options.push({ ...option, value: option[this.valueName] })
         }
-        this.options.push(option)
       }
     },
     $_initPosition () {
@@ -160,6 +164,7 @@ export default {
       this.showOptions = false
     },
     doSelect (option) {
+      console.log('Selected: ', option)
       if (option.disabled) {
         return
       }

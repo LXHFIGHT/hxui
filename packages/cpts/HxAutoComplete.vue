@@ -37,6 +37,7 @@ export default {
       showOptions: false,
       detail: '',
       options: [],
+      fullOptions: [],
       width: 0,
       left: 0,
       top: 0,
@@ -72,6 +73,14 @@ export default {
     loading: { // 是否正在加载中
       type: [String, Number, Boolean],
       default: false
+    },
+    keyName: {
+      type: String,
+      default: 'key'
+    },
+    valueName: {
+      type: String,
+      default: 'value'
     }
   },
   methods: {
@@ -102,17 +111,31 @@ export default {
       this.width = $view.clientWidth + 'px'
     },
     $_initOptions () {
-      this.options = this.content.map(v => {
+      this.fullOptions = this.content.map(v => {
         if (typeof v !== 'object') {
           return { key: v, value: v }
         }
-        return v
+        let obj = {
+          key: v[this.keyName],
+          value: v[this.valueName]
+        }
+        return obj
+      })
+      this.$_updateOptions()
+    },
+    $_updateOptions () {
+      if (this.detail === '') {
+        this.options = this.fullOptions
+        return
+      }
+      this.options = this.fullOptions.filter(v => {
+        return v.key.indexOf(this.detail) === 0
       })
     },
     doAnalysing () {
       this.$_showOption()
       this.$emit('input', this.detail)
-      this.$_initOptions()
+      this.$_updateOptions()
     },
     doBlur () {
       this.showOptions = false
@@ -121,7 +144,7 @@ export default {
       this.$emit('input', option.key)
       this.$emit('change', option)
       this.$forceUpdate()
-    } 
+    }
   },
   created () {},
   mounted () {
@@ -133,6 +156,7 @@ export default {
     this.timer = window.setInterval(() => {
       this.$_renderLayout()
     }, 1000 / 60)
+    this.$_initOptions()
   },
   beforeDestroy () {
     window.clearInterval(this.timer)
