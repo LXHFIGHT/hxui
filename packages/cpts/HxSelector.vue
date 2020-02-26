@@ -166,14 +166,13 @@ export default {
       this.showOptions = false
     },
     doSelect (option) {
-      console.log('Selected: ', option)
       if (option.disabled) {
         return
       }
       this.showOptions = false
       this.$emit('input', option.value)
       this.$refs.hxSelector.classList.remove('error')
-      this.$emit('change')
+      this.$emit('change', option)
       this.$forceUpdate()
     },
     doHideOptions () {

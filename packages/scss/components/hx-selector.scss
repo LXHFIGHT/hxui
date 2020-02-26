@@ -126,7 +126,7 @@
         .btn-option:first-child .option {
           @include borderRadiusTop($sm);
         }
-        .btn-option:nth-last-child(2) .option {
+        .btn-option:nth-last-child(1) .option {
           @include borderRadiusBottom($sm);
         }
         .option {
