@@ -5,7 +5,7 @@
     ref="padLoadingIcon"
     :style="`height: ${height};`">
     <canvas :id="id" :class="`hx-loading-canvas`"></canvas>
-    <span class="text-loading" :style="`color: ${mainColor}; height: ${height}; line-height: ${height};`">
+    <span class="text-loading" :style="textStyle">
       <slot></slot>
     </span>
   </div>
@@ -65,6 +65,7 @@ export default {
       this.canvas = document.getElementById(this.id)
       this.canvas.height = this.clientHeight
       this.canvas.width = this.clientHeight
+      console.log(this.canvas.height)
       this.startAngle = 0
       this.endAngle = Math.PI * 0.5
       this.ctx = this.canvas.getContext('2d')
@@ -113,6 +114,17 @@ export default {
   },
   beforeDestroy () {
     window.clearInterval(this.timer)
+  },
+  computed: {
+    textStyle () {
+      let style = `color: ${this.mainColor}; `
+      if (this.direction === 'row') {
+        style += `height: ${this.height}; line-height: ${this.height}; `
+      } else {
+        style += `margin-top: ${parseInt(this.clientHeight / 3)}px;`
+      }
+      return style
+    }
   }
 }
 </script>

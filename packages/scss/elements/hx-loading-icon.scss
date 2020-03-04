@@ -8,7 +8,6 @@
 }
 
 .pad-loading-icon {
-  @include block;
   position: relative;
   &.center {
     @include centerInParent;

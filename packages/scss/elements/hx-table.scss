@@ -21,6 +21,10 @@
       }
     }
   }
+  & .pad-hx-input input {
+    // border: 1px solid transparent;
+    width: 100%;
+  }
   table {
     width: 100%;
     font-size: 14px;

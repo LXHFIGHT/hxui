@@ -10,11 +10,9 @@
   .hx-message {
     width: 100%;
     display: block;
-    padding: $pm-sm*1.5 $pm-md;
     font-size: $font-md;
     line-height: 1.5;
     text-align: justify;
-    border-radius: $pm-sm;
     position: relative;
     &.main { @include messageStyle($color-main); }
     &.info { @include messageStyle($color-blue); }
@@ -25,6 +23,27 @@
     .text {
       display: block;
       width: calc(100% - #{$height-normal/2});
+    }
+    &.sm {
+      padding: $pm-sm;
+      border-radius: $pm-sm / 2;
+      .btn-close { 
+        right: $pm-sm/2;
+      }
+    }
+    &.md {
+      padding: $pm-sm * 1.5;
+      border-radius: $pm-sm * 3 / 4;
+      .btn-close { 
+        right: $pm-sm;
+      }
+    }
+    &.bg {
+      padding: $pm-md;
+      border-radius: $pm-sm;
+      .btn-close { 
+        right: $pm-sm * 3 / 2;
+      }
     }
     .btn-close {
       width: $height-normal/2;
