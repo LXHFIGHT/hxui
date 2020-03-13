@@ -108,7 +108,7 @@ $width-label-lg: 190px;
     padding: 0;
     vertical-align: top;
     width: calc(100% - #{$width-label-md});
-    max-width: calc(100% - #{$width-label-sm + $pm-sm});
+    max-width: calc(100% - #{$width-label-sm});
     .hx-switch {
       @include centerVertical;
     }
@@ -206,19 +206,18 @@ $width-label-lg: 190px;
   // 附加提示文本
   & > .text-tips {
     font-size: $font-sm;
-    line-height: 1.5;
+    line-height: 1.8;
     display: block;
     color: #aaa;
     width: 100%;
     padding-left: $width-label-md + 4px;
-    padding-top: $pm-sm / 2;
   }
 }
 
 @media screen and (min-width: 640px) {
   .hx-row {
     &.half {
-      width: 50%;
+      width: 49%;
       display: inline-block;
     }
     &.sm-label { @include labelSize($width-label-sm); }

@@ -63,7 +63,6 @@
   > .pad-content {
     display: block;
     position: relative;
-    padding: $pm-md;
     &.loading {
       min-height: $height-regular + 2*$pm-md;
       width: 100%;
@@ -148,7 +147,7 @@
       width: calc(33.33% - #{$pm-sm});
     }
     > .pad-content {
-      padding: $pm-md;
+      padding: 0 $pm-md $pm-md;
     }
   }
 }

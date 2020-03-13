@@ -16,7 +16,6 @@ import toast from './../toast'
 const _isValidatableHXUIComponents = (classList) => {
   const cptNames = ['hx-smart-uploader', 'hx-selector', 'hx-options'] // 可进行验证的HXUI组件
   for (let cptName of cptNames) {
-    console.log(classList.contains(cptName), classList, cptName)
     if (classList.contains(cptName)) {
       return true
     }

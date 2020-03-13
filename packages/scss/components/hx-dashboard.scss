@@ -40,4 +40,9 @@
       }
     }
   }
+  &.column {
+    .item + .item {
+      margin-left: 0;
+    }
+  }
 }

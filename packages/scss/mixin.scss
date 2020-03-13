@@ -103,6 +103,9 @@
   &:active {
     filter: brightness(84%);
   }
+  &:disabled {
+    background-color: #d1d1d1!important;
+  }
 }
 
 @mixin hxTag($bgColor, $color: white, $height: 34px) {

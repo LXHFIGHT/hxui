@@ -1,5 +1,5 @@
 @import "./../variable.scss";
-@mixin messageStyle ($color, $opacity: .1) {
+@mixin messageStyle ($color, $opacity: .07) {
   background-color: rgba($color, $opacity);
   color: $color;
 } 

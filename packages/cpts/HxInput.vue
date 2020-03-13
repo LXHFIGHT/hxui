@@ -119,7 +119,6 @@ export default {
   },
   methods: {
     doKeyup () {
-      console.log('do key up')
       this.$emit('keyup')
     },
     doKeyDown () {

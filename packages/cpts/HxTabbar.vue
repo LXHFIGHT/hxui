@@ -36,6 +36,10 @@ export default {
       type: String,
       default: 'main'
     },
+    level: {
+      type: String,
+      default: 'main'
+    },
     content: {
       type: Array,
       required: true
@@ -89,6 +93,7 @@ export default {
     doSelectItem (item, index) {
       this.index = index
       this.$emit('input', item.value)
+      this.$emit('change', item)
       this.width = item.width
       this.$_locateMagicBar()
       this.onSelect instanceof Function && this.onSelect(item)

@@ -135,7 +135,7 @@
     max-height: 90%;
     overflow-y: auto;                                
     min-width: 300px;
-    padding: $pm-md;
+    padding: $pm-sm $pm-md $pm-md;
     border-radius: $border-radius-md;
     box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
     position: absolute;
