@@ -7,18 +7,41 @@
     }
   }
   .item {
-    font-size: $font-sm;
-    padding: $pm-sm $pm-md;
+    font-size: $font-md;
+    padding: 0 $pm-md;
+    height: $height-regular;
     border-radius: 10vw;
     background-color: #ddd;
     color: white;
     box-shadow: none;
     transition: box-shadow .4s;
-    &.selected, &.selected:disabled {
+    &.selected {
       background-color: $color-main;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background-color: transparent;
+      color: $color-gray-deep;
+      &.selected {
+        background-color: transparent;
+        color: $color-main;
+      }
     }
     & + .item {
       margin-left: $pm-sm;
+    }
+  }
+  &.sm {
+    .item {
+      height: $height-regular - $pm-sm;
+      padding: 0 $pm-sm * 1.5;
+    }
+  }
+  &.bg {
+    .item {
+      height: $height-regular + $pm-sm;
+      font-size: $font-bg;
+      padding: 0 $pm-sm * 2.5;
     }
   }
 }

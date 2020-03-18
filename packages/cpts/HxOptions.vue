@@ -1,5 +1,5 @@
 <template>
-  <div class="hx-options" 
+  <div :class="['hx-options', size]" 
     ref="hxOptions"
     :data-value="value" :required="!!required ? 'required' : false">
     <button :class="['item', value === item.value && 'selected']" 
@@ -29,6 +29,13 @@ export default {
       type: Function,
       default () {
         return () => {}
+      }
+    },
+    size: {
+      type: String,
+      default: 'md',
+      validator (data) {
+        return ['sm', 'md', 'bg'].includes(data)
       }
     },
     disabled: {

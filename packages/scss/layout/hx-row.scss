@@ -201,6 +201,12 @@ $width-label-lg: 190px;
       height: $height-regular;
       line-height: $height-regular;
     }
+    & > .sm {
+      margin: $pm-sm/2 0;
+    }
+    & > .bg {
+      margin-top: - $pm-sm/2;
+    }
   }
 
   // 附加提示文本
