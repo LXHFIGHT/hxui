@@ -129,7 +129,8 @@ export default {
           obj[this.key] = option
           this.options.push(obj)
         } else {
-          this.options.push({ ...option, value: option[this.valueName] })
+          let obj = Object.assign({}, option, { value: option[this.valueName] })
+          this.options.push(obj)
         }
       }
     },
