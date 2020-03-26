@@ -235,7 +235,7 @@ export default {
           const files = fileDatas
           this.isImageError = false
           if (this.doUpload instanceof Function) {
-            this.doUpload(fileDatas)
+            this.doUpload(fileDatas, this.id)
           } else if (this.uploadApi && this.onUpload instanceof Function) {
             const data = new FormData()
             for (let i = 0; i < files.length; i++) {

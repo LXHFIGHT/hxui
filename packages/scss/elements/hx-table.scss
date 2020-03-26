@@ -187,7 +187,7 @@
         min-height: $height-normal;
         padding: $pm-sm;
         &.td-img-cover img{
-          height: 80px;
+          height: $height-normal * 1.5;
           width: auto;
         }
         &.xs {  width: 6%;   }
