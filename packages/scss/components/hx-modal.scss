@@ -52,8 +52,8 @@
   // 缩略版模态框
   &.sm {
     & > .content {
-      max-width: 500px;
-      min-width: 300px;
+      max-width: 460px;
+      min-width: 280px;
     }
   }
   &.bg {
@@ -64,6 +64,17 @@
   // 模态框内容版
   & > .content {
     background-color: white;
+    width: 60%; // 默认样式为屏幕宽度 60%     
+    max-height: 90%;
+    overflow-y: auto;                                
+    min-width: 300px;
+    border-radius: $border-radius-md;
+    box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform .4s;
     // 模态框头部
     > .header {
       line-height: $height-normal;
@@ -111,38 +122,11 @@
     // 模态框底部
     > .footer {
       text-align: center;
-      padding: $pm-md $pm-md 0;
+      padding: $pm-md;
       button {
         min-width: 100px;
       }
     }
-    // 模态框中部内容面板
-    .map {
-      min-height: 400px;
-      border-radius: $border-radius-md;
-    }
-    .main-textarea {
-      padding: $pm-md;
-      font-size: 14px;
-      width: 100%;
-      border: 1px solid $color-gray-light;
-      border-radius: $border-radius-md;
-      resize: none;
-    }
-  }
-  &.normal>.content, &.confirm>.content {
-    width: 60%; // 默认样式为屏幕宽度 60%     
-    max-height: 90%;
-    overflow-y: auto;                                
-    min-width: 300px;
-    padding: $pm-sm $pm-md $pm-md;
-    border-radius: $border-radius-md;
-    box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform .4s;
   }
   // 侧边模式下的弹框
   &.side>.content {
@@ -191,6 +175,7 @@
 @media screen and (min-width: 640px) {
   .hx-modal {
     & > .content {
+      padding: 0;
       max-width: 80%;
     }
     & > .footer {
@@ -208,11 +193,11 @@
     &.normal > .content {
       width: 95%;
       max-width: 90%;
-      padding: $pm-sm;
+      padding: 0;
       @include centerInParent;
       .btn-close-modal {
-        right: $pm-sm;
-        top: $pm-sm;
+        right: $sm;
+        top: $sm;
       }
       & > .header {
         height: $height-navbar;
@@ -237,7 +222,7 @@
         }
       }
       .map {
-        margin-top: $pm-sm;
+        margin-top: $sm;
       }
     }
     &.side {
@@ -252,7 +237,7 @@
   .hx-modal.confirm, .hx-modal.actionsheet  {
     >.content {
       padding: $pm-sm;
-      width: calc(100% - #{$pm-md});
+      width: calc(100% - #{$md});
       text-align: justify;
       font-size: $font-md;
       top: auto;
@@ -265,11 +250,11 @@
         padding-left: 0;
       }
       .hx-content {
-        padding: $pm-md;
+        padding: $md;
         text-align: center;
       }
       .footer {
-        margin-top: $pm-md * 2;
+        margin-top: $md * 2;
         text-align: center;
         padding: 0;
       }

@@ -1,7 +1,7 @@
 <template>
   <div :class="['hx-modal', value && 'show', size, (type || 'normal'), level]">
     <div class="mask" @click="onHide"></div>
-    <div class="content" :style="type === 'side' ? `width: ${width}` : ''">
+    <div class="content" :style="width && `width: ${width}`">
       <header class="header">
         {{ title }}
         <slot name="header"></slot>

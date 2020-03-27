@@ -1,0 +1,28 @@
+@import "./../variable.scss";
+
+.hx-image {
+  position: relative;
+  background-color: transparent;
+  &.block {
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+  .img {
+    display: block;
+  }
+  &.centerVertical {
+    .img {
+      width: 100%;
+      height: auto;
+      @include centerVertical;
+    }
+  }
+  &.centerHorizontal {
+    .img {
+      height: 100%;
+      width: auto;
+      @include centerHorizontal;
+    }
+  }
+}
