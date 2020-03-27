@@ -31,7 +31,6 @@
     visibility: visible;
     opacity: 1.0;
     &.normal>.content, 
-    &.confirm>.content, 
     &.hx-image-modal>.content {
       transform: translate(-50%, -50%);
     }
@@ -140,7 +139,7 @@
     transform: none;
     max-height: 100%;
     transform: translateX(100%);
-    transition: transform .4s;
+    transition: transform .4s; 
     >.header {
       margin: 0;
       padding-right: $pm-md;
@@ -234,7 +233,7 @@
     }
   }
 
-  .hx-modal.confirm, .hx-modal.actionsheet  {
+  .hx-modal.actionsheet  {
     >.content {
       padding: $pm-sm;
       width: calc(100% - #{$md});

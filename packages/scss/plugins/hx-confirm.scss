@@ -17,9 +17,6 @@
     .header, .footer { 
       margin: 0;
     }
-    .footer {
-      padding-top: $pm-md;
-    }
   }
   .inputer-number {
     font-size: 35px;
@@ -46,6 +43,7 @@
   &.fatal { @include promptInputer($color-black); } 
 }
 
+// 桌面端样式
 @media screen and (min-width: 640px) {
   .hx-modal.confirm {
     .content {
@@ -72,9 +70,9 @@
           color: #aaa;
         }
       }
-      footer {
+      .footer {
         text-align: right;
-        padding: 0;
+        padding: $pm-md;
         .hx-button {
           min-width: $height-navbar * 1.5;
         }
@@ -86,59 +84,64 @@
   }
 }
 
+// 移动版样式
 @media screen and (max-width: 640px) {
   /* 自下而上弹出样式已迁移到 hx-modal.scss 中 */
   .hx-modal.confirm {
-    .content {
+    & > .content {
       overflow: hidden;
       color: $color-heavy;
       font-size: $font-bg;
       height: auto;
       padding: 0;
+      width: 90%;
       padding-top: 0!important;
-      header {
+      .header {
         font-weight: 600;
-        font-size: 16px;
+        font-size: $font-bg;
         text-align: center;
         line-height: $height-navbar;
         height: $height-navbar;
         display: block;
         border-bottom: 1px solid $color-gray;
+        padding-left: 0;
         &::before {
           width: 20%;
           top: 0;
           @include centerHorizontal;
-          height: $pm-sm/2;
-          border-radius: $pm-sm/2;
+          height: $sm/2;
+          border-radius: $sm/2;
         }
       }
       .confirm-content {
         display: block;
         position: relative;
         text-align: center;
-        font-size: 5vw;
+        font-size: $font-bg;
         line-height: 24px; 
-        padding: $pm-bg*1.5 $pm-md;
+        padding: $bg*2 $md;
       }
       .alert-content {
-        padding: $pm-lg $pm-md;
+        padding: $lg $md;
         font-size: $font-bg;
         font-weight: 500;
         text-align: center;
       }
-      footer, footer.footer {
+      .footer {
         font-size: 12px;
         display: flex;
         margin-top: 0;
+        padding: 0 $md $md;
         .btn-confirm, .btn-cancel {
           border: none;
           border-radius: $sm;
           height: $height-normal;
           flex: 1;
-          margin: 0!important;
+          margin: 0;
         }
         .btn-cancel {
           background-color: $color-gray-light;
+          margin-right: $md;
         }
       }
     }
