@@ -26,10 +26,10 @@ let toast = function (options) {
   document.body.appendChild(instance.vm.$el)
   return instance.vm
 }
-toast.warn = (text, position = 'top') => { toast({ text, position, level: 'warn' }) }
-toast.error = (text, position = 'top') => { toast({ text, position, level: 'error' }) }
-toast.info = (text, position = 'top') => { toast({ text, position, level: 'info' }) }
-toast.default = (text, position = 'top') => { toast({ text, position, level: 'default' }) }
-toast.success = (text, position = 'top') => { toast({ text, position, level: 'success' }) }
+toast.warn = (text, position = 'default') => { toast({ text, position, level: 'warn' }) }
+toast.error = (text, position = 'default') => { toast({ text, position, level: 'error' }) }
+toast.info = (text, position = 'default') => { toast({ text, position, level: 'info' }) }
+toast.default = (text, position = 'default') => { toast({ text, position, level: 'default' }) }
+toast.success = (text, position = 'default') => { toast({ text, position, level: 'success' }) }
 
 export default toast

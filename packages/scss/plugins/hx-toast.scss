@@ -138,10 +138,10 @@
       @include centerHorizontal;
       border-radius: 4px 4px;
     }
+    &.default:before { background-color: #aaa; }
     &.success:before { background-color: $color-green; }
     &.warn:before { background-color: $color-orange; }
     &.error:before { background-color: $color-red; }
-    &.default:before { background-color: #aaa; }
     &.info:before { background-color: $color-blue; }
     &.fatal:before { background-color: white; }
   }
