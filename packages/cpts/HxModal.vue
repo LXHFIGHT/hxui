@@ -55,7 +55,7 @@ export default {
     },
     width: { // 当type是侧边栏类型的模态框时，width可配置模态框的宽度
       type: String,
-      default: '300px'
+      default: ''
     }
   },
   methods: {

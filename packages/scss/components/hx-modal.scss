@@ -67,6 +67,7 @@
     max-height: 90%;
     overflow-y: auto;                                
     min-width: 300px;
+    padding: 0;
     border-radius: $border-radius-md;
     box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
     position: absolute;
@@ -95,9 +96,9 @@
         display: inline-block;
         background-color: $color-main;
       }
-      .pad-content {
-        padding: $pm-md;
-      }
+    }
+    > .pad-main-content {
+      padding: 0 $pm-md;
     }
     // 右上角关闭模态框按钮
     .btn-close-modal {
@@ -121,7 +122,7 @@
     // 模态框底部
     > .footer {
       text-align: center;
-      padding: $pm-md;
+      margin: $pm-md;
       button {
         min-width: 100px;
       }
@@ -192,7 +193,6 @@
     &.normal > .content {
       width: 95%;
       max-width: 90%;
-      padding: 0;
       @include centerInParent;
       .btn-close-modal {
         right: $sm;
