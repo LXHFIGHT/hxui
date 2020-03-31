@@ -34,7 +34,7 @@
     </textarea>
     <span class="unit" v-if="unit" v-text="unit"></span>
     <span class="unit" v-if="!unit && showLength" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
-    <button class="btn-clear" v-if="showClearBtn && !readonly" @click="doClear">
+    <button class="btn-clear" tabindex=-1 v-if="showClearBtn && !readonly" @click="doClear">
       <img class="icon" :src="iconClear" alt="">
     </button>
   </div>
