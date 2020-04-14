@@ -58,6 +58,12 @@
           border-radius: 0;
           font-size: $font-md;
         }
+        .hx-rank {
+          margin-top: $pm-sm/2;
+          &.sm { margin-top: $pm-sm; }
+          &.md { margin-top: $pm-sm/2; }
+          &.bg { margin-top: 0; }
+        }
       }
       &.xs { .content { width: 70px; } }
       &.sm { .content { width: 110px; } }

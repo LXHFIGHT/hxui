@@ -19,6 +19,7 @@ export default (object) => {
       fileDatas.push(files[i])
       if (fileDatas.length === total) {
         handler instanceof Function && handler(fileDatas)
+        continue
       } else {
         continue
       }

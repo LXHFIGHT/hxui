@@ -1,9 +1,12 @@
 @import "./../variable.scss";
+$height-rank-md: $height-regular - $pm-sm;
+$height-rank-sm: $height-regular - $pm-md; 
+$height-rank-bg: $height-regular;
 .hx-rank {
   display: block;
   text-align: center;
   width: auto;
-  height: $height-normal/2;
+  height: $height-rank-md;
   overflow: hidden;
   &::after {
     clear: both;
@@ -13,32 +16,35 @@
   .item-star {
     display: inline-block;
     & + .item-star {
-      margin-left: $pm-md;
+      margin-left: $pm-md * 2 / 3;
     }
     .icon {
       display: block;
-      height: $height-normal/2;
-      width: $height-normal/2;
+      height: $height-rank-md;
+      width: $height-rank-md;
     }
   }
   &.sm {
-    height: $height-regular/2;
+    height: $height-rank-sm;
     .item-star {
       & + .item-star {
         margin-left: 6px;
       }
       .icon {
-        height: $height-regular/2;
-        width: $height-regular/2;
+        height: $height-rank-sm;
+        width: $height-rank-sm;
       }
     }
   }
   &.bg {
-    height: $height-navbar/2;
+    height: $height-regular;
     .item-star {
+      & + .item-star {
+        margin-left: $pm-md;
+      }
       .icon {
-        height: $height-navbar/2;
-        width: $height-navbar/2;
+        height: $height-regular;
+        width: $height-regular;
       }
     }
   }

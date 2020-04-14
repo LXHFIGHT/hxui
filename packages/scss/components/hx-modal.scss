@@ -66,9 +66,7 @@
     width: 60%; // 默认样式为屏幕宽度 60%     
     max-height: 90%;
     overflow-y: auto;                                
-    min-width: 300px;
     padding: 0;
-    border-radius: $border-radius-md;
     box-shadow: 0 24px $pm-bg -16px rgba(0,0,0,.4);
     position: absolute;
     top: 50%;
@@ -120,27 +118,36 @@
       }
     }
     // 模态框底部
-    > .footer {
+    & > .footer {
       text-align: center;
-      margin: $pm-md;
       button {
         min-width: 100px;
       }
     }
   }
+  &.normal>.content {
+    border-radius: $border-radius-md;
+    // 模态框底部
+    & > .footer {
+      text-align: center;
+      margin: $pm-md;
+    }
+  }
   // 侧边模式下的弹框
-  &.side>.content {
+  &.side > .content {
     width: 30%;
     min-width: 300px;
     display: block;
     height: 100%;
     right: 0;
+    left: unset;
     top: 0;
     position: absolute;
     transform: none;
     max-height: 100%;
     transform: translateX(100%);
     transition: transform .4s; 
+    @include borderRadiusLeft($border-radius-bg);
     >.header {
       margin: 0;
       padding-right: $pm-md;
@@ -160,7 +167,7 @@
       overflow-x: hidden;
       padding: $pm-md;
     }
-    .footer {
+    & > .footer {
       position: fixed;
       background-color: white;
       width: 100%;
