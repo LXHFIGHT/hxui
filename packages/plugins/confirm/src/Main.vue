@@ -8,6 +8,7 @@
       <footer class="footer">
         <button class="hx-button btn-cancel"
           v-text="cancelText"
+          v-if="!hideCancelBtn"
           @click="doCancel">
         </button>
         <button :class="['hx-button btn-confirm', level || 'main']"
@@ -32,6 +33,7 @@ export default {
       confirmText: '确定',
       cancelText: '取消',
       level: '',
+      hideCancelBtn: false,
       show: false,
       fadeInTimer: null,
       fadeOutTimer: null
