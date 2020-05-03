@@ -25,7 +25,6 @@
     padding: $pm-lg $pm-sm;
     border: none;
     text-align: center;
-    border-bottom: 1px solid $color-gray;
     margin-bottom: $pm-md;
     &::placeholder {
       font-size: 20px;
@@ -50,11 +49,15 @@
       width: 400px!important;
       text-align: justify;
       color: $color-dark;
-      font-size: $font-bg;
+      border-radius: $pm-sm;
+      & > .header {
+        font-size: $font-md;
+        margin-bottom: $pm-md;
+      }
       .confirm-content {
         padding: $pm-bg $pm-md $pm-bg;
         text-align: center;
-        font-size: $font-md;
+        font-size: $font-bg;
       }
       .alert-content {
         padding: $pm-bg*2 $pm-md $pm-md;
@@ -64,10 +67,13 @@
         word-break: break-all;
       }
       .prompt-content {
-        padding: $pm-md $pm-md $pm-sm $pm-md;
+        padding: 0 $pm-md $pm-sm;
         .tips {
           font-size: $font-md;
           color: #aaa;
+        }
+        .inputer-number {
+          border-bottom: 1px solid $color-gray;
         }
       }
       .footer {
@@ -93,14 +99,15 @@
       color: $color-heavy;
       font-size: $font-bg;
       height: auto;
-      padding: 0;
-      width: calc(100% - #{$pm-md * 2});
+      width: 100%;
       padding-top: 0!important;
       top: unset;
-      bottom: -100%;
-      transform: translateX(-50%);
-      transition: bottom .4s;
-      .header {
+      left: 0;
+      bottom: 0;
+      transform: translateY(100%);
+      transition: transform .4s;
+      @include borderRadiusTop($md);
+      & > .header {
         font-weight: 600;
         font-size: $font-bg;
         text-align: center;
@@ -143,7 +150,16 @@
       .prompt-content {
         padding: $lg $md;
         textarea {
+          box-shadow: none;
           display: block;
+        }
+        .tips {
+          font-size: $font-md;
+          color: #aaa;
+          padding: $sm;
+        }
+        .inputer-number {
+          border-bottom: none;
         }
       }
       .footer {
@@ -165,7 +181,7 @@
       }
     }
     &.show > .content {
-      bottom: $pm-md;
+      transform: translateY(0);
     }
   }
 }

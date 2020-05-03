@@ -82,7 +82,6 @@ const _validateLength = (query, type) => {
       ? parseInt($view.getAttribute('max-length')) 
       : parseInt($view.getAttribute('min-length'))
     let content = $view.value || ''
-    console.log(type, 'The Length is :', length, (type === 'min' && content.length < length))
     if (isNaN(length)) {
       console.warn('存在部分表单组件的 max-length 或 min-length 属性值不是填写整数，故不生效，请检查')
       continue

@@ -47,7 +47,6 @@ export default {
       this.$emit('input', oppositValue)
       this.$emit('change')
       this.$forceUpdate()
-      console.log(oppositValue, value)
       this.doToggle(oppositValue)
     }
   }

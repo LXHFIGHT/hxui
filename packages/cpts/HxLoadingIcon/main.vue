@@ -65,7 +65,6 @@ export default {
       this.canvas = document.getElementById(this.id)
       this.canvas.height = this.clientHeight
       this.canvas.width = this.clientHeight
-      console.log(this.canvas.height)
       this.startAngle = 0
       this.endAngle = Math.PI * 0.5
       this.ctx = this.canvas.getContext('2d')

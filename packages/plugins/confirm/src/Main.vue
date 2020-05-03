@@ -1,6 +1,6 @@
 <template>
   <div :class="['hx-modal confirm', show && 'show', level]">
-    <div class="mask" @click="destroyElement"></div>
+    <div class="mask" @click="onHide"></div>
     <div class="content">
       <header class="header" v-text="title"></header>
       <div class="confirm-content" v-if="text && !html" v-text="text"></div>
@@ -34,12 +34,16 @@ export default {
       cancelText: '取消',
       level: '',
       hideCancelBtn: false,
+      disableMask: false,
       show: false,
       fadeInTimer: null,
       fadeOutTimer: null
     }
   },
   methods: {
+    onHide () {
+      !this.disableMask && this.destroyElement()
+    },
     destroyElement () {
       this.show = false
       this.fadeOutTimer = setTimeout(() => {

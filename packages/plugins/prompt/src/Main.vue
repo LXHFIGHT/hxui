@@ -1,6 +1,6 @@
 <template>
   <div :class="['hx-modal confirm', show && 'show', level]">
-    <div class="mask" @click="destroyElement"></div>
+    <div class="mask" @click="onHide"></div>
     <div class="content">
       <header class="header" v-text="title"></header>
       <div class="prompt-content">
@@ -24,6 +24,7 @@
       <footer class="footer">
         <button class="hx-button btn-cancel"
           v-text="cancelText"
+          v-if="!hideCancelBtn"
           @click="destroyElement"></button>
         <button :class="['hx-button btn-confirm', level || 'main']"
           v-text="confirmText"
@@ -48,6 +49,8 @@ export default {
       confirmText: '确定',
       cancelText: '取消',
       level: '',
+      disableMask: false,
+      hideCancelBtn: false, // 隐藏取消按钮
       show: false,
       max: null, // 最大值限制
       fadeInTimer: null,
@@ -60,6 +63,13 @@ export default {
     }
   },
   methods: {
+    onHide () {
+      // 当禁用蒙层或者已经输入内容的情况，蒙层点击关闭弹框失效，以此避免用户误点
+      if (this.disableMask || this.text) {
+        return
+      }
+      this.destroyElement()
+    },
     destroyElement () {
       this.show = false
       this.fadeOutTimer = setTimeout(() => {
