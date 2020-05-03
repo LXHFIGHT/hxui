@@ -8,11 +8,7 @@
       display: flex;
     }
   }
-  textarea ~ .btn-clear {
-    top: auto;
-    bottom: 0;
-  }
-  .btn-clear {
+  & > .btn-clear {
     @include centerVertical;
     right: $pm-md;
     height: 18px;
@@ -44,12 +40,21 @@
     @include centerVertical;
     font-size: $font-md;
     right: $pm-md;
-    & + .btn-clear {
-      right: $pm-lg + $pm-md;
-    }
+    transition: right .4s;
+  }
+  &:hover > .btn-clear + .unit {
+    right: $pm-md + $pm-lg;
   }
   .error + .unit {
     color: $color-red;
+  }
+  textarea ~ .btn-clear {
+    top: auto;
+    bottom: 0;
+  }
+  textarea ~ .unit {
+    top: auto;
+    bottom: -2px;
   }
 }
 

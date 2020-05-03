@@ -147,7 +147,10 @@
       width: calc(33.33% - #{$pm-sm});
     }
     > .pad-content {
-      padding: 0 $pm-md $pm-md;
+      padding: $pm-md;
+    }
+    & > .header ~ .pad-content {
+      padding-top: $pm-sm;
     }
   }
 }

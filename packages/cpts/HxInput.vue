@@ -5,13 +5,13 @@
       :required="required"
       :placeholder="placeholder"
       :type="type"
-      @blur="doBlur"
-      @focus="doFocus"
       :readonly="readonly"
       :disabled="disabled"
       :value="value"
       :data-type="dataType"
       :min-length="minLength"
+      @blur="doBlur"
+      @focus="doFocus"
       @keyup="doKeyup"
       @keydown="doKeyDown"
       @input="doInput">
@@ -22,24 +22,24 @@
       type="text"
       :data-type="dataType"
       :min-length="minLength"
-      @blur="doBlur"
-      @focus="doFocus"
       :value="value"
       :rows="rows"
       :readonly="readonly"
       :disabled="disabled"
+      @blur="doBlur"
+      @focus="doFocus"
       @keyup="doKeyup"
       @keydown="doKeyDown"
       @input="doInput">
     </textarea>
-    <span class="unit" v-if="unit" v-text="unit"></span>
-    <span class="unit" v-if="!unit && showLength" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
-    <span class="unit" v-else>
-      <slot name="unit"></slot>
-    </span>
     <button class="btn-clear" tabindex=-1 v-if="showClearBtn && !readonly" @click="doClear">
       <img class="icon" :src="iconClear" alt="">
     </button>
+    <span class="unit">
+      <span v-if="unit" v-text="unit"></span>
+      <span class="unit" v-if="!unit && showLength && value" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
+      <slot name="unit"></slot>
+    </span>
   </div>
 </template>
 
@@ -66,7 +66,8 @@ export default {
   props: {
     value: {
       type: [String, Number],
-      default: ''
+      default: '',
+      required: true
     },
     placeholder: {
       type: String,
@@ -143,6 +144,7 @@ export default {
       } else {
         value = currentValue
       }
+      console.log('Current Length')
       event.target.value = value
       this.$emit('input', value)
     },
@@ -154,10 +156,6 @@ export default {
       this.$emit('input', '')
     },
     doBlur () {
-      // const view = event.target
-      // if (this.required) {
-      //   !view.value && view.classList.add('error')
-      // }
       if (this.isMobile) {
         window.scroll(0, 0)
         document.body.scrollTop = 0
