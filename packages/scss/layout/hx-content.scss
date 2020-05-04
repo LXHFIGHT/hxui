@@ -60,5 +60,13 @@
   .hx-content {
     box-shadow: inset 0 0 $pm-md rgba(0,0,0,.05);
     padding: $pm-md;
+    &.flex {
+      display: flex;
+      .hx-pad-left.full,
+      .hx-pad-center.full,
+      .hx-pad-right.full {
+        flex: 1
+      }
+    }
   }
 }
