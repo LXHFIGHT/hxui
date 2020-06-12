@@ -3,7 +3,7 @@
     <button v-for="(item, idx) in options" 
       :key="idx"
       @click="doSelectItem(item)"
-      :class="['item', value.includes(item.value) && 'selected']">
+      :class="['item', result.includes(item.value) && 'selected']">
       <img class="icon-check" src="./../img/icon/icon-check.png" alt="">
       {{ item.key }}
     </button>
@@ -13,7 +13,8 @@
 export default {
   data () {
     return {
-      options: []
+      options: [],
+      result: []
     }
   },
   props: {
@@ -44,9 +45,11 @@ export default {
         }
         return item
       })
+      console.warn(this.options)
     },
     doSelectItem (item) {
-      const tempValue = [].concat(this.value)
+      const tempValue = [].concat(this.result)
+      console.log('Data', tempValue, item, this.value)
       if (tempValue.includes(item.value)) {
         for (let i = 0; i < tempValue.length; i++) {
           if (tempValue[i] === item.value) {
@@ -59,7 +62,11 @@ export default {
         tempValue.push(item.value)
         this.onSelect instanceof Function && this.onSelect(item.value)
       }
-      this.$emit('input', tempValue)
+      console.log('Temp Data', tempValue)
+      this.result = [].concat(tempValue)
+      console.log('The Result', this.result)
+      this.$emit('input', this.result)
+      this.$emit('change', this.result)
     }
   },
   created () {
