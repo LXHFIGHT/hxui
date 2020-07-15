@@ -9,6 +9,9 @@
       v-model="detail"
       :disabled="disabled"
       :placeholder="placeholder"/>
+    <button class="btn-clear" tabindex=-1 v-if="!hideClearBtn && !disabled" @click="doClear">
+      <img class="icon" :src="iconClear" alt="">
+    </button>
     <div :class="['hx-pad-options autocomplete', showOptions && 'show']" 
       ref="padOptions"
       :style="styles">
@@ -23,9 +26,13 @@
         暂无匹配选项
       </div>
     </div>
+    <input type="password"
+      autocomplete="new-password" 
+      style="visiblity: hidden; display: none;" />
   </div>
 </template>
 <script>
+import iconClear from './../img/icon/icon-close.png'
 import { 
   getElementToPageTop, 
   getElementToPageLeft, 
@@ -34,6 +41,7 @@ import {
 export default {
   data () {
     return {
+      iconClear,
       showOptions: false,
       detail: '',
       options: [],
@@ -81,6 +89,10 @@ export default {
     valueName: {
       type: String,
       default: 'value'
+    },
+    hideClearBtn: { // 是否隐藏清空按钮
+      type: [Boolean, String, Number], 
+      default: false
     }
   },
   methods: {
@@ -133,12 +145,21 @@ export default {
       })
     },
     doAnalysing () {
-      this.$_showOption()
+      if (event.keyCode === 13) {
+        this.showOptions = false
+      } else {
+        this.$_showOption()
+        this.$_updateOptions()
+      }
       this.$emit('input', this.detail)
-      this.$_updateOptions()
+      this.$emit('keyup')
     },
     doBlur () {
       this.showOptions = false
+    },
+    doClear () {
+      this.$emit('input', '')
+      this.$emit('change', { key: '', value: '' })
     },
     doSelect (option) {
       this.$emit('input', option.key)

@@ -8,5 +8,31 @@
   .text-option {
     font-size: $font-md;
   }
+  &:hover {
+    .btn-clear {
+      display: flex;
+    }
+  }
+  .btn-clear {
+    @include centerVertical;
+    right: $pm-md;
+    height: 18px;
+    width: 18px;
+    display: none;
+    border-radius: 30px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    img.icon {
+      width: 60%;
+      height: 60%;
+      border: none;
+      margin: 0;
+    }
+    &:hover {
+      background-color: $color-main;
+    }
+  }
 }
 
