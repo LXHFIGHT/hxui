@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     $_init () {
+      console.warn('value', this.value)
       this.options = this.content.map((v, i) => {
         let item = {}
         if (typeof v === 'object') {
@@ -49,7 +50,6 @@ export default {
     },
     doSelectItem (item) {
       const tempValue = [].concat(this.result)
-      console.log('Data', tempValue, item, this.value)
       if (tempValue.includes(item.value)) {
         for (let i = 0; i < tempValue.length; i++) {
           if (tempValue[i] === item.value) {
@@ -62,9 +62,7 @@ export default {
         tempValue.push(item.value)
         this.onSelect instanceof Function && this.onSelect(item.value)
       }
-      console.log('Temp Data', tempValue)
       this.result = [].concat(tempValue)
-      console.log('The Result', this.result)
       this.$emit('input', this.result)
       this.$emit('change', this.result)
     }
@@ -77,6 +75,14 @@ export default {
       deep: true,
       handler () {
         this.$_init()
+      }
+    },
+    value: {
+      deep: true,
+      handler (newVal) {
+        if (newVal && newVal.length) {
+          this.result = [].concat(newVal)
+        }
       }
     }
   }

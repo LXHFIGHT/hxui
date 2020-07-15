@@ -111,6 +111,12 @@ export default {
       handler () {
         this.$_initContent()
       }
+    },
+    value: {
+      deep: true,
+      handler () {
+        this.$_initContent()
+      }
     }
   }
 }
