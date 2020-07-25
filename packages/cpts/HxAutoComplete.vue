@@ -15,11 +15,13 @@
     <div :class="['hx-pad-options autocomplete', showOptions && 'show']" 
       ref="padOptions"
       :style="styles">
-      <div v-for="(option, idx) in options" 
-        :key="idx"
-        @click="doSelect(option)"
-        class="option">
-        {{ option.key }}
+      <div class="pad-select-zone">
+        <div v-for="(option, idx) in options" 
+          :key="idx"
+          @click="doSelect(option)"
+          class="option">
+          {{ option.key }}
+        </div>
       </div>
       <div class="hx-emptyset light" 
         v-if="options.length === 0">
