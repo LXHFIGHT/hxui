@@ -197,9 +197,11 @@
       position: absolute;
       @include centerHorizontal;
     }
-    .pad-select-zone {
-      width: 100%!important;
-      max-height: 300px;
+    &.autocomplete {
+      .pad-select-zone {
+        width: 100%!important;
+        max-height: 300px;
+      }
     }
   }
 }

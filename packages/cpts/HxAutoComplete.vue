@@ -52,8 +52,7 @@ export default {
       inputerHeight: 0,
       inputerWidth: 0,
       padOptionsWidth: 0,
-      scroll: 0,
-      startScrollTop: 0
+      scroll: 0
     }
   },
   props: {
@@ -171,8 +170,6 @@ export default {
   mounted () {
     this.screenWidth = document.body.clientWidth
     this.$_initPosition()
-    this.startScrollTop = getElementScrollTop(this.$refs.inputer)
-    this.scroll = this.startScrollTop
     this.$_renderLayout()
     this.timer = window.setInterval(() => {
       this.$_renderLayout()
@@ -192,7 +189,7 @@ export default {
       const left = this.left ? `left: ${this.left}px;` : ''
       const top = this.top ? `top: ${this.top}px;` : ''
       const width = this.inputerWidth ? `width: ${this.inputerWidth}px;` : ''
-      const transform = this.left ? `transform: translateY(${this.startScrollTop - this.scroll}px);` : ''
+      const transform = this.left ? `transform: translateY(${-1 * this.scroll}px);` : ''
       return (left + top + width + transform)
     }
   },
