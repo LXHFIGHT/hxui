@@ -239,7 +239,7 @@ export default {
           } else if (this.uploadApi && this.onUpload instanceof Function) {
             const data = new FormData()
             for (let i = 0; i < files.length; i++) {
-              data.append(`${this.name}${this.multiple ? ('_' + i) : ''}`, files[i])
+              data.append(`${this.name}${this.multiple ? ('_' + i) : ''}`, files[i], `compress_img_${i}.jpg`)
             }
             uploadFiles(this.uploadApi, data).then(res => {
               if (res) {
