@@ -35,7 +35,7 @@
         <IconExpend class="icon" v-if="!isUploading"></IconExpend>
       </button>
       <button @click="triggerUploadImage(id)"
-        :diabled="isUploading"
+        :disabled="isUploading"
         v-if="!disabled"
         class="btn-upload">
         <IconUpload class="icon"></IconUpload>
@@ -48,7 +48,7 @@
     </div>
     <button class="btn-upload"
       @click="triggerUploadImage(id)"
-      :diabled="isUploading || disabled"
+      :disabled="isUploading || disabled"
       v-if="$_isEmpty(value)">
       <span class="icon">
         <IconImage v-if="!isVideo" class="icon"></IconImage>
@@ -161,7 +161,7 @@ export default {
     },
     disabled: {
       type: [String, Number, Boolean],
-      default: ''
+      default: false
     },
     // 文件（仅限图片类型）上传之前的压缩比例, 不传的情况下则不会对图片进行压缩
     compress: { 

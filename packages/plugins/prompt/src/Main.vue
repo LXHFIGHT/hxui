@@ -55,6 +55,7 @@ export default {
       max: null, // 最大值限制
       fadeInTimer: null,
       fadeOutTimer: null,
+      hasConfirm: false, // 防呆参数
       InputTypes: {
         TEXTAREA: 'textarea',
         TEXT: 'text',
@@ -84,6 +85,10 @@ export default {
       }, 100)
     },
     doConfirm () {
+      if (this.hasConfirm) {
+        return
+      }
+      this.hasConfirm = true
       this.onConfirm(this.text)
       this.destroyElement()
     },

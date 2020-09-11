@@ -144,6 +144,7 @@ export default {
       } else {
         value = currentValue
       }
+      console.log('Current Length')
       event.target.value = value
       this.$emit('input', value)
     },

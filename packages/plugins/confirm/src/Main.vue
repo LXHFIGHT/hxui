@@ -33,6 +33,7 @@ export default {
       confirmText: '确定',
       cancelText: '取消',
       level: '',
+      hasConfirm: false,
       hideCancelBtn: false,
       disableMask: false,
       show: false,
@@ -58,6 +59,10 @@ export default {
       }, 100)
     },
     doConfirm () {
+      if (this.hasConfirm) {
+        return
+      }
+      this.hasConfirm = true
       this.onConfirm()
       this.destroyElement()
     },
