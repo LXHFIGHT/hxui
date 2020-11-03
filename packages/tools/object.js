@@ -40,4 +40,67 @@ export const randomString = (length, isJustNumber = false) => {
   return result
 }
 
+/**
+ * 匹配用户 
+ * @param {*} arr1 
+ * @param {*} arr2 
+ */
+export const _isSameArray = (arr1 = [], arr2 = []) => {
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    console.log(`_isSameArray 方法要求第一和第二个参数为数组类型`)
+    return false
+  }
+  if (arr1.length !== arr2.length) {
+    console.log(`第一和第二个数组长度不一致`)
+    return false
+  }
+  let i = 0
+  for (; i < arr1.length; i++) {
+    let j = 0
+    for (; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        break
+      }
+    }
+    if (j === arr2.length) {
+      return false
+    }
+  }
+  if (i === arr1.length) {
+    return true
+  }
+  return false
+}
+
+/**
+ * 浅匹配第一个和第二个值的方法
+ * @param {*} val1  第一个值
+ * @param {*} val2  第二个值
+ * @return {Boolean} true 表示两值相等  false 表示两值不等
+ */
+export const isShallowEqual = (val1, val2) => {
+  // 如果类型不同的话，则直接返回不相等 
+  if (typeof val1 !== typeof val2) {
+    return false
+  }
+  // 如果非对象比较的话，则使用 “全等” 方法进行比较
+  if (typeof val1 !== 'object' && typeof val2 !== 'object') {
+    return val1 === val2
+  }
+  if (typeof val1 === 'object' && typeof val2 === 'object') {
+    const val1Keys = Object.keys(val1)
+    const val2Keys = Object.keys(val2)
+    if (!_isSameArray(val1Keys, val2Keys)) {
+      console.log('参与比较的对象的属性不一致')
+      return false
+    }
+    for (let param in val1) {
+      if (!isShallowEqual(val1[param], val2[param])) {
+        return false
+      }
+    }
+    return true
+  }
+}
+
 export const Vue = vue

@@ -46,8 +46,8 @@ export default {
   data () {
     return {
       searchInfo: {
-        per_page: this.pageSizes[0],
-        page: 1
+        per_page: this.pageSize || this.pageSizes[0],
+        page: this.page
       },
       toPage: ' '
     }
@@ -83,6 +83,15 @@ export default {
       default () {
         return [20, 40, 60, 80, 100]
       }
+    },
+    // 当前分页
+    page: {
+      type: [String, Number],
+      default: 1
+    },
+    // 当前页面记录数
+    pageSize: {
+      type: [String, Number]
     }
   },
   methods: {

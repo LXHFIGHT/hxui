@@ -3,18 +3,19 @@
     <button v-for="(item, idx) in options" 
       :key="idx"
       @click="doSelectItem(item)"
-      :class="['item', result.includes(item.value) && 'selected']">
+      :class="['item', isShallowEqual(result, item.value) && 'selected']">
       <img class="icon-check" src="./../img/icon/icon-check.png" alt="">
       {{ item.key }}
     </button>
   </div>
 </template>
 <script>
+import { isShallowEqual } from './../tools/object' 
 export default {
   data () {
     return {
       options: [],
-      result: []
+      result: ''
     }
   },
   props: {
@@ -23,17 +24,15 @@ export default {
       required: true
     },
     value: {
-      type: Array,
+      type: [Object, String, Number],
       required: true
-    },
-    onSelect: { // 当选择选项时
-      type: Function
     },
     onCancel: { // 当取消选择选项时
       type: Function
     }
   },
   methods: {
+    isShallowEqual,
     $_init () {
       this.options = this.content.map((v, i) => {
         let item = {}
@@ -47,20 +46,7 @@ export default {
       })
     },
     doSelectItem (item) {
-      const tempValue = [].concat(this.result)
-      if (tempValue.includes(item.value)) {
-        for (let i = 0; i < tempValue.length; i++) {
-          if (tempValue[i] === item.value) {
-            tempValue.splice(i, 1)
-            break
-          }
-        }
-        this.onCancel instanceof Function && this.onCancel(item.value)
-      } else {
-        tempValue.push(item.value)
-        this.onSelect instanceof Function && this.onSelect(item.value)
-      }
-      this.result = [].concat(tempValue)
+      this.result = Object.assign({}, item.value)
       this.$emit('input', this.result)
       this.$emit('change', this.result)
     }
@@ -80,7 +66,7 @@ export default {
       immediate: true,
       handler (newVal) {
         if (newVal && newVal.length) {
-          this.result = [].concat(newVal)
+          this.result = newVal
         }
       }
     }
