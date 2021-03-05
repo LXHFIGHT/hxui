@@ -57,6 +57,15 @@ export default {
     },
     onRemoved: { // 当删除指定标签时
       type: Function
+    },
+    maxLength: { // 长度上限
+      type: Number
+    },
+    /**
+     * 验证器： 传入一个返回true或false的方法
+     */
+    validator: {
+      type: Function
     }
   },
   methods: {
@@ -82,7 +91,7 @@ export default {
     $_isAnySameTag () {
       return this.target.filter(v => v === this.content).length
     },
-    doCreateTag () {
+    doCreateTag () {      
       if (!this.content && event.keyCode === 8) { 
         // 内容为空时按删除按钮
         this.doRemoveTag(this.target.length - 1)
@@ -97,6 +106,15 @@ export default {
       }
       if (this.noRepeat && this.$_isAnySameTag()) {
         toast.warn('不能输入重复的标签')
+        return
+      }
+      if (this.maxLength && Array.isArray(this.target) && this.target.length >= this.maxLength) {
+        toast.warn(`最多只能${this.maxLength}个标签`)
+        this.content = ''
+        return
+      }
+      if (this.validator instanceof Function && this.validator(this.content)) {
+        this.content = ''
         return
       }
       this.target.push(this.content)

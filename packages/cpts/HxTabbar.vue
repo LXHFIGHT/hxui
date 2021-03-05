@@ -1,5 +1,5 @@
 <template>
-  <div class="hx-tabbar" ref="main">
+  <div :class="['hx-tabbar', disabled ? 'disabled' : '']" ref="main">
     <div :style="`width: ${width}px; left: ${left}px`" 
       class="move-item"></div>
     <div :class="['item', (value === item.value) && 'selected']"
@@ -35,6 +35,10 @@ export default {
     color: {
       type: String,
       default: 'main'
+    },
+    disabled: {
+      type: [Number, String, Boolean],
+      default: false
     },
     level: {
       type: String,
@@ -79,6 +83,7 @@ export default {
       for (let i = 0; i < this.tabbarOptions.length; i++) {
         if (this.tabbarOptions[i].value === this.value) {
           this.index = i
+          this.width = this.tabbarOptions[i].width
           return
         }
       }      
@@ -91,10 +96,12 @@ export default {
       this.left = left
     },
     doSelectItem (item, index) {
+      if (this.disabled) {
+        return
+      }
       this.index = index
       this.$emit('input', item.value)
       this.$emit('change', item)
-      this.width = item.width
       this.$_locateMagicBar()
       this.onSelect instanceof Function && this.onSelect(item)
     }

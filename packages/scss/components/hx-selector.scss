@@ -42,6 +42,51 @@
   }
 }
 
+.hx-selector-options {
+  z-index: 101;
+  font-size: $font-md;
+  width: 100%;
+  padding: $pm-sm;
+  transform: none;
+  background-color: white;
+  .pad-select-zone {
+    max-width: unset;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    padding: $pm-sm/2 0 0;
+  }
+  .line-divider {
+    display: block;
+    margin: 0;
+    height: 1px;
+    width: 100%;
+    background-color: $color-gray;
+  }
+  .option {
+    width: 100%;
+    display: block;
+    padding: $pm-sm $pm-md;
+    @include nowrap;
+    cursor: default;
+    font-size: $font-md;
+    color: $color-dark;
+    &.selected { 
+      background-color: rgba($color-main, .1);
+      color: $color-main;
+    }
+    &.disabled {
+      background-color: $color-gray-light!important;
+      color: $color-gray-deep!important;
+      cursor: not-allowed;
+    }
+    &:hover {
+      background-color: rgba($color-main, .05);
+    }
+  }
+}
+
 .hx-pad-options {
   z-index: 101;
   font-size: $font-md;
@@ -174,6 +219,57 @@
       .pad-select-zone {
         width: 100%!important;
         max-height: 300px;
+      }
+    }
+  }
+
+  .hx-selector-options {
+    // 移动端 actionsheet形式
+    &.selector {
+      height: 100%;
+      width: 100%;
+      background-color: $color-gray;
+      padding: 0;
+      box-sizing: border-box;
+      transition: opacity .2s, visibility .2s;
+      @include borderRadiusTop($md);
+      overflow: hidden;
+      &::before {
+        display: none;
+      }
+      .pad-select-zone {
+        bottom: -100%;
+        width: 100%;
+        transition: bottom .4s;
+        padding: 0;
+        .pad-options {
+          max-height: 360px;
+          width: 100%;
+          display: block;
+          overflow: auto;
+        }
+        .option {
+          background-color: white;
+          border-bottom: 1px solid $color-gray-light;
+          text-align: center;
+          height: $normal;
+          line-height: $normal;
+          padding: 0;
+          color: #000;
+          &.selected {
+            color: $color-main;
+          }
+        }
+        .btn-cancel {
+          margin-top: $md;
+          background-color: white;
+          color: $color-heavy;
+        }
+      }
+      &.show {
+        .pad-select-zone {
+          bottom: $md;
+        }
       }
     }
   }

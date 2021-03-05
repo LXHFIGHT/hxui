@@ -1,11 +1,4 @@
 // 用于编写适用于整个项目的CSS方法
-@mixin compatible($key, $word){
-  #{$key}: $word;
-  -webkit-#{$key}: $word;
-  -moz-#{$key}: $word;
-  -o-#{$key}: $word;
-  -ms-#{$key}: $word;
-}
 
 @mixin transform($content) {
   transform: $content;

@@ -11,50 +11,44 @@
       :disabled="disabled"
       :value="_optionFilter(value)"/>
     <button v-if="value && !disabled" class="btn-clear hide-sm" @click="doClear">×</button>
-    <div :class="['hx-pad-options selector', showOptions && 'show']" ref="padOptions" 
-      :style="styles">
-      <div class="pad-select-zone">
-        <div class="pad-options">
-          <div class="btn-option" v-for="(option, idx) in options" :key="idx">
-            <div @click="doSelect(option)"
-              v-if="option.value !== '|' || option[key] !== '|'"
-              :value="option.value"
-              :class="['option', 
-                option.disabled ? 'disabled' : '', 
-                option.value === value && 'selected']">
-              {{ option[key] }}
+    <hx-folder :dom="inputer" :onHide="doBlur" :show="showOptions">
+      <div class="hx-selector-options selector">
+        <div class="pad-select-zone">
+          <div class="pad-options">
+            <div class="btn-option" v-for="(option, idx) in options" :key="idx">
+              <div @click="doSelect(option)"
+                v-if="option.value !== '|' || option[key] !== '|'"
+                :value="option.value"
+                :class="['option', 
+                  option.disabled ? 'disabled' : '', 
+                  option.value === value && 'selected']">
+                {{ option[key] }}
+              </div>
+              <div class="line-divider" v-if="option.value === '|' && option[key] === '|'"></div>
             </div>
-            <div class="line-divider" v-if="option.value === '|' && option[key] === '|'"></div>
+          </div>
+          <div class="btn-cancel option" @click="doHideOptions" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
+            取消选择
           </div>
         </div>
-        <div class="btn-cancel option" @click="doHideOptions" v-if="screenWidth <= MOBILE_DEVICE_MAX_WIDTH">
-          取消选择
-        </div>
       </div>
-    </div>
+    </hx-folder>
   </div>
 </template>
 <script>
-import { 
-  getElementToPageTop, 
-  getElementToPageLeft, 
-  getElementScrollTop 
-} from './../tools/dom'
+import HxFolder from './HxFolder'
 import { MOBILE_DEVICE_MAX_WIDTH } from './../const'
 export default {
+  components: {
+    HxFolder
+  },
   data () {
     return {
       MOBILE_DEVICE_MAX_WIDTH,
       screenWidth: 0,
       showOptions: false,
       options: [],
-      left: 0,
-      top: 0,
-      inputerHeight: 0,
-      inputerWidth: 0,
-      padOptionsWidth: 0,
-      scroll: 0,
-      timer: null,
+      inputer: null,
       key: ''
     }
   },
@@ -89,6 +83,10 @@ export default {
     }
   },
   methods: {
+    $_init () {
+      this.inputer = this.$refs.inputer
+      this.screenWidth = document.body.clientWidth
+    },
     $_getKeyName () { // 智能分析传入数据的key对应的字段
       if (this.keyName) {
         this.key = this.keyName
@@ -133,27 +131,6 @@ export default {
         }
       }
     },
-    $_initPosition () {
-      this.$nextTick(() => {
-        const $padOptions = this.$refs.padOptions
-        const body = document.querySelector('body')
-        if (body.append) {
-          body.append($padOptions)
-        } else {
-          body.appendChild($padOptions)
-        }
-      })
-    },
-    $_renderLayout () {
-      const $view = this.$refs.inputer
-      const inputerHeight = $view.clientHeight
-      const $padOptions = this.$refs.padOptions
-      this.padOptionsWidth = $padOptions.clientWidth
-      this.inputerWidth = $view.clientWidth
-      this.left = getElementToPageLeft($view) - (this.padOptionsWidth - this.inputerWidth) / 2
-      this.top = getElementToPageTop($view) + inputerHeight + 16
-      this.scroll = getElementScrollTop($view)
-    },
     doClear () {
       this.$emit('input', '')
       this.$emit('change')
@@ -184,32 +161,7 @@ export default {
     this.$_initOptions()
   },
   mounted () {
-    this.screenWidth = document.body.clientWidth
-    this.$_initPosition()
-    if (this.screenWidth <= MOBILE_DEVICE_MAX_WIDTH) {
-      return
-    }
-    this.$_renderLayout()
-    this.timer = window.setInterval(() => {
-      this.$_renderLayout()
-    }, 1000 / 60)
-  },
-  beforeDestroy () {
-    window.clearInterval(this.timer)
-    const body = document.querySelector('body')
-    body.removeChild(this.$refs.padOptions)
-  },
-  destroyed () {
-    this.$destroy(true)
-  },
-  computed: {
-    styles () {
-      const left = this.left ? `left: ${this.left}px;` : ''
-      const top = this.top ? `top: ${this.top}px;` : ''
-      const width = this.inputerWidth ? `width: ${this.inputerWidth}px;` : ''
-      const transform = this.left ? `transform: translateY(${-1 * this.scroll}px);` : ''
-      return (left + top + width + transform)
-    }
+    this.$_init()
   },
   watch: {
     content: {

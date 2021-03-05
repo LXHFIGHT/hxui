@@ -6,12 +6,12 @@
 
 // 实心按钮
 .hx-tag {
-  @include hxTag(white);
+  @include hxTag(white, ($height-regular - 8px));
   position: relative;
   color: $color-heavy;
   background-color: $color-gray-light;
-  height: $height-regular - 8px!important;
-  line-height: $height-regular - 10px;
+  height: $height-regular - 8px;
+  line-height: $height-regular - 8px;
   border: 1px solid $color-gray;
   display: inline-block;
   cursor: default;
@@ -58,10 +58,11 @@
 
 // 按钮尺寸
 .hx-tag.sm {
-  height: $height-normal/2!important;
+  height: $height-normal/2;
   line-height: $height-normal/2;
+  padding: 0 $pm-sm/2;
 }
 .hx-tag.bg {
-  height: $height-regular!important;
+  height: $height-regular;
   line-height: $height-regular;
 }

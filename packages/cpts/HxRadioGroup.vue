@@ -3,7 +3,8 @@
     <button v-for="(item, idx) in options" 
       :key="idx"
       @click="doSelectItem(item)"
-      :class="['item', isShallowEqual(result, item.value) && 'selected']">
+      :disabled="disabled"
+      :class="['item', isShallowEqual(parseInt(check), ~~item.value)  && 'selected']">
       <img class="icon-check" src="./../img/icon/icon-check.png" alt="">
       {{ item.key }}
     </button>
@@ -15,7 +16,8 @@ export default {
   data () {
     return {
       options: [],
-      result: ''
+      isDisable: false,
+      check: ''
     }
   },
   props: {
@@ -29,6 +31,10 @@ export default {
     },
     onCancel: { // 当取消选择选项时
       type: Function
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -46,9 +52,9 @@ export default {
       })
     },
     doSelectItem (item) {
-      this.result = Object.assign({}, item.value)
-      this.$emit('input', this.result)
-      this.$emit('change', this.result)
+      console.log('change', item)
+      this.$emit('input', item.value)
+      this.$emit('change', item.value)
     }
   },
   mounted () {
@@ -62,12 +68,8 @@ export default {
       }
     },
     value: {
-      deep: true,
-      immediate: true,
-      handler (newVal) {
-        if (newVal && newVal.length) {
-          this.result = newVal
-        }
+      handler (newVal, oldVal) {
+        this.check = newVal
       }
     }
   }

@@ -23,10 +23,18 @@
       width: $height-normal/2;
       display: inline-block;
       padding: $pm-sm/2;
-      background-color: $color-gray-light;
+      background-color: $color-gray;
       float: left;
       margin-right: $pm-sm;
       border-radius: $pm-sm/2;
+    }
+    &.disabled {
+      .icon-check {
+        cursor: not-allowed;
+      }
+      &:hover {
+        background-color: transparent;
+      }
     }
     &:hover {
       background-color: $color-gray-light;
