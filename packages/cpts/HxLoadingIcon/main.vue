@@ -2,9 +2,8 @@
   <div :class="['pad-loading-icon', 
     position, 
     direction === 'row' ? 'row' : 'column']" 
-    ref="padLoadingIcon"
-    :style="`height: ${height};`">
-    <canvas :id="id" :class="`hx-loading-canvas`"></canvas>
+    ref="padLoadingIcon">
+    <canvas :style="`height: ${height};`" :id="id" :class="`hx-loading-canvas`"></canvas>
     <span class="text-loading" :style="textStyle">
       <slot></slot>
     </span>
@@ -117,11 +116,6 @@ export default {
   computed: {
     textStyle () {
       let style = `color: ${this.mainColor}; `
-      if (this.direction === 'row') {
-        style += `height: ${this.height}; line-height: ${this.height}; `
-      } else {
-        style += `margin-top: ${parseInt(this.clientHeight / 3)}px;`
-      }
       return style
     }
   }

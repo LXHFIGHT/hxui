@@ -72,6 +72,7 @@ export default {
       current: '',
       urls: [],
       show: false,
+      listener: null, // 添加的监听回退事件
       position: '', // 图片预览模块框显示位置，可选 left（左半屏）， right（右半屏）
       index: 0,
       scale: 1.0,
@@ -110,6 +111,7 @@ export default {
     destroyElement () {
       this.show = false
       this.closeTimer = setTimeout(() => {
+        window.removeEventListener('popstate', this.listener)
         this.$destroy(true)
         this.$el.parentNode && this.$el.parentNode.removeChild(this.$el)
       }, 400)

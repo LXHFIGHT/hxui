@@ -1,6 +1,6 @@
 <template>
   <div ref="folder"
-    :class="['hx-folder', show ? 'show' : '']"
+    :class="['hx-folder', show ? 'show' : '', isResponsive ? 'responsive' : '']"
     :style="styles">
     <div class="mask" @click="doClick"></div>
     <div class="pad-content">
@@ -39,6 +39,10 @@ export default {
       default: '200px'
     },
     show: { // 是否需要展示出来
+      type: [String, Boolean, Number],
+      default: false
+    },
+    isResponsive: { // 是否需要响应式, 默认不需要
       type: [String, Boolean, Number],
       default: false
     },
@@ -93,7 +97,7 @@ export default {
   mounted () {
     this.screenWidth = document.body.clientWidth
     this.$_initPosition()
-    if (this.screenWidth <= MOBILE_DEVICE_MAX_WIDTH) {
+    if (this.screenWidth <= MOBILE_DEVICE_MAX_WIDTH && this.isResponsive) {
       return
     }
     this.$_renderLayout()

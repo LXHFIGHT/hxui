@@ -16,7 +16,7 @@
   &.row {
     .text-loading {
       display: inline-block;
-      margin-left: $pm-md;
+      padding-left: $pm-md;
       vertical-align: top;
       margin-top: 0;
     }
@@ -25,13 +25,17 @@
     width: auto;
     text-align: center;
     overflow-y: visible!important;
+    .hx-loading-canvas {
+      display: block;
+      margin: 0 auto;
+    }
   }
   .hx-loading-canvas {
     animation: rotating 6s linear infinite;
   }
   .text-loading {
     font-size: $font-md;
-    margin-top: $pm-sm / 2;
+    padding-top: $pm-sm / 2;
     display: block;
     animation: breatheOpacity 3s infinite;
   }

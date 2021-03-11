@@ -11,8 +11,8 @@
       :disabled="disabled"
       :value="_optionFilter(value)"/>
     <button v-if="value && !disabled" class="btn-clear hide-sm" @click="doClear">×</button>
-    <hx-folder :dom="inputer" :onHide="doBlur" :show="showOptions">
-      <div class="hx-selector-options selector">
+    <hx-folder :dom="inputer" :onHide="doBlur" :show="showOptions" isResponsive="true">
+      <div class="hx-pad-options selector">
         <div class="pad-select-zone">
           <div class="pad-options">
             <div class="btn-option" v-for="(option, idx) in options" :key="idx">

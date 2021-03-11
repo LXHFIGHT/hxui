@@ -8,38 +8,39 @@
       @blur="doBlur"
       v-model="detail"
       :disabled="disabled"
-      :placeholder="placeholder"/>
+      :placeholder="placeholder" />
     <button class="btn-clear" tabindex=-1 v-if="!hideClearBtn && !disabled" @click="doClear">
       <img class="icon" :src="iconClear" alt="">
     </button>
-    <div :class="['hx-pad-options autocomplete', showOptions && 'show']" 
-      ref="padOptions"
-      :style="styles">
-      <div class="pad-select-zone">
-        <div v-for="(option, idx) in options" 
-          :key="idx"
-          @click="doSelect(option)"
-          class="option">
-          {{ option.key }}
+    <hx-folder :dom="inputer" :onHide="doBlur" :show="showOptions">
+      <div :class="['hx-pad-options autocomplete', showOptions && 'show']" 
+        ref="padOptions"
+        :style="styles">
+        <div class="pad-select-zone" v-if="!loading">
+          <div v-for="(option, idx) in options" 
+            :key="idx"
+            @click="doSelect(option)"
+            class="option">
+            {{ option }}
+          </div>
         </div>
+        <div class="hx-emptyset light" 
+          v-if="options.length === 0 && !loading">
+          暂无匹配选项
+        </div>
+        <hx-loading-icon v-if="loading" height="32px" style="padding: 16px 0;">
+        </hx-loading-icon>
       </div>
-      <div class="hx-emptyset light" 
-        v-if="options.length === 0">
-        暂无匹配选项
-      </div>
-    </div>
+    </hx-folder>
     <input type="password"
       autocomplete="new-password" 
       style="visiblity: hidden; display: none;" />
   </div>
 </template>
 <script>
+import HxFolder from './HxFolder'
+import HxLoadingIcon from './HxLoadingIcon'
 import iconClear from './../img/icon/icon-close.png'
-import { 
-  getElementToPageTop, 
-  getElementToPageLeft, 
-  getElementScrollTop 
-} from './../tools/dom'
 export default {
   data () {
     return {
@@ -48,28 +49,42 @@ export default {
       detail: '',
       options: [],
       fullOptions: [],
-      width: 0,
-      left: 0,
-      top: 0,
-      inputerHeight: 0,
-      inputerWidth: 0,
-      padOptionsWidth: 0,
       scroll: 0
     }
+  },
+  components: {
+    HxFolder,
+    HxLoadingIcon
   },
   props: {
     upperCase: {
       type: [String, Boolean, Number],
       default: false
     },
-    content: { // 纯字符串或整数组成的数组
+    content: { // 纯字符串或整数等基本类型组成的数组
       type: Array,
-      required: true
+      required: true,
+      validator (val) {
+        if (!Array.isArray(val)) {
+          return false
+        }
+        for (let item of val) {
+          if (item instanceof Object || item instanceof Function) {
+            console.log('提供数据中内容不能包含引用数据类型，请使用字符串、数字等基本数据类型')
+            return false
+          }
+        }
+        return true
+      }
     },
-    value: { // 该选择器关联的数据
+    value: { // 该选择器关联的数据，可为输入或选中的内容
       type: String,
       required: true,
       default: ''
+    },
+    isPrefix: { // 匹配规则： false表示全局匹配，true表示前缀匹配
+      type: [Number, Boolean, String],
+      default: true
     },
     placeholder: {
       type: String,
@@ -83,40 +98,15 @@ export default {
       type: [String, Number, Boolean],
       default: false
     },
-    keyName: {
-      type: String,
-      default: 'key'
-    },
-    valueName: {
-      type: String,
-      default: 'value'
-    },
     hideClearBtn: { // 是否隐藏清空按钮
       type: [Boolean, String, Number], 
       default: false
     }
   },
   methods: {
-    $_renderLayout () {
-      const $view = this.$refs.inputer
-      const inputerHeight = $view.clientHeight
-      const $padOptions = this.$refs.padOptions
-      this.padOptionsWidth = $padOptions.clientWidth
-      this.inputerWidth = $view.clientWidth
-      this.left = getElementToPageLeft($view) - (this.padOptionsWidth - this.inputerWidth) / 2
-      this.top = getElementToPageTop($view) + inputerHeight + 16
-      this.scroll = getElementScrollTop($view)
-    },
-    $_initPosition () {
-      this.$nextTick(() => {
-        const $padOptions = this.$refs.padOptions
-        const body = document.querySelector('body')
-        if (body.append) {
-          body.append($padOptions)
-        } else {
-          body.appendChild($padOptions)
-        }
-      })
+    $_init () {
+      this.inputer = this.$refs.inputer
+      this.screenWidth = document.body.clientWidth
     },
     $_showOption () {
       this.showOptions = true
@@ -124,16 +114,7 @@ export default {
       this.width = $view.clientWidth + 'px'
     },
     $_initOptions () {
-      this.fullOptions = this.content.map(v => {
-        if (typeof v !== 'object') {
-          return { key: v, value: v }
-        }
-        let obj = {
-          key: v[this.keyName],
-          value: v[this.valueName]
-        }
-        return obj
-      })
+      this.fullOptions = [].concat(this.content)
       this.$_updateOptions()
     },
     $_updateOptions () {
@@ -142,7 +123,11 @@ export default {
         return
       }
       this.options = this.fullOptions.filter(v => {
-        return v.key.indexOf(this.detail) === 0
+        if (this.isPrefix) {
+          return v.indexOf(this.detail) === 0
+        } else {
+          return v.indexOf(this.detail) !== -1
+        }
       })
     },
     doAnalysing () {
@@ -160,40 +145,18 @@ export default {
     },
     doClear () {
       this.$emit('input', '')
-      this.$emit('change', { key: '', value: '' })
+      this.$emit('change', '')
     },
     doSelect (option) {
-      this.$emit('input', option.key)
+      this.$emit('input', option)
       this.$emit('change', option)
       this.$forceUpdate()
     }
   },
   created () {},
   mounted () {
-    this.screenWidth = document.body.clientWidth
-    this.$_initPosition()
-    this.$_renderLayout()
-    this.timer = window.setInterval(() => {
-      this.$_renderLayout()
-    }, 1000 / 60)
+    this.$_init()
     this.$_initOptions()
-  },
-  beforeDestroy () {
-    window.clearInterval(this.timer)
-    const body = document.querySelector('body')
-    body.removeChild(this.$refs.padOptions)
-  },
-  destroyed () {
-    this.$destroy(true)
-  },
-  computed: {
-    styles () {
-      const left = this.left ? `left: ${this.left}px;` : ''
-      const top = this.top ? `top: ${this.top}px;` : ''
-      const width = this.inputerWidth ? `width: ${this.inputerWidth}px;` : ''
-      const transform = this.left ? `transform: translateY(${-1 * this.scroll}px);` : ''
-      return (left + top + width + transform)
-    }
   },
   watch: {
     value (newVal) {

@@ -13,6 +13,18 @@
     visibility: visible;
     opacity: 1.0;
   }
+  &::before {
+    content: "";
+    height: 0;
+    width: 0;
+    top: -7px;
+    border-bottom: 7px solid white;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 0 solid transparent;
+    position: absolute;
+    @include centerHorizontal;
+  }
   .pad-select-zone {
     max-width: unset;
     overflow-y: auto;
@@ -34,27 +46,31 @@
   }
   .hx-folder {
     // 移动端 actionsheet形式
-    @include hxFolderBlock;
-    overflow: hidden;
     transition: opacity .2s, visibility .2s;
-    .mask {
+    box-shadow: 0 0px $pm-bg rgba(190, 185, 185, 0.28);
+    &.responsive {
       @include hxFolderBlock;
-      background-color: rgba(0,0,0,.65);
-    }
-    .pad-content {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      transform: translateY(100%);
-      width: 100%;
-      display: block;
-      transition: transform .4s;
-    }
-    &.show .pad-content {
-      transform: translateY(0);
-    }
-    &::before {
-      display: none;
+      box-shadow: unset;
+      overflow: hidden;
+      .mask {
+        @include hxFolderBlock;
+        background-color: rgba(0,0,0,.65);
+      }
+      .pad-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateY(100%);
+        width: 100%;
+        display: block;
+        transition: transform .4s;
+      }
+      &.show .pad-content {
+        transform: translateY(0);
+      }
+      &::before {
+        display: none;
+      }
     }
   }
 }
@@ -64,18 +80,6 @@
     box-shadow: 0 0px $pm-bg rgba(190, 185, 185, 0.28);
     transition: opacity .4s, visibility .4s;
     border-radius: $pm-sm / 2;
-    &::before {
-      content: "";
-      height: 0;
-      width: 0;
-      top: -7px;
-      border-bottom: 7px solid white;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-top: 0 solid transparent;
-      position: absolute;
-      @include centerHorizontal;
-    }
     .pad-content {
       border-radius: $pm-sm / 2;
       overflow: hidden;
