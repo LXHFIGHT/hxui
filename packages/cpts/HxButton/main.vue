@@ -3,8 +3,10 @@
     'hx-button', 
     type, 
     size, 
-    (blank && 'blank'), 
-    (text && 'text')]" 
+    (blank && 'blank'),
+    (sharp && 'sharp'),
+    (round && 'round'),
+    (text && 'text')]"
     @click="doClick">
     <div v-if="dot" class="hx-dot topRight md"></div>
     <slot></slot>
@@ -19,6 +21,14 @@ export default {
   },
   props: {
     blank: {
+      type: [Boolean, String],
+      default: false
+    },
+    round: { // 是否圆角
+      type: [Boolean, String],
+      default: false
+    },
+    sharp: { // 是否直角边
       type: [Boolean, String],
       default: false
     },

@@ -10,6 +10,7 @@
   position: relative;
   color: $color-heavy;
   border: 1px solid $color-gray;
+  border-radius: 4px;
   &:hover {
     background-color: #fafafa;
   }
@@ -67,6 +68,23 @@
   &.pink    {  @include hxBlankButton($color-pink);  }
   &.yellow  {  @include hxBlankButton($color-golden);  }
   &.black, &.fatal  {  @include hxBlankButton($color-black);  }
+}
+
+.hx-button.round {
+  border-radius: $height-regular / 2;
+  min-width: 60px;
+  &.sm { 
+    border-radius: $height-navbar / 4; 
+    min-width: 45px;
+  }
+  &.bg { 
+    border-radius: $height-normal / 2; 
+    min-width: 75px;
+  }
+}
+
+.hx-button.sharp {
+  border-radius: 0;
 }
 
 .hx-button.text {
