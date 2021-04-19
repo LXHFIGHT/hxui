@@ -27,7 +27,7 @@ export default (object) => {
     const reader = new FileReader()
     reader.onload = function () {
       const done = () => {
-        if (result.length < maxsize * SIZE_KB || !compress) {
+        if (result.length < maxsize || !compress) {
           fileDatas.push(files[i])
         } else if (compress) {
           const data = _compressImage(img, compress)
