@@ -104,8 +104,8 @@
         border-radius: 4px;
         font-size: $font-md;
         font-weight: 800;
-        line-height: $height-navbar/2;
-        height: $height-navbar/2;
+        line-height: $height-navbar / 2;
+        height: $height-navbar / 2;
         width: auto;
         display: inline-block;
       }
@@ -118,8 +118,8 @@
           color: white;
           display: block;
           width: 100%;
-          min-height: $height-navbar/2;
-          line-height: $height-navbar/2 - $pm-sm;
+          min-height: $height-navbar / 2;
+          line-height: $height-navbar / 2 - $pm-sm;
           border-radius: $border-radius-md;
           padding: $pm-sm/2;
           font-size: 12px;

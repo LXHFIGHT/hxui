@@ -31,10 +31,10 @@
     border-collapse: collapse;
     background-color: white;
     td {
-      min-height: $height-navbar;
+      height: $height-normal;
       text-align: center;
-      padding: $pm-sm $pm-sm;
-      font-size: 13px;
+      padding: $pm-sm/2 $pm-sm;
+      font-size: $font-md;
       word-break: break-all;
       &.left {
         text-align: justify;
@@ -87,9 +87,9 @@
       }
       .hx-button {
         padding: 0 $pm-sm;
-        height: ($height-regular - $pm-sm / 2);
-        min-height: $height-regular - $pm-sm / 2;
-        margin: 0 $pm-sm/2 $pm-sm/2 0;
+        height: ($height-regular - $pm-xs);
+        min-height: $height-regular - $pm-xs;
+        margin: 0 $pm-xs 0 0;
         vertical-align: top;
         zoom: 0.9;
         &.standard {
@@ -111,15 +111,16 @@
     }
     thead {
       border-bottom: 3px solid $color-gray-light;
-      td {
-        height: $height-navbar - 4px;
-        color: $color-heavy;
+      td, th {
+        height: $height-normal;
+        color: $color-dark;
+        font-weight: 600;
       }
     }
     tbody {
       color: $color-dark;
       tr {
-        height: $height-navbar;
+        min-height: $height-normal;
       }
       tr:nth-child(even) {
         background-color: $color-gray-light;

@@ -44,11 +44,14 @@
     .title {
       margin-right: $pm-md;
       display: inline-flex;
+      font-weight: 600;
+      color: $color-dark;
+      font-size: $font-bg;
       align-items: center;
     }
     &:before {
       content: "";
-      height: $height-navbar/2;
+      height: $height-navbar / 2;
       width: 3px;
       @include centerVertical;
       display: block;
@@ -168,7 +171,7 @@
     }
     > .header:before {
       content: "";
-      height: $height-navbar/2;
+      height: $height-navbar / 2;
       width: 3px;
       background-color: $color-main;
       @include centerVertical;

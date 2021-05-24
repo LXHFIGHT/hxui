@@ -93,8 +93,8 @@
     }
     .btn-toggle {
       @include centerVertical;
-      height: $height-navbar/2;
-      width: $height-navbar/2;
+      height: $height-navbar / 2;
+      width: $height-navbar / 2;
       padding: $pm-sm/2;
       position: absolute;
       right: $pm-sm;

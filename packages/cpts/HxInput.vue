@@ -37,7 +37,9 @@
     </button>
     <span class="unit">
       <span v-if="unit" v-text="unit"></span>
-      <span class="unit" v-if="!unit && showLength && value" v-text="maxLength ? `${value.length}/${maxLength}` : `${value.length}字`"></span>
+      <span class="unit" v-if="!unit && showLength" 
+        v-text="maxLength ? `${value ? value.length : 0}/${maxLength}` : `${value ? value.length : 0}字`">
+      </span>
       <slot name="unit"></slot>
     </span>
   </div>

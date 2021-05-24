@@ -45,12 +45,12 @@ td[id|=tangram-suggestion] {
   display: block;
   background-color: transparent;
   .pad-address-selector {
-    height: $height-normal;
+    height: $height-regular;
     position: relative;
     background-color: #f6f6f6;
     box-shadow: $shadow-md;
     z-index: 1;
-    padding: 0 0 $pm-xs;
+    margin-bottom: $pm-xs;
     > .inputer {
       height: 100%;
       width: calc(100% - #{$height-normal});
@@ -64,11 +64,13 @@ td[id|=tangram-suggestion] {
       background-color: rgba(0,0,0,.05);
     }
     .btn-close-modal {
-      height: 100%;
-      width: $height-normal - $pm-xs;
+      height: $height-regular;
+      width: $height-regular;
       float: right;
       @include timesIcon;
       background-color: $color-main;
+      position: absolute;
+      right: 0;
     }
   }
   .pad-map {
@@ -177,6 +179,7 @@ td[id|=tangram-suggestion] {
       right: $pm-bg;
       bottom: -100%;
       position: absolute;
+      background-color: white;
       transition: bottom .4s;
     }
     &.show .pad-address-content {

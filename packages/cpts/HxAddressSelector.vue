@@ -1,41 +1,37 @@
 <template>
-  <div :class="['hx-modal choose-address-modal', (show ? 'show' : '')]">
+  <div :class="['hx-modal choose-address-modal', (value ? 'show' : '')]">
     <div class="mask" @click="onHide"></div>
     <div class="pad-address-content">
       <div class="pad-address-selector">
-        <input type="text"
-          class="inputer"
-          ref="address"
+        <input ref="address"
+          type="text"
           id="suggestion"
-          placeholder="点此输入地址搜索"/>
+          v-model="searchCity"
+          placeholder="搜索地点"/>
         <button class="btn-close-modal" @click="onHide"></button>
       </div>
       <div class="pad-map">
-        <div class="map" id="baidu-map" />
-        <img class="icon-pinpoint"
-             src="./../img/icon/icon-pinpoint.png" alt=""/>
-        <button class="btn-pinpoint">
-          <img src="./../img/icon/icon-current-location.png" alt=""/>
-        </button>
+        <div class="map" id="amap-map" />
+        <div id="panel"></div>
+        <img class="icon-pinpoint" src="./../img/icon/icon-pinpoint.png" alt=""/>
       </div>
       <div class="pad-poi">
         <div class="item-poi special" @click="doChoosePinPoint">
           选择坐标图标所指位置
-          <button class="hx-button sm green btn-select-poi">
+          <button class="hx-button text sm green btn-select-poi">
             选择
           </button>
         </div>
-        <div v-if="state.poi.length">
-          <div v-for="item in state.poi"
-            v-bind:key="item.title"
-            class="item-poi"
-            @click="doChooseItem(item)">
-            {{item.title}}
-            <small v-text="item.address"></small>
-            <button class="hx-button sm btn-select-poi">
-              选择
-            </button>
-          </div>
+        <!-- eslint-disable-next-line -->
+        <div v-for="item in poiList" v-if="poiList.length"
+          v-bind:key="item.name"
+          class="item-poi"
+          @click="doChooseItem(item)">
+          {{item.name}}
+          <small v-text="item.address"></small>
+          <button class="hx-button text sm green btn-select-poi">
+            选择
+          </button>
         </div>
       </div>
     </div>
@@ -43,7 +39,7 @@
 </template>
 
 <script>
-const BMap = window.BMap
+const AMap = window.AMap
 export default {
   name: 'HxAddressSelector',
   data () {
@@ -52,109 +48,141 @@ export default {
       Geolocation: {},
       Geocoder: {},
       Autocomplete: {},
+      searchCity: '',
+      city: '',
+      cityCode: '',
+      poiList: [],
       state: {
         location: {},
         poi: []
-      }
+      },
+      lngLat: []
     }
   },
   props: {
-    onSelect: {
-      type: Function,
-      required: true
-    },
-    onHide: {
-      type: Function,
-      required: true
-    },
-    show: {
-      type: Boolean
+    value: {
+      type: [Boolean, Number, String],
+      default: false
     }
   },
   methods: {
-    /**
-     * 获取地图正中央点位置及附近点的POI
-     * @private
-     */
-    $_getSurroundingPOIs () {
-      if (this.map) {
-        const { lat, lng } = this.map.getCenter()
-        this.Geocoder.getLocation(new BMap.Point(lng, lat), (result) => {
-          if (result) {
-            this.state.poi = result.surroundingPois
+    initMap () {
+      let that = this
+      this.map = new AMap.Map('amap-map', {
+        resizeEnable: true,
+        zoom: 12
+      })
+      AMap.plugin(['AMap.PlaceSearch', 'AMap.Autocomplete', 'AMap.Geolocation'], function () {
+        let geolocation = new AMap.Geolocation({
+          enableHighAccuracy: true
+        })
+        geolocation.getCurrentPosition()
+        AMap.event.addListener(geolocation, 'complete', onComplete)
+        AMap.event.addListener(geolocation, 'error', onError)
+        function onComplete (data) {
+          // 获取定位成功
+        }
+        function onError () {
+          // 获取定位失败
+        }
+        var autoOptions = {
+          input: 'suggestion',
+          autoFitView: true
+        }
+        that.autoComplete = new AMap.Autocomplete(autoOptions)
+        that.placeSearch = new AMap.PlaceSearch({
+          showCover: false,
+          map: that.map,
+          extensions: 'all',
+          autoFitView: false,
+          pageSize: 1
+        })
+        AMap.event.addListener(that.autoComplete, 'select', function (e) {
+          let zoom = that.map.getZoom()
+          // 有location返回时
+          if (e && e.poi.location) {
+            that.lngLat = [e.poi.location.lng, e.poi.location.lat]
+            that.placeSearch.setCity(e.poi.adcode)
+            that.placeSearch.search(e.poi.name)
+            that.map.setZoomAndCenter(zoom, that.lngLat)
+          } else { // 无location返回时， 使用关键字搜索
+            that.placeSearch.setCity(e.poi.adcode)
+            that.placeSearch.search(e.poi.name, function (status, result) {
+              const { pois } = result.poiList
+              that.lngLat = [pois[0].location.lng, pois[0].location.lat]
+              that.map.setZoomAndCenter(zoom, that.lngLat)
+            })
           }
         })
+      })
+      that.map.on('moveend', () => {
+        that.getNearbyAddress()
+        that.map.clearMap()
+      })
+      that.map.on('zoomend', () => {
+        let zoom = that.map.getZoom()
+        that.map.setZoomAndCenter(zoom, that.lngLat)
+        that.map.clearMap()
+      })
+      that.getNearbyAddress()
+    },
+    onHide () {
+      this.$emit('input', false)
+    },
+    onSelect (addressInfo) {
+      this.$emit('select', addressInfo)
+    },
+    select (e) {
+      if (e && e.poi.location) {
+        let zoom = this.map.getZoom()
+        this.lngLat = [e.poi.location.lng, e.poi.location.lat]
+        this.placeSearch.setCity(e.poi.adcode)
+        this.placeSearch.search(e.poi.name)
+        this.map.clearMap()
+        this.map.setZoomAndCenter(zoom, this.lngLat)
       }
     },
-    $_pinpointCurrentLocation () {
-      const that = this
-      this.Geolocation.getCurrentPosition(function (r) {
-        that.map.centerAndZoom(r.point, 16) // 初始化地图,设置中心点坐标和地图级别
-        const { lat, lng } = r.point
-        that.state.location = { lat, lng, address: '' }
-        that.$_getSurroundingPOIs()
-      }, {
-        enableHighAccuracy: true
-      })
-    },
-    $_closeModal () {
-      this.onHide()
-    },
-    $_initMap () {
-      const that = this
-      this.map = new BMap.Map('baidu-map') // 创建Map实例
-      this.map.enableScrollWheelZoom(true) // 开启鼠标滚轮缩放
-      this.Geolocation = new BMap.Geolocation()
-      this.Geocoder = new BMap.Geocoder()
-      // 自动填充组件
-      this.Autocomplete = new BMap.Autocomplete({
-        input: 'suggestion',
-        location: this.map
-      })
-      this.$_pinpointCurrentLocation()
-      /**
-       * 搜索并定位到指定的位置
-       * @param value 地址名
-       */
-      const _setPlace = (value) => {
-        function mySpot () {
-          const pinpoint = local.getResults().getPoi(0).point
-          that.map.centerAndZoom(pinpoint, 16)
-          that.$_getSurroundingPOIs()
-        }
-        let local = new BMap.LocalSearch(this.map, {
-          onSearchComplete: mySpot
+    getLocationByPlugin (lat, lng) {
+      let that = this
+      this.map.plugin(['AMap.Geocoder'], function () {
+        let geolocation = new AMap.Geocoder({
+          radius: 1000,
+          batch: true,
+          extensions: 'all'
         })
-        local.search(value)
-      }
-      this.Autocomplete.addEventListener('onconfirm', function (e) {
-        const _value = e.item.value
-        const selectValue = `${_value.province}${_value.city}${_value.district}${_value.street}${_value.business}`
-        _setPlace(selectValue)
+        geolocation.getAddress([lng, lat], (status, result) => {
+          if (status === 'complete' && result.info === 'OK') {
+            that.city = result.regeocode.addressComponent.city || result.regeocode.addressComponent.province
+            that.cityCode = result.regeocode.addressComponent.citycode
+            that.poiList = result.regeocode.pois
+          }
+        })
       })
-      this.map.addEventListener('touchend', (e) => {
-        this.$_getSurroundingPOIs()
-      })
-      this.map.addEventListener('mouseup', (e) => {
-        this.$_getSurroundingPOIs()
-      })
+    },
+    getNearbyAddress () {
+      let { lat, lng } = this.map.getCenter()
+      this.getLocationByPlugin(lat, lng)
     },
     doChooseItem (item) {
-      const { address, city, point, title } = item
-      const { lng, lat } = point
+      const { location, name } = item
+      const address = `${item.name} ${item.address}`
+      const { lng, lat } = location
       this.onHide()
-      this.onSelect({ address, city, lng, lat, title })
+      this.onSelect({ address, cityCode: this.cityCode, city: this.city, lng, lat, name })
     },
     doChoosePinPoint () {
-      const address = this.$refs.address.value || ''
       const pinpoint = this.map.getCenter()
       const { lng, lat } = pinpoint
       this.onHide()
-      this.onSelect({ address, lng, lat })
+      this.onSelect({ address: '', lng, lat })
     }
   },
   mounted () {
-    this.$_initMap()
+    this.initMap()
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  @import './../scss/plugins/hx-baidu-map.scss';
+</style>

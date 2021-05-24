@@ -1,15 +1,19 @@
+<!--
+ * @Author       : liuxuhao
+ * @LastEditors  : liuxuhao
+-->
 <template>
   <div class="hx-row" :class="[
     oneline && 'oneline',
     !label && 'null-label',  // 当没有写入label时，行内容 content 显示一行
     labelSize && `${labelSize}-label`]">
-    <label v-if="label">
+    <label v-if="label" :class="labelClass || ''">
       {{ label }}
       <span v-if="required" class="tip">*</span>
       <span class="label-tips" v-text="tips" v-if="tips"></span>
       <slot name="label"></slot>
     </label>
-    <div class="content">
+    <div :class="['content', contentClass]">
       <slot ></slot>
       <span class="right">
         <slot name="right"></slot>
@@ -40,6 +44,12 @@ export default {
       validator (val) {
         return ['md', 'bg', 'sm', 'lg'].includes(val)
       }
+    },
+    labelClass: { // 自定义文本标签的class
+      type: String
+    },
+    contentClass: { // 自定义内容面板的class
+      type: String
     },
     tips: {
       type: String // 展示在label中的提示文本

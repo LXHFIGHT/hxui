@@ -13,10 +13,10 @@
   height: $height-regular - 8px;
   line-height: $height-regular - 8px;
   border: 1px solid $color-gray;
-  display: inline-block;
   cursor: default;
-  border-radius: 2px;
-  margin-bottom: 6px;
+  border-radius: 3px;
+  display: inline-block;
+  font-weight: 600;
   & + & {
     margin-left: $pm-sm;
   }

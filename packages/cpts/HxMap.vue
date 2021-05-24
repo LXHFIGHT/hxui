@@ -1,21 +1,32 @@
+<!--
+ * @Author       : liuxuhao
+ * @LastEditors  : liuxuhao
+-->
 <template>
-  <div class="hx-map"
-    :style="`height: ${height}`"
-    :id="id">
-    <div class="hx-emptyset md" v-if="!lat || !lng">
-      暂无准确坐标
+  <div class="hx-pad-map">
+    <div class="hx-map"
+      :style="`height: ${height}`"
+      :id="id">
+      <div class="hx-emptyset md" v-if="!lat || !lng">
+        暂无准确坐标
+      </div>
     </div>
+    <button @click="toCenter" class="btn-relocated">
+      <img class="icon" src="./../img/icon/icon-current-location.png" alt="">
+    </button>
   </div>
 </template>
 
 <script>
-const BMap = window.BMap
+import imgPinpoint from './../img/icon/icon-pinpoint.png'
+const AMap = window.AMap
 export default {
   name: 'HxMap',
   data () {
     return {
       idName: `hx-map`,
-      map: null
+      map: null,
+      marker: null
     }
   },
   props: {
@@ -34,34 +45,78 @@ export default {
     lat: {
       type: [Number, String],
       default: ''
+    },
+    level: {
+      type: Number,
+      default: 14
+    },
+    iconUrl: {
+      type: String, // 图片的位置
+      default: imgPinpoint
     }
   },
   methods: {
     $_reloadMap () {
       const { lat, lng } = this
-      if (!this.map) {
-        this.map = new BMap.Map(this.id) // 创建Map实例
-        this.map.enableScrollWheelZoom()
-      } else {
-        this.map.clearOverlays()
+      if (!lat || !lng) {
+        return 
       }
-      let point = new BMap.Point(lng, lat)
-      let mk = new BMap.Marker(point)
-      this.map.addOverlay(mk)
-      this.map.centerAndZoom(point, 15) // 初始化地图,设置中心点坐标和地图级别
+      if (!this.map) {
+        this.map = new AMap.Map(this.id) // 创建Map实例
+      } 
+      if (!this.marker) {
+        this.marker && this.marker.setMap(null)
+        this.marker = null
+      }
+      this.marker = new AMap.Marker({
+        icon: this.iconUrl,
+        position: [lng, lat],
+        offset: new AMap.Pixel(-13, -40)
+      })
+      this.marker.setMap(this.map)
+      this.map.setZoomAndCenter(this.level, [lng, lat]) // 初始化地图,设置中心点坐标和地图级别
+    },
+    toCenter (level) {
+      this.map.setZoomAndCenter(level || this.level, [this.lng, this.lat])
     }
-  },
-  updated () {
-    this.$_reloadMap()
   },
   mounted () {
     this.$_reloadMap()
+  },
+  watch: {
+    level (newVal) {
+      this.toCenter(newVal) // 初始化地图,设置中心点坐标和地图级别
+    },
+    lat (newVal) {
+      this.$_reloadMap() // 初始化地图,设置中心点坐标和地图级别
+    },
+    lng (newVal) {
+      this.$_reloadMap() // 初始化地图,设置中心点坐标和地图级别
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped="">
-  .hx-map {
-    display: block;
+<style lang="scss" scoped>
+.hx-pad-map {
+  position: relative;
+  .btn-relocated {
+    position: absolute;
+    right: 16px;
+    background-color: white;
+    box-shadow: 0 0 12px rgba(0,0,0,.1);
+    bottom: 16px;
+    height: 36px;
+    width: 36px;
+    border-radius: 4px;
+    .icon {
+      height: 24px;
+      width: 24px;
+      display: block;
+    }
   }
+}
+.hx-map {
+  display: block;
+}
 </style>
