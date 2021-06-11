@@ -1,22 +1,16 @@
-<!--
- * @Author       : liuxuhao
- * @LastEditors  : liuxuhao
--->
 <br/><br/>
-<img style="height: 50px; margin: 0 auto; display: block;" src="https://lxh-static.oss-cn-shenzhen.aliyuncs.com/img/img-hxui-logo-font.png" />
-<br/><br/>
-<span style="text-align: center; display: block;">A sweet UI component library for Vue.js</span>
+<p align="center">
+  <img height="50px" style="height: 50px; margin: 0 auto; display: block;" src="https://lxh-static.oss-cn-shenzhen.aliyuncs.com/img/img-hxui-logo-font.png" />
+</p>
 <br />
-<div style="text-align: center">
-
-[![npm version](https://img.shields.io/npm/v/hxui.svg)](https://www.npmjs.com/package/hxui)
-![license](https://img.shields.io/npm/l/hxui)
-![size](https://img.shields.io/bundlephobia/minzip/hxui)
-![lastCommit](https://img.shields.io/github/last-commit/LXHFIGHT/hxui)
-![lastCommit](https://img.shields.io/github/commit-activity/y/LXHFIGHT/hxui)
-
-</div>
-
+<p align="center">A sweet UI component library for Vue.js</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/hxui" target="_blank"><img src="https://img.shields.io/npm/v/hxui.svg" alt="npm version"></a>
+  <img src="https://img.shields.io/npm/l/hxui" alt="license">
+  <img src="https://img.shields.io/bundlephobia/minzip/hxui" alt="size">
+  <img src="https://img.shields.io/github/last-commit/LXHFIGHT/hxui" alt="lastCommit">
+  <img src="https://img.shields.io/github/commit-activity/y/LXHFIGHT/hxui" alt="commitActivity">
+</p>
 <br/>
 
 ## Install
