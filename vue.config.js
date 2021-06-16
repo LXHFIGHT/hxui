@@ -1,4 +1,5 @@
 module.exports = {
+  productionSourceMap: false,
   // 设置打开目录为 examples
   pages: {
     index: {
