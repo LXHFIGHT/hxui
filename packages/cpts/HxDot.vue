@@ -1,11 +1,13 @@
 <template>
   <div :class="['hx-dot', 
-    text && 'text',
+    isText && 'text',
     size, 
     position, 
     blank && 'blank', 
-    (level || color)]">
+    (level || color)]"
+    ref="hxDot">
     {{ text }}
+    <slot></slot>
   </div>
 </template>
 
@@ -43,6 +45,14 @@ export default {
     color: {
       type: String
     }
+  },
+  data () {
+    return {
+      isText: false
+    }
+  },
+  mounted () {
+    this.$refs['hxDot'].innerText && (this.isText = true)
   }
 }
 </script>

@@ -11,33 +11,38 @@
     &.selected {
       .icon-check {
         background-color: $color-main;
-      }
-      &:hover {
-        .icon-check {
-          background-color: darken($color-main, 5%);
+        .icon {
+          opacity: 1.0;
         }
       }
     }
     .icon-check {
       height: $height-normal/2;
       width: $height-normal/2;
-      display: inline-block;
+      display: inline-flex;
       padding: $pm-sm/2;
       background-color: $color-gray;
       float: left;
       margin-right: $pm-sm;
       border-radius: $pm-sm/2;
+      justify-content: center;
+      align-items: center;
+      transition: background-color .4s;
+      .icon {
+        height: 100%;
+        width: 100%;
+        opacity: .0;
+        transition: opacity .4s;
+      }
     }
     &.disabled {
+      opacity: .6;
       .icon-check {
         cursor: not-allowed;
       }
       &:hover {
         background-color: transparent;
       }
-    }
-    &:hover {
-      background-color: $color-gray-light;
     }
   }
 }

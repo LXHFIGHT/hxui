@@ -3,7 +3,8 @@ import HxAutoComplete from './cpts/HxAutoComplete'
 import HxButton from './cpts/HxButton/'
 import HxCalendar from './cpts/HxCalendar'
 import HxCatalog from './cpts/HxCatalog'
-import HxCheckboxGroup from './cpts/HxCheckboxGroup'
+import HxCheckbox from './cpts/HxCheckbox'
+import HxCheckboxGroup from './cpts/HxCheckbox/group'
 import HxDatetimePicker from './cpts/HxDatetimePicker'
 import HxDot from './cpts/HxDot'
 import HxHeader from './cpts/HxHeader'
@@ -72,6 +73,7 @@ export {
   HxButton,
   HxCalendar,
   HxCatalog,
+  HxCheckbox,
   HxCheckboxGroup,
   HxDatetimePicker,
   HxDot,

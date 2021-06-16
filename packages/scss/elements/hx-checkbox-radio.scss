@@ -18,7 +18,7 @@ $height-checkbox: 20px;
   }
 }
 
-.hx-checkbox, .hx-radio {
+.hx-radio {
   background-color: transparent;
   height: $height-normal/2;
   display: inline-block;
@@ -52,12 +52,6 @@ $height-checkbox: 20px;
     &:before {
       background-color: $color-gray;
     }
-  }
-}
-
-.hx-checkbox {
-  &:before {
-    border-radius: $border-radius-md;
   }
 }
 
