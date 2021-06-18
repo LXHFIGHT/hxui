@@ -93,7 +93,6 @@
     color: rgba(255, 255, 255, .9);
     position: fixed;
     font-size: $font-md;
-    padding: $pm-md $pm-md $pm-bg;
     line-height: $font-sm * 2;
     display: block;
     &.default, &.bottom {
@@ -102,8 +101,16 @@
       transition: transform .3s;
       transform: translate(-50%, 100%);
       width: calc(100% - #{2 * $pm-md});
+      padding: $pm-md $pm-md $pm-bg;
       &.show {
         transform: translate(-50%, -16px);
+      }
+    }
+    &.top, &.center {
+      padding: $pm-bg $pm-md $pm-md;
+      &::before {
+        bottom: unset;
+        top: $pm-sm;
       }
     }
     &.center {

@@ -1,8 +1,8 @@
 @import "./../variable.scss";
-.hx-checkbox-group {
+.hx-radio-group {
   display: block;
   .item {
-    margin-bottom: $pm-xs;
+    margin-bottom: $pm-sm/2;
     padding: $pm-sm/2;
     position: relative;
     background-color: transparent;
@@ -12,34 +12,35 @@
       margin: 0 0 $pm-sm/2 $pm-sm;
     }
     &.selected {
-      .icon-check {
-        background-color: $color-main;
-        .icon {
-          opacity: 1.0;
-        }
+      .icon-check::before {
+        transform: scale(1.0, 1.0);
       }
     }
     .icon-check {
       height: $height-normal/2;
       width: $height-normal/2;
       display: inline-flex;
-      padding: $pm-sm/2;
+      padding: $pm-xs;
       background-color: $color-gray-light;
-      border: 1px solid $color-gray;
       float: left;
       margin-right: $pm-sm;
-      border-radius: $pm-sm/2;
+      border-radius: $height-normal/2;
+      border: 1px solid $color-gray;
       justify-content: center;
       align-items: center;
       transition: background-color .3s;
       &.no-text {
         margin-right: 0;
       }
-      .icon {
+      &::before {
+        content: "";
         height: 100%;
         width: 100%;
-        opacity: .0;
-        transition: opacity .3s;
+        background-color: $color-main;
+        display: block;
+        border-radius: 50% 50%;
+        transform: scale(.0, .0);
+        transition: transform .3s;
       }
     }
     &.disabled {

@@ -22,7 +22,8 @@ import HxPagination from './cpts/HxPagination'
 import HxProgressBar from './cpts/HxProgressBar'
 import HxProgressModal from './cpts/HxProgressModal'
 import HxRank from './cpts/HxRank'
-import HxRadioGroup from './cpts/HxRadioGroup'
+import HxRadio from './cpts/HxRadio'
+import HxRadioGroup from './cpts/HxRadio/group'
 import HxRow from './cpts/HxRow'
 import HxSearch from './cpts/HxSearch'
 import HxSearchItem from './cpts/HxSearchItem'
@@ -93,6 +94,7 @@ export {
   HxProgressModal,
   HxRank,
   HxRadioGroup,
+  HxRadio,
   HxRow,
   HxSearch,
   HxSearchItem,

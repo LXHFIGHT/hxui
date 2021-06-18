@@ -1,9 +1,7 @@
 <template>
   <button @click="doSelectItem"
-    :class="['hx-checkbox item', selected ? 'selected' : '', disabled ? 'disabled' : '']">
-    <span :class="['icon-check', isNoText && 'no-text']">
-      <img class="icon" src="./../../img/icon/icon-check.png" alt="">
-    </span>
+    :class="['hx-radio item', selected ? 'selected' : '', disabled ? 'disabled' : '']">
+    <span :class="['icon-check', !isText && 'no-text' ]"></span>
     <span class="txt" ref="text">
       <slot></slot>
     </span>
@@ -15,7 +13,7 @@ export default {
     return {
       selected: false,
       result: [],
-      isNoText: false
+      isText: false
     }
   },
   props: {
@@ -30,16 +28,18 @@ export default {
   methods: {
     init (isSelected) {
       this.selected = isSelected
-      this.isNoText = !this.$refs['text'].innerText
+      this.isText = !!this.$refs['text'].innerText
     },
     doSelectItem (value) {
       if (this.disabled) {
         return
       }
       const item = { value: this.value, key: this.$refs['text'].innerText }
-      this.selected = !this.selected
+      if (this.selected) {
+        return
+      }
       this.$parent.doSelectItem(item)
-      this.selected ? this.$emit('select', item) : this.$emit('cancel', item)
+      this.$emit('select', item)
       this.$emit('change', item)
     },
     isSelected () { // 供父组件调用的获取值的方法
