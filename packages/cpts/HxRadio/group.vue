@@ -4,9 +4,9 @@
       <button v-for="(item, idx) in options" 
         :key="idx"
         @click="doSelectItem(item)"
-        :class="['item', value === item.value && 'selected', disabled ? 'disabled' : '']">
+        :class="['item', type, value === item.value && 'selected', disabled ? 'disabled' : '']">
         <span class="icon-check"></span>
-        {{ item.key }}
+        <span :class="['txt']">{{ item.key }}</span>
       </button>
     </div>
     <slot></slot>
@@ -34,19 +34,21 @@ export default {
     },
     onSelect: { // 当选择选项时
       type: Function
+    },
+    type: { // radio按钮组织形式
+      type: String,
+      default: 'default',
+      validator (val) {
+        return ['default', 'button', 'round-button'].includes(val)
+      } 
     }
   },
   methods: {
     $_initChildren () {
       this.$children.forEach((v, i) => {
-        if (this.disabled) { // 如果数组定义为不可编辑，则设置子组件不可编辑
-          v.disabled = true
-        }
-        if (this.value === v.value) {
-          v.init(true)
-        } else {
-          v.init(false)
-        }
+        this.disabled && (v.disabled = true) // 如果数组定义为不可编辑，则设置子组件不可编辑
+        v.type = this.type
+        v.init(this.value === v.value)
       })
     },
     $_initContent () {

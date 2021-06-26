@@ -8,7 +8,7 @@
         <span class="icon-check">
           <img class="icon" src="./../../img/icon/icon-check.png" alt="">
         </span>
-        {{ item.key }}
+        <span :class="['txt', labelClass || '']">{{ item.key }}</span>
       </button>
     </div>
     <slot></slot>
@@ -30,6 +30,10 @@ export default {
       type: Array,
       required: true
     },
+    labelClass: {
+      type: String,
+      default: ''
+    },
     disabled: {
       type: [Boolean],
       default: false
@@ -44,14 +48,9 @@ export default {
   methods: {
     $_initChildren () {
       this.$children.forEach((v, i) => {
-        if (this.disabled) { // 如果数组定义为不可编辑，则设置子组件不可编辑
-          v.disabled = true
-        }
-        if (this.value.includes(v.value)) {
-          v.init(true)
-        } else {
-          v.init(false)
-        }
+        this.disabled && (v.disabled = true) // 如果数组定义为不可编辑，则设置子组件不可编辑
+        this.labelClass && (v.labelClass = this.labelClass)
+        v.init(this.value === v.value)
       })
     },
     $_initContent () {

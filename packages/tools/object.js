@@ -47,11 +47,11 @@ export const randomString = (length, isJustNumber = false) => {
  */
 export const _isSameArray = (arr1 = [], arr2 = []) => {
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
-    console.log(`_isSameArray 方法要求第一和第二个参数为数组类型`)
+    console.warn(`_isSameArray 方法要求第一和第二个参数为数组类型`)
     return false
   }
   if (arr1.length !== arr2.length) {
-    console.log(`第一和第二个数组长度不一致`)
+    console.warn(`第一和第二个数组长度不一致`)
     return false
   }
   let i = 0
@@ -91,7 +91,7 @@ export const isShallowEqual = (val1, val2) => {
     const val1Keys = Object.keys(val1)
     const val2Keys = Object.keys(val2)
     if (!_isSameArray(val1Keys, val2Keys)) {
-      console.log('参与比较的对象的属性不一致')
+      console.warn('参与比较的对象的属性不一致')
       return false
     }
     for (let param in val1) {
@@ -101,6 +101,24 @@ export const isShallowEqual = (val1, val2) => {
     }
     return true
   }
+}
+
+/**
+ * 百度坐标系 (BD-09) 与 火星坐标系 (GCJ-02)的转换
+ * 即 百度 转 谷歌、高德
+ * @param bd_lon
+ * @param bd_lat
+ * @returns {*[]}
+ */
+const x_PI = Math.PI * 3000.0 / 180.0
+export const bd09togcj02 = (bd_lon, bd_lat) => {
+  var x = bd_lon - 0.0065
+  var y = bd_lat - 0.006
+  var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_PI)
+  var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_PI)
+  var gg_lng = z * Math.cos(theta)
+  var gg_lat = z * Math.sin(theta)
+  return [gg_lng, gg_lat]
 }
 
 export const Vue = vue

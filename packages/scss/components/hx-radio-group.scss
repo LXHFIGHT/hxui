@@ -6,12 +6,13 @@
     padding: $pm-sm/2;
     position: relative;
     background-color: transparent;
-    transition: background-color .3s;
+    transition: background-color .2s;
     font-size: $font-md;
     & + .item {
       margin: 0 0 $pm-sm/2 $pm-sm;
     }
     &.selected {
+      color: $color-main;
       .icon-check::before {
         transform: scale(1.0, 1.0);
       }
@@ -28,7 +29,7 @@
       border: 1px solid $color-gray;
       justify-content: center;
       align-items: center;
-      transition: background-color .3s;
+      transition: background-color .2s;
       &.no-text {
         margin-right: 0;
       }
@@ -40,16 +41,56 @@
         display: block;
         border-radius: 50% 50%;
         transform: scale(.0, .0);
-        transition: transform .3s;
+        transition: transform .2s;
       }
     }
     &.disabled {
       opacity: .6;
-      .icon-check {
-        cursor: not-allowed;
+      cursor: not-allowed;
+    }
+    &.button {
+      border: 1px solid $color-gray;
+      padding: $pm-sm/2 $pm-xs*3;
+      min-height: 18px;
+      &:first-child {
+        border-top-left-radius: $pm-xs;
+        border-bottom-left-radius: $pm-xs;
       }
-      &:hover {
-        background-color: transparent;
+      &:last-child {
+        border-top-right-radius: $pm-xs;
+        border-bottom-right-radius: $pm-xs;
+      }
+      .icon-check {
+        display: none;
+      }
+      & + .item.button {
+        margin-left: -1px;
+      }
+      &.selected {
+        background-color: $color-main;
+        color: white;
+        font-weight: 500;
+        border: 1px solid $color-main;
+      }
+    }
+    &.round-button {
+      border: 1px solid $color-gray;
+      padding: $pm-sm/2 $pm-sm;
+      border-radius: 20px;
+      .txt {
+        margin: 0 $pm-xs;
+      }
+      .icon-check {
+        display: none;
+      }
+      & + .item.button {
+        margin-left: -1px;
+      }
+      &.selected {
+        background-color: $color-main;
+        color: white;
+        font-weight: 500;
+        border: 1px solid $color-main;
       }
     }
   }

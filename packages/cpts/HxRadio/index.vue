@@ -1,6 +1,6 @@
 <template>
   <button @click="doSelectItem"
-    :class="['hx-radio item', selected ? 'selected' : '', disabled ? 'disabled' : '']">
+    :class="['hx-radio', 'item', radioType, selected ? 'selected' : '', disabled ? 'disabled' : '']">
     <span :class="['icon-check', !isText && 'no-text' ]"></span>
     <span class="txt" ref="text">
       <slot></slot>
@@ -13,16 +13,21 @@ export default {
     return {
       selected: false,
       result: [],
-      isText: false
+      isText: false,
+      radioType: ''
     }
   },
   props: {
+    debug: Boolean,
     value: { // 当前值
       type: [Number, String, Boolean]
     },
     disabled: {
       type: Boolean,
       default: false
+    },
+    type: { // 父级传入的按钮样式类型
+      type: String
     }
   },
   methods: {
@@ -47,7 +52,15 @@ export default {
     }
   },
   mounted () {
+    this.radioType = this.type
     this.init()
+  },
+  watch: {
+    type (newVal, oldVal) {
+      if (newVal) {
+        this.radioType = newVal
+      }
+    }
   }
 }
 </script>

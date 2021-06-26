@@ -5,7 +5,7 @@
 <template>
   <div class="hx-pad-map">
     <div class="hx-map"
-      :style="`height: ${height}`"
+      :style="`height: ${height}; width: ${width};`"
       :id="id">
       <div class="hx-emptyset md" v-if="!lat || !lng">
         暂无准确坐标
@@ -19,6 +19,7 @@
 
 <script>
 import imgPinpoint from './../img/icon/icon-pinpoint.png'
+import { bd09togcj02 } from './../tools/object'
 const AMap = window.AMap
 export default {
   name: 'HxMap',
@@ -26,7 +27,9 @@ export default {
     return {
       idName: `hx-map`,
       map: null,
-      marker: null
+      marker: null,
+      latitude: null,
+      longitude: null
     }
   },
   props: {
@@ -37,6 +40,10 @@ export default {
     height: {
       type: String,
       default: '200px'
+    },
+    width: {
+      type: String,
+      default: '100%'
     },
     lng: {
       type: [Number, String],
@@ -53,13 +60,27 @@ export default {
     iconUrl: {
       type: String, // 图片的位置
       default: imgPinpoint
+    },
+    type: {
+      type: String,
+      default: 'gcj02',
+      validator (val) {
+        return ['gcj02', 'bd09'].includes(val)
+      }
     }
   },
   methods: {
     $_reloadMap () {
-      const { lat, lng } = this
+      const { type } = this
+      let lat = this.lat
+      let lng = this.lng
       if (!lat || !lng) {
         return 
+      }
+      if (type === 'bd09') { // 百度坐标系转换
+        const points = bd09togcj02(lng, lat)
+        lng = points[0]
+        lat = points[1]
       }
       if (!this.map) {
         this.map = new AMap.Map(this.id) // 创建Map实例

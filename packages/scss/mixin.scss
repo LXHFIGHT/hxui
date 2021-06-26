@@ -100,21 +100,22 @@
   }
 }
 
-@mixin hxTag($bgColor, $color: white, $height: 34px) {
+@mixin hxTag($bgColor, $color: white, $height: 27px) {
   height: $height;
-  padding: 0 8px;
   background-color: $bgColor;
-  font: {
-    weight: 400;
-    size: 13px;
-  }
   color: $color;
   border: 1px solid $bgColor;
-  transition: all .4s;
   &.sub {
     box-shadow: none;
     color: $color;
   }
+}
+
+@mixin hxBlankTag($bgColor, $color: white, $height: 27px) {
+  border: 1px solid $bgColor;
+  background-color: $color;
+  color: $bgColor;
+  height: $height;
 }
 
 @mixin boxShadowNormal($isHover: true) {
@@ -154,15 +155,6 @@
     background-color: $color-gray-light!important;
     filter: brightness(100%);
   }
-}
-
-@mixin hxBlankTag($bgColor, $color: white, $height:34px) {
-  border: 1px solid $bgColor;
-  background-color: $color;
-  color: $bgColor;
-  height: $height;
-  padding: 0 8px;
-  font-size: 14px;
 }
 
 // 【常用】文本居于一行  超过范围变成 "XXXXX..."

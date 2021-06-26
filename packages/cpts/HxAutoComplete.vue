@@ -70,7 +70,7 @@ export default {
         }
         for (let item of val) {
           if (item instanceof Object || item instanceof Function) {
-            console.log('提供数据中内容不能包含引用数据类型，请使用字符串、数字等基本数据类型')
+            console.warn('提供数据中内容不能包含引用数据类型，请使用字符串、数字等基本数据类型')
             return false
           }
         }

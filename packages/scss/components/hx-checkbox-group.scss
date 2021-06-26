@@ -6,7 +6,7 @@
     padding: $pm-sm/2;
     position: relative;
     background-color: transparent;
-    transition: background-color .3s;
+    transition: background-color .2s;
     font-size: $font-md;
     & + .item {
       margin: 0 0 $pm-sm/2 $pm-sm;
@@ -31,7 +31,7 @@
       border-radius: $pm-sm/2;
       justify-content: center;
       align-items: center;
-      transition: background-color .3s;
+      transition: background-color .2s;
       &.no-text {
         margin-right: 0;
       }
@@ -39,17 +39,12 @@
         height: 100%;
         width: 100%;
         opacity: .0;
-        transition: opacity .3s;
+        transition: opacity .2s;
       }
     }
     &.disabled {
       opacity: .6;
-      .icon-check {
-        cursor: not-allowed;
-      }
-      &:hover {
-        background-color: transparent;
-      }
+      cursor: not-allowed;
     }
   }
 }

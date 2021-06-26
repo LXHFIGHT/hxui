@@ -52,7 +52,7 @@ export default {
       })
     },
     doSelectItem (item) {
-      console.log('change', item)
+      console.warn('change', item)
       this.$emit('input', item.value)
       this.$emit('change', item.value)
     }

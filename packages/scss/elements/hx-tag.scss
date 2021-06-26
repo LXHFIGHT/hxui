@@ -10,31 +10,63 @@
   position: relative;
   color: $color-heavy;
   background-color: $color-gray-light;
-  height: $height-regular - 8px;
-  line-height: $height-regular - 8px;
   border: 1px solid $color-gray;
   cursor: default;
   border-radius: 3px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
   font-weight: 600;
   & + & {
     margin-left: $pm-sm;
   }
+
   &.material {
     box-shadow: $shadow-material;
   }
+
   &.main    {  @include hxTag($color-main);  }
   &.gray    {  @include hxTag(darken($color-gray-deep, 14%));  }
   &.orange, &.warn  {  @include hxTag($color-orange);  }
   &.red, &.error     {  @include hxTag($color-red);  }
   &.blue, &.info    {  @include hxTag($color-blue);  }
   &.green, &.success   {  @include hxTag($color-green);  }
+  &.black, &.fatal   {  @include hxTag($color-black);  }
   &.excel   {  @include hxTag($color-green-excel);  }
   &.pink    {  @include hxTag($color-pink);  }
   &.yellow  {  @include hxTag($color-golden, $color-heavy);  }
+
+  // 尺寸 
+  &.sm {
+    height: $height-normal/2;
+    padding: 0 $pm-sm/2;
+    font-size: $font-sm;
+    &.round {
+      border-radius: $height-normal / 2;
+      padding: 0 $pm-sm;
+    }
+  }
+  &.md {
+    height: $height-regular - $pm-sm;
+    padding: 0 $pm-sm;
+    font-size: $font-md;
+    &.round {
+      border-radius: $height-regular - $pm-sm;
+      padding: 0 $pm-xs*3;
+    }
+  }
+  &.bg {
+    height: $height-regular;
+    padding: 0 $pm-xs*3;
+    font-size: $font-bg;
+    &.round {
+      border-radius: $height-regular;
+      padding: 0 $pm-md;
+    }
+  }
 }
 
-// 空心按钮
+// 空心标签
 .hx-tag.blank {
   @include hxBlankTag($color-main);
   &:disabled, &.disabled {
@@ -54,15 +86,4 @@
   &.excel   {  @include hxBlankTag($color-green-excel);  }
   &.pink    {  @include hxBlankTag($color-pink);  }
   &.yellow  {  @include hxBlankTag($color-golden);  }
-}
-
-// 按钮尺寸
-.hx-tag.sm {
-  height: $height-normal/2;
-  line-height: $height-normal/2;
-  padding: 0 $pm-sm/2;
-}
-.hx-tag.bg {
-  height: $height-regular;
-  line-height: $height-regular;
 }

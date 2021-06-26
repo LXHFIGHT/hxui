@@ -126,12 +126,6 @@ export default {
       })
       that.getNearbyAddress()
     },
-    onHide () {
-      this.$emit('input', false)
-    },
-    onSelect (addressInfo) {
-      this.$emit('select', addressInfo)
-    },
     select (e) {
       if (e && e.poi.location) {
         let zoom = this.map.getZoom()
@@ -175,6 +169,13 @@ export default {
       const { lng, lat } = pinpoint
       this.onHide()
       this.onSelect({ address: '', lng, lat })
+    },
+    onHide () {
+      this.$emit('input', false)
+    },
+    onSelect (addressInfo) {
+      this.$emit('select', addressInfo)
+      this.$emit('change', addressInfo)
     }
   },
   mounted () {

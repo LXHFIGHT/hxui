@@ -36,8 +36,8 @@ import HxSwitch from './cpts/HxSwitch'
 import HxTabbar from './cpts/HxTabbar'
 import HxTable from './cpts/HxTable'
 import HxTableColumn from './cpts/HxTableColumn'
+import HxTag from './cpts/HxTag'
 import HxTagEditor from './cpts/HxTagEditor'
-import HxTags from './cpts/HxTags'
 import HxWaterfall from './cpts/HxWaterfall'
 import plugins from './plugins'
 import './scss/index.scss'
@@ -107,8 +107,8 @@ export {
   HxTabbar,
   HxTable,
   HxTableColumn,
+  HxTag,
   HxTagEditor,
-  HxTags,
   HxWaterfall,
   plugins
 }
