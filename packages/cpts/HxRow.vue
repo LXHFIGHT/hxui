@@ -1,7 +1,3 @@
-<!--
- * @Author       : liuxuhao
- * @LastEditors  : liuxuhao
--->
 <template>
   <div class="hx-row" :class="[
     oneline && 'oneline',
@@ -28,7 +24,7 @@
 
 <script>
 /**
- * HxRow 行组件一共有3个插槽：
+ * HxRow 行布局一共有3个插槽：
  *  label插槽： 置于label中， 一般用于放置字数较少提示信息，如果上传图片规格
  *  right插槽： 在行内容区域右侧， 一般用于放置单位信息
  *  tips插槽： 在行内容区域下方，一般用于放置字数多的提示信息，区域更广

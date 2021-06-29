@@ -76,7 +76,7 @@
   @if $bgColor == white {
     background-color: $bgColor;
   } @else {
-    background-color: $bgColor!important;
+    background-color: $bgColor;
   }
   font: {
     weight: 400;
@@ -96,7 +96,21 @@
     filter: brightness(84%);
   }
   &:disabled {
-    background-color: #d1d1d1!important;
+    background-color: #d1d1d1;
+  }
+}
+
+@mixin hxBlankButton($bgColor, $color: white, $height:34px) {
+  border: 1px solid $bgColor;
+  background-color: $color;
+  color: $bgColor;
+  transition: all .4s;
+  height: $height;
+  padding: 0 8px;
+  font-size: 14px;
+  &:hover{
+    color: $color;
+    background-color: $bgColor;
   }
 }
 
@@ -128,19 +142,7 @@
   }
 }
 
-@mixin hxBlankButton($bgColor, $color: white, $height:34px) {
-  border: 1px solid $bgColor;
-  background-color: $color!important;
-  color: $bgColor;
-  transition: all .4s;
-  height: $height;
-  padding: 0 8px;
-  font-size: 14px;
-  &:hover{
-    color: $color;
-    background-color: $bgColor!important;
-  }
-}
+
 
 @mixin hxTextButton($color: white, $height:34px) {
   border: none;

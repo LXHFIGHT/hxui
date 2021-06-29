@@ -16,20 +16,22 @@ $height-admin-navbar: 50px;
     border-bottom: 1px solid $color-gray;
   }
   .nav-left, .nav-right {
-    display: inline-block;
+    display: inline-flex;
     height: $height-navbar;
     position: relative;
     padding: $height-navbar / 4;
+    align-items: center;
     .logo {
       height: $height-navbar / 2.5;
-      margin-top: ($height-navbar / 2 - $height-navbar / 2.5)/2;
+      margin-right: $pm-md;
+      cursor: pointer;
     }
     .title {
       height: $height-navbar / 2;
       display: inline-block;
       vertical-align: top;
       line-height: $height-navbar / 2;
-      margin-left: $pm-sm;
+      margin-right: $pm-md;
       font-weight: 800;
     }
     .tag {
@@ -59,8 +61,7 @@ $height-admin-navbar: 50px;
       }
       .pad-options {
         .item.selected {
-          background-color: $color-main;
-          color: white;
+          background-color: #f2f2f2;
         }
       }
       &:after {
@@ -102,8 +103,9 @@ $height-admin-navbar: 50px;
     display: block;
     .nav-left {
       padding: 10px ($height-navbar/4 + $height-normal);
-      display: inline-block;
+      display: inline-flex;
       height: $height-admin-navbar;
+      align-items: center;
       .logo {
         margin-right: $pm-sm/2;
       }

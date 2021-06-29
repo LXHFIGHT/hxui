@@ -6,9 +6,8 @@
 
 // 实心按钮
 .hx-tag {
-  @include hxTag(white, ($height-regular - 8px));
+  @include hxTag($color-heavy, ($height-regular - 8px));
   position: relative;
-  color: $color-heavy;
   background-color: $color-gray-light;
   border: 1px solid $color-gray;
   cursor: default;
@@ -68,7 +67,7 @@
 
 // 空心标签
 .hx-tag.blank {
-  @include hxBlankTag($color-main);
+  @include hxBlankTag($color-heavy);
   &:disabled, &.disabled {
     background-color: darken($color-gray, 5%)!important;
     cursor: not-allowed;
