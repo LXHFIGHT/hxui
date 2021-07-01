@@ -28,8 +28,8 @@
           v-if="options.length === 0 && !loading">
           暂无匹配选项
         </div>
-        <hx-loading-icon v-if="loading" height="32px" style="padding: 16px 0;">
-        </hx-loading-icon>
+        <hx-loading v-if="loading" style="padding: 16px 0;">
+        </hx-loading>
       </div>
     </hx-folder>
     <input type="password"
@@ -39,7 +39,7 @@
 </template>
 <script>
 import HxFolder from './HxFolder'
-import HxLoadingIcon from './HxLoadingIcon'
+import HxLoading from './HxLoading'
 import iconClear from './../img/icon/icon-close.png'
 export default {
   data () {
@@ -54,7 +54,7 @@ export default {
   },
   components: {
     HxFolder,
-    HxLoadingIcon
+    HxLoading
   },
   props: {
     upperCase: {

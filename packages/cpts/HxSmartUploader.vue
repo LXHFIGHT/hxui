@@ -58,14 +58,15 @@
       <span class="text" v-if="isImageError">图片请重新上传</span>
     </button>
     <div class="pad-uploading" v-if="loading || isUploading">
-      <hx-loading-icon height="30px" class="icon-loading"></hx-loading-icon>
-      <span class="text-uploading" v-text="loadingText"></span>
+      <hx-loading class="icon-loading" direction="column">
+        <span v-if="loadingText" class="text-uploading" v-text="loadingText"></span>
+      </hx-loading>
     </div>
   </div>
 </template>
 
 <script>
-import HxLoadingIcon from './../cpts/HxLoadingIcon'
+import HxLoading from './HxLoading'
 import IconExpend from './../img/svg/expend.svg' 
 import IconUpload from './../img/svg/upload.svg' 
 import IconDelete from './../img/svg/delete.svg' 
@@ -91,7 +92,7 @@ export default {
     IconImage,
     IconLeft,
     IconRight,
-    HxLoadingIcon
+    HxLoading
   },
   data () {
     return {

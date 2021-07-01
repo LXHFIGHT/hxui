@@ -1,11 +1,3 @@
-<!--
- * @Author       : liuxuhao
- * @LastEditors  : liuxuhao
--->
-<!--
- * @Author       : liuxuhao
- * @LastEditors  : liuxuhao
--->
 <template>
   <div class="hx-checkbox-group">
     <div class="hx-content-group" v-if="content && content.length">

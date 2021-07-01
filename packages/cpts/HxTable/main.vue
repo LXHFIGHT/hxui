@@ -1,9 +1,9 @@
 <template>
   <div :class="['hx-table', !isNotEmpty && 'no-shadow']" ref="hxTablePad">
     <div class="pad-loading" v-if="loading">
-      <hx-loading-icon position="center" height="35px" width="35px" level="warn">
+      <hx-loading align="center" level="warn">
         <span v-if="loadingText" v-text="loadingText"></span>
-      </hx-loading-icon>
+      </hx-loading>
     </div>
     <table ref="hxTable">
       <thead >
@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import HxLoadingIcon from './../HxLoadingIcon'
+import HxLoading from './../HxLoading'
 export default {
   name: 'hx-table',
   components: {
-    HxLoadingIcon
+    HxLoading
   },
   props: {
     loading: {

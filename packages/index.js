@@ -10,7 +10,7 @@ import HxDot from './cpts/HxDot'
 import HxHeader from './cpts/HxHeader'
 import HxImage from './cpts/HxImage'
 import HxInput from './cpts/HxInput'
-import HxLoadingIcon from './cpts/HxLoadingIcon'
+import HxLoading from './cpts/HxLoading'
 import HxStatusIcon from './cpts/HxStatusIcon'
 import HxMap from './cpts/HxMap'
 import HxMarquee from './cpts/HxMarquee'
@@ -68,6 +68,7 @@ const install = (Vue) => {
 //   install(window.Vue)
 // }
 
+const HxLoadingIcon = HxLoading
 export {
   HxAddressSelector, // 地址选择组件
   HxAutoComplete,
@@ -81,6 +82,7 @@ export {
   HxHeader,
   HxImage,
   HxInput,
+  HxLoading,
   HxLoadingIcon,
   HxStatusIcon,
   HxMap,

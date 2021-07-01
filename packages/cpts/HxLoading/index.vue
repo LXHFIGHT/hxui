@@ -1,17 +1,19 @@
 <template>
-  <div :class="['pad-loading-icon', 
-    position, 
+  <div :class="['hx-pad-loading', 
+    align,
+    breathing && 'breathing',
+    inline && 'inline',
     direction === 'row' ? 'row' : 'column']" 
     ref="padLoadingIcon">
-    <canvas :style="`height: ${height};`" :id="id" :class="`hx-loading-canvas`"></canvas>
-    <span class="text-loading" :style="textStyle">
+    <canvas :style="`height: ${height || iconSize}; width: ${height || iconSize};`" :id="id" :class="`hx-loading-canvas`"></canvas>
+    <span :class="['text-loading']" :style="textStyle">
       <slot></slot>
     </span>
   </div>
 </template>
 
 <script>
-import { levelFilter, levelKeys } from './../../const'
+import { levelFilter, levelKeys } from '../../const'
 export default {
   name: 'hx-loading-icon',
   data () {
@@ -19,40 +21,59 @@ export default {
       gap: 0.05,
       canvas: null,
       id: '',
-      mainColor: '',
       ctx: null,
       clientHeight: 0,
       clientWidth: 0,
       radius: 0,
       startAngle: 0,
       endAngle: 0,
-      timer: null
+      timer: null,
+      mainColor: ''
     }
   },
   props: {
-    height: {
+    height: { // 准备弃用
+      type: String
+    },
+    iconSize: {
       type: String,
-      default: '100%'
+      default: '34px'
+    },
+    textSize: { // 文字大小
+      type: String,
+      default: '14px'
     },
     level: {
       type: String,
       validator (data) {
         return levelKeys.includes(data)
       },
-      default: 'info'
+      default: ''
     },
     color: {
-      type: String
+      type: String,
+      default: '#235DFF' // 主题色
     },
-    position: {
-      type: String
+    breathing: {
+      type: Boolean, // 是否带有呼吸动画 
+      default: false
+    },
+    inline: {
+      type: Boolean, // 是否属于行内元素 true为是  默认不是
+      default: false
+    }, 
+    align: {
+      type: String,
+      validator (val) {
+        return ['left', 'center', 'right'].includes(val)
+      }
     },
     direction: { // 加载中文本和加载动画的布局方式，分别有 “row 在同一行” 以及 “column 在同一列（默认）”
       type: String,
       validator (data) {
         return ['row', 'column'].includes(data)
       },
-      default: 'column'
+      default: 'row' // 默认是同一行内
     }
   },
   methods: {
@@ -69,8 +90,10 @@ export default {
       this.ctx = this.canvas.getContext('2d')
       this.ctx.lineWidth = 2
       this.ctx.lineCap = 'round'
-      this.mainColor = this.color || levelFilter(this.level, 'color')
+      this.mainColor = this.level ? levelFilter(this.level, 'color') : this.color
       this.ctx.strokeStyle = this.mainColor
+      this.$_drawArc()
+      this.$_setTimer()
     },
     $_drawArc () {
       this.ctx.clearRect(0, 0, this.clientWidth, this.clientWidth)
@@ -100,6 +123,11 @@ export default {
         }
         this.$_drawArc()
       }, 1000 / 60)
+    },
+    $_poptips () {
+      if (this.direction === 'column' && ['left', 'right'].includes(this.align)) {
+        console.warn('[HXUI HxLoading] 当 direction 设置为 "column" 时，align设置为 "left" 和 "right" 是无效的')
+      }
     }
   },
   created () {
@@ -107,15 +135,14 @@ export default {
   },
   mounted () {
     this.$_init()
-    this.$_drawArc()
-    this.$_setTimer()
+    this.$_poptips()
   },
   beforeDestroy () {
     window.clearInterval(this.timer)
   },
   computed: {
     textStyle () {
-      let style = `color: ${this.mainColor}; `
+      let style = `color: ${this.mainColor}; ${this.textSize ? ('font-size: ' + this.textSize) : ''}`
       return style
     }
   }
