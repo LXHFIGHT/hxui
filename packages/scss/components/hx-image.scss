@@ -3,22 +3,44 @@
 .hx-image {
   position: relative;
   background-color: transparent;
+  overflow: hidden;
+  display: inline-block;
+  .img {
+    display: block;
+  }
   &.block {
     height: 100%;
     width: 100%;
     display: block;
   }
-  .img {
-    display: block;
+  &.loading {
+    background-color: $color-gray-light;
   }
-  &.centerVertical {
+  &.round {
+    border-radius: 50% 50%;
+  }
+  .pad-image-loading {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pad-img-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $pm-sm;
+    font-size: $font-md;
+    background-color: $color-gray-light;
+    color: $color-gray-deep;
+  }
+  &.adjust.centerVertical {
     .img {
       width: 100%;
       height: auto;
       @include centerVertical;
     }
   }
-  &.centerHorizontal {
+  &.adjust.centerHorizontal {
     .img {
       height: 100%;
       width: auto;

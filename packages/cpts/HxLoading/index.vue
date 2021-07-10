@@ -6,7 +6,7 @@
     direction === 'row' ? 'row' : 'column']" 
     ref="padLoadingIcon">
     <canvas :style="`height: ${height || iconSize}; width: ${height || iconSize};`" :id="id" :class="`hx-loading-canvas`"></canvas>
-    <span :class="['text-loading']" :style="textStyle">
+    <span ref="spanText" :class="['text-loading', noText && 'no-text']" :style="textStyle">
       <slot></slot>
     </span>
   </div>
@@ -28,7 +28,8 @@ export default {
       startAngle: 0,
       endAngle: 0,
       timer: null,
-      mainColor: ''
+      mainColor: '',
+      noText: false
     }
   },
   props: {
@@ -58,7 +59,7 @@ export default {
       type: Boolean, // 是否带有呼吸动画 
       default: false
     },
-    inline: {
+    block: {
       type: Boolean, // 是否属于行内元素 true为是  默认不是
       default: false
     }, 
@@ -125,6 +126,10 @@ export default {
       }, 1000 / 60)
     },
     $_poptips () {
+      const $text = this.$refs['spanText']
+      if (!$text.innerHTML) {
+        this.noText = true
+      }
       if (this.direction === 'column' && ['left', 'right'].includes(this.align)) {
         console.warn('[HXUI HxLoading] 当 direction 设置为 "column" 时，align设置为 "left" 和 "right" 是无效的')
       }
